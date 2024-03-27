@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/27 15:46:43 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/03/27 15:53:28 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(int argc, char **argv, char **env)
 			if (ft_strcmp(input, "exit") == 0)
 			{
 				printf("exit\n");
+				free(input);
 				break ;
 			}
 			add_history(input);
