@@ -1,40 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/27 14:12:39 by akuburas         ###   ########.fr       */
+/*   Created: 2023/10/26 10:19:57 by akuburas          #+#    #+#             */
+/*   Updated: 2023/10/26 14:49:55 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	char	*input;
+	size_t	src_len;
+	size_t	i;
 
-	if (argc < 1)
-		printf("wtf\n");
-	if (!argv[0])
-		printf("wtf2\n");
-	if (!env[0])
-		printf("wtf3\n");
-	while (1)
+	src_len = ft_strlen(src);
+	i = 0;
+	if (dstsize > 0)
 	{
-		input = readline("shitshell-0.01:");
-		if (!input)
+		while (i < src_len && i < (dstsize - 1))
 		{
-			printf("exit\n");
-			break ;
+			dst[i] = src[i];
+			i++;
 		}
-		if (input)
-		{
-			add_history(input);
-		}
-		free(input);
+		dst[i] = '\0';
 	}
-	rl_clear_history();
+	return (src_len);
 }

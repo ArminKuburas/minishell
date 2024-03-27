@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/27 14:12:39 by akuburas         ###   ########.fr       */
+/*   Created: 2023/10/27 09:54:10 by akuburas          #+#    #+#             */
+/*   Updated: 2023/10/27 11:18:12 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	char	*input;
+	int	i;
 
-	if (argc < 1)
-		printf("wtf\n");
-	if (!argv[0])
-		printf("wtf2\n");
-	if (!env[0])
-		printf("wtf3\n");
-	while (1)
+	if (!dst && !src)
+		return (NULL);
+	if (dst > src)
 	{
-		input = readline("shitshell-0.01:");
-		if (!input)
+		i = (int)len - 1;
+		while (i >= 0)
 		{
-			printf("exit\n");
-			break ;
+			*(char *)(dst + i) = *(char *)(src + i);
+			i--;
 		}
-		if (input)
-		{
-			add_history(input);
-		}
-		free(input);
 	}
-	rl_clear_history();
+	else
+	{
+		i = 0;
+		while (i < (int)len)
+		{
+			*(char *)(dst + i) = *(char *)(src + i);
+			i++;
+		}
+	}
+	return (dst);
 }

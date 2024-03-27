@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/27 14:12:39 by akuburas         ###   ########.fr       */
+/*   Created: 2023/10/26 15:40:19 by akuburas          #+#    #+#             */
+/*   Updated: 2024/01/16 17:04:15 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+char	*ft_strdup(const char *s)
 {
-	char	*input;
+	size_t	len;
+	char	*new_str;
 
-	if (argc < 1)
-		printf("wtf\n");
-	if (!argv[0])
-		printf("wtf2\n");
-	if (!env[0])
-		printf("wtf3\n");
-	while (1)
+	len = ft_strlen(s);
+	new_str = (char *)ft_calloc(len + 1, sizeof(char));
+	if (new_str)
 	{
-		input = readline("shitshell-0.01:");
-		if (!input)
-		{
-			printf("exit\n");
-			break ;
-		}
-		if (input)
-		{
-			add_history(input);
-		}
-		free(input);
+		ft_memcpy(new_str, s, len);
 	}
-	rl_clear_history();
+	else
+		return (NULL);
+	return (new_str);
 }

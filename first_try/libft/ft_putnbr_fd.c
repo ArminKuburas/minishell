@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/27 14:12:39 by akuburas         ###   ########.fr       */
+/*   Created: 2023/10/31 09:09:58 by akuburas          #+#    #+#             */
+/*   Updated: 2023/10/31 10:33:21 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+void	ft_putnbr_fd(int n, int fd)
 {
-	char	*input;
+	char	digit;
+	long	num;
 
-	if (argc < 1)
-		printf("wtf\n");
-	if (!argv[0])
-		printf("wtf2\n");
-	if (!env[0])
-		printf("wtf3\n");
-	while (1)
+	num = (long)n;
+	if (n == 0)
 	{
-		input = readline("shitshell-0.01:");
-		if (!input)
-		{
-			printf("exit\n");
-			break ;
-		}
-		if (input)
-		{
-			add_history(input);
-		}
-		free(input);
+		write(fd, "0", 1);
+		return ;
 	}
-	rl_clear_history();
+	if (num < 0)
+	{
+		write(fd, "-", 1);
+		num = -num;
+	}
+	if (n / 10)
+		ft_putnbr_fd(num / 10, fd);
+	digit = '0' + (num % 10);
+	write(fd, &digit, 1);
 }

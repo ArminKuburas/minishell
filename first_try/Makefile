@@ -6,23 +6,33 @@
 #    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/03/27 13:59:53 by akuburas         ###   ########.fr        #
+#    Updated: 2024/03/27 15:17:12 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -lreadline -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include
+CFLAGS = -Wall -Wextra -Werror 
+RLFLAGS = -lreadline -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include
 
-SRCS = main.c \
+MAKE = make bonus
+LIBFTDIR = libft
+LIBFT = $(LIBFTDIR)/libft.a
+
+SRCS = main.c
 
 OBJS = $(SRCS:.c=.o)
-all = $(NAME)
-$(NAME): $(OBJS)
-		$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+all: $(NAME)
+$(NAME): $(OBJS) $(LIBFT)
+		$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME) $(RLFLAGS)
+
+$(LIBFT):
+	@$(MAKE) -C $(LIBFTDIR)
+
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 clean:
+	make fclean -C $(LIBFTDIR)
 	rm -rf $(OBJS)
 fclean: clean
 	rm -rf $(NAME)

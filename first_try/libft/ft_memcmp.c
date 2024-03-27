@@ -1,40 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/27 14:12:39 by akuburas         ###   ########.fr       */
+/*   Created: 2023/10/26 10:02:09 by akuburas          #+#    #+#             */
+/*   Updated: 2023/10/27 11:28:53 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	char	*input;
+	size_t	i;
+	int		difference;
 
-	if (argc < 1)
-		printf("wtf\n");
-	if (!argv[0])
-		printf("wtf2\n");
-	if (!env[0])
-		printf("wtf3\n");
-	while (1)
+	i = 0;
+	difference = 0;
+	while (i < n)
 	{
-		input = readline("shitshell-0.01:");
-		if (!input)
+		if (((unsigned char *)s1)[i] != ((unsigned char *)s2)[i])
 		{
-			printf("exit\n");
-			break ;
+			difference = ((unsigned char *)s1)[i] - ((unsigned char *)s2)[i];
+			return (difference);
 		}
-		if (input)
-		{
-			add_history(input);
-		}
-		free(input);
+		i++;
 	}
-	rl_clear_history();
+	return (0);
 }

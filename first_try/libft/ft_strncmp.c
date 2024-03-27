@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/27 14:12:39 by akuburas         ###   ########.fr       */
+/*   Created: 2023/10/25 12:38:31 by akuburas          #+#    #+#             */
+/*   Updated: 2023/10/27 11:38:57 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	char	*input;
+	unsigned char	u1;
+	unsigned char	u2;
 
-	if (argc < 1)
-		printf("wtf\n");
-	if (!argv[0])
-		printf("wtf2\n");
-	if (!env[0])
-		printf("wtf3\n");
-	while (1)
+	while (n > 0)
 	{
-		input = readline("shitshell-0.01:");
-		if (!input)
-		{
-			printf("exit\n");
-			break ;
-		}
-		if (input)
-		{
-			add_history(input);
-		}
-		free(input);
+		u1 = (unsigned char)*s1;
+		u2 = (unsigned char)*s2;
+		if (u1 != u2)
+			return (u1 - u2);
+		if (u1 == '\0')
+			return (0);
+		s1++;
+		s2++;
+		n--;
 	}
-	rl_clear_history();
+	return (0);
 }

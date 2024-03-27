@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/27 14:12:39 by akuburas         ###   ########.fr       */
+/*   Created: 2023/10/31 07:58:11 by akuburas          #+#    #+#             */
+/*   Updated: 2023/10/31 08:06:46 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*input;
+	int		i;
+	char	*result;
 
-	if (argc < 1)
-		printf("wtf\n");
-	if (!argv[0])
-		printf("wtf2\n");
-	if (!env[0])
-		printf("wtf3\n");
-	while (1)
+	if (!s || !f)
+		return (NULL);
+	result = (char *)malloc(ft_strlen(s) + 1);
+	if (!result)
+		return (NULL);
+	i = 0;
+	while (s[i])
 	{
-		input = readline("shitshell-0.01:");
-		if (!input)
-		{
-			printf("exit\n");
-			break ;
-		}
-		if (input)
-		{
-			add_history(input);
-		}
-		free(input);
+		result[i] = f(i, s[i]);
+		i++;
 	}
-	rl_clear_history();
+	result[i] = '\0';
+	return (result);
 }

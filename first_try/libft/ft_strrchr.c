@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/27 14:12:39 by akuburas         ###   ########.fr       */
+/*   Created: 2023/10/27 09:15:10 by akuburas          #+#    #+#             */
+/*   Updated: 2023/10/27 09:27:27 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+char	*ft_strrchr(const char *s, int c)
 {
-	char	*input;
+	char	*end;
+	char	find;
+	size_t	i;
 
-	if (argc < 1)
-		printf("wtf\n");
-	if (!argv[0])
-		printf("wtf2\n");
-	if (!env[0])
-		printf("wtf3\n");
-	while (1)
+	end = (char *)s;
+	find = (char)c;
+	i = ft_strlen(s);
+	while (i > 0)
 	{
-		input = readline("shitshell-0.01:");
-		if (!input)
+		if (end[i] == find)
 		{
-			printf("exit\n");
-			break ;
+			return (end + i);
 		}
-		if (input)
-		{
-			add_history(input);
-		}
-		free(input);
+		i--;
 	}
-	rl_clear_history();
+	if (end [i] == find)
+		return (end);
+	return (NULL);
 }

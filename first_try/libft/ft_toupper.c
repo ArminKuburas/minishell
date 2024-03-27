@@ -1,40 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/27 14:12:39 by akuburas         ###   ########.fr       */
+/*   Created: 2023/10/24 16:05:43 by akuburas          #+#    #+#             */
+/*   Updated: 2024/02/06 05:05:41 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
-int	main(int argc, char **argv, char **env)
+int	ft_toupper(int c)
 {
-	char	*input;
-
-	if (argc < 1)
-		printf("wtf\n");
-	if (!argv[0])
-		printf("wtf2\n");
-	if (!env[0])
-		printf("wtf3\n");
-	while (1)
+	if (c >= 'a' && c <= 'z')
 	{
-		input = readline("shitshell-0.01:");
-		if (!input)
-		{
-			printf("exit\n");
-			break ;
-		}
-		if (input)
-		{
-			add_history(input);
-		}
-		free(input);
+		return (c - ('a' - 'A'));
 	}
-	rl_clear_history();
+	else
+	{
+		return (c);
+	}
 }

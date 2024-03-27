@@ -1,40 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_puthex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/27 14:12:39 by akuburas         ###   ########.fr       */
+/*   Created: 2023/11/26 13:45:24 by akuburas          #+#    #+#             */
+/*   Updated: 2024/01/09 09:38:55 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+int	ft_puthex(unsigned int nbr, int uppercase, int *length)
 {
-	char	*input;
+	const char	*hex_digits;
 
-	if (argc < 1)
-		printf("wtf\n");
-	if (!argv[0])
-		printf("wtf2\n");
-	if (!env[0])
-		printf("wtf3\n");
-	while (1)
+	if (uppercase == 0)
+		hex_digits = "0123456789abcdef";
+	else
+		hex_digits = "0123456789ABCDEF";
+	if (nbr >= 16)
 	{
-		input = readline("shitshell-0.01:");
-		if (!input)
-		{
-			printf("exit\n");
-			break ;
-		}
-		if (input)
-		{
-			add_history(input);
-		}
-		free(input);
+		if (ft_puthex(nbr / 16, uppercase, length) == -1)
+			return (-1);
 	}
-	rl_clear_history();
+	(*length)++;
+	if (write(2, &(hex_digits[nbr % 16]), 1) == -1)
+		return (-1);
+	return (*length);
 }

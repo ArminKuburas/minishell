@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/27 14:12:39 by akuburas         ###   ########.fr       */
+/*   Created: 2023/10/24 17:36:57 by akuburas          #+#    #+#             */
+/*   Updated: 2023/10/27 09:01:32 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+char	*ft_strchr(const char *s, int c)
 {
-	char	*input;
-
-	if (argc < 1)
-		printf("wtf\n");
-	if (!argv[0])
-		printf("wtf2\n");
-	if (!env[0])
-		printf("wtf3\n");
-	while (1)
+	while (*s != '\0')
 	{
-		input = readline("shitshell-0.01:");
-		if (!input)
+		if (*s == (char)c)
 		{
-			printf("exit\n");
-			break ;
+			return ((char *)s);
 		}
-		if (input)
-		{
-			add_history(input);
-		}
-		free(input);
+		s++;
 	}
-	rl_clear_history();
+	if ((char)c == '\0')
+	{
+		return ((char *)s);
+	}
+	return (NULL);
 }

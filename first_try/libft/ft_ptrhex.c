@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_ptrhex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/27 14:12:39 by akuburas         ###   ########.fr       */
+/*   Created: 2023/11/26 13:41:02 by akuburas          #+#    #+#             */
+/*   Updated: 2024/01/09 09:38:36 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+int	ft_ptrhex(unsigned long ptr, int *length)
 {
-	char	*input;
+	const char	*hex_digits;
+	int			check;
 
-	if (argc < 1)
-		printf("wtf\n");
-	if (!argv[0])
-		printf("wtf2\n");
-	if (!env[0])
-		printf("wtf3\n");
-	while (1)
+	hex_digits = "0123456789abcdef";
+	if (ptr >= 16)
 	{
-		input = readline("shitshell-0.01:");
-		if (!input)
-		{
-			printf("exit\n");
-			break ;
-		}
-		if (input)
-		{
-			add_history(input);
-		}
-		free(input);
+		if (ft_ptrhex(ptr / 16, length) == -1)
+			return (-1);
 	}
-	rl_clear_history();
+	(*length)++;
+	check = write(2, (&hex_digits[ptr % 16]), 1);
+	if (check == -1)
+		return (-1);
+	return (*length);
 }
