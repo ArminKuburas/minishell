@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/27 14:06:26 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/03/27 15:20:25 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@
 /*For the signal functions*/
 # include <signal.h>
 
-int rl_clear_history();
+/*libft functions*/
+# include "libft/libft.h"
+
+int	rl_clear_history(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/27 14:12:39 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/03/27 15:46:43 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv, char **env)
 		printf("wtf3\n");
 	while (1)
 	{
-		input = readline("shitshell-0.01:");
+		input = readline("shitshell-0.02:");
 		if (!input)
 		{
 			printf("exit\n");
@@ -32,6 +32,11 @@ int	main(int argc, char **argv, char **env)
 		}
 		if (input)
 		{
+			if (ft_strcmp(input, "exit") == 0)
+			{
+				printf("exit\n");
+				break ;
+			}
 			add_history(input);
 		}
 		free(input);
