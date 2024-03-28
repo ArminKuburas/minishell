@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/27 15:20:25 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/03/28 11:26:39 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,23 @@
 
 /*libft functions*/
 # include "libft/libft.h"
+
+typedef struct s_parse_data
+{
+	int	pipes;
+	int	input_redirection;
+	int	output_redirection;
+	int	appending_output;
+}	t_parse_data;
+
+typedef struct s_shelldata
+{
+	char			**env_variables;
+	char			*input;
+	char			**split_input;
+	int				exit_value;
+	t_parse_data	parse_data;
+}		t_shelldata;
 
 int	rl_clear_history(void);
 

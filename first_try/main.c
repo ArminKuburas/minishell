@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/27 15:53:28 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/03/28 12:18:35 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	main(int argc, char **argv, char **env)
 {
-	char	*input;
+	char		*input;
+	//t_shelldata	data;
 
 	if (argc < 1)
 		printf("wtf\n");
@@ -38,6 +39,8 @@ int	main(int argc, char **argv, char **env)
 				free(input);
 				break ;
 			}
+			printf("You inputed: %s\n", input);
+			//data.split_input = mini_split(input);
 			add_history(input);
 		}
 		free(input);
