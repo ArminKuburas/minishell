@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 11:44:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/28 13:16:53 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/03/28 13:48:08 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,17 @@
 /* This function is used to split the given input into seperate lines.
 These will later be filtered into the parser.
 In addition it should also prompt the user if it finds an unfinished quote*/
-char	**mini_split(char *input)
+int	mini_split(char *input, t_shelldata *data)
 {
 	int		word_count;
 	int		i;
 	int		len;
 	char	quote;
+	int		j;
 
 	len = ft_strlen(input);
 	i = 0;
+	j = 0;
 	word_count = 0;
 	while (i < len)
 	{
@@ -36,6 +38,23 @@ char	**mini_split(char *input)
 		{
 			quote = input[i];
 			while (i < len && input[i] != quote)
+				i++;
+			if (input[i] != quote)
+				return (2);
+			if (i < len)
+				i++;
 		}
+		else
+		{
+			while (i < len && input[i] != ' ')
+				i++;
+		}
+	}
+	data->split_input = (char **)malloc((word_count + 1) * sizeof(char *));
+	if (data->split_input == NULL)
+		return (1);
+	while (j <= word_count)
+	{
+		data->split_input
 	}
 }

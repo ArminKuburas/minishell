@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:14:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/27 09:14:07 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/03/28 13:26:57 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 int main() {
     char *input;
+	char *input2;
 
     // Load command history from file
     read_history(HISTORY_FILE);
