@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/28 21:28:43 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/03/30 16:49:56 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 int	main(int argc, char **argv, char **env)
 {
 	char		*input;
-	//t_shelldata	data;
+	t_shelldata	data;
+	int			error;
+	int			i;
 
 	if (argc < 1)
 		printf("wtf\n");
@@ -25,7 +27,7 @@ int	main(int argc, char **argv, char **env)
 		printf("wtf3\n");
 	while (1)
 	{
-		input = readline("bananashell-0.03:");
+		input = readline("bananashell-0.05:");
 		if (!input)
 		{
 			printf("exit\n");
@@ -39,7 +41,16 @@ int	main(int argc, char **argv, char **env)
 				free(input);
 				break ;
 			}
-			//data.split_input = mini_split(input);
+			error = mini_split(input, &data);
+			if (error == SUCCESS)
+			{
+				i = 0;
+				while (data.split_input[i])
+				{
+					printf("split_input[%d] = %s\n", i, data.split_input[i]);
+					i++;
+				}
+			}
 			add_history(input);
 		}
 		free(input);

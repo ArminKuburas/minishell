@@ -6,7 +6,7 @@
 #    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/03/30 14:13:28 by akuburas         ###   ########.fr        #
+#    Updated: 2024/03/30 14:36:09 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ MAKE = make bonus
 LIBFTDIR = libft
 LIBFT = $(LIBFTDIR)/libft.a
 
-SRCS = main.c
+SRCS = main.c \
+		mini_split.c
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)
