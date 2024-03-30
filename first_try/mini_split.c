@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 11:44:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/28 13:48:08 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/03/30 14:12:10 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ int	mini_split(char *input, t_shelldata *data)
 			while (i < len && input[i] != quote)
 				i++;
 			if (input[i] != quote)
-				return (2);
+			{
+				printf("Unfinished quote\n");
+				return (NO_QUOTE);
+			}
 			if (i < len)
 				i++;
 		}
@@ -52,7 +55,7 @@ int	mini_split(char *input, t_shelldata *data)
 	}
 	data->split_input = (char **)malloc((word_count + 1) * sizeof(char *));
 	if (data->split_input == NULL)
-		return (1);
+		return (NO_MEMORY);
 	while (j <= word_count)
 	{
 		data->split_input
