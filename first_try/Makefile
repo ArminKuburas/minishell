@@ -6,7 +6,7 @@
 #    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/03/30 14:36:09 by akuburas         ###   ########.fr        #
+#    Updated: 2024/03/31 12:31:39 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ LIBFTDIR = libft
 LIBFT = $(LIBFTDIR)/libft.a
 
 SRCS = main.c \
-		mini_split.c
+		mini_split.c \
+		free_double_string.c \
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)

@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 11:44:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/30 16:31:20 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/03/31 12:29:32 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,10 @@ int	create_strings(char *input, t_shelldata *data, int word_count)
 		else
 			duplicate_input(input, data, j, e);
 		if (data->split_input[e] == NULL)
+		{
+			free_double_array(&data->split_input);
 			return (NO_MEMORY);
+		}
 		j += ft_strlen(data->split_input[e]);
 		e++;
 	}
