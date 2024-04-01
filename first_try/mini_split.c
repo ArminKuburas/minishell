@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 11:44:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/31 12:29:32 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/01 20:53:59 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	quote_found(char *input, int *i, int len)
 	return (SUCCESS);
 }
 
-int	space_found(char *input, int *i, int len)
+int	space_found(char *input, int *i, int len, int *word_count)
 {
 	while (*i < len && input[*i] != ' ')
 	{
@@ -40,6 +40,22 @@ int	space_found(char *input, int *i, int len)
 		}
 		else if (input[*i] == '\0')
 			break ;
+		else if (ft_strchr("><|", input[*i]) != NULL)
+		{
+			(*word_count)++;
+			(*i)++;
+			if (ft_strchr("><", input[*i]) != NULL &&
+				input[*i] == input[*i - 1])
+			{
+				(*i)++;
+				if (ft_strchr("><|", input[*i]) != NULL)
+				{
+					printf("Error: Syntax error\n");
+					return (FAILURE);
+				}
+			}
+			break ;
+		}
 		(*i)++;
 	}
 	return (SUCCESS);
@@ -64,7 +80,7 @@ int	count_words(char *input, int *word_count)
 			if (quote_found(input, &i, len) != SUCCESS)
 				return (NO_QUOTE);
 		}
-		else if (space_found(input, &i, len) != SUCCESS)
+		else if (space_found(input, &i, len, word_count) != SUCCESS)
 			return (FAILURE);
 	}
 	return (SUCCESS);
@@ -85,8 +101,28 @@ void	duplicate_input(char *input, t_shelldata *data, int j, int e)
 	int	i;
 
 	i = j;
+	if (ft_strchr("><|", input[j]) != NULL)
+	{
+		if (ft_strchr("><", input[j + 1]) != NULL && input[j] == input[j + 1])
+		{
+			if (ft_strchr("><|", input[j + 2]) != NULL)
+			{
+				printf("Error: Syntax error\n");
+				data->split_input[e] = NULL;
+			}
+			else
+				data->split_input[e] = ft_strndup(input + j, 2);
+		}
+		else
+			data->split_input[e] = ft_strndup(input + j, 1);
+		return ;
+	}
 	while (input[j] != ' ' && input[j] != '\0')
+	{
+		if (ft_strchr("><|", input[j]) != NULL)
+			break ;
 		j++;
+	}
 	data->split_input[e] = ft_strndup(input + i, j - i);
 }
 

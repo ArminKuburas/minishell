@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/01 16:03:26 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/01 20:03:20 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ typedef struct s_shelldata
 	int				exit_value;
 }		t_shelldata;
 
-int		rl_clear_history(void);
+//int		rl_clear_history(void);
 int		mini_split(char *input, t_shelldata *data);
 void	free_double_array(char ***array);
 
