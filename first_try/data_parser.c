@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 19:32:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/01 10:24:22 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/01 16:08:57 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ Lastly of course we will need to properly handle any errors beforehand as well s
 void	parse_split_input(t_shelldata *data)
 {
 	int	i;
+	int	amount_of_commands;
 
 	i = 0;
+	while (data->split_input[i] != NULL)
+	{
+		if (data->split_input[i][0] != '\'' && data->split_input[i][0] != '"')
+			//try to find the | character and increment the amount of commands if you do find it.
+		i++;
+	}
 }

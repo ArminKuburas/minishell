@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/01 14:57:20 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/01 16:03:26 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,24 @@ enum e_errors
 	NO_QUOTE = 9
 };
 
-
+enum e_child_status
+{
+	NO_PIPE_AVAILABLE,
+	OUTPUT_PIPE,
+	INPUT_PIPE,
+	OP_IP,
+	NO_REDIRECTION,
+	OUTPUT_REDIRECT,
+	INPUT_REDIRECT,
+	OR_IR
+};
 
 typedef struct s_child_data
 {
 	int		pipe_situation;
 	int		p_fd_1[2];
 	int		p_fd_2[2];
-	int		riderections;
+	int		redirections;
 	int		fd_in;
 	int		fd_out;
 	char	**env;
