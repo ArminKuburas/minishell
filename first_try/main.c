@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/31 19:47:27 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/01 18:10:30 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <readline/history.h>
+#include <readline/readline.h>
+
+static void	signal_handler(int signal)
+{
+	if (signal == CTRL_C)
+	{
+		printf("\n");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+		// exit code = 130, A job with exit code 130 was terminated with signal 2 (SIGINT on most systems, 130-128 = 2)
+	}
+}
 
 int	main(int argc, char **argv, char **env)
 {
@@ -27,6 +41,7 @@ int	main(int argc, char **argv, char **env)
 		printf("wtf3\n");
 	while (1)
 	{
+		signal(CTRL_C, signal_handler);
 		input = readline("bananashell-0.05:");
 		if (!input)
 		{
