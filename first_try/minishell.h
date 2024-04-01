@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/01 11:58:04 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/01 14:37:35 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,7 @@ enum e_errors
 	NO_QUOTE = 9
 };
 
-typedef struct s_parse_data
-{
-	int	pipes;
-	int	input_redirection;
-	int	output_redirection;
-	int	appending_output;
-}	t_parse_data;
+
 
 typedef struct s_child_data
 {
@@ -80,6 +74,12 @@ typedef struct s_child_data
 	char	*command;
 	char	**command_inputs;
 }	t_child_data;
+
+typedef struct s_parse_data
+{
+	int				processes;
+	t_child_data	*child_data;
+}	t_parse_data;
 
 typedef struct s_shelldata
 {
