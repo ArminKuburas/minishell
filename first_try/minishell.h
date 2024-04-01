@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/03/31 21:30:27 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/01 11:58:04 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,19 @@ typedef struct s_parse_data
 	int	output_redirection;
 	int	appending_output;
 }	t_parse_data;
+
+typedef struct s_child_data
+{
+	int		pipe_situation;
+	int		p_fd_1[2];
+	int		p_fd_2[2];
+	int		riderections;
+	int		fd_in;
+	int		fd_out;
+	char	**env;
+	char	*command;
+	char	**command_inputs;
+}	t_child_data;
 
 typedef struct s_shelldata
 {
