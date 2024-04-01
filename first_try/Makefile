@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+         #
+#    By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/04/01 18:13:41 by tvalimak         ###   ########.fr        #
+#    Updated: 2024/04/02 00:19:29 by tvalimak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-#RLFLAGS = -lreadline -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include
-RLFLAGS = -lreadline -L
+RLFLAGS = -lreadline -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include
+#RLFLAGS = -lreadline -L
 
 MAKE = make bonus
 LIBFTDIR = libft

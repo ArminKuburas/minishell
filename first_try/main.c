@@ -3,21 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/01 18:10:30 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/02 00:36:30 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <readline/history.h>
 #include <readline/readline.h>
+#include <termios.h>
 
 static void	signal_handler(int signal)
 {
 	if (signal == CTRL_C)
 	{
+		//struct termios term;
+
+		//tcgetattr(STDIN_FILENO, &term);
+		//term.c_lflag |= (ICANON | ECHO);
+		//tcsetattr(STDIN_FILENO, TCSANOW, &term);
+		//printf("\n");
+		printf("\33[2K\r");
 		printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);

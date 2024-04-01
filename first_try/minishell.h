@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/01 17:58:10 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/02 00:11:39 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ typedef struct s_shelldata
 	int				exit_value;
 }		t_shelldata;
 
-int			rl_clear_history(void);
+//int			rl_clear_history(void);
 int			mini_split(char *input, t_shelldata *data);
 void		free_double_array(char ***array);
 // static void	signal_handler(int signal);
