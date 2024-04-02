@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/01 21:00:43 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/02 10:23:41 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int argc, char **argv, char **env)
 					printf("split_input[%d] = %s\n", i, data.split_input[i]);
 					i++;
 				}
-				//parse_split_input(&data);
+				parse_split_input(&data);
 				free_double_array(&data.split_input);
 			}
 			add_history(input);
