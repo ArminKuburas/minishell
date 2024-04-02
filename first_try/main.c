@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/02 10:23:41 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/02 21:46:18 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv, char **env)
 		printf("wtf3\n");
 	while (1)
 	{
-		input = readline("bananashell-0.06:");
+		input = readline("bananashell-0.07:");
 		if (!input)
 		{
 			printf("exit\n");
