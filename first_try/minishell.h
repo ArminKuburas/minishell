@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/02 12:05:37 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/02 17:27:58 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 
 /*Definition for SIGINT*/
 # define CTRL_C SIGINT
+# define CTRL_BS SIGQUIT
 
 enum e_parse_data
 {

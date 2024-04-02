@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/02 16:37:55 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/02 17:24:59 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 // when in heredoc and CTR+C the ^C will not display
 // when in bash and you have inputted cat for example, then you CTRL+C the ^C will display
 // without prompt.
+// CTRL + \ = SIGQUIT
 
 static void	signal_handler(int signal)
 {
