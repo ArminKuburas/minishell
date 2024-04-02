@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/02 00:36:30 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/02 16:37:55 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,26 @@
 #include <readline/readline.h>
 #include <termios.h>
 
+// when in heredoc and CTR+C the ^C will not display
+// when in bash and you have inputted cat for example, then you CTRL+C the ^C will display
+// without prompt.
+
 static void	signal_handler(int signal)
 {
 	if (signal == CTRL_C)
 	{
-		//struct termios term;
+		struct termios term;
 
-		//tcgetattr(STDIN_FILENO, &term);
-		//term.c_lflag |= (ICANON | ECHO);
-		//tcsetattr(STDIN_FILENO, TCSANOW, &term);
-		//printf("\n");
-		printf("\33[2K\r");
-		printf("\n");
+		tcgetattr(STDIN_FILENO, &term);
+		term.c_lflag &= ~ECHOCTL;
+		tcsetattr(STDIN_FILENO, TCSANOW, &term);
+		write(1, "\n", 1);
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
-		// exit code = 130, A job with exit code 130 was terminated with signal 2 (SIGINT on most systems, 130-128 = 2)
 	}
 }
+
 
 int	main(int argc, char **argv, char **env)
 {
