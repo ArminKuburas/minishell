@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 19:32:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/02 21:29:52 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/03 09:44:24 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,11 @@ int	set_up_data(t_parse_data *parse_data, char **split_input)
 					= ft_strdup(split_input[i]);
 				if (parse_data->child_data[process_number].command == NULL)
 					return (NO_MEMORY);
+				while (split_input[i] != NULL && split_input[i][0] != '|')
+					i++;
 			}
-			i++;
+			if (split_input[i] != NULL && split_input[i][0] != '|')
+				i++;
 		}
 		if (split_input[i] != NULL)
 			i++;
@@ -57,6 +60,7 @@ int	set_up_data(t_parse_data *parse_data, char **split_input)
 	}
 	return (NO_ERROR);
 }
+
 int	parse_split_input(t_shelldata *data)
 {
 	int				i;
