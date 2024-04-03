@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quote_cleaner.c                                    :+:      :+:    :+:   */
+/*   split_cleaner.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:56:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/03 14:44:08 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/03 14:56:45 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char	*get_path(char *path, char *path_name, char **env)
 		free(path);
 		i++;
 	}
-	return (NULL);
+	return (FAILURE);
 }
 
 
@@ -42,7 +42,7 @@ Also not inside double quotes if said quotes are inside single quotes. We also s
 So for example ec"ho" should become echo. $EXAMPLE should try to find EXAMPLE inside the env and remove $EXAMPLE from the string and add in what it finds in the env. If it cant find anything it just removes the $EXAMPLE
 We won't handle $$ like bash does. Instead it will try to find $ inside the env, probably wont find it and just remove the $$. if a $ is on its own like "hello $ goodbye" it should leave the dollar sign alone.*/
 
-int	quote_cleaner(char **data_input, char **env)
+int	split_cleaner(t_shelldata *data, char **env)
 {
 	int		i;
 	char	*quote;
@@ -50,28 +50,29 @@ int	quote_cleaner(char **data_input, char **env)
 	int		x;
 	char	*env_path;
 
-	while (data_input[i] != NULL)
+	while (data->split_input[i] != NULL)
 	{
-		quote = ft_strchr(data_input[i], '\'');
+		quote = ft_strchr(data->split_input[i], '\'');
 		if (quote == NULL)
-			quote = ft_strchr(data_input[i], '"');
+			quote = ft_strchr(data->split_input[i], '"');
 		if (quote != NULL)
 		{
 			if (*quote == '"')
 			{
 				j = 0;
-				while (data_input[i][j] && data_input[i][j] != *quote)
+				while (data->split_input[i][j] && data->split_input[i][j] != *quote)
 					j++;
-				while (data_input[i][j] && data_input[i][j] != '$')
+				while (data->split_input[i][j] && data->split_input[i][j] != '$')
 					j++;
-				if (data_input[i][j] == '$')
+				if (data->split_input[i][j] == '$')
 				{
-					if (ft_strchr("\t ", data_input[i][j + 1]) == NULL)
+					if (ft_strchr("\t ", data->split_input[i][j + 1]) == NULL)
 					{
-						get_path()
+						get_path();
 					}
 				}
 			}
 		}
 	}
+	return (SUCCESS);
 }

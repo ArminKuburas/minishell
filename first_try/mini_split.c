@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 11:44:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/01 20:53:59 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:00:08 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ int	create_strings(char *input, t_shelldata *data, int word_count)
 /* This function is used to split the given input into seperate lines.
 These will later be filtered into the parser.
 In addition it returns an error value if something fails.*/
-int	mini_split(char *input, t_shelldata *data)
+int	mini_split(char *input, t_shelldata *data, char **env)
 {
 	int		word_count;
 
@@ -169,6 +169,8 @@ int	mini_split(char *input, t_shelldata *data)
 	if (data->split_input == NULL)
 		return (NO_MEMORY);
 	if (create_strings(input, data, word_count) != SUCCESS)
+		return (FAILURE);
+	if (split_cleaner(data, env) != SUCCESS)
 		return (FAILURE);
 	return (SUCCESS);
 }
