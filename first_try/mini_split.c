@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 11:44:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/03 15:00:08 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/03 19:16:00 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,51 @@ int	count_words(char *input, int *word_count)
 void	duplicate_quote(char *input, t_shelldata *data, int j, int e)
 {
 	char	quote;
+	int		i;
+	int		k;
+	char	*temp;
+	char	*temp2;
 
 	quote = input[j];
-	data->split_input[e] = ft_strchr(input + j + 1, quote);
-	data->split_input[e] = ft_strndup(input + j,
-			data->split_input[e] - input - j + 1);
+	if (quote == '\'')
+	{
+		data->split_input[e] = ft_strchr(input + j, quote);
+		data->split_input[e] = ft_strndup(input + j,
+				data->split_input[e] - input - j);
+	}
+	else
+	{
+		i = j;
+		j++;
+		while (input[j] != quote)
+		{
+			if (input[j] == '$' && ft_strchr(" \t\n\"", input[j + 1]) == NULL)
+			{
+				temp = ft_strndup(input + i + 1, j - i - 1);
+				if (temp == NULL)
+				{
+					data->split_input[e] = NULL;
+					return ;
+				}
+				find_env_variable(temp, data->env_variables);
+				if (temp2 == NULL)
+				{
+					data->split_input[e] = NULL;
+					return ;
+				}
+				data->split_input[e] = ft_strjoin(data->split_input[e], temp2);
+				if (data->split_input[e] == NULL)
+				{
+					data->split_input[e] = NULL;
+					return ;
+				}
+				free(temp);
+				free(temp2);
+				i = j;
+			}
+			j++;
+		}
+	}
 }
 
 void	duplicate_input(char *input, t_shelldata *data, int j, int e)

@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:56:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/03 14:56:45 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:05:21 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static char	*get_path(char *path, char *path_name, char **env)
 			j++;
 		path = ft_substr(env[i], 0, j);
 		if (path == NULL)
-			return(NO_MEMORY);
+			return (NO_MEMORY);
 		if (ft_strcmp(path, path_name) == 0)
 		{
 			return (SUCCESS);
@@ -45,32 +45,24 @@ We won't handle $$ like bash does. Instead it will try to find $ inside the env,
 int	split_cleaner(t_shelldata *data, char **env)
 {
 	int		i;
-	char	*quote;
 	int		j;
-	int		x;
-	char	*env_path;
+	int		single_quote_switch;
+	char	**paths;
+	char	*path;
 
+	single_quote_switch = 0;
+	i = 0;
 	while (data->split_input[i] != NULL)
 	{
-		quote = ft_strchr(data->split_input[i], '\'');
-		if (quote == NULL)
-			quote = ft_strchr(data->split_input[i], '"');
-		if (quote != NULL)
+		j = 0;
+		while (data->split_input[i][j] != '\0')
 		{
-			if (*quote == '"')
+			if (data->split_input[i][j] == '\'')
 			{
-				j = 0;
-				while (data->split_input[i][j] && data->split_input[i][j] != *quote)
-					j++;
-				while (data->split_input[i][j] && data->split_input[i][j] != '$')
-					j++;
-				if (data->split_input[i][j] == '$')
-				{
-					if (ft_strchr("\t ", data->split_input[i][j + 1]) == NULL)
-					{
-						get_path();
-					}
-				}
+				if (single_quote_switch == 0)
+					single_quote_switch = 1;
+				else
+					single_quote_switch = 0;
 			}
 		}
 	}
