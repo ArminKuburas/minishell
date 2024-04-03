@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/03 14:09:25 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/03 14:50:03 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	main(int argc, char **argv, char **env)
 				break ;
 			}
 			error = mini_split(input, &data);
-			
 			if (error == SUCCESS)
 			{
 				i = 0;
