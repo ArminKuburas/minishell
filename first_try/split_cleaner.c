@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:56:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/04 19:06:35 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/04 21:33:54 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,15 +163,23 @@ int	allocate_new_string(t_shelldata *data, int length, int i)
 			else if (quote == data->split_input[i][j])
 				quote = 'a';
 			else
+			{
 				new_string[new_i] = data->split_input[i][j];
+				new_i++;
+			}
 		}
 		else if (data->split_input[i][j] != '$')
+		{
 			new_string[new_i] = data->split_input[i][j];
+			new_i++;
+		}
 		else if (quote != '\'')
 			new_i += copy_dollar(data, i, &j, &new_string[new_i]);
 		else
+		{
 			new_string[new_i] = data->split_input[i][j];
-		new_i++;
+			new_i++;
+		}
 		j++;
 	}
 	new_string[j] = '\0';
