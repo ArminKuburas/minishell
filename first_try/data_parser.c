@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 19:32:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/03 09:44:24 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/04 08:50:52 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	set_up_data(t_parse_data *parse_data, char **split_input)
 				while (split_input[i] != NULL && split_input[i][0] != '|')
 					i++;
 			}
-			if (split_input[i] != NULL && split_input[i][0] != '|')
+			if (split_input[i] != NULL && split_input[i][0] == '|')
 				i++;
 		}
 		if (split_input[i] != NULL)

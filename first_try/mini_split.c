@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 11:44:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/03 19:16:00 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/04 09:07:56 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,50 +90,20 @@ void	duplicate_quote(char *input, t_shelldata *data, int j, int e)
 {
 	char	quote;
 	int		i;
-	int		k;
-	char	*temp;
-	char	*temp2;
 
 	quote = input[j];
-	if (quote == '\'')
+	data->split_input[e] = ft_strchr(input + j + 1, quote);
+	if (ft_strchr("<>| ", data->split_input[e][1]) == NULL)
 	{
-		data->split_input[e] = ft_strchr(input + j, quote);
+		i = 1;
+		while (ft_strchr("<>| ", data->split_input[e][i]) == NULL)
+			i++;
 		data->split_input[e] = ft_strndup(input + j,
-				data->split_input[e] - input - j);
+				data->split_input[e] - input - j + 1 + i);
 	}
 	else
-	{
-		i = j;
-		j++;
-		while (input[j] != quote)
-		{
-			if (input[j] == '$' && ft_strchr(" \t\n\"", input[j + 1]) == NULL)
-			{
-				temp = ft_strndup(input + i + 1, j - i - 1);
-				if (temp == NULL)
-				{
-					data->split_input[e] = NULL;
-					return ;
-				}
-				find_env_variable(temp, data->env_variables);
-				if (temp2 == NULL)
-				{
-					data->split_input[e] = NULL;
-					return ;
-				}
-				data->split_input[e] = ft_strjoin(data->split_input[e], temp2);
-				if (data->split_input[e] == NULL)
-				{
-					data->split_input[e] = NULL;
-					return ;
-				}
-				free(temp);
-				free(temp2);
-				i = j;
-			}
-			j++;
-		}
-	}
+		data->split_input[e] = ft_strndup(input + j,
+				data->split_input[e] - input - j + 1);
 }
 
 void	duplicate_input(char *input, t_shelldata *data, int j, int e)
@@ -198,7 +168,7 @@ int	create_strings(char *input, t_shelldata *data, int word_count)
 /* This function is used to split the given input into seperate lines.
 These will later be filtered into the parser.
 In addition it returns an error value if something fails.*/
-int	mini_split(char *input, t_shelldata *data, char **env)
+int	mini_split(char *input, t_shelldata *data)
 {
 	int		word_count;
 
@@ -210,7 +180,7 @@ int	mini_split(char *input, t_shelldata *data, char **env)
 		return (NO_MEMORY);
 	if (create_strings(input, data, word_count) != SUCCESS)
 		return (FAILURE);
-	if (split_cleaner(data, env) != SUCCESS)
-		return (FAILURE);
+	//if (split_cleaner(data, env) != SUCCESS)
+		//return (FAILURE);
 	return (SUCCESS);
 }
