@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/03 15:22:17 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/04 18:42:24 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,6 @@
 // need to figure out why.
 // CTRL + \ = SIGQUIT
 
-static void	set_state(t_state state)
-{
-	struct termios	term;
-
-	if (state == DEFAULT)
-	{
-		tcgetattr(STDIN_FILENO, &term);
-		term.c_lflag &= ~ECHOCTL;
-		tcsetattr(STDIN_FILENO, TCSANOW, &term);
-	}
-	if (state == HEREDOC)
-	{
-		
-	}
-	if (state == HANDLER)
-	{
-		tcgetattr(STDIN_FILENO, &term);
-		term.c_lflag |= ECHOCTL;
-		tcsetattr(STDIN_FILENO, TCSANOW, &term);
-	}
-}
-
 static void	signal_handler(int signal)
 {
 	if (signal == CTRL_C)
@@ -52,6 +30,34 @@ static void	signal_handler(int signal)
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
+	}
+}
+
+static void	carrot_toggle(int on)
+{
+	struct termios	term;
+
+	tcgetattr(STDIN_FILENO, &term);
+	if (!on)
+		term.c_lflag &= ~ECHOCTL;
+	else
+		term.c_lflag |= ECHOCTL;
+	tcsetattr(STDIN_FILENO, TCSANOW, &term);
+}
+
+static void	set_state(t_state state)
+{
+	if (state == DEFAULT)
+	{
+		carrot_toggle(1);
+	}
+	if (state == HEREDOC)
+	{
+		return ;
+	}
+	if (state == HANDLER)
+	{
+		carrot_toggle(0);
 	}
 }
 
@@ -71,7 +77,8 @@ int	main(int argc, char **argv, char **env)
 		printf("wtf3\n");
 	while (1)
 	{
-		set_state(DEFAULT);
+		set_state(HANDLER);
+		//set_state(DEFAULT);
 		signal(CTRL_C, signal_handler);
 		input = readline("bananashell-0.05:");
 		if (!input)

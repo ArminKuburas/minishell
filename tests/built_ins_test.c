@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 18:14:37 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/03 18:33:07 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/04 18:30:56 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,26 @@
 char *env[MAX_ENV_VARS];
 int env_count = 0;
 
-void my_echo(char *args[])
+void	my_cd(char *args[])
+{
+	if (args[1] == NULL)
+	{
+    // If no directory is provided, go to the home directory
+	printf("%s\n", getenv("HOME"));
+    //chdir(getenv("HOME"));
+	chdir("./hakemisto");
+    }
+	else
+	{
+        if (chdir(args[1]) != 0)
+		{
+            // Error handling if chdir fails
+            perror("chdir");
+        }
+    }
+}
+
+void	my_echo(char *args[])
 {
 	int i = 1;
 	while (args[i] != NULL)
@@ -38,15 +57,19 @@ void execute_command(char *command[])
     {
         my_echo(command);
 	}
+	if (strcmp(command[0], "cd") == 0)
+	{
+		my_cd(command);
+	}
+	/*
     else
     {
         // Execute external command here
         // For simplicity, you can use execvp to execute external commands
-        execvp(command[0], command);
-        perror("execvp");
-    }
+        //execvp(command[0], command);
+        //perror("execvp");
+    }*/
 }
-
 
 int main(int argc, char *argv[], char *envp[])
 {
