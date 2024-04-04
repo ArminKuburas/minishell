@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:56:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/04 16:35:07 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/04 18:42:41 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ int	found_dollar(t_shelldata *data, int i, int *j, char quote)
 	length = 0;
 	if (quote == '\'')
 		return (1);
-	if (ft_strchr(" \t$", data->split_input[i][*j + 1]) == NULL)
+	if (ft_strchr(" \t$", data->split_input[i][(*j) + 1]) == NULL)
 	{
-		*(j++);
+		(*j)++;
 		start = *j;
-		while (ft_strchr(" \t$", data->split_input[i][*j]) == NULL)
-			*(j++);
+		while (ft_strchr(" \t$", data->split_input[i][(*j)]) == NULL)
+			(*j)++;
 		length += length_find_env(data->env_variables,
-				data->split_input[i][*j], start - *j);
+				&data->split_input[i][(*j)], start - (*j));
 		return (length);
 	}
 	return (1);
@@ -88,6 +88,20 @@ int	new_length(t_shelldata *data, int i)
 	return (length);
 }
 
+char	*find_env(char **env, char *str, int n)
+{
+	int	i;
+
+	i = 0;
+	while (env[i] != NULL)
+	{
+		if (ft_strncmp(env[i], str, n) == 0)
+			return (env[i]);
+		i++;
+	}
+	return (NULL);
+}
+
 void	copy_dollar(t_shelldata *data, int i, int *j, char *new_string)
 {
 	int		start;
@@ -95,14 +109,14 @@ void	copy_dollar(t_shelldata *data, int i, int *j, char *new_string)
 	int		u;
 
 	env_array = NULL;
-	if (ft_strchr(" \t$", data->split_input[i][*j + 1]) == NULL)
+	if (ft_strchr(" \t$", data->split_input[i][(*j) + 1]) == NULL)
 	{
-		*(j++);
+		(*j)++;
 		start = *j;
 		while (ft_strchr(" \t$", data->split_input[i][*j]) == NULL)
-			*(j++);
+			(*j)++;
 		env_array = find_env(data->env_variables,
-				data->split_input[i][start], *j - start);
+				&data->split_input[i][start], (*j) - start);
 		if (env_array != NULL)
 		{
 			u = 0;
@@ -139,16 +153,19 @@ int	allocate_new_string(t_shelldata *data, int length, int i)
 			else if (quote == data->split_input[i][j])
 				quote = 'a';
 			else
-				new_string[j] = data->split_input[j];
+				new_string[j] = data->split_input[i][j];
 		}
 		else if (data->split_input[i][j] != '$')
-			new_string[j] = data->split_input[j];
+			new_string[j] = data->split_input[i][j];
 		else if (quote != '\'')
 			copy_dollar(data, i, &j, new_string);
 		else
-			new_string[j] = data->split_input[j];
+			new_string[j] = data->split_input[i][j];
 		j++;
 	}
+	new_string[j] = '\0';
+	free(data->split_input[i]);
+	data->split_input[i] = new_string;
 	return (SUCCESS);
 }
 
@@ -160,8 +177,12 @@ int	split_cleaner(t_shelldata *data)
 	i = 0;
 	while (data->split_input[i] != NULL)
 	{
-		
 		length = new_length(data, i);
+		if ((size_t)length == ft_strlen(data->split_input[i]))
+		{
+			i++;
+			continue ;
+		}
 		if (allocate_new_string(data, length, i) != SUCCESS)
 		{
 			printf("Memory Failure");
