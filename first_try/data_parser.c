@@ -6,25 +6,84 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 19:32:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/01 10:24:22 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/04 08:50:52 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-
-/*Update this note later. First we have to understand what we are parsing and what for.
-First of all we need to make sure we seperate the data properly. Sometimes the data spliting might give us a wrong string
-What I mean by this is for example if an input looks like this: ls -l|echo hello world
-We need to recognize that we should split up -l|echo into -l and echo to be properly used by execve.
-Secondly we need to recognize the special characters we see and also properly order things as needed.
-For example figuring out how to handle things like: ls -l > example1 >> example2 (where does the data go?)
-I have a few ideas here but its very understandable why the parser is so important. We need to have a struct that can handle all this various data
-We will also need a function that properly distrubutes the data within such a structure
-Lastly of course we will need to properly handle any errors beforehand as well since I would rather handle errors before making child processes*/
-void	parse_split_input(t_shelldata *data)
+int	set_up_data(t_parse_data *parse_data, char **split_input)
 {
 	int	i;
+	int	process_number;
 
 	i = 0;
+	process_number = 0;
+	if (split_input[0][0] != '>' && split_input[0][0] != '<')
+	{
+		parse_data->child_data[process_number].command
+			= ft_strdup(split_input[0]);
+		if (parse_data->child_data[process_number].command == NULL)
+			return (NO_MEMORY);
+		i++;
+		if (split_input[i] != NULL && split_input[i][0] == '|')
+			i++;
+		process_number++;
+	}
+	while (process_number < parse_data->processes)
+	{
+		while (split_input[i] != NULL && split_input[i][0] != '|')
+		{
+			if (split_input[i][0] != '>' && split_input[i][0] != '<' &&
+				split_input[i - 1][0] != '>' && split_input[i - 1][0] != '<')
+			{
+				parse_data->child_data[process_number].command
+					= ft_strdup(split_input[i]);
+				if (parse_data->child_data[process_number].command == NULL)
+					return (NO_MEMORY);
+				while (split_input[i] != NULL && split_input[i][0] != '|')
+					i++;
+			}
+			if (split_input[i] != NULL && split_input[i][0] == '|')
+				i++;
+		}
+		if (split_input[i] != NULL)
+			i++;
+		process_number++;
+	}
+	process_number = 0;
+	while (process_number < parse_data->processes)
+	{
+		printf("inside print loop\n");
+		printf("Command %d: %s\n", process_number + 1, parse_data->child_data[process_number].command);
+		process_number++;
+	}
+	return (NO_ERROR);
+}
+
+int	parse_split_input(t_shelldata *data)
+{
+	int				i;
+	int				error;
+	t_parse_data	parse_data;
+
+	i = 0;
+	parse_data.processes = 1;
+	while (data->split_input[i] != NULL)
+	{
+		if (data->split_input[i][0] != '\'' && data->split_input[i][0] != '"')
+		{
+			if (data->split_input[i][0] == '|')
+				parse_data.processes++;
+		}
+		i++;
+	}
+	parse_data.child_data
+		= ft_calloc(parse_data.processes + 1, sizeof(t_child_data));
+	if (parse_data.child_data == NULL)
+		return (NO_MEMORY);
+	error = set_up_data(&parse_data, data->split_input);
+	if (error != NO_ERROR)
+		return (FAILURE);
+	return (SUCCESS);
 }
