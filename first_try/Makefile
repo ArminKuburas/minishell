@@ -6,7 +6,7 @@
 #    By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/04/02 00:19:29 by tvalimak         ###   ########.fr        #
+#    Updated: 2024/04/03 17:17:04 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,9 @@ LIBFT = $(LIBFTDIR)/libft.a
 SRCS = main.c \
 		mini_split.c \
 		free_double_string.c \
+		data_parser.c \
+		split_cleaner.c \
+		
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)

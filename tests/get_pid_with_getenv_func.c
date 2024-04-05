@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   get_pid_with_getenv_func.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/26 15:20:27 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/02 21:04:16 by akuburas         ###   ########.fr       */
+/*   Created: 2024/04/03 11:46:41 by akuburas          #+#    #+#             */
+/*   Updated: 2024/04/03 12:19:33 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-void	*ft_calloc(size_t count, size_t size)
+int	main(void)
 {
-	size_t	total_size;
-	void	*ptr;
+	char	*pid_strl;
+	int		pid;
 
-	if (!count || !size)
-		return (ft_calloc(1, 1));
-	total_size = count * size;
-	if ((count != 0 && total_size / count != size) || total_size > 2147483648)
-		return (NULL);
-	ptr = malloc(total_size);
-	if (!ptr)
-		return (NULL);
-	if (ptr)
-		ft_memset(ptr, 0, total_size);
-	return (ptr);
+	pid_strl = getenv("$$");
+	if (pid_strl != NULL)
+	{
+		pid = atoi(pid_strl);
+		printf("My PID is: %d\n", pid);
+	}
+	else
+	{
+		printf("Failed to retrieve PID.\n");
+	}
+	return (0);
 }
