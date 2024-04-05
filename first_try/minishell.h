@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/05 12:57:23 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:52:22 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define MINISHELL_H
 
 /* For the readline functions*/
-# include <readline/readline.h>
 # include <readline/history.h>
+# include <readline/readline.h>
 
 /* For many such as fork, pipe, access, etc.*/
 # include <unistd.h>
@@ -31,6 +31,17 @@
 
 /*libft functions*/
 # include "libft/libft.h"
+
+/*Definition for SIGINT*/
+# define CTRL_C SIGINT
+# define CTRL_BS SIGQUIT
+
+typedef enum e_state
+{
+	DEFAULT,
+	HEREDOC,
+	HANDLER
+}	t_state;
 
 enum e_parse_data
 {
@@ -100,10 +111,10 @@ typedef struct s_shelldata
 	int				exit_value;
 }		t_shelldata;
 
-int		rl_clear_history(void);
-int		mini_split(char *input, t_shelldata *data);
-void	free_double_array(char ***array);
-int		parse_split_input(t_shelldata *data);
-int		split_cleaner(t_shelldata *data);
+int			rl_clear_history(void);
+int			mini_split(char *input, t_shelldata *data);
+void		free_double_array(char ***array);
+void		rl_replace_line(char *str, int num);
+// static void	signal_handler(int signal);
 
 #endif
