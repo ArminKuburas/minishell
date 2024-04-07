@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/04 18:45:20 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/07 20:16:33 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ static void	set_state(t_state state)
 	}
 }
 
-
 int	duplicate_env(char **env, t_shelldata *data)
 {
 	int	i;
@@ -112,8 +111,7 @@ int	main(int argc, char **argv, char **env)
 		set_state(HANDLER);
 		//set_state(DEFAULT);
 		signal(CTRL_C, signal_handler);
-		input = readline("bananashell-0.05:");
-		input = readline("bananashell-0.07:");
+		input = readline("bananashell-0.09:");
 		if (!input)
 		{
 			printf("exit\n");

@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:56:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/05 10:06:14 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/08 00:33:58 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,17 @@ int	length_find_env(char **env, char *str, int n)
 	i = 0;
 	length = 0;
 	j = 0;
+	printf("Inside length_find_env\n");
+	printf("Str: %s\n", str);
 	while (env[i] != NULL)
 	{
+		printf("Env[%d]: %s\n", i, env[i]);
 		if (ft_strncmp(env[i], str, n) == 0)
 		{
 			printf("Found env: %s\n", env[i]);
 			while (env[i][j] != '=')
 				j++;
+			j++;
 			while (env[i][j] != '\0')
 			{
 				j++;
@@ -52,10 +56,16 @@ int	found_dollar(t_shelldata *data, int i, int *j, char quote)
 	{
 		(*j)++;
 		start = *j;
+		printf("Start: %d\n", start);
+		printf("Split_input[%d][%d]: %c\n", i, *j, data->split_input[i][(*j)]);
+		printf("Start character equals: %c\n", data->split_input[i][start]);
 		while (ft_strchr(" \t$", data->split_input[i][(*j)]) == NULL)
 			(*j)++;
+		printf("End: %d\n", *j);
 		length += length_find_env(data->env_variables,
-				&data->split_input[i][(*j)], start - (*j));
+				&data->split_input[i][start], (*j) - start);
+		printf("After length_find_env\n");
+		printf("Length: %d\n", length);
 		return (length);
 	}
 	(*j)--;
@@ -116,10 +126,15 @@ char	*find_env(char **env, char *str, int n)
 	int	i;
 
 	i = 0;
+	printf("Inside find_env\n");
+	printf("Str: %s\n", str);
 	while (env[i] != NULL)
 	{
 		if (ft_strncmp(env[i], str, n) == 0)
+		{
+			printf("Found env: %s\n", env[i]);
 			return (env[i]);
+		}
 		i++;
 	}
 	return (NULL);
@@ -134,6 +149,7 @@ int	copy_dollar(t_shelldata *data, int i, int *j, char *new_string)
 
 	env_array = NULL;
 	new_i = 0;
+	printf("Inside copy_dollar\n");
 	if (ft_strchr(" \t$", data->split_input[i][(*j) + 1]) == NULL)
 	{
 		(*j)++;
@@ -144,6 +160,7 @@ int	copy_dollar(t_shelldata *data, int i, int *j, char *new_string)
 				&data->split_input[i][start], (*j) - start);
 		if (env_array != NULL)
 		{
+			printf("Env_array: %s\n", env_array);
 			u = 0;
 			while (env_array[u] != '=')
 				u++;
