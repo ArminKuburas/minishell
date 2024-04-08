@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 19:32:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/08 15:26:57 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/08 15:55:40 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	set_up_data(t_parse_data *parse_data, char **split_input)
 		while (split_input[i] != NULL && split_input[i][0] != '|')
 			i++;
 	}
-	while (process_number < parse_data->processes)
+	while (process_number < parse_data->processes - 1)
 	{
 		printf("Inside set up data before first if statement\n");
 		while (split_input[i] != NULL && split_input[i][0] != '|')
@@ -38,15 +38,17 @@ int	set_up_data(t_parse_data *parse_data, char **split_input)
 			{
 				printf("Inside set up data while loop 2\n");
 				parse_data->child_data[process_number].command = split_input[i];
+				printf("This is parse_data->child_data[process_number = %d].command = %s\n", process_number, parse_data->child_data[process_number].command);
 				while (split_input[i] != NULL && split_input[i][0] != '|')
 					i++;
+				printf("After while loop: split_input[%d] %s\n", i, split_input[i]);
+				process_number++;
 			}
 			if (split_input[i] != NULL)
 				i++;
 		}
 		if (split_input[i] != NULL)
 			i++;
-		process_number++;
 	}
 	process_number = 0;
 	while (process_number < parse_data->processes)

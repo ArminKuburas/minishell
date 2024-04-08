@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/07 20:16:33 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/08 15:56:32 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int	main(int argc, char **argv, char **env)
 		set_state(HANDLER);
 		//set_state(DEFAULT);
 		signal(CTRL_C, signal_handler);
-		input = readline("bananashell-0.09:");
+		input = readline("bananashell-0.10:");
 		if (!input)
 		{
 			printf("exit\n");
