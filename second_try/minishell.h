@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/09 04:24:46 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/09 10:49:43 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,13 @@ enum e_input_type
 	COMMAND,
 	COMMAND_INPUT,
 	PIPE,
+	WORD_SPLIT
 };
 
 typedef struct s_input_list
 {
 	int					type;
+	int					word_split;
 	char				*input;
 	struct s_input_list	*next;
 	struct s_input_list	*prev;
