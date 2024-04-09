@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/08 21:29:27 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/09 04:24:46 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,9 +132,10 @@ typedef struct s_parse_data
 
 typedef struct s_shelldata
 {
+	t_env_list		*env_list;
+	t_input_list	*input_list;
 	char			**env_variables;
 	char			*input;
-	char			**split_input;
 	int				exit_value;
 }		t_shelldata;
 
