@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 18:14:37 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/10 18:06:10 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/10 19:58:48 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void		free_to_print(char *args[], int i)
     }
         ft_printf("\n");
 }
-
+// if there is other flags, use execve instead.
 static void    my_echo(char *args[])
 {
 	int i;
@@ -77,7 +77,6 @@ static void    my_echo(char *args[])
     }
     else
 		free_to_print(args, i);
-
 }
 
 
@@ -93,6 +92,12 @@ void my_pwd(char *args[])
 		printf("%s\n", cwd);
 	}
 }
+/*
+void	my_export(char **args, char **env_variables)
+{
+	// known issues: changes made to env_variables are not saved
+	// in child process wont change the parent process env
+}*/
 
 void execute_command(char *command[])
 {
@@ -102,6 +107,17 @@ void execute_command(char *command[])
 		my_cd(command);
 	if (strcmp(command[0], "pwd") == 0)
 		my_pwd(command);
+	if (strcmp(command[0], "export") == 0)
+	{
+		if (command[1] == NULL)
+			print_env();
+		else
+			export_env(command);
+	}
+	//if (strcmp(command[0], "unset") == 0)
+	//if (strcmp(command[0], "env") == 0)
+	//if (strcmp(command[0], "exit") == 0)
+	//	exit(0);
 	/*
     else
     {
