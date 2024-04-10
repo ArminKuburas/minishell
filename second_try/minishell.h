@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/09 10:49:43 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/10 15:37:08 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,6 @@ typedef enum e_state
 	HEREDOC,
 	HANDLER
 }	t_state;
-
-enum e_parse_data
-{
-	PIPE = 1,
-	INPUT_REDIRECTION = 2,
-	OUTPUT_REDIRECTION = 4,
-	APPENDING_OUTPUT = 8
-};
 
 enum e_exit_values
 {
@@ -143,13 +135,22 @@ typedef struct s_shelldata
 
 //readline functions
 
-int			rl_clear_history(void);
-void		rl_replace_line(char *str, int num);
+//int			rl_clear_history(void);
+//void		rl_replace_line(char *str, int num);
 
+//data_parser functions
+
+int			count_words(char *input, int *word_count);
 int			mini_split(char *input, t_shelldata *data);
-void		free_double_array(char ***array);
-// static void	signal_handler(int signal);
 int			parse_split_input(t_shelldata *data);
 int			split_cleaner(t_shelldata *data);
+
+//input_list functions
+void		add_input_list(t_input_list *input_list, t_input_list *new_node);
+int			clear_input(t_input_list *input_list, int error);
+int			create_input(char *input, int len, t_input_list *input_list);
+
+
+// static void	signal_handler(int signal);
 
 #endif

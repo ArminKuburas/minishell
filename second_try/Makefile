@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+         #
+#    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/04/03 17:17:04 by akuburas         ###   ########.fr        #
+#    Updated: 2024/04/10 16:15:30 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,8 @@ LIBFT = $(LIBFTDIR)/libft.a
 
 SRCS = main.c \
 		mini_split.c \
-		free_double_string.c \
-		data_parser.c \
-		split_cleaner.c \
-		
+		mini_split_counter.c \
+		input_list_functions.c		
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)
@@ -34,6 +32,9 @@ $(NAME): $(OBJS) $(LIBFT)
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFTDIR)
+
+valgrind: $(OBJS) $(LIBFT)
+		$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME) $(RLFLAGS) -g
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -44,4 +45,4 @@ fclean: clean
 	rm -rf $(NAME)
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re valgrind

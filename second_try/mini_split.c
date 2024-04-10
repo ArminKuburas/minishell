@@ -6,107 +6,39 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 11:44:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/04 18:44:44 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/10 15:40:22 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	quote_found(char *input, int *i, int len)
-{
-	char	quote;
 
-	quote = input[*i];
-	(*i)++;
-	while (*i < len && input[*i] != quote)
-		(*i)++;
-	if (input[*i] != quote)
-	{
-		printf("Error: No closing quote found\n");
-		return (NO_QUOTE);
-	}
-	(*i)++;
-	return (SUCCESS);
-}
 
-int	space_found(char *input, int *i, int len, int *word_count)
-{
-	while (*i < len && input[*i] != ' ')
-	{
-		if (input[*i] == '"' || input[*i] == '\'')
-		{
-			if (quote_found(input, i, len) != SUCCESS)
-				return (NO_QUOTE);
-		}
-		else if (input[*i] == '\0')
-			break ;
-		else if (ft_strchr("><|", input[*i]) != NULL)
-		{
-			(*word_count)++;
-			(*i)++;
-			if (ft_strchr("><", input[*i]) != NULL &&
-				input[*i] == input[*i - 1])
-			{
-				(*i)++;
-				if (ft_strchr("><|", input[*i]) != NULL)
-				{
-					printf("Error: Syntax error\n");
-					return (FAILURE);
-				}
-			}
-			break ;
-		}
-		(*i)++;
-	}
-	return (SUCCESS);
-}
-
-int	count_words(char *input, int *word_count)
-{
-	int		i;
-	int		len;
-
-	i = 0;
-	len = ft_strlen(input);
-	while (i < len)
-	{
-		while (i < len && input[i] == ' ')
-			i++;
-		if (input[i] == '\0')
-			break ;
-		(*word_count)++;
-		if (input[i] == '"' || input[i] == '\'')
-		{
-			if (quote_found(input, &i, len) != SUCCESS)
-				return (NO_QUOTE);
-		}
-		else if (space_found(input, &i, len, word_count) != SUCCESS)
-			return (FAILURE);
-	}
-	return (SUCCESS);
-}
-
-void	duplicate_quote(char *input, t_shelldata *data, int j, int e)
+int	duplicate_quote(char *input, t_shelldata *data, int j)
 {
 	char	quote;
 	int		i;
+	char	*temp;
 
 	quote = input[j];
-	data->split_input[e] = ft_strchr(input + j + 1, quote);
-	if (ft_strchr("<>| ", data->split_input[e][1]) == NULL)
+
+	temp = ft_strchr(input + j + 1, quote);
+	if (ft_strchr("<>| ", temp[1]) == NULL)
 	{
 		i = 1;
-		while (ft_strchr("<>| ", data->split_input[e][i]) == NULL)
+		while (ft_strchr("<>| ", temp[i]) == NULL)
 			i++;
-		data->split_input[e] = ft_strndup(input + j,
-				data->split_input[e] - input - j + 1 + i);
+		if (create_input(input + j, temp - input - j + i + 1, data->input_list) != SUCCESS)
+			return (FAILURE);
 	}
 	else
-		data->split_input[e] = ft_strndup(input + j,
-				data->split_input[e] - input - j + 1);
+		if (create_input(input + j, temp - input - j + 1, data->input_list) != SUCCESS)
+			return (FAILURE);
+	return (SUCCESS);
 }
 
-void	duplicate_input(char *input, t_shelldata *data, int j, int e)
+
+int	duplicate_input(char *input, t_shelldata *data, int j)
 {
 	int	i;
 
@@ -117,15 +49,17 @@ void	duplicate_input(char *input, t_shelldata *data, int j, int e)
 		{
 			if (ft_strchr("><|", input[j + 2]) != NULL)
 			{
-				printf("Error: Syntax error\n");
-				data->split_input[e] = NULL;
+				ft_putstr_fd("Error: Syntax error\n", 2);
+				return (FAILURE);
 			}
 			else
-				data->split_input[e] = ft_strndup(input + j, 2);
+				if (create_input(input + j, 2, data->input_list) != SUCCESS)
+					return (FAILURE);
 		}
 		else
-			data->split_input[e] = ft_strndup(input + j, 1);
-		return ;
+			if (create_input(input + j, 1, data->input_list) != SUCCESS)
+				return (FAILURE);
+		return (SUCCESS);
 	}
 	while (input[j] != ' ' && input[j] != '\0')
 	{
@@ -133,35 +67,47 @@ void	duplicate_input(char *input, t_shelldata *data, int j, int e)
 			break ;
 		j++;
 	}
-	data->split_input[e] = ft_strndup(input + i, j - i);
+	if (create_input(input + i, j - i, data->input_list) != SUCCESS)
+		return (FAILURE);
+	return (SUCCESS);}
+
+int	strlen_last_input(t_input_list *input_list)
+{
+	t_input_list	*temp;
+	int				i;
+
+	temp = input_list;
+	i = 0;
+	while (temp->next != NULL)
+		temp = temp->next;
+	while (temp->input[i] != '\0')
+		i++;
+	return (i);
 }
 
 int	create_strings(char *input, t_shelldata *data, int word_count)
 {
-	int	j;
-	int	e;
+	int	i;
+	int	amount;
+	int	error;
 
-	j = 0;
-	e = 0;
-	while (e < word_count)
+	i = 0;
+	amount = 0;
+	error = SUCCESS;
+	while (amount < word_count)
 	{
-		while (input[j] == ' ')
-			j++;
-		if (input[j] == '\0')
+		while (input[i] == ' ')
+			i++;
+		if (input[i] == '\0')
 			break ;
-		if (input[j] == '"' || input[j] == '\'')
-			duplicate_quote(input, data, j, e);
+		if (input[i] == '"' || input[i] == '\'')
+			error = duplicate_quote(input, data, i);
 		else
-			duplicate_input(input, data, j, e);
-		if (data->split_input[e] == NULL)
-		{
-			free_double_array(&data->split_input);
-			return (NO_MEMORY);
-		}
-		j += ft_strlen(data->split_input[e]);
-		e++;
+			error = duplicate_input(input, data, i);
+		if (error != SUCCESS)
+			return (FAILURE);
+		i += strlen_last_input(data->input_list);
 	}
-	data->split_input[e] = NULL;
 	return (SUCCESS);
 }
 
@@ -175,23 +121,26 @@ int	mini_split(char *input, t_shelldata *data)
 	word_count = 0;
 	if (count_words(input, &word_count) != SUCCESS)
 		return (FAILURE);
-	data->split_input = (char **)malloc((word_count + 1) * sizeof(char *));
-	if (data->split_input == NULL)
+	data->input_list = (t_input_list *)ft_calloc(1, sizeof(t_input_list));
+	if (data->input_list == NULL)
 		return (NO_MEMORY);
 	if (create_strings(input, data, word_count) != SUCCESS)
 		return (FAILURE);
-	int	i;
+	t_input_list	*temp;
+	int				i;
+	temp = data->input_list;
 	i = 0;
 	printf("word_count: %d\n", word_count);
 	printf("Before split_cleaner\n");
-	while (data->split_input[i] != NULL)
+	while (temp != NULL)
 	{
-		printf("split_input[%d]: %s\n", i + 1, data->split_input[i]);
+		printf("input split %d: %s\n", i + 1, temp->input);
 		i++;
+		temp = temp->next;
 	}
-	if (split_cleaner(data) != SUCCESS)
-		return (FAILURE);
-	printf("--------------------\n");
-	printf("After split_cleaner\n");
+	//if (split_cleaner(data) != SUCCESS)
+	//	return (FAILURE);
+	//printf("--------------------\n");
+	//printf("After split_cleaner\n");
 	return (SUCCESS);
 }
