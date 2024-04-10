@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/08 18:41:09 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:00:27 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,14 +114,18 @@ typedef struct s_shelldata
 	int				exit_value;
 }		t_shelldata;
 
+typedef void (*t_handler)(int);
+
 int			rl_clear_history(void);
 int			mini_split(char *input, t_shelldata *data);
 void		free_double_array(char ***array);
 void		rl_replace_line(char *str, int num);
 int			parse_split_input(t_shelldata *data);
 int			split_cleaner(t_shelldata *data);
-void		signal_handler(int signal);
 void		carrot_toggle(int on);
 void		set_state(t_state state);
+void		parent_signals(void);
+void		signal_handler(int signal, t_handler handler);
+void		sigint_handler(int sig);
 
 #endif
