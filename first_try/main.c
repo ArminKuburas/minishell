@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/08 18:38:05 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:17:19 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,7 @@ int	main(int argc, char **argv, char **env)
 	}
 	while (1)
 	{
-		set_state(HANDLER);
-		//set_state(DEFAULT);
-		signal(SIGINT, signal_handler);
-		signal(SIGQUIT, signal_handler);
+		parent_signals();
 		input = readline("bananashell-0.09:");
 		if (!input)
 		{
