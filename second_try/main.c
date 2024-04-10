@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/10 16:12:16 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/10 22:33:12 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,20 @@ int	main(int argc, char **argv, char **env)
 		printf("wtf\n");
 	if (!argv[0])
 		printf("wtf2\n");
-	if (!env)
-		printf("wtf3\n");
+	if (env)
+	{
+		error = duplicate_env(env, &data);
+		if (error != SUCCESS)
+			return (FAILURE);
+		t_env_list	*temp = data.env_list;
+		while (temp != NULL)
+		{
+			printf("env_var = %s\n", temp->env_var);
+			printf("env_var_name = %s\n", temp->env_var_name);
+			printf("env_var_value = %s\n", temp->env_var_value);
+			temp = temp->next;
+		}
+	}
 	while (1)
 	{
 		set_state(HANDLER);
@@ -83,6 +95,7 @@ int	main(int argc, char **argv, char **env)
 		if (!input)
 		{
 			printf("exit\n");
+			clear_env_list(data.env_list, SUCCESS);
 			break ;
 		}
 		if (input)
@@ -91,7 +104,14 @@ int	main(int argc, char **argv, char **env)
 			{
 				printf("exit\n");
 				free(input);
+				clear_env_list(data.env_list, SUCCESS);
 				break ;
+			}
+			if (ft_strlen(input) == 0)
+			{
+				free(input);
+				clear_env_list(data.env_list, SUCCESS);
+				continue ;
 			}
 			error = mini_split(input, &data);
 			if (error == SUCCESS)
@@ -107,9 +127,15 @@ int	main(int argc, char **argv, char **env)
 				//parse_split_input(&data);
 				clear_input(data.input_list, SUCCESS);
 			}
+			else
+			{
+				clear_env_list(data.env_list, SUCCESS);
+				break ;
+			}
 			add_history(input);
 		}
 		free(input);
+		input = NULL;
 	}
 	rl_clear_history();
 }

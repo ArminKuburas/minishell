@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/10 15:37:08 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/10 22:32:43 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,12 +143,19 @@ typedef struct s_shelldata
 int			count_words(char *input, int *word_count);
 int			mini_split(char *input, t_shelldata *data);
 int			parse_split_input(t_shelldata *data);
-int			split_cleaner(t_shelldata *data);
 
 //input_list functions
 void		add_input_list(t_input_list *input_list, t_input_list *new_node);
 int			clear_input(t_input_list *input_list, int error);
 int			create_input(char *input, int len, t_input_list *input_list);
+
+//env_list functions
+int			duplicate_env(char **env, t_shelldata *data);
+int			clear_env_list(t_env_list *env_list, int error);
+
+//data_cleaner functions
+int			new_length(t_input_list *temp, char **env);
+int			split_cleaner(t_shelldata *data);
 
 
 // static void	signal_handler(int signal);
