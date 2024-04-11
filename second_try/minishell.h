@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/11 12:48:02 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/11 13:39:49 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ void		rl_replace_line(char *str, int num);
 int			count_words(char *input, int *word_count);
 int			mini_split(char *input, t_shelldata *data);
 int			parse_split_input(t_shelldata *data);
-int			quote_found(char *input, int *i, int len);
+int			parser_quote_found(char *input, int *i, int len);
 
 //input_list functions
 void		add_input_list(t_input_list *input_list, t_input_list *new_node);

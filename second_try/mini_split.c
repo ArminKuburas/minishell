@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 11:44:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/11 12:47:42 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/11 13:41:04 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,13 @@ int	duplicate_quote(char *input, t_shelldata *data, int j)
 		i = 1;
 		while (ft_strchr("<>| ", temp[i]) == NULL)
 			i++;
-		if (create_input(input + j, temp - input - j + i + 1, data->input_list) != SUCCESS)
+		if (create_input(input + j, temp - input - j + i + 1,
+				data->input_list) != SUCCESS)
 			return (FAILURE);
 	}
 	else
-		if (create_input(input + j, temp - input - j + 1, data->input_list) != SUCCESS)
+		if (create_input(input + j, temp - input - j + 1,
+				data->input_list) != SUCCESS)
 			return (FAILURE);
 	return (SUCCESS);
 }
@@ -66,7 +68,7 @@ int	duplicate_input(char *input, t_shelldata *data, int j)
 	while (input[j] != '\0' && input[j] != ' ')
 	{
 		if (input[j] == '\'' || input[j] == '"')
-			if (quote_found(input, &j, ft_strlen(input)) != SUCCESS)
+			if (parser_quote_found(input, &j, ft_strlen(input)) != SUCCESS)
 				return (FAILURE);
 		if (ft_strchr("><|", input[j]) != NULL)
 			break ;
@@ -77,8 +79,6 @@ int	duplicate_input(char *input, t_shelldata *data, int j)
 		return (FAILURE);
 	return (SUCCESS);
 }
-
-
 
 int	create_strings(char *input, t_shelldata *data, int word_count)
 {

@@ -6,13 +6,13 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:13:40 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/11 11:09:16 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/11 13:40:52 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	quote_found(char *input, int *i, int len)
+int	parser_quote_found(char *input, int *i, int len)
 {
 	char	quote;
 
@@ -52,7 +52,7 @@ static int	space_found(char *input, int *i, int len, int *word_count)
 	{
 		if (input[*i] == '"' || input[*i] == '\'')
 		{
-			if (quote_found(input, i, len) != SUCCESS)
+			if (parser_quote_found(input, i, len) != SUCCESS)
 				return (NO_QUOTE);
 		}
 		else if (input[*i] == '\0')
@@ -84,7 +84,7 @@ int	count_words(char *input, int *word_count)
 		(*word_count)++;
 		if (input[i] == '"' || input[i] == '\'')
 		{
-			if (quote_found(input, &i, len) != SUCCESS)
+			if (parser_quote_found(input, &i, len) != SUCCESS)
 				return (NO_QUOTE);
 		}
 		else if (space_found(input, &i, len, word_count) != SUCCESS)

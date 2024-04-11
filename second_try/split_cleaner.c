@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:56:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/10 20:55:28 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/11 13:46:30 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,21 +116,22 @@ int	allocate_new_string(t_shelldata *data, int length, int i)
 
 int	split_cleaner(t_shelldata *data)
 {
-	int				length;
+	size_t			length;
 	t_input_list	*temp;
 
 	temp = data->input_list;
 	while (temp != NULL)
 	{
 		length = new_length(temp, data->env_variables);
-		if ((size_t)length != ft_strlen(data->split_input[i]))
+		if (length != ft_strlen(data->input_list))
 		{
 			if (allocate_new_string(data, length, i) != SUCCESS)
 			{
-				free_double_array(&data->split_input);
+				clear_input(data->input_list, NO_MEMORY);
 				return (NO_MEMORY);
 			}
 		}
+		temp = temp->next;
 	}
 	return (SUCCESS);
 }

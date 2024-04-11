@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 19:06:55 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/10 21:19:34 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/11 13:51:37 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ int	found_dollar(t_input_list *temp, int *i, char quote, t_env_list *env)
 	length = 0;
 	if (quote == '\'')
 		return (1);
+	else if (quote == '"')
+	{
+		length += dollar_inside_quote(temp, *i, env);
+		return (length);
+	}
 	if (ft_strchr(" \t$'\"", temp->input[(*i) + 1]) == NULL)
 	{
 		(*i)++;
@@ -61,7 +66,7 @@ int	found_dollar(t_input_list *temp, int *i, char quote, t_env_list *env)
 	return (1);
 }
 
-int	quote_found(char input, char *quote)
+int	cleaner_quote_found(char input, char *quote)
 {
 	if (*quote == 'a')
 		*quote = input;
@@ -84,11 +89,11 @@ int	new_length(t_input_list *temp, t_env_list *env)
 	while (temp->input != '\0')
 	{
 		if (ft_strchr("'\"", temp->input[i]) != NULL)
-			length += quote_found(temp->input[i], &quote);
+			length += cleaner_quote_found(temp->input[i], &quote);
 		else if (temp->input[i] != '$')
 			length++;
 		else
-			length += found_dollar(temp->input, &i, quote, env);
+			length += found_dollar(temp, &i, quote, env);
 		if (temp->input[i] != '\0')
 			i++;
 	}
