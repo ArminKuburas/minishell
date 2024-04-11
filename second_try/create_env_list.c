@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 21:29:51 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/10 22:34:51 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/11 05:22:34 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	simplify_env_data(t_env_list *env_list)
 	return (SUCCESS);
 }
 
-
 int	create_env(char *env, t_env_list *env_list)
 {
 	t_env_list	*new;
@@ -96,7 +95,8 @@ int	duplicate_env(char **env, t_shelldata *data)
 	{
 		if (create_env(env[i], temp) != SUCCESS)
 			return (FAILURE);
-		temp = temp->next;
+		if (temp->next != NULL)
+			temp = temp->next;
 		i++;
 	}
 	return (SUCCESS);

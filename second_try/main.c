@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/10 22:33:12 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/11 05:41:42 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,11 @@ int	main(int argc, char **argv, char **env)
 		t_env_list	*temp = data.env_list;
 		while (temp != NULL)
 		{
+			printf("--------------------\n");
 			printf("env_var = %s\n", temp->env_var);
 			printf("env_var_name = %s\n", temp->env_var_name);
 			printf("env_var_value = %s\n", temp->env_var_value);
+			printf("--------------------\n");
 			temp = temp->next;
 		}
 	}
@@ -91,7 +93,7 @@ int	main(int argc, char **argv, char **env)
 		set_state(HANDLER);
 		//set_state(DEFAULT);
 		signal(CTRL_C, signal_handler);
-		input = readline("bananashell-0.10:");
+		input = readline("bananashell-0.11:");
 		if (!input)
 		{
 			printf("exit\n");
