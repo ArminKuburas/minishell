@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/11 06:16:05 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/11 08:03:58 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,18 @@ typedef struct s_child_data
 enum e_input_type
 {
 	REDIRECT_INPUT = 42,
-	REDIRECT_OUTPUT = 43,
-	REDIRECT_APPEND = 44,
-	REDIRECT_HEREDOC = 45,
-	COMMAND = 46,
-	COMMAND_ARGUMENT = 47,
-	PIPE = 48,
-	WORD_SPLIT = -1
+	INPUT_FILE = 43,
+	REDIRECT_HEREDOC = 44,
+	HEREDOC_FILE = 45,
+	REDIRECT_OUTPUT = 52,
+	OUTPUT_FILE = 53,
+	REDIRECT_APPEND = 54,
+	APPEND_FILE = 55,
+	COMMAND = 62,
+	COMMAND_ARGUMENT = 63,
+	PIPE = 72,
+	POTENTIAL_SPLIT = 82,
+	WORD_SPLIT = 83
 };
 
 typedef struct s_input_list

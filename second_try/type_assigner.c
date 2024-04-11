@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 05:59:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/11 06:08:34 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/11 07:39:43 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,29 @@ void	input_type_assigner(t_input_list *input_list)
 	while (temp != NULL)
 	{
 		if (ft_strcmp(temp->input, ">>") == 0)
+		{
 			temp->type = REDIRECT_APPEND;
+			temp = temp->next;
+			temp->type = APPEND_FILE;
+		}
 		else if (ft_strcmp(temp->input, "<<") == 0)
+		{
 			temp->type = REDIRECT_HEREDOC;
+			temp = temp->next;
+			temp->type = HEREDOC_FILE;
+		}
 		else if (temp->input[0] == '>')
+		{
 			temp->type = REDIRECT_OUTPUT;
+			temp = temp->next;
+			temp->type = OUTPUT_FILE;
+		}
 		else if (temp->input[0] == '<')
+		{
 			temp->type = REDIRECT_INPUT;
+			temp = temp->next;
+			temp->type = INPUT_FILE;
+		}
 		else
 			assign_command_or_pipe(temp);
 		temp = temp->next;
