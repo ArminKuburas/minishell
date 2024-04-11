@@ -6,36 +6,62 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 19:06:55 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/11 13:51:37 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:00:08 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	length_find_env(char **env, char *str, int n)
+int	env_str_cmpr(char *env, char *str, int len)
 {
 	int	i;
-	int	j;
-	int	length;
 
 	i = 0;
-	length = 0;
-	j = 0;
-	while (env[i] != NULL)
+	while (i < len)
 	{
-		if (ft_strncmp(env[i], str, n) == 0)
-		{
-			while (env[i][j] != '=')
-				j++;
-			j++;
-			while (env[i][j] != '\0')
-			{
-				j++;
-				length++;
-			}
-			break ;
-		}
+		if (env[i] != str[i])
+			return (1);
 		i++;
+	}
+	return (0);
+}
+
+int	length_find_env(t_env_list *env, char *str, int len)
+{
+	int			length;
+	t_env_list	*temp;
+
+	temp = env;
+	length = 0;
+	while (temp != NULL)
+	{
+		if (ft_strlen(temp->env_var_name) != len)
+		{
+			temp = temp->next;
+			continue ;
+		}
+		if (env_str_cmpr(temp->env_var_name, str, len) == 0)
+			return (ft_strlen(temp->env_var_value));
+		if (temp != NULL)
+			temp = temp->next;
+	}
+	return (0);
+}
+
+int	dollar_inside_quote(t_input_list *temp, int *i, t_env_list *env)
+{
+	int	length;
+	int	start;
+
+	length = 0;
+	if (ft_strchr(" \t$'\"", temp->input[(*i) + 1]) == NULL)
+	{
+		(*i)++;
+		start = *i;
+		while (ft_strchr(" \t$'\"", temp->input[(*i)]) == NULL)
+			(*i)++;
+		length += length_find_env(env, temp->input[start], (*i) - start);
+		(*i)--;
 	}
 	return (length);
 }
