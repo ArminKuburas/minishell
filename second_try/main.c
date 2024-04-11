@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/11 05:41:42 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:50:47 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ int	main(int argc, char **argv, char **env)
 			if (ft_strlen(input) == 0)
 			{
 				free(input);
-				clear_env_list(data.env_list, SUCCESS);
 				continue ;
 			}
 			error = mini_split(input, &data);

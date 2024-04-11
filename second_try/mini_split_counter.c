@@ -6,13 +6,13 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:13:40 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/10 16:24:33 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/11 11:09:16 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	quote_found(char *input, int *i, int len)
+int	quote_found(char *input, int *i, int len)
 {
 	char	quote;
 
@@ -22,7 +22,7 @@ static int	quote_found(char *input, int *i, int len)
 		(*i)++;
 	if (input[*i] != quote)
 	{
-		printf("Error: No closing quote found\n");
+		ft_putstr_fd("Error: No closing quote found\n", 2);
 		return (NO_QUOTE);
 	}
 	(*i)++;
@@ -33,8 +33,8 @@ static int	special_char_found(char *input, int *i, int *word_count)
 {
 	(*word_count)++;
 	(*i)++;
-	if (ft_strchr("><", input[*i]) != NULL &&
-		input[*i] == input[*i - 1])
+	if (ft_strchr("><", input[*i]) != NULL
+		&& input[*i] == input[*i - 1])
 	{
 		(*i)++;
 		if (ft_strchr("><|", input[*i]) != NULL)

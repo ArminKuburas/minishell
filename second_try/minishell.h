@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/11 08:03:58 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:48:02 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,20 +140,22 @@ typedef struct s_shelldata
 
 //readline functions
 
-//int			rl_clear_history(void);
-//void		rl_replace_line(char *str, int num);
+int			rl_clear_history(void);
+void		rl_replace_line(char *str, int num);
 
 //data_parser functions
 
 int			count_words(char *input, int *word_count);
 int			mini_split(char *input, t_shelldata *data);
 int			parse_split_input(t_shelldata *data);
+int			quote_found(char *input, int *i, int len);
 
 //input_list functions
 void		add_input_list(t_input_list *input_list, t_input_list *new_node);
 int			clear_input(t_input_list *input_list, int error);
 int			create_input(char *input, int len, t_input_list *input_list);
 void		input_type_assigner(t_input_list *input_list);
+int			strlen_last_input(t_input_list *input_list);
 
 //env_list functions
 int			duplicate_env(char **env, t_shelldata *data);

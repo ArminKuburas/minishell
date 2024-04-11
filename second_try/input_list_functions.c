@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:24:02 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/10 15:40:52 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:47:48 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,18 @@ int	create_input(char *input, int len, t_input_list *input_list)
 		add_input_list(input_list, new_node);
 	}
 	return (SUCCESS);
+}
+
+int	strlen_last_input(t_input_list *input_list)
+{
+	t_input_list	*temp;
+	int				i;
+
+	temp = input_list;
+	i = 0;
+	while (temp->next != NULL)
+		temp = temp->next;
+	while (temp->input[i] != '\0')
+		i++;
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 11:44:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/11 06:15:30 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:47:42 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,24 @@ int	duplicate_quote(char *input, t_shelldata *data, int j)
 	return (SUCCESS);
 }
 
+int	duplicate_special_character(char *input, int j, t_input_list *input_list)
+{
+	if (ft_strchr("><", input[j + 1]) != NULL && input[j] == input[j + 1])
+	{
+		if (ft_strchr("><|", input[j + 2]) != NULL)
+		{
+			ft_putstr_fd("Error: Syntax error\n", 2);
+			return (FAILURE);
+		}
+		else
+			if (create_input(input + j, 2, input_list) != SUCCESS)
+				return (FAILURE);
+	}
+	else
+		if (create_input(input + j, 1, input_list) != SUCCESS)
+			return (FAILURE);
+	return (SUCCESS);
+}
 
 int	duplicate_input(char *input, t_shelldata *data, int j)
 {
@@ -44,46 +62,23 @@ int	duplicate_input(char *input, t_shelldata *data, int j)
 
 	i = j;
 	if (ft_strchr("><|", input[j]) != NULL)
+		return (duplicate_special_character(input, j, data->input_list));
+	while (input[j] != '\0' && input[j] != ' ')
 	{
-		if (ft_strchr("><", input[j + 1]) != NULL && input[j] == input[j + 1])
-		{
-			if (ft_strchr("><|", input[j + 2]) != NULL)
-			{
-				ft_putstr_fd("Error: Syntax error\n", 2);
+		if (input[j] == '\'' || input[j] == '"')
+			if (quote_found(input, &j, ft_strlen(input)) != SUCCESS)
 				return (FAILURE);
-			}
-			else
-				if (create_input(input + j, 2, data->input_list) != SUCCESS)
-					return (FAILURE);
-		}
-		else
-			if (create_input(input + j, 1, data->input_list) != SUCCESS)
-				return (FAILURE);
-		return (SUCCESS);
-	}
-	while (input[j] != ' ' && input[j] != '\0')
-	{
 		if (ft_strchr("><|", input[j]) != NULL)
 			break ;
-		j++;
+		if (input[j] != '\0')
+			j++;
 	}
 	if (create_input(input + i, j - i, data->input_list) != SUCCESS)
 		return (FAILURE);
-	return (SUCCESS);}
-
-int	strlen_last_input(t_input_list *input_list)
-{
-	t_input_list	*temp;
-	int				i;
-
-	temp = input_list;
-	i = 0;
-	while (temp->next != NULL)
-		temp = temp->next;
-	while (temp->input[i] != '\0')
-		i++;
-	return (i);
+	return (SUCCESS);
 }
+
+
 
 int	create_strings(char *input, t_shelldata *data, int word_count)
 {

@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 05:59:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/11 07:39:43 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/11 10:54:04 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,44 @@ static void	assign_command_or_pipe(t_input_list *temp)
 		else
 			temp->type = COMMAND_ARGUMENT;
 	}
+	if (temp->next == NULL)
+		command_flag = 0;
+}
+
+void	potential_split(t_input_list *temp)
+{
+	int	i;
+
+	i = 1;
+	if (temp->input[0] == '$')
+	{
+		while (temp->input[i] != '\0')
+		{
+			if (temp->input[i] == '$' && temp->input[i + 1] == '\0')
+				return ;
+			i++;
+		}
+		temp->word_split = POTENTIAL_SPLIT;
+		printf("This is a potential split: %s\n", temp->input);
+	}
+}
+
+void	try_append_or_heredoc(t_input_list *temp)
+{
+	if (ft_strcmp(temp->input, ">>") == 0)
+	{
+		temp->type = REDIRECT_APPEND;
+		temp = temp->next;
+		temp->type = APPEND_FILE;
+		potential_split(temp);
+	}
+	else if (ft_strcmp(temp->input, "<<") == 0)
+	{
+		temp->type = REDIRECT_HEREDOC;
+		temp = temp->next;
+		temp->type = HEREDOC_FILE;
+		potential_split(temp);
+	}
 }
 
 void	input_type_assigner(t_input_list *input_list)
@@ -40,29 +78,21 @@ void	input_type_assigner(t_input_list *input_list)
 	temp = input_list;
 	while (temp != NULL)
 	{
-		if (ft_strcmp(temp->input, ">>") == 0)
-		{
-			temp->type = REDIRECT_APPEND;
-			temp = temp->next;
-			temp->type = APPEND_FILE;
-		}
-		else if (ft_strcmp(temp->input, "<<") == 0)
-		{
-			temp->type = REDIRECT_HEREDOC;
-			temp = temp->next;
-			temp->type = HEREDOC_FILE;
-		}
-		else if (temp->input[0] == '>')
+		potential_split(temp);
+		try_append_or_heredoc(temp);
+		if (ft_strcmp(temp->input, ">") == 0)
 		{
 			temp->type = REDIRECT_OUTPUT;
 			temp = temp->next;
 			temp->type = OUTPUT_FILE;
+			potential_split(temp);
 		}
-		else if (temp->input[0] == '<')
+		else if (ft_strcmp(temp->input, "<") == 0)
 		{
 			temp->type = REDIRECT_INPUT;
 			temp = temp->next;
 			temp->type = INPUT_FILE;
+			potential_split(temp);
 		}
 		else
 			assign_command_or_pipe(temp);
