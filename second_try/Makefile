@@ -6,7 +6,7 @@
 #    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/04/10 22:31:50 by akuburas         ###   ########.fr        #
+#    Updated: 2024/04/11 06:16:39 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS = main.c \
 		mini_split_counter.c \
 		input_list_functions.c \
 		create_env_list.c \
+		type_assigner.c \
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)

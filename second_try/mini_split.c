@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 11:44:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/10 15:40:22 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/11 06:15:30 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ int	mini_split(char *input, t_shelldata *data)
 		return (NO_MEMORY);
 	if (create_strings(input, data, word_count) != SUCCESS)
 		return (FAILURE);
+	input_type_assigner(data->input_list);
 	t_input_list	*temp;
 	int				i;
 	temp = data->input_list;
@@ -135,6 +136,7 @@ int	mini_split(char *input, t_shelldata *data)
 	while (temp != NULL)
 	{
 		printf("input split %d: %s\n", i + 1, temp->input);
+		printf("input type %d: %d\n", i + 1, temp->type);
 		i++;
 		temp = temp->next;
 	}

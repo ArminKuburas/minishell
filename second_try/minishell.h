@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/10 22:32:43 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/11 06:16:05 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,14 @@ typedef struct s_child_data
 
 enum e_input_type
 {
-	REDIRECT_INPUT,
-	REDIRECT_OUTPUT,
-	REDIRECT_APPEND,
-	REDIRECT_HEREDOC,
-	COMMAND,
-	COMMAND_INPUT,
-	PIPE,
-	WORD_SPLIT
+	REDIRECT_INPUT = 42,
+	REDIRECT_OUTPUT = 43,
+	REDIRECT_APPEND = 44,
+	REDIRECT_HEREDOC = 45,
+	COMMAND = 46,
+	COMMAND_ARGUMENT = 47,
+	PIPE = 48,
+	WORD_SPLIT = -1
 };
 
 typedef struct s_input_list
@@ -148,15 +148,15 @@ int			parse_split_input(t_shelldata *data);
 void		add_input_list(t_input_list *input_list, t_input_list *new_node);
 int			clear_input(t_input_list *input_list, int error);
 int			create_input(char *input, int len, t_input_list *input_list);
+void		input_type_assigner(t_input_list *input_list);
 
 //env_list functions
 int			duplicate_env(char **env, t_shelldata *data);
 int			clear_env_list(t_env_list *env_list, int error);
 
 //data_cleaner functions
-int			new_length(t_input_list *temp, char **env);
+int			new_length(t_input_list *temp, t_env_list *env);
 int			split_cleaner(t_shelldata *data);
-
 
 // static void	signal_handler(int signal);
 
