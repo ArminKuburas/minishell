@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_ptrhex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/25 12:38:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/08 00:50:41 by akuburas         ###   ########.fr       */
+/*   Created: 2023/11/26 13:41:02 by akuburas          #+#    #+#             */
+/*   Updated: 2024/01/09 09:38:36 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_ptrhex(unsigned long ptr, int *length)
 {
-	unsigned char	u1;
-	unsigned char	u2;
+	const char	*hex_digits;
+	int			check;
 
-	while (n > 0)
+	hex_digits = "0123456789abcdef";
+	if (ptr >= 16)
 	{
-		u1 = (unsigned char)*s1;
-		u2 = (unsigned char)*s2;
-		if (u1 != u2)
-			return (u1 - u2);
-		if (u1 == '\0')
-			return (0);
-		s1++;
-		s2++;
-		n--;
+		if (ft_ptrhex(ptr / 16, length) == -1)
+			return (-1);
 	}
-	return (0);
+	(*length)++;
+	check = write(2, (&hex_digits[ptr % 16]), 1);
+	if (check == -1)
+		return (-1);
+	return (*length);
 }

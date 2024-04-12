@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   linked_list.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/25 12:38:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/08 00:50:41 by akuburas         ###   ########.fr       */
+/*   Created: 2024/04/09 03:30:45 by akuburas          #+#    #+#             */
+/*   Updated: 2024/04/09 03:42:29 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef LINKED_LIST_H
+# define LINKED_LIST_H
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+# include <stdlib.h>
+# include <stdio.h>
+
+typedef struct s_list
 {
-	unsigned char	u1;
-	unsigned char	u2;
+	int				content;
+	struct s_list	*next;
+	struct s_list	*prev;
+}	t_list;
 
-	while (n > 0)
-	{
-		u1 = (unsigned char)*s1;
-		u2 = (unsigned char)*s2;
-		if (u1 != u2)
-			return (u1 - u2);
-		if (u1 == '\0')
-			return (0);
-		s1++;
-		s2++;
-		n--;
-	}
-	return (0);
-}
+#endif

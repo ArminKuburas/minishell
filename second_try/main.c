@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/08 15:56:32 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/12 10:50:41 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,31 +61,6 @@ static void	set_state(t_state state)
 	}
 }
 
-int	duplicate_env(char **env, t_shelldata *data)
-{
-	int	i;
-
-	i = 0;
-	while (env[i])
-		i++;
-	data->env_variables = (char **)ft_calloc(i + 1, sizeof(char *));
-	if (!data->env_variables)
-		return (NO_MEMORY);
-	i = 0;
-	while (env[i])
-	{
-		data->env_variables[i] = ft_strdup(env[i]);
-		if (!data->env_variables[i])
-		{
-			free_double_array(&data->env_variables);
-			return (NO_MEMORY);
-		}
-		i++;
-	}
-	data->env_variables[i] = NULL;
-	return (SUCCESS);
-}
-
 int	main(int argc, char **argv, char **env)
 {
 	char		*input;
@@ -100,10 +75,17 @@ int	main(int argc, char **argv, char **env)
 	if (env)
 	{
 		error = duplicate_env(env, &data);
-		if (error == NO_MEMORY)
-		{
-			printf("Error: No memory\n");
+		if (error != SUCCESS)
 			return (FAILURE);
+		t_env_list	*temp = data.env_list;
+		while (temp != NULL)
+		{
+			printf("--------------------\n");
+			printf("env_var = %s\n", temp->env_var);
+			printf("env_var_name = %s\n", temp->env_var_name);
+			printf("env_var_value = %s\n", temp->env_var_value);
+			printf("--------------------\n");
+			temp = temp->next;
 		}
 	}
 	while (1)
@@ -111,10 +93,11 @@ int	main(int argc, char **argv, char **env)
 		set_state(HANDLER);
 		//set_state(DEFAULT);
 		signal(CTRL_C, signal_handler);
-		input = readline("bananashell-0.10:");
+		input = readline("bananashell-0.11:");
 		if (!input)
 		{
 			printf("exit\n");
+			clear_env_list(data.env_list, SUCCESS);
 			break ;
 		}
 		if (input)
@@ -123,24 +106,37 @@ int	main(int argc, char **argv, char **env)
 			{
 				printf("exit\n");
 				free(input);
+				clear_env_list(data.env_list, SUCCESS);
 				break ;
+			}
+			if (ft_strlen(input) == 0)
+			{
+				free(input);
+				continue ;
 			}
 			error = mini_split(input, &data);
 			if (error == SUCCESS)
 			{
 				i = 0;
-				while (data.split_input[i])
-				{
-					printf("split_input[%d] = %s\n", i, data.split_input[i]);
-					i++;
-				}
-				printf("--------------------\n");
-				parse_split_input(&data);
-				free_double_array(&data.split_input);
+				printf("This is i %d\n", i);
+				//while (data.split_input[i])
+				//{
+				//	printf("split_input[%d] = %s\n", i, data.split_input[i]);
+				//	i++;
+				//}
+				//printf("--------------------\n");
+				//parse_split_input(&data);
+				clear_input(data.input_list, SUCCESS);
+			}
+			else
+			{
+				clear_env_list(data.env_list, SUCCESS);
+				break ;
 			}
 			add_history(input);
 		}
 		free(input);
+		input = NULL;
 	}
 	rl_clear_history();
 }

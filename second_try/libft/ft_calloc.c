@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/25 12:38:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/08 00:50:41 by akuburas         ###   ########.fr       */
+/*   Created: 2023/10/26 15:20:27 by akuburas          #+#    #+#             */
+/*   Updated: 2024/04/02 21:04:16 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	*ft_calloc(size_t count, size_t size)
 {
-	unsigned char	u1;
-	unsigned char	u2;
+	size_t	total_size;
+	void	*ptr;
 
-	while (n > 0)
-	{
-		u1 = (unsigned char)*s1;
-		u2 = (unsigned char)*s2;
-		if (u1 != u2)
-			return (u1 - u2);
-		if (u1 == '\0')
-			return (0);
-		s1++;
-		s2++;
-		n--;
-	}
-	return (0);
+	if (!count || !size)
+		return (ft_calloc(1, 1));
+	total_size = count * size;
+	if ((count != 0 && total_size / count != size) || total_size > 2147483648)
+		return (NULL);
+	ptr = malloc(total_size);
+	if (!ptr)
+		return (NULL);
+	if (ptr)
+		ft_memset(ptr, 0, total_size);
+	return (ptr);
 }
