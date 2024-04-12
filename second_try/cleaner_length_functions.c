@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 19:06:55 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/12 15:49:24 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:12:03 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	length_find_env(t_env_list *env, char *str, int len)
 	length = 0;
 	while (temp != NULL)
 	{
+		printf("Inside length find env loop\n");
 		if (ft_strlen(temp->env_var_name) != (size_t)len)
 		{
 			temp = temp->next;
@@ -91,8 +92,9 @@ int	new_length(t_input_list *temp, t_env_list *env)
 	i = 0;
 	quote = 'a';
 	length = 0;
-	while (temp->input != '\0')
+	while (temp->input[i] != '\0')
 	{
+		printf("Inside new_length loop\n");
 		if (ft_strchr("'\"", temp->input[i]) != NULL)
 			length += cleaner_quote_found(temp->input[i], &quote);
 		else if (temp->input[i] != '$')
