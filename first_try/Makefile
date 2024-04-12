@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+         #
+#    By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/04/03 17:17:04 by akuburas         ###   ########.fr        #
+#    Updated: 2024/04/08 18:38:39 by tvalimak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRCS = main.c \
 		free_double_string.c \
 		data_parser.c \
 		split_cleaner.c \
-		
+		signal.c
+
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)

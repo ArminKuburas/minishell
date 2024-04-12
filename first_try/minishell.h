@@ -6,7 +6,11 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2024/04/10 17:00:27 by tvalimak         ###   ########.fr       */
+=======
 /*   Updated: 2024/04/08 11:34:24 by akuburas         ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +35,9 @@
 
 /*libft functions*/
 # include "libft/libft.h"
+
+/*for termios*/
+#include <termios.h>
 
 /*Definition for SIGINT*/
 # define CTRL_C SIGINT
@@ -111,12 +118,24 @@ typedef struct s_shelldata
 	int				exit_value;
 }		t_shelldata;
 
+typedef void (*t_handler)(int);
+
 int			rl_clear_history(void);
 int			mini_split(char *input, t_shelldata *data);
 void		free_double_array(char ***array);
 void		rl_replace_line(char *str, int num);
+<<<<<<< HEAD
+int			parse_split_input(t_shelldata *data);
+int			split_cleaner(t_shelldata *data);
+void		carrot_toggle(int on);
+void		set_state(t_state state);
+void		parent_signals(void);
+void		signal_handler(int signal, t_handler handler);
+void		sigint_handler(int sig);
+=======
 // static void	signal_handler(int signal);
 int			parse_split_input(t_shelldata *data);
 int			split_cleaner(t_shelldata *data);
+>>>>>>> main
 
 #endif
