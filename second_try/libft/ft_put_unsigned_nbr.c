@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_put_unsigned_nbr.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/25 12:38:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/08 00:50:41 by akuburas         ###   ########.fr       */
+/*   Created: 2023/11/26 13:24:24 by akuburas          #+#    #+#             */
+/*   Updated: 2024/01/09 09:38:40 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_put_u_nbr(unsigned int n, int *length)
 {
-	unsigned char	u1;
-	unsigned char	u2;
+	char	digit;
 
-	while (n > 0)
+	if (n / 10)
 	{
-		u1 = (unsigned char)*s1;
-		u2 = (unsigned char)*s2;
-		if (u1 != u2)
-			return (u1 - u2);
-		if (u1 == '\0')
-			return (0);
-		s1++;
-		s2++;
-		n--;
+		if (ft_put_u_nbr(n / 10, length) == -1)
+			return (-1);
 	}
-	return (0);
+	digit = '0' + (n % 10);
+	if (write(2, &digit, 1) == -1)
+		return (-1);
+	(*length)++;
+	return (*length);
 }

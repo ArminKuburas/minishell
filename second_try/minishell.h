@@ -6,11 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/04/10 17:00:27 by tvalimak         ###   ########.fr       */
-=======
-/*   Updated: 2024/04/08 11:34:24 by akuburas         ###   ########.fr       */
->>>>>>> main
+/*   Updated: 2024/04/12 11:53:26 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +32,6 @@
 /*libft functions*/
 # include "libft/libft.h"
 
-/*for termios*/
-#include <termios.h>
-
 /*Definition for SIGINT*/
 # define CTRL_C SIGINT
 # define CTRL_BS SIGQUIT
@@ -49,14 +42,6 @@ typedef enum e_state
 	HEREDOC,
 	HANDLER
 }	t_state;
-
-enum e_parse_data
-{
-	PIPE = 1,
-	INPUT_REDIRECTION = 2,
-	OUTPUT_REDIRECTION = 4,
-	APPENDING_OUTPUT = 8
-};
 
 enum e_exit_values
 {
@@ -104,6 +89,40 @@ typedef struct s_child_data
 	char	**command_inputs;
 }	t_child_data;
 
+enum e_input_type
+{
+	REDIRECT_INPUT = 42,
+	INPUT_FILE = 43,
+	REDIRECT_HEREDOC = 44,
+	HEREDOC_FILE = 45,
+	REDIRECT_OUTPUT = 52,
+	OUTPUT_FILE = 53,
+	REDIRECT_APPEND = 54,
+	APPEND_FILE = 55,
+	COMMAND = 62,
+	COMMAND_ARGUMENT = 63,
+	PIPE = 72,
+	NO_SPLIT = 82,
+	WORD_SPLIT = 83
+};
+
+typedef struct s_input_list
+{
+	int					type;
+	int					word_split;
+	char				*input;
+	struct s_input_list	*next;
+	struct s_input_list	*prev;
+}	t_input_list;
+
+typedef struct s_env_list
+{
+	char				*env_var_name;
+	char				*env_var_value;
+	char				*env_var;
+	struct s_env_list	*next;
+}	t_env_list;
+
 typedef struct s_parse_data
 {
 	int				processes;
@@ -112,30 +131,53 @@ typedef struct s_parse_data
 
 typedef struct s_shelldata
 {
+	t_env_list		*env_list;
+	t_input_list	*input_list;
 	char			**env_variables;
 	char			*input;
-	char			**split_input;
 	int				exit_value;
 }		t_shelldata;
 
-typedef void (*t_handler)(int);
+
+//A required struct for the functions that create new strings
+typedef struct s_new_string_data
+{
+	int				i;
+	int				j;
+	char			quote;
+	char			*new_string;
+	t_input_list	*temp;
+	t_env_list		*env;
+}	t_new_string_data;
+
+//readline functions
 
 int			rl_clear_history(void);
-int			mini_split(char *input, t_shelldata *data);
-void		free_double_array(char ***array);
 void		rl_replace_line(char *str, int num);
-<<<<<<< HEAD
+
+//data_parser functions
+
+int			count_words(char *input, int *word_count);
+int			mini_split(char *input, t_shelldata *data);
 int			parse_split_input(t_shelldata *data);
+int			parser_quote_found(char *input, int *i, int len);
+
+//input_list functions
+void		add_input_list(t_input_list *input_list, t_input_list *new_node);
+int			clear_input(t_input_list *input_list, int error);
+int			create_input(char *input, int len, t_input_list *input_list);
+void		input_type_assigner(t_input_list *input_list);
+int			strlen_last_input(t_input_list *input_list);
+
+//env_list functions
+int			duplicate_env(char **env, t_shelldata *data);
+int			clear_env_list(t_env_list *env_list, int error);
+int			env_str_cmpr(char *env, char *str, int len);
+
+//data_cleaner functions
+int			new_length(t_input_list *temp, t_env_list *env);
 int			split_cleaner(t_shelldata *data);
-void		carrot_toggle(int on);
-void		set_state(t_state state);
-void		parent_signals(void);
-void		signal_handler(int signal, t_handler handler);
-void		sigint_handler(int sig);
-=======
+
 // static void	signal_handler(int signal);
-int			parse_split_input(t_shelldata *data);
-int			split_cleaner(t_shelldata *data);
->>>>>>> main
 
 #endif
