@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:56:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/12 15:48:19 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/12 23:30:04 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@ void	new_str_quote_found(t_new_string_data *data, char *temp)
 	}
 }
 
-int	new_string_last_check(t_input_list *temp, int *i, int j)
+int	new_string_last_check(t_input_list *temp)
 {
-	if (ft_strchr("'\"", temp->input[j]) == NULL)
-		(*i)++;
 	if (temp->word_split == FAILURE)
 		return (NO_MEMORY);
 	return (SUCCESS);
@@ -67,13 +65,22 @@ int	create_new_string(t_input_list *temp, t_env_list *env, char *new_string)
 			new_str_quote_found(&data, &temp->input[data.j]);
 		else if (temp->input[data.j] != '$' || data.quote == '\'')
 		{
+			printf("Inside create_new_string loop\n");
+			printf("Inside if statement in create_new_string loop\n");
 			new_string[data.i] = temp->input[data.j];
+			printf("data.i: %d\n", data.i);
 			data.i++;
 		}
 		else
 			handle_dollar_sign(&data);
-		if (new_string_last_check(temp, &data.i, data.j) == NO_MEMORY)
+		if (new_string_last_check(temp) == NO_MEMORY)
 			return (NO_MEMORY);
+		printf("Inside create_new_string loop\n");
+		printf("data.i: %d\n", data.i);
+		printf("data.j: %d\n", data.j);
+		printf("data.quote: %c\n", data.quote);
+		printf("data.new_string: %s\n", data.new_string);
+		printf("temp->input[data.j]: %c\n", temp->input[data.j]);
 		data.j++;
 	}
 	free(temp->input);
@@ -91,6 +98,8 @@ int	split_cleaner(t_shelldata *data)
 	while (temp != NULL)
 	{
 		length = new_length(temp, data->env_list);
+		printf("Length: %zu\n", length);
+		printf("Original length of input: %zu\n", ft_strlen(temp->input));
 		if (length != ft_strlen(temp->input))
 		{
 			str = (char *)ft_calloc(length + 1, sizeof(char));
