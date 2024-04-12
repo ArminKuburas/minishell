@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 19:06:55 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/11 16:00:08 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/11 18:45:48 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,24 +48,6 @@ int	length_find_env(t_env_list *env, char *str, int len)
 	return (0);
 }
 
-int	dollar_inside_quote(t_input_list *temp, int *i, t_env_list *env)
-{
-	int	length;
-	int	start;
-
-	length = 0;
-	if (ft_strchr(" \t$'\"", temp->input[(*i) + 1]) == NULL)
-	{
-		(*i)++;
-		start = *i;
-		while (ft_strchr(" \t$'\"", temp->input[(*i)]) == NULL)
-			(*i)++;
-		length += length_find_env(env, temp->input[start], (*i) - start);
-		(*i)--;
-	}
-	return (length);
-}
-
 int	found_dollar(t_input_list *temp, int *i, char quote, t_env_list *env)
 {
 	int	length;
@@ -74,11 +56,6 @@ int	found_dollar(t_input_list *temp, int *i, char quote, t_env_list *env)
 	length = 0;
 	if (quote == '\'')
 		return (1);
-	else if (quote == '"')
-	{
-		length += dollar_inside_quote(temp, *i, env);
-		return (length);
-	}
 	if (ft_strchr(" \t$'\"", temp->input[(*i) + 1]) == NULL)
 	{
 		(*i)++;
@@ -87,6 +64,8 @@ int	found_dollar(t_input_list *temp, int *i, char quote, t_env_list *env)
 			(*i)++;
 		length += length_find_env(env, temp->input[start], (*i) - start);
 		(*i)--;
+		if (quote == 'a')
+			temp->word_split = POTENTIAL_SPLIT;
 		return (length);
 	}
 	return (1);

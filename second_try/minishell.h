@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/11 13:39:49 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/12 03:33:40 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,18 @@ typedef struct s_shelldata
 	int				exit_value;
 }		t_shelldata;
 
+
+//A required struct for the functions that create new strings
+typedef struct s_new_string_data
+{
+	int				i;
+	int				j;
+	char			quote;
+	char			*new_string;
+	t_input_list	*temp;
+	t_env_list		*env;
+}	t_new_string_data;
+
 //readline functions
 
 int			rl_clear_history(void);
@@ -160,6 +172,7 @@ int			strlen_last_input(t_input_list *input_list);
 //env_list functions
 int			duplicate_env(char **env, t_shelldata *data);
 int			clear_env_list(t_env_list *env_list, int error);
+int			env_str_cmpr(char *env, char *str, int len);
 
 //data_cleaner functions
 int			new_length(t_input_list *temp, t_env_list *env);

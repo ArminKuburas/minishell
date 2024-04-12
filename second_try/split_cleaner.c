@@ -6,111 +6,75 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:56:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/11 13:46:30 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/12 07:58:11 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-
-
-char	*find_env(char **env, char *str, int n)
+void	new_str_quote_found(t_new_string_data *data, char *temp)
 {
-	int	i;
-
-	i = 0;
-	while (env[i] != NULL)
+	if (data->quote == 'a')
+		data->quote = *temp;
+	else if (data->quote == *temp)
+		data->quote = 'a';
+	else
 	{
-		if (ft_strncmp(env[i], str, n) == 0)
-			return (env[i]);
-		i++;
+		data->new_string[data->i] = *temp;
+		data->i++;
 	}
-	return (NULL);
 }
 
-int	copy_dollar(t_shelldata *data, int i, int *j, char *new_string)
+int	new_string_last_check(t_input_list *temp, int *i, int j)
 {
-	int		start;
-	char	*env_array;
-	int		u;
-	int		new_i;
-
-	env_array = NULL;
-	new_i = 0;
-	if (ft_strchr(" \t$'\"", data->split_input[i][(*j) + 1]) == NULL)
-	{
-		(*j)++;
-		start = *j;
-		while (ft_strchr(" \t$'\"", data->split_input[i][*j]) == NULL)
-			(*j)++;
-		env_array = find_env(data->env_variables,
-				&data->split_input[i][start], (*j) - start);
-		if (env_array != NULL)
-		{
-			u = 0;
-			while (env_array[u] != '=')
-				u++;
-			u++;
-			while (env_array[u])
-			{
-				new_string[new_i] = env_array[u];
-				u++;
-				new_i++;
-			}
-			(*j)--;
-		}
-	}
-	return (new_i);
-}
-
-int	allocate_new_string(t_shelldata *data, int length, int i)
-{
-	char	*new_string;
-	int		j;
-	char	quote;
-	int		new_i;
-
-	new_string = ft_calloc(length + 1, sizeof(char));
-	if (new_string == NULL)
+	if (ft_strchr("'\"", temp->input[j]) == NULL)
+		(*i)++;
+	if (temp->word_split == FAILURE)
 		return (NO_MEMORY);
-	j = 0;
-	new_i = 0;
-	quote = 'a';
-	while (new_i < length && data->split_input[i][j] != '\0')
+	return (SUCCESS);
+}
+
+void	set_up_string_data(t_new_string_data *data, t_input_list *temp,
+	t_env_list *env, char *new_string)
+{
+	data->i = 0;
+	data->j = 0;
+	data->quote = 'a';
+	data->temp = temp;
+	data->env = env;
+	data->new_string = new_string;
+}
+
+void	handle_dollar_sign(t_new_string_data *data)
+{
+	if (data->quote == 'a')
+		data->i += potential_split_create(data);
+	else
+		data->i += copy_dollar(data);
+}
+
+int	create_new_string(t_input_list *temp, t_env_list *env, char *new_string)
+{
+	t_new_string_data	data;
+
+	set_up_string_data(&data, temp, env, new_string);
+	while (temp->input[data.j] != '\0')
 	{
-		if (ft_strchr("'\"", data->split_input[i][j]) != NULL)
+		if (ft_strchr("'\"", temp->input[data.j]) != NULL)
+			new_str_quote_found(&data, &temp->input[data.j]);
+		else if (temp->input[data.j] != '$' || data.quote == '\'')
 		{
-			if (quote == 'a')
-			{
-				quote = data->split_input[i][j];
-			}
-			else if (quote == data->split_input[i][j])
-			{
-				quote = 'a';
-			}
-			else
-			{
-				new_string[new_i] = data->split_input[i][j];
-				new_i++;
-			}
+			new_string[data.i] = temp->input[data.j];
+			data.i++;
 		}
-		else if (data->split_input[i][j] != '$')
-		{
-			new_string[new_i] = data->split_input[i][j];
-			new_i++;
-		}
-		else if (quote != '\'')
-			new_i += copy_dollar(data, i, &j, &new_string[new_i]);
 		else
-		{
-			new_string[new_i] = data->split_input[i][j];
-			new_i++;
-		}
-		j++;
+			handle_dollar_sign(&data);
+		if (new_string_last_check(temp, &data.i, data.j) == NO_MEMORY)
+			return (NO_MEMORY);
+		data.j++;
 	}
-	new_string[j] = '\0';
-	free(data->split_input[i]);
-	data->split_input[i] = new_string;
+	free(temp->input);
+	temp->input = new_string;
 	return (SUCCESS);
 }
 
@@ -118,14 +82,21 @@ int	split_cleaner(t_shelldata *data)
 {
 	size_t			length;
 	t_input_list	*temp;
+	char			*str;
 
 	temp = data->input_list;
 	while (temp != NULL)
 	{
 		length = new_length(temp, data->env_variables);
-		if (length != ft_strlen(data->input_list))
+		if (length != ft_strlen(temp->input))
 		{
-			if (allocate_new_string(data, length, i) != SUCCESS)
+			str = (char *)ft_calloc(length + 1, sizeof(char));
+			if (str == NULL)
+			{
+				clear_input(data->input_list, NO_MEMORY);
+				return (NO_MEMORY);
+			}
+			if (create_new_string(temp, data->env_variables, str) != SUCCESS)
 			{
 				clear_input(data->input_list, NO_MEMORY);
 				return (NO_MEMORY);
