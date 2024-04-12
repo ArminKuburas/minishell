@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 21:29:51 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/11 12:50:28 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/12 10:22:32 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,21 +62,21 @@ int	create_env(char *env, t_env_list *env_list)
 	{
 		env_list->env_var = ft_strdup(env);
 		if (env_list->env_var == NULL)
-			return (clear_env_list(env_list, NO_MEMORY));
+			return (NO_MEMORY);
 		if (simplify_env_data(env_list) != SUCCESS)
-			return (clear_env_list(env_list, NO_MEMORY));
+			return (NO_MEMORY);
 	}
 	else
 	{
 		new = ft_calloc(1, sizeof(t_env_list));
 		if (new == NULL)
-			return (clear_env_list(env_list, NO_MEMORY));
+			return (NO_MEMORY);
 		env_list->next = new;
 		new->env_var = ft_strdup(env);
 		if (new->env_var == NULL)
-			return (clear_env_list(env_list, NO_MEMORY));
+			return (NO_MEMORY);
 		if (simplify_env_data(new) != SUCCESS)
-			return (clear_env_list(env_list, NO_MEMORY));
+			return (NO_MEMORY);
 	}
 	return (SUCCESS);
 }
@@ -94,7 +94,7 @@ int	duplicate_env(char **env, t_shelldata *data)
 	while (env[i] != NULL)
 	{
 		if (create_env(env[i], temp) != SUCCESS)
-			return (FAILURE);
+			return (clear_env_list(data->env_list, NO_MEMORY));
 		if (temp->next != NULL)
 			temp = temp->next;
 		i++;
