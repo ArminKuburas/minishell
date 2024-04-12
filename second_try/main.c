@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/12 10:50:41 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/12 17:30:45 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,45 +21,6 @@
 // When terminal is opened for the first time and you do CTRL+C in bash, the ^C is shown for once,
 // need to figure out why.
 // CTRL + \ = SIGQUIT
-
-static void	signal_handler(int signal)
-{
-	if (signal == CTRL_C)
-	{
-		write(1, "\n", 1);
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-	}
-}
-
-static void	carrot_toggle(int on)
-{
-	struct termios	term;
-
-	tcgetattr(STDIN_FILENO, &term);
-	if (!on)
-		term.c_lflag &= ~ECHOCTL;
-	else
-		term.c_lflag |= ECHOCTL;
-	tcsetattr(STDIN_FILENO, TCSANOW, &term);
-}
-
-static void	set_state(t_state state)
-{
-	if (state == DEFAULT)
-	{
-		carrot_toggle(1);
-	}
-	if (state == HEREDOC)
-	{
-		return ;
-	}
-	if (state == HANDLER)
-	{
-		carrot_toggle(0);
-	}
-}
 
 int	main(int argc, char **argv, char **env)
 {
@@ -90,9 +51,7 @@ int	main(int argc, char **argv, char **env)
 	}
 	while (1)
 	{
-		set_state(HANDLER);
-		//set_state(DEFAULT);
-		signal(CTRL_C, signal_handler);
+		parent_signals();
 		input = readline("bananashell-0.11:");
 		if (!input)
 		{
@@ -126,6 +85,32 @@ int	main(int argc, char **argv, char **env)
 				//}
 				//printf("--------------------\n");
 				//parse_split_input(&data);
+				/*
+				t_input_list *temp = data.input_list;
+				while (temp != NULL)
+				{
+					if (temp->type == COMMAND)
+					{
+						if (ft_strcmp(temp->input, "echo") == 0)
+						{
+							temp = temp->next;
+							my_echo(temp);
+						}
+						if (ft_strcmp(temp->input, "cd") == 0)
+							printf("command was cd \n");
+						if (ft_strcmp(temp->input, "pwd") == 0)
+							printf("command was pwd \n");
+						if (ft_strcmp(temp->input, "export") == 0)
+							printf("command was export \n");
+						// compare the input of the command with the built-in
+						// names.
+						// next step is to feed the input to the proper function
+						// for example echo
+					}
+					printf("input_list->input = %s\n", temp->input);
+					temp = temp->next;
+				}
+				*/
 				clear_input(data.input_list, SUCCESS);
 			}
 			else
