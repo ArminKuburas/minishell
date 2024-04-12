@@ -6,13 +6,11 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 11:44:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/11 13:41:04 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/12 15:44:45 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-
 
 int	duplicate_quote(char *input, t_shelldata *data, int j)
 {
@@ -21,7 +19,6 @@ int	duplicate_quote(char *input, t_shelldata *data, int j)
 	char	*temp;
 
 	quote = input[j];
-
 	temp = ft_strchr(input + j + 1, quote);
 	if (ft_strchr("<>| ", temp[1]) == NULL)
 	{
@@ -135,9 +132,9 @@ int	mini_split(char *input, t_shelldata *data)
 		i++;
 		temp = temp->next;
 	}
-	//if (split_cleaner(data) != SUCCESS)
-	//	return (FAILURE);
-	//printf("--------------------\n");
-	//printf("After split_cleaner\n");
+	if (split_cleaner(data) != SUCCESS)
+		return (FAILURE);
+	printf("--------------------\n");
+	printf("After split_cleaner\n");
 	return (SUCCESS);
 }

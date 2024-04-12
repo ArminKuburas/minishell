@@ -6,7 +6,7 @@
 #    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/04/11 06:16:39 by akuburas         ###   ########.fr        #
+#    Updated: 2024/04/12 15:45:56 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,9 @@ SRCS = main.c \
 		input_list_functions.c \
 		create_env_list.c \
 		type_assigner.c \
+		split_cleaner.c \
+		split_cleaner_dollar_functions.c \
+		cleaner_length_functions.c \
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)

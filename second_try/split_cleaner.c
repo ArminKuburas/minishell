@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:56:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/12 10:12:56 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/12 15:48:19 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ void	set_up_string_data(t_new_string_data *data, t_input_list *temp,
 void	handle_dollar_sign(t_new_string_data *data)
 {
 	if (data->quote == 'a')
-		data->i += potential_split_create(data);
+	{
+		printf("Not done yet\n");
+		//data->i += potential_split_create(data);
+	}
 	else
 		data->i += copy_dollar(data);
 }
@@ -87,7 +90,7 @@ int	split_cleaner(t_shelldata *data)
 	temp = data->input_list;
 	while (temp != NULL)
 	{
-		length = new_length(temp, data->env_variables);
+		length = new_length(temp, data->env_list);
 		if (length != ft_strlen(temp->input))
 		{
 			str = (char *)ft_calloc(length + 1, sizeof(char));
@@ -96,7 +99,7 @@ int	split_cleaner(t_shelldata *data)
 				clear_input(data->input_list, NO_MEMORY);
 				return (NO_MEMORY);
 			}
-			if (create_new_string(temp, data->env_variables, str) != SUCCESS)
+			if (create_new_string(temp, data->env_list, str) != SUCCESS)
 			{
 				clear_input(data->input_list, NO_MEMORY);
 				return (NO_MEMORY);

@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/12 11:53:26 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/12 14:49:45 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ enum e_input_type
 	COMMAND = 62,
 	COMMAND_ARGUMENT = 63,
 	PIPE = 72,
-	NO_SPLIT = 82,
+	POTENTIAL_SPLIT = 82,
 	WORD_SPLIT = 83
 };
 
@@ -133,11 +133,11 @@ typedef struct s_shelldata
 {
 	t_env_list		*env_list;
 	t_input_list	*input_list;
+	t_parse_data	child_data;
 	char			**env_variables;
 	char			*input;
 	int				exit_value;
 }		t_shelldata;
-
 
 //A required struct for the functions that create new strings
 typedef struct s_new_string_data
@@ -177,6 +177,7 @@ int			env_str_cmpr(char *env, char *str, int len);
 //data_cleaner functions
 int			new_length(t_input_list *temp, t_env_list *env);
 int			split_cleaner(t_shelldata *data);
+int			copy_dollar(t_new_string_data *data);
 
 // static void	signal_handler(int signal);
 

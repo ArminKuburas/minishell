@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/12 10:50:41 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/12 15:43:46 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int	main(int argc, char **argv, char **env)
 	char		*input;
 	t_shelldata	data;
 	int			error;
-	int			i;
 
 	if (argc < 1)
 		printf("wtf\n");
@@ -117,15 +116,13 @@ int	main(int argc, char **argv, char **env)
 			error = mini_split(input, &data);
 			if (error == SUCCESS)
 			{
-				i = 0;
-				printf("This is i %d\n", i);
-				//while (data.split_input[i])
-				//{
-				//	printf("split_input[%d] = %s\n", i, data.split_input[i]);
-				//	i++;
-				//}
-				//printf("--------------------\n");
-				//parse_split_input(&data);
+				t_input_list *temp = data.input_list;
+				int i = 0;
+				while (temp != NULL)
+				{
+					printf("This is input %d: %s\n", i, temp->input);
+					temp = temp->next;
+				}
 				clear_input(data.input_list, SUCCESS);
 			}
 			else
