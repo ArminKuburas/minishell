@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/12 15:08:15 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/13 17:33:32 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ void		signal_handler(int signal, t_handler handler);
 void		parent_signals(void);
 
 //built_in functions
-void 		execute_command(char *command[]);
-void		my_echo(char *args[]);
+//void		execute_command(char *command[]);
+void		my_echo(t_input_list *temp);
 
 #endif

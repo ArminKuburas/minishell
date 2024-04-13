@@ -6,23 +6,45 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:55:23 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/12 16:38:51 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/13 17:29:53 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "string.h"
 
-static void	free_to_print(char *args[], int i)
+static void	free_to_print(t_input_list *temp)
 {
-	while (args[i] != NULL)
+	while (temp)
 	{
-		ft_printf("%s ", args[i]);
-		i++;
+		ft_putstr(temp->input);
+		if (temp->next)
+			ft_putstr(" ");
+		temp = temp->next;
 	}
-	ft_printf("\n");
+	ft_putstr("\n");
 }
 
-void	my_echo(char *args[])
+void	my_echo(t_input_list *temp)
+{
+	if (ft_strncmp(temp->input, "-n", 3) == 0)
+	{
+		while (ft_strncmp(temp->input, "-n", 3) == 0)
+			temp = temp->next;
+		while (temp)
+		{
+			ft_putstr(temp->input);
+			if (temp->next)
+				ft_putstr(" ");
+			temp = temp->next;
+		}
+	}
+	else
+		free_to_print(temp);
+}
+
+/*
+void	my_echo(t_input_list *temp)
 {
 	int	i;
 
@@ -45,7 +67,8 @@ void	my_echo(char *args[])
 	else
 		free_to_print(args, i);
 }
-
+*/
+/*
 void execute_command(char *command[])
 {
 	//char builtin[4][7];
@@ -68,7 +91,6 @@ void execute_command(char *command[])
 	//if (strcmp(command[0], "env") == 0)
 	//if (strcmp(command[0], "exit") == 0)
 	//	exit(0);
-	/*
     else
     {
         // Execute external command here

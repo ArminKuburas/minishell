@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/12 17:30:45 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/13 16:59:30 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ int	main(int argc, char **argv, char **env)
 				//}
 				//printf("--------------------\n");
 				//parse_split_input(&data);
-				/*
 				t_input_list *temp = data.input_list;
 				while (temp != NULL)
 				{
@@ -107,10 +106,9 @@ int	main(int argc, char **argv, char **env)
 						// next step is to feed the input to the proper function
 						// for example echo
 					}
-					printf("input_list->input = %s\n", temp->input);
+					//printf("input_list->input = %s\n", temp->input);
 					temp = temp->next;
 				}
-				*/
 				clear_input(data.input_list, SUCCESS);
 			}
 			else
