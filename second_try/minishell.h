@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/12 22:39:10 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/13 18:02:01 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,13 @@
 /*libft functions*/
 # include "libft/libft.h"
 
+/*For boolean type*/
+# include <stdbool.h>
+
 /*Definition for SIGINT*/
 # define CTRL_C SIGINT
 # define CTRL_BS SIGQUIT
+
 
 typedef enum e_state
 {
@@ -110,7 +114,9 @@ typedef struct s_input_list
 {
 	int					type;
 	int					word_split;
+	bool				needs_cleaning;
 	char				*input;
+	char				*old_input;
 	struct s_input_list	*next;
 	struct s_input_list	*prev;
 }	t_input_list;
@@ -177,7 +183,7 @@ int			env_str_cmpr(char *env, char *str, int len);
 //data_cleaner functions
 int			new_length(t_input_list *temp, t_env_list *env);
 int			split_cleaner(t_shelldata *data);
-int			copy_dollar(t_new_string_data *data);
+void		copy_dollar(t_new_string_data *data);
 
 // static void	signal_handler(int signal);
 

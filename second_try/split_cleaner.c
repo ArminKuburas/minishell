@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:56:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/12 23:30:04 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/13 18:15:05 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	handle_dollar_sign(t_new_string_data *data)
 		//data->i += potential_split_create(data);
 	}
 	else
-		data->i += copy_dollar(data);
+		copy_dollar(data);
 }
 
 int	create_new_string(t_input_list *temp, t_env_list *env, char *new_string)
@@ -100,7 +100,7 @@ int	split_cleaner(t_shelldata *data)
 		length = new_length(temp, data->env_list);
 		printf("Length: %zu\n", length);
 		printf("Original length of input: %zu\n", ft_strlen(temp->input));
-		if (length != ft_strlen(temp->input))
+		if (temp->needs_cleaning != 0)
 		{
 			str = (char *)ft_calloc(length + 1, sizeof(char));
 			if (str == NULL)

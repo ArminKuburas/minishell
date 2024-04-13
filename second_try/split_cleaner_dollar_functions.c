@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 18:35:36 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/12 15:48:49 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/13 21:52:13 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,42 +32,53 @@ t_env_list	*try_to_find_env(t_env_list *env, char *str, int len)
 	return (NULL);
 }
 
-int	copy_find_env(t_new_string_data *data, int start)
+void	copy_find_env(t_new_string_data *data, int start)
 {
 	int			j;
 	t_env_list	*temp_env;
 
-	temp_env = try_to_find_env(data->env, &data->temp->input[data->j],
+	printf("Inside copy find env\n");
+	printf("data->j - start = %d\n", data->j - start);
+	temp_env = try_to_find_env(data->env, &data->temp->input[start],
 			data->j - start);
 	if (temp_env != NULL)
 	{
 		j = 0;
+		printf("Found env\n");
+		printf("Env name: %s\n", temp_env->env_var_name);
+		printf("Env value: %s\n", temp_env->env_var_value);
+		printf("data->new_string: %s\n", data->new_string);
+		printf("data new string[i]: %c\n", data->new_string[data->i]);
 		while (temp_env->env_var_value[j])
 		{
-			data->new_string[data->i + j] = temp_env->env_var_value[j];
+			data->new_string[data->i] = temp_env->env_var_value[j];
+			data->i++;
 			j++;
 		}
-		return (j);
 	}
-	return (0);
 }
 
-int	copy_dollar(t_new_string_data *data)
+void	copy_dollar(t_new_string_data *data)
 {
 	int		start;
-	int		length;
 
-	length = 1;
+	printf("Inside copy dollar\n");
 	if (ft_strchr(" \t$'\"", data->temp->input[data->j + 1]) == NULL)
 	{
 		data->j++;
 		start = data->j;
+		printf("Start: %d\n", start);
+		printf("Input[j]: %c\n", data->temp->input[data->j]);
 		while (ft_strchr(" \t$'\"", data->temp->input[data->j]) == NULL)
 			data->j++;
-		length = copy_find_env(data, start);
+		printf("End: %d\n", data->j);
+		printf("Input[j]: %c\n", data->temp->input[data->j]);
+		copy_find_env(data, start);
 		data->j--;
+		return ;
 	}
-	return (length);
+	data->new_string[data->i] = data->temp->input[data->j];
+	data->i++;
 }
 
 // int	old_copy_dollar(t_shelldata *data, int i, int *j, char *new_string)
