@@ -6,12 +6,11 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:55:23 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/13 18:20:25 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/13 18:41:06 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "string.h"
 
 static void	free_to_print(t_input_list *temp)
 {
