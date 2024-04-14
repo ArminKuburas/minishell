@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/13 18:02:01 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/14 23:05:23 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,12 @@ enum e_input_type
 	WORD_SPLIT = 83
 };
 
+enum e_yes_no
+{
+	NO = 0,
+	YES = 1
+};
+
 typedef struct s_input_list
 {
 	int					type;
@@ -184,6 +190,7 @@ int			env_str_cmpr(char *env, char *str, int len);
 int			new_length(t_input_list *temp, t_env_list *env);
 int			split_cleaner(t_shelldata *data);
 void		copy_dollar(t_new_string_data *data);
+t_env_list	*try_to_find_env(t_env_list *env, char *str, int len);
 
 // static void	signal_handler(int signal);
 

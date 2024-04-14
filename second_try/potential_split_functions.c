@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 07:34:43 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/14 18:33:31 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/14 23:07:05 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ bool	check_string(t_new_string_data *data)
 	{
 		while (ft_strchr(" \t$'\"", data->temp->input[data->j] == NULL))
 			data->j++;
-		if (data->temp->input[data->j] == '\0')
-			return (0);
 		if (data->temp->input[data->j] == '$'
 			&& ft_strchr(" \t$'\"", data->temp->input[data->j + 1]) != NULL)
 		{
@@ -38,10 +36,46 @@ bool	check_string(t_new_string_data *data)
 			copy_dollar(data);
 			return (1);
 		}
+		data->j = start;
 		return (0);
 	}
 	copy_dollar(data);
 	return (1);
+}
+
+t_env_list	potential_find_env(t_new_string_data *data, bool *split_check)
+{
+	int			start;
+	t_env_list	*temp_env;
+	int			j;
+
+	if (ft_strchr(" \t$'\"", data->temp->input[data->j + 1]) == NULL)
+	{
+		data->j++;
+		start = data->j;
+		while (ft_strchr(" \t$'\"", data->temp->input[data->j]) == NULL)
+			data->j++;
+		temp_env = try_to_find_env(data->env, &data->temp->input[start],
+				data->j - start);
+		if (temp_env != NULL)
+		{
+			if (check_if_split_needed(temp_env) == YES)
+			{
+				*split_check = 1;
+				return (*temp_env);
+			}
+			else
+			{
+				j = 0;
+				while (temp_env->env_var_value[j])
+				{
+					data->new_string[data->i] = temp_env->env_var_value[j];
+					data->i++;
+					j++;
+				}
+			}
+		}
+	}
 }
 
 void	potential_split_create(t_new_string_data *data)
