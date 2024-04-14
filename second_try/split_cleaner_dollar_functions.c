@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 18:35:36 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/13 21:52:13 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/14 14:55:44 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,38 +80,3 @@ void	copy_dollar(t_new_string_data *data)
 	data->new_string[data->i] = data->temp->input[data->j];
 	data->i++;
 }
-
-// int	old_copy_dollar(t_shelldata *data, int i, int *j, char *new_string)
-// {
-// 	int		start;
-// 	char	*env_array;
-// 	int		u;
-// 	int		new_i;
-
-// 	env_array = NULL;
-// 	new_i = 0;
-// 	if (ft_strchr(" \t$'\"", data->split_input[i][(*j) + 1]) == NULL)
-// 	{
-// 		(*j)++;
-// 		start = *j;
-// 		while (ft_strchr(" \t$'\"", data->split_input[i][*j]) == NULL)
-// 			(*j)++;
-// 		env_array = find_env(data->env_variables,
-// 				&data->split_input[i][start], (*j) - start);
-// 		if (env_array != NULL)
-// 		{
-// 			u = 0;
-// 			while (env_array[u] != '=')
-// 				u++;
-// 			u++;
-// 			while (env_array[u])
-// 			{
-// 				new_string[new_i] = env_array[u];
-// 				u++;
-// 				new_i++;
-// 			}
-// 			(*j)--;
-// 		}
-// 	}
-// 	return (new_i);
-// }

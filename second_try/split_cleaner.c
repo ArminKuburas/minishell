@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:56:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/13 18:15:05 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/14 14:34:00 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,7 @@ void	set_up_string_data(t_new_string_data *data, t_input_list *temp,
 void	handle_dollar_sign(t_new_string_data *data)
 {
 	if (data->quote == 'a')
-	{
-		printf("Not done yet\n");
-		//data->i += potential_split_create(data);
-	}
+		potential_split_create(data);
 	else
 		copy_dollar(data);
 }
@@ -83,7 +80,7 @@ int	create_new_string(t_input_list *temp, t_env_list *env, char *new_string)
 		printf("temp->input[data.j]: %c\n", temp->input[data.j]);
 		data.j++;
 	}
-	free(temp->input);
+	temp->old_input = temp->input;
 	temp->input = new_string;
 	return (SUCCESS);
 }
@@ -115,6 +112,8 @@ int	split_cleaner(t_shelldata *data)
 			}
 		}
 		temp = temp->next;
+		while (temp != NULL && temp->word_split == WORD_SPLIT)
+			temp = temp->next;
 	}
 	return (SUCCESS);
 }
