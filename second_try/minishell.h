@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/13 17:33:32 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/14 11:23:38 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,5 +188,6 @@ void		parent_signals(void);
 //built_in functions
 //void		execute_command(char *command[]);
 void		my_echo(t_input_list *temp);
+void		my_cd(t_shelldata data, t_input_list *temp);
 
 #endif

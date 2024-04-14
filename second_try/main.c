@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/13 16:59:30 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/14 11:43:29 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,9 @@ int	main(int argc, char **argv, char **env)
 					if (temp->type == COMMAND)
 					{
 						if (ft_strcmp(temp->input, "echo") == 0)
-						{
-							temp = temp->next;
 							my_echo(temp);
-						}
 						if (ft_strcmp(temp->input, "cd") == 0)
-							printf("command was cd \n");
+							my_cd(data, temp);
 						if (ft_strcmp(temp->input, "pwd") == 0)
 							printf("command was pwd \n");
 						if (ft_strcmp(temp->input, "export") == 0)

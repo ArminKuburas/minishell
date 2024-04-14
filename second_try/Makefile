@@ -6,7 +6,7 @@
 #    By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/04/12 15:44:44 by tvalimak         ###   ########.fr        #
+#    Updated: 2024/04/14 11:23:35 by tvalimak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRCS = main.c \
 		create_env_list.c \
 		type_assigner.c \
 		signal.c \
-		echo.c
+		echo.c \
+		cd.c
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)

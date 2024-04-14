@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:55:23 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/13 18:41:06 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/14 11:44:12 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,20 @@ static void	free_to_print(t_input_list *temp)
 
 void	my_echo(t_input_list *temp)
 {
+	if (!temp->next)
+	{
+		ft_putstr("\n");
+		return ;
+	}
+	temp = temp->next;
 	if (ft_strncmp(temp->input, "-n", 3) == 0)
 	{
 		while (ft_strncmp(temp->input, "-n", 3) == 0)
+		{
+			if (!temp->next)
+				return ;
 			temp = temp->next;
+		}
 		while (temp)
 		{
 			ft_putstr(temp->input);
