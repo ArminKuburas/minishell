@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:22:59 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/14 15:48:55 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:09:21 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ static char	*ret_env(t_shelldata data, char *var)
 	}
 	return (NULL);
 }
-
+/*
 static void	cd_old_pwd(t_shelldata data, char *cmd)
 {
 
-}
+}*/
 
 static void	cd_home(t_shelldata data, char *cmd)
 {
@@ -53,12 +53,15 @@ void	my_cd(t_shelldata data, t_input_list *temp)
 {
 	if (!temp->next || (ft_strncmp(temp->next->input, "~", 2) == 0))
 	{
-		// go to home dir
 		cd_home(data, "HOME");
 	}
-	if (ft_strncmp(temp->next->input, "-", 2) == 0)
+	if (temp->next && ft_strcmp(temp->next->input, "..") == 0)
 	{
-		// go to old pwd
-		cd_old_pwd(data, "OLD_PWD");
+		if (chdir("..") == -1)
+		{
+			ft_printf("ERROR IN CD\n");
+			return ;
+		}
+		ft_printf("cd succeeded\n");
 	}
 }

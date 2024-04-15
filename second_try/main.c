@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/14 11:43:29 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/15 19:38:02 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	main(int argc, char **argv, char **env)
 						if (ft_strcmp(temp->input, "cd") == 0)
 							my_cd(data, temp);
 						if (ft_strcmp(temp->input, "pwd") == 0)
-							printf("command was pwd \n");
+							my_pwd(data, temp);
 						if (ft_strcmp(temp->input, "export") == 0)
 							printf("command was export \n");
 						// compare the input of the command with the built-in

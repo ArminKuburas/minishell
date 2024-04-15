@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+         #
+#    By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/04/14 11:23:35 by tvalimak         ###   ########.fr        #
+#    Updated: 2024/04/15 19:37:20 by tvalimak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,9 @@ SRCS = main.c \
 		type_assigner.c \
 		signal.c \
 		echo.c \
-		cd.c
+		cd.c \
+		pwd.c \
+		export.c
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)
