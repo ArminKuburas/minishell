@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:56:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/14 14:34:00 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/15 21:37:46 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,12 @@ void	handle_dollar_sign(t_new_string_data *data)
 		copy_dollar(data);
 }
 
-int	create_new_string(t_input_list *temp, t_env_list *env, char *new_string)
+int	create_new_string(t_input_list *temp, t_env_list *env, char *n_str)
 {
 	t_new_string_data	data;
 
-	set_up_string_data(&data, temp, env, new_string);
+	set_up_string_data(&data, temp, env, n_str);
+	data.new_string_len = len;
 	while (temp->input[data.j] != '\0')
 	{
 		if (ft_strchr("'\"", temp->input[data.j]) != NULL)
@@ -64,10 +65,10 @@ int	create_new_string(t_input_list *temp, t_env_list *env, char *new_string)
 		{
 			printf("Inside create_new_string loop\n");
 			printf("Inside if statement in create_new_string loop\n");
-			new_string[data.i] = temp->input[data.j];
+			n_str[data.i] = temp->input[data.j];
 			printf("data.i: %d\n", data.i);
 			data.i++;
-		}
+		} 
 		else
 			handle_dollar_sign(&data);
 		if (new_string_last_check(temp) == NO_MEMORY)
@@ -81,7 +82,7 @@ int	create_new_string(t_input_list *temp, t_env_list *env, char *new_string)
 		data.j++;
 	}
 	temp->old_input = temp->input;
-	temp->input = new_string;
+	temp->input = n_str;
 	return (SUCCESS);
 }
 

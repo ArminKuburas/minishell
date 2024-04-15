@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 07:34:43 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/15 15:13:13 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/16 02:04:41 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	set_up_new_link(t_input_list *o_link, t_input_list *n_link, char *input)
 	n_link->next = o_link->next;
 	o_link->next = n_link;
 	n_link->input = input;
-	n_link->word_split =
+	n_link->word_split = WORD_SPLIT;
 }
 
 void	split_env(t_new_string_data *data, t_env_list	*temp_env)
@@ -111,21 +111,42 @@ void	split_env(t_new_string_data *data, t_env_list	*temp_env)
 			data->i++;
 			j++;
 		}
+		data->temp->word_split = WORD_SPLIT;
+		data->temp->old_input = data->temp->input;
+		data->temp->input = ft_strdup(data->new_string);
+		if (data->temp->input == NULL)
+		{
+			data->temp->word_split = FAILURE;
+			free_2d_array(&strings);
+			return ;
+		}
+		free(strings[0]);
+		i = 1;
 		while (strings[i] != NULL)
 		{
 			new_link = ft_calloc(1, sizeof(t_input_list));
 			if (new_link == NULL)
 			{
 				data->temp->word_split = FAILURE;
-				free_2d_array(strings);
+				free_2d_array(&strings);
 				return ;
 			}
-			
 			set_up_new_link(data->temp, new_link, strings[i]);
 			i++;
 			new_link = NULL;
+			data->temp = data->temp->next;
 		}
-		free(strings);
+		ft_memset(data->new_string, 0, ft_strlen(data->new_string));
+		j = 0;
+		data->i = 0;
+		while (data->temp->input[j] != '\0')
+		{
+			data->new_string[data->i] = data->temp->input[j];
+			j++;
+			data->i++;
+		}
+		free(data->temp->input);
+		data->temp->input = NULL;
 	}
 }
 
