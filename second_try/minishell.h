@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/14 23:05:23 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/15 10:57:13 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,8 +164,8 @@ typedef struct s_new_string_data
 
 //readline functions
 
-//int			rl_clear_history(void);
-//void		rl_replace_line(char *str, int num);
+int			rl_clear_history(void);
+void		rl_replace_line(char *str, int num);
 
 //data_parser functions
 
@@ -191,6 +191,7 @@ int			new_length(t_input_list *temp, t_env_list *env);
 int			split_cleaner(t_shelldata *data);
 void		copy_dollar(t_new_string_data *data);
 t_env_list	*try_to_find_env(t_env_list *env, char *str, int len);
+void		potential_split_create(t_new_string_data *data);
 
 // static void	signal_handler(int signal);
 
