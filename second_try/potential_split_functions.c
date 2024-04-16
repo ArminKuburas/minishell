@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 07:34:43 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/16 13:58:12 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/16 20:18:12 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,7 @@ void	split_env(t_new_string_data *data, t_env_list	*temp_env)
 			ft_free_substrings(&strings);
 			return ;
 		}
+		free(strings);
 	}
 }
 

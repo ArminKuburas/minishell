@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:56:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/16 14:44:39 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/16 20:27:38 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	new_str_quote_found(t_new_string_data *data, char *temp)
 {
+	printf("Inside new_str_quote_found\n");
 	if (data->quote == 'a')
 		data->quote = *temp;
 	else if (data->quote == *temp)
@@ -59,12 +60,12 @@ int	create_new_string(t_input_list *temp, t_env_list *env, char *n_str)
 	while (data.temp->input[data.j] != '\0')
 	{
 		if (ft_strchr("'\"", data.temp->input[data.j]) != NULL)
-			new_str_quote_found(&data, &temp->input[data.j]);
+			new_str_quote_found(&data, &data.temp->input[data.j]);
 		else if (data.temp->input[data.j] != '$' || data.quote == '\'')
 		{
 			printf("Inside create_new_string loop1\n");
 			printf("Inside if statement in create_new_string loop\n");
-			data.new_string[data.i] = temp->input[data.j];
+			data.new_string[data.i] = data.temp->input[data.j];
 			printf("data.i: %d\n", data.i);
 			data.i++;
 		} 
@@ -81,7 +82,10 @@ int	create_new_string(t_input_list *temp, t_env_list *env, char *n_str)
 		data.j++;
 	}
 	printf("Create new string. After while loop. new string = %s\n", data.new_string);
-	data.temp->old_input = temp->input;
+	if (data.temp->word_split != WORD_SPLIT)
+		data.temp->old_input = temp->input;
+	else
+		free(data.temp->input);
 	data.temp->input = data.new_string;
 	return (SUCCESS);
 }

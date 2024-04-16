@@ -6,7 +6,7 @@
 #    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/04/16 13:10:04 by akuburas         ###   ########.fr        #
+#    Updated: 2024/04/16 19:53:12 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,5 +50,7 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 re: fclean all
+debug: fclean $(OBJS) $(LIBFT)
+		$(CC) $(DEBUGFLAGS) $(OBJS) $(LIBFT) -o $(NAME) $(RLFLAGS)
 
-.PHONY: all clean fclean re valgrind
+.PHONY: all clean fclean re valgrind debug
