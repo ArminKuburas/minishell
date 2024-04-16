@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:56:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/15 21:37:46 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/16 03:53:34 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	create_new_string(t_input_list *temp, t_env_list *env, char *n_str)
 	t_new_string_data	data;
 
 	set_up_string_data(&data, temp, env, n_str);
-	data.new_string_len = len;
 	while (temp->input[data.j] != '\0')
 	{
 		if (ft_strchr("'\"", temp->input[data.j]) != NULL)

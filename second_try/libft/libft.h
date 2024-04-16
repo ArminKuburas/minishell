@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 07:40:02 by akuburas          #+#    #+#             */
-/*   Updated: 2024/01/29 16:21:14 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/16 03:59:26 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ int		ft_put_u_nbr(unsigned int n, int *length);
 int		ft_putchar(char c);
 int		ft_putnbr(int n, int *length);
 int		ft_printf(const char *str, ...);
+void	ft_free_substrings(char ***arr_str);
 
 #endif

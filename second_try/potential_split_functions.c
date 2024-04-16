@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 07:34:43 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/16 02:04:41 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/16 03:58:27 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	check_string(t_new_string_data *data)
 	start = data->j;
 	if (ft_strchr(" \t$'\"", data->temp->input[data->j + 1]) == NULL)
 	{
-		while (ft_strchr(" \t$'\"", data->temp->input[data->j] == NULL))
+		while (ft_strchr(" \t$'\"", data->temp->input[data->j]) == NULL)
 			data->j++;
 		if (data->temp->input[data->j] == '$'
 			&& ft_strchr(" \t$'\"", data->temp->input[data->j + 1]) != NULL)
@@ -61,7 +61,6 @@ t_env_list	*potential_find_env(t_new_string_data *data, bool *split_check)
 {
 	int			start;
 	t_env_list	*temp_env;
-	int			j;
 
 	if (ft_strchr(" \t$'\"", data->temp->input[data->j + 1]) == NULL)
 	{
@@ -78,6 +77,7 @@ t_env_list	*potential_find_env(t_new_string_data *data, bool *split_check)
 		}
 		return (temp_env);
 	}
+	return (NULL);
 }
 
 
@@ -117,7 +117,7 @@ void	split_env(t_new_string_data *data, t_env_list	*temp_env)
 		if (data->temp->input == NULL)
 		{
 			data->temp->word_split = FAILURE;
-			free_2d_array(&strings);
+			ft_free_substrings(&strings);
 			return ;
 		}
 		free(strings[0]);
@@ -128,7 +128,7 @@ void	split_env(t_new_string_data *data, t_env_list	*temp_env)
 			if (new_link == NULL)
 			{
 				data->temp->word_split = FAILURE;
-				free_2d_array(&strings);
+				ft_free_substrings(&strings);
 				return ;
 			}
 			set_up_new_link(data->temp, new_link, strings[i]);
