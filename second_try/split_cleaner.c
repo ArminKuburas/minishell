@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:56:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/16 03:53:34 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/16 14:44:39 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,32 +56,33 @@ int	create_new_string(t_input_list *temp, t_env_list *env, char *n_str)
 	t_new_string_data	data;
 
 	set_up_string_data(&data, temp, env, n_str);
-	while (temp->input[data.j] != '\0')
+	while (data.temp->input[data.j] != '\0')
 	{
-		if (ft_strchr("'\"", temp->input[data.j]) != NULL)
+		if (ft_strchr("'\"", data.temp->input[data.j]) != NULL)
 			new_str_quote_found(&data, &temp->input[data.j]);
-		else if (temp->input[data.j] != '$' || data.quote == '\'')
+		else if (data.temp->input[data.j] != '$' || data.quote == '\'')
 		{
-			printf("Inside create_new_string loop\n");
+			printf("Inside create_new_string loop1\n");
 			printf("Inside if statement in create_new_string loop\n");
-			n_str[data.i] = temp->input[data.j];
+			data.new_string[data.i] = temp->input[data.j];
 			printf("data.i: %d\n", data.i);
 			data.i++;
 		} 
 		else
 			handle_dollar_sign(&data);
-		if (new_string_last_check(temp) == NO_MEMORY)
+		if (new_string_last_check(data.temp) == NO_MEMORY)
 			return (NO_MEMORY);
 		printf("Inside create_new_string loop\n");
 		printf("data.i: %d\n", data.i);
 		printf("data.j: %d\n", data.j);
 		printf("data.quote: %c\n", data.quote);
 		printf("data.new_string: %s\n", data.new_string);
-		printf("temp->input[data.j]: %c\n", temp->input[data.j]);
+		printf("temp->input[data.j]: %c\n", data.temp->input[data.j]);
 		data.j++;
 	}
-	temp->old_input = temp->input;
-	temp->input = n_str;
+	printf("Create new string. After while loop. new string = %s\n", data.new_string);
+	data.temp->old_input = temp->input;
+	data.temp->input = data.new_string;
 	return (SUCCESS);
 }
 
