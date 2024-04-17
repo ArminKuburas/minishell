@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/16 19:47:14 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/17 14:15:50 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ typedef struct s_shelldata
 	int				exit_value;
 }		t_shelldata;
 
-//A required struct for the functions that create new strings
+//A struct used by the cleaning functions.
 typedef struct s_new_string_data
 {
 	int				i;
@@ -162,10 +162,18 @@ typedef struct s_new_string_data
 	t_env_list		*env;
 }	t_new_string_data;
 
+//A struct for the mini_split
+typedef struct s_mini_split_data
+{
+	char	quote;
+	
+}
+
+
 //readline functions
 
-//int			rl_clear_history(void);
-//void		rl_replace_line(char *str, int num);
+int			rl_clear_history(void);
+void		rl_replace_line(char *str, int num);
 
 //data_parser functions
 

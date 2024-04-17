@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:24:02 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/16 20:02:17 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/17 11:24:42 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,8 @@ int	clear_input(t_input_list *input_list, int error)
 {
 	t_input_list	*temp;
 
-	printf("Inside clear input\n");
 	while (input_list != NULL)
 	{
-		printf("Inside while loop\n");
-		printf("input_list->input: %s\n", input_list->input);
-		printf("input_list->old_input: %s\n", input_list->old_input);
 		temp = input_list->next;
 		if (input_list->input != NULL)
 			free(input_list->input);
@@ -52,14 +48,17 @@ int	create_input(char *input, int len, t_input_list *input_list)
 {
 	t_input_list	*new_node;
 
+	printf("Inside create input\n");
 	if (input_list->input == NULL)
 	{
+		printf("Inside first if statement of create input\n");
 		input_list->input = ft_strndup(input, len);
 		if (input_list->input == NULL)
 			return (clear_input(input_list, NO_MEMORY));
 	}
 	else
 	{
+		printf("Inside else statement inside create input\n");
 		new_node = (t_input_list *)ft_calloc(1, sizeof(t_input_list));
 		if (new_node == NULL)
 			return (clear_input(input_list, NO_MEMORY));

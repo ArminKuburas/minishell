@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:13:40 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/11 13:40:52 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/17 10:57:33 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	parser_quote_found(char *input, int *i, int len)
 {
+	printf("Inside parser_quote_found\n");
 	char	quote;
 
 	quote = input[*i];
@@ -31,6 +32,7 @@ int	parser_quote_found(char *input, int *i, int len)
 
 static int	special_char_found(char *input, int *i, int *word_count)
 {
+	printf("Inside special_char_found\n");
 	(*word_count)++;
 	(*i)++;
 	if (ft_strchr("><", input[*i]) != NULL
@@ -48,6 +50,7 @@ static int	special_char_found(char *input, int *i, int *word_count)
 
 static int	space_found(char *input, int *i, int len, int *word_count)
 {
+	printf("inside space_found\n");
 	while (*i < len && input[*i] != ' ')
 	{
 		if (input[*i] == '"' || input[*i] == '\'')
@@ -63,13 +66,15 @@ static int	space_found(char *input, int *i, int len, int *word_count)
 				return (FAILURE);
 			break ;
 		}
-		(*i)++;
+		if (input[*i] != '\0')
+			(*i)++;
 	}
 	return (SUCCESS);
 }
 
 int	count_words(char *input, int *word_count)
 {
+	printf("Inside count_words\n");
 	int		i;
 	int		len;
 
@@ -90,5 +95,6 @@ int	count_words(char *input, int *word_count)
 		else if (space_found(input, &i, len, word_count) != SUCCESS)
 			return (FAILURE);
 	}
+	printf("After counting words\n");
 	return (SUCCESS);
 }
