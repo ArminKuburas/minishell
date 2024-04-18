@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/16 19:10:24 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/18 17:56:17 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,14 @@ enum e_input_type
 	COMMAND_ARGUMENT = 63,
 	PIPE = 72,
 	POTENTIAL_SPLIT = 82,
-	WORD_SPLIT = 83
+	WORD_SPLIT = 83,
+};
+
+enum e_export_input_type
+{
+	INVALID_EXPORT_INPUT = 84,
+	VALID_EXPORT_INPUT = 85,
+	VALID_EXPORT_COMMAND = 86
 };
 
 typedef struct s_input_list
@@ -154,8 +161,8 @@ typedef struct s_new_string_data
 
 typedef void	(*t_handler)(int);
 
-//int			rl_clear_history(void);
-//void		rl_replace_line(char *str, int num);
+int			rl_clear_history(void);
+void		rl_replace_line(char *str, int num);
 
 //data_parser functions
 
@@ -187,7 +194,7 @@ void		signal_handler(int signal, t_handler handler);
 void		parent_signals(void);
 
 //built_in functions
-//void		execute_command(char *command[]);
+void		execute_command(char *command[]);
 void		my_echo(t_input_list *temp);
 void		my_cd(t_shelldata data, t_input_list *temp);
 void		my_pwd(t_shelldata data, t_input_list *temp);
