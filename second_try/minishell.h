@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/14 11:23:38 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/16 19:10:24 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ typedef struct s_shelldata
 	t_env_list		*env_list;
 	t_input_list	*input_list;
 	char			**env_variables;
+	char			*cwd; // subject for change
 	char			*input;
 	int				exit_value;
 }		t_shelldata;
@@ -153,8 +154,8 @@ typedef struct s_new_string_data
 
 typedef void	(*t_handler)(int);
 
-int			rl_clear_history(void);
-void		rl_replace_line(char *str, int num);
+//int			rl_clear_history(void);
+//void		rl_replace_line(char *str, int num);
 
 //data_parser functions
 
@@ -189,5 +190,7 @@ void		parent_signals(void);
 //void		execute_command(char *command[]);
 void		my_echo(t_input_list *temp);
 void		my_cd(t_shelldata data, t_input_list *temp);
+void		my_pwd(t_shelldata data, t_input_list *temp);
+void		my_export(t_shelldata data, t_input_list *temp);
 
 #endif

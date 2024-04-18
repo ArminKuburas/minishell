@@ -6,7 +6,7 @@
 /*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/15 19:38:02 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/16 19:11:03 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	main(int argc, char **argv, char **env)
 						if (ft_strcmp(temp->input, "pwd") == 0)
 							my_pwd(data, temp);
 						if (ft_strcmp(temp->input, "export") == 0)
-							printf("command was export \n");
+							my_export(data, temp);
 						// compare the input of the command with the built-in
 						// names.
 						// next step is to feed the input to the proper function
