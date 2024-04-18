@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 19:06:55 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/13 18:14:35 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/18 13:22:34 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ int	new_length(t_input_list *temp, t_env_list *env)
 	length = 0;
 	while (temp->input[i] != '\0')
 	{
-		printf("Inside new_length loop\n");
 		if (ft_strchr("'\"", temp->input[i]) != NULL)
 			length += cleaner_quote_found(temp->input[i], &quote, temp);
 		else if (temp->input[i] != '$')

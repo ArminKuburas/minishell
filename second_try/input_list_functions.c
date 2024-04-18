@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:24:02 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/17 11:24:42 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/18 13:11:13 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,13 @@ int	create_input(char *input, int len, t_input_list *input_list)
 	t_input_list	*new_node;
 
 	printf("Inside create input\n");
+	printf("This is input = %s\n", input);
+	printf("This is length = %d\n", len);
 	if (input_list->input == NULL)
 	{
 		printf("Inside first if statement of create input\n");
 		input_list->input = ft_strndup(input, len);
+		printf("after strdup inside create input if statement 1\n");
 		if (input_list->input == NULL)
 			return (clear_input(input_list, NO_MEMORY));
 	}

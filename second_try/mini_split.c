@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 11:44:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/18 09:34:52 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/18 13:08:49 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	duplicate_quote(t_split_data *data, t_shelldata *shell_data)
 	char	*temp;
 	int		i;
 
+	printf("Inside duplicate quote\n");
 	data->quote = data->input[data->i];
 	temp = ft_strchr(&data->input[data->i + 1], data->quote);
 	if (ft_strchr("<>| ", temp[1]) == NULL)
@@ -27,10 +28,13 @@ int	duplicate_quote(t_split_data *data, t_shelldata *shell_data)
 		{
 			if (temp[i] == '\'' || temp[i] == '"')
 			{
+				printf("Inside if statement of duplicaate quote\n");
 				data->quote = temp[i];
+				printf("before if statement loop. i = %d\n", i);
 				while (temp[i] && temp[i] != data->quote)
 					i++;
 				data->quote = '\0';
+				printf("After if statement loop. i = %d\n", i);
 			}
 			if (temp[i] != '\0')
 				i++;
@@ -141,7 +145,7 @@ int	mini_split(char *input, t_shelldata *shell_data)
 	shell_data->input_list = (t_input_list *)ft_calloc(1, sizeof(t_input_list));
 	if (shell_data->input_list == NULL)
 		return (NO_MEMORY);
-	printf("after allocating for input list");
+	printf("after allocating for input list\n");
 	split_data.i = 0;
 	split_data.quote = '\0';
 	if (create_strings(&split_data, shell_data) != SUCCESS)
