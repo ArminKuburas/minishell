@@ -6,141 +6,153 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 11:44:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/17 12:28:20 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/18 09:34:52 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	duplicate_quote(char *input, t_shelldata *data, int j)
+int	duplicate_quote(t_split_data *data, t_shelldata *shell_data)
 {
-	printf("inside duplicate_quote\n");
-	char	quote;
-	int		i;
 	char	*temp;
+	int		i;
 
-	quote = input[j];
-	printf("This is j = %d\n", j);
-	printf("Before ft_strchr. input + j + 1 is: %s\n", input + j + 1);
-	temp = ft_strchr(&input[j + 1], quote);
-	printf("This is quote inside duplicate quote = %c\n", quote);
-	printf("this is input = %s\n", input);
-	printf("after ft_strchr inside duplicate quote\n");
-	printf("this is temp = %s\n", temp);
+	data->quote = data->input[data->i];
+	temp = ft_strchr(&data->input[data->i + 1], data->quote);
 	if (ft_strchr("<>| ", temp[1]) == NULL)
 	{
 		printf("inside first if statement\n");
 		i = 1;
 		while (ft_strchr("<>| ", temp[i]) == NULL)
-			i++;
-		if (create_input(input + j, temp - input - j + i + 1,
-				data->input_list) != SUCCESS)
+		{
+			if (temp[i] == '\'' || temp[i] == '"')
+			{
+				data->quote = temp[i];
+				while (temp[i] && temp[i] != data->quote)
+					i++;
+				data->quote = '\0';
+			}
+			if (temp[i] != '\0')
+				i++;
+		}
+		if (create_input(&data->input[data->i], temp - data->input
+				- data->i + i + 1, shell_data->input_list) != SUCCESS)
 			return (FAILURE);
 	}
 	else
 	{
 		printf("Inside else statement of duplicate quote\n");
-		if (create_input(input + j, temp - input - j + 1,
-				data->input_list) != SUCCESS)
+		if (create_input(&data->input[data->i], temp - data->input
+				- data->i + 1, shell_data->input_list) != SUCCESS)
 			return (FAILURE);
 	}
 	return (SUCCESS);
 }
 
-int	duplicate_special_character(char *input, int j, t_input_list *input_list)
+int	duplicate_special_character(t_split_data *data, t_input_list *input_list)
 {
-	printf("Inside duplicate special characters\n");
-	if (ft_strchr("><", input[j + 1]) != NULL && input[j] == input[j + 1])
+	if (ft_strchr("><", data->input[data->i + 1])
+		!= NULL && data->input[data->i] == data->input[data->i + 1])
 	{
-		if (ft_strchr("><|", input[j + 2]) != NULL)
+		if (ft_strchr("><|", data->input[data->i + 2]) != NULL)
 		{
 			ft_putstr_fd("Error: Syntax error\n", 2);
 			return (FAILURE);
 		}
 		else
-			if (create_input(input + j, 2, input_list) != SUCCESS)
+			if (create_input(data->input + data->i, 2, input_list) != SUCCESS)
 				return (FAILURE);
 	}
 	else
-		if (create_input(input + j, 1, input_list) != SUCCESS)
+		if (create_input(data->input + data->i, 1, input_list) != SUCCESS)
 			return (FAILURE);
 	return (SUCCESS);
 }
 
-int	duplicate_input(char *input, t_shelldata *data, int j)
+int	duplicate_input(t_split_data *data, t_shelldata *shell_data)
 {
 	int	i;
 
-	i = j;
+	i = data->i;
 	printf("Inside duplicate input\n");
-	if (ft_strchr("><|", input[j]) != NULL)
-		return (duplicate_special_character(input, j, data->input_list));
-	while (input[j] != '\0' && input[j] != ' ')
+	if (ft_strchr("><|", data->input[data->i]) != NULL)
+		return (duplicate_special_character(data, shell_data->input_list));
+	while (data->input[data->i] != '\0' && data->input[data->i] != ' ')
 	{
-		if (input[j] == '\'' || input[j] == '"')
-			if (parser_quote_found(input, &j, ft_strlen(input)) != SUCCESS)
+		if (data->input[data->i] == '\'' || data->input[data->i] == '"')
+			if (parser_quote_found(data) != SUCCESS)
 				return (FAILURE);
-		if (ft_strchr("><|", input[j]) != NULL)
+		if (ft_strchr("><|", data->input[data->i]) != NULL)
 			break ;
-		if (input[j] != '\0')
-			j++;
+		if (data->input[data->i] != '\0')
+			data->i++;
 	}
-	if (create_input(input + i, j - i, data->input_list) != SUCCESS)
+	if (create_input(data->input + i, data->i - i, shell_data->input_list)
+		!= SUCCESS)
 		return (FAILURE);
 	return (SUCCESS);
 }
 
-int	create_strings(char *input, t_shelldata *data, int word_count)
+int	create_strings(t_split_data *data, t_shelldata *shell_data)
 {
-	int	i;
-	int	amount;
 	int	error;
 
-	i = 0;
-	amount = 0;
 	error = SUCCESS;
 	printf("Inside create_strings\n");
-	while (amount < word_count)
+	while (data->word_count > 0)
 	{
-		while (input[i] == ' ')
-			i++;
-		if (input[i] == '\0')
+		while (data->input[data->i] == ' ')
+			(data->i)++;
+		if (data->input[data->i] == '\0')
 			break ;
-		if (input[i] == '"' || input[i] == '\'')
-			error = duplicate_quote(input, data, i);
+		if (data->input[data->i] == '"' || data->input[data->i] == '\'')
+			error = duplicate_quote(data, shell_data);
 		else
-			error = duplicate_input(input, data, i);
+			error = duplicate_input(data, shell_data);
 		if (error != SUCCESS)
 			return (FAILURE);
-		i += strlen_last_input(data->input_list);
+		data->i += strlen_last_input(shell_data->input_list);
 	}
 	return (SUCCESS);
+}
+
+void	set_up_split_data(t_split_data *split_data, char *input)
+{
+	split_data->i = 0;
+	split_data->len = ft_strlen(input);
+	split_data->word_count = 0;
+	split_data->quote = '\0';
+	split_data->input = input;
+	split_data->node_one = NULL;
 }
 
 /* This function is used to split the given input into seperate lines.
 These will later be filtered into the parser.
 In addition it returns an error value if something fails.*/
-int	mini_split(char *input, t_shelldata *data)
+int	mini_split(char *input, t_shelldata *shell_data)
 {
-	int		word_count;
-	printf("Inside mini_split\n");
-	word_count = 0;
-	if (count_words(input, &word_count) != SUCCESS)
+	t_split_data	split_data;
+
+	set_up_split_data(&split_data, input);
+	if (count_words(&split_data) != SUCCESS)
 		return (FAILURE);
 	printf("after count_words\n");
-	data->input_list = (t_input_list *)ft_calloc(1, sizeof(t_input_list));
-	if (data->input_list == NULL)
+	printf("word_count: %d\n", split_data.word_count);
+	shell_data->input_list = (t_input_list *)ft_calloc(1, sizeof(t_input_list));
+	if (shell_data->input_list == NULL)
 		return (NO_MEMORY);
 	printf("after allocating for input list");
-	if (create_strings(input, data, word_count) != SUCCESS)
+	split_data.i = 0;
+	split_data.quote = '\0';
+	if (create_strings(&split_data, shell_data) != SUCCESS)
 		return (FAILURE);
 	printf("after creating strings\n");
-	input_type_assigner(data->input_list);
+	input_type_assigner(shell_data->input_list);
 	t_input_list	*temp;
 	int				i;
-	temp = data->input_list;
+	temp = shell_data->input_list;
 	i = 0;
-	printf("word_count: %d\n", word_count);
+	printf("word_count: %d\n", split_data.word_count);
 	printf("Before split_cleaner\n");
 	while (temp != NULL)
 	{
@@ -149,7 +161,7 @@ int	mini_split(char *input, t_shelldata *data)
 		i++;
 		temp = temp->next;
 	}
-	if (split_cleaner(data) != SUCCESS)
+	if (split_cleaner(shell_data) != SUCCESS)
 		return (FAILURE);
 	printf("--------------------\n");
 	printf("After split_cleaner\n");

@@ -6,95 +6,94 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:13:40 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/17 10:57:33 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/18 09:36:21 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	parser_quote_found(char *input, int *i, int len)
+int	parser_quote_found(t_split_data *data)
 {
-	printf("Inside parser_quote_found\n");
-	char	quote;
-
-	quote = input[*i];
-	(*i)++;
-	while (*i < len && input[*i] != quote)
-		(*i)++;
-	if (input[*i] != quote)
+	if (data->quote == '\0')
+		data->quote = data->input[data->i];
+	else if (data->quote == data->input[data->i])
+		data->quote = '\0';
+	while (data->input && data->input[data->i] != data->quote)
+		data->i++;
+	if (data->input[data->i] == data->quote)
+		data->quote = '\0';
+	else
 	{
 		ft_putstr_fd("Error: No closing quote found\n", 2);
 		return (NO_QUOTE);
 	}
-	(*i)++;
 	return (SUCCESS);
 }
 
-static int	special_char_found(char *input, int *i, int *word_count)
+static int	special_char_found(t_split_data *data, int check)
 {
 	printf("Inside special_char_found\n");
-	(*word_count)++;
-	(*i)++;
-	if (ft_strchr("><", input[*i]) != NULL
-		&& input[*i] == input[*i - 1])
+	if (check == 1)
+		data->word_count++;
+	data->i++;
+	if (ft_strchr("><", data->input[data->i]) != NULL
+		&& data->input[data->i] == data->input[data->i - 1])
 	{
-		(*i)++;
-		if (ft_strchr("><|", input[*i]) != NULL)
+		data->i++;
+		if (ft_strchr("><|", data->input[data->i]) != NULL)
 		{
-			printf("Error: Syntax error\n");
+			printf("bananashell: Syntax error near unexpected token\n");
 			return (FAILURE);
 		}
 	}
 	return (SUCCESS);
 }
 
-static int	space_found(char *input, int *i, int len, int *word_count)
+static int	space_found(t_split_data *data)
 {
 	printf("inside space_found\n");
-	while (*i < len && input[*i] != ' ')
+	while (data->i < data->len && data->input[data->i] != ' ')
 	{
-		if (input[*i] == '"' || input[*i] == '\'')
+		if (data->input[data->i] == '"' || data->input[data->i] == '\'')
 		{
-			if (parser_quote_found(input, i, len) != SUCCESS)
+			if (parser_quote_found(data) != SUCCESS)
 				return (NO_QUOTE);
 		}
-		else if (input[*i] == '\0')
+		else if (data->input[data->i] == '\0')
 			break ;
-		else if (ft_strchr("><|", input[*i]) != NULL)
+		else if (ft_strchr("><|", data->input[data->i]) != NULL)
 		{
-			if (special_char_found(input, i, word_count) != SUCCESS)
+			if (special_char_found(data, 1) != SUCCESS)
 				return (FAILURE);
 			break ;
 		}
-		if (input[*i] != '\0')
-			(*i)++;
+		if (data->input[data->i] != '\0')
+			data->i++;
 	}
 	return (SUCCESS);
 }
 
-int	count_words(char *input, int *word_count)
+int	count_words(t_split_data	*data)
 {
-	printf("Inside count_words\n");
-	int		i;
-	int		len;
-
-	i = 0;
-	len = ft_strlen(input);
-	while (i < len)
+	while (data->i < data->len)
 	{
-		while (i < len && input[i] == ' ')
-			i++;
-		if (input[i] == '\0')
+		while (data->input[data->i] == ' ' && data->quote == '\0')
+			data->i++;
+		if (data->input[data->i] == '\0')
 			break ;
-		(*word_count)++;
-		if (input[i] == '"' || input[i] == '\'')
+		data->word_count++;
+		if (data->input[data->i] == '"' || data->input[data->i] == '\'')
 		{
-			if (parser_quote_found(input, &i, len) != SUCCESS)
+			if (parser_quote_found(data) != SUCCESS)
 				return (NO_QUOTE);
 		}
-		else if (space_found(input, &i, len, word_count) != SUCCESS)
-			return (FAILURE);
+		else if (ft_strchr("><|", data->input[data->i]) != NULL)
+		{
+			if (special_char_found(data, 0) != SUCCESS)
+				return (FAILURE);
+		}
+		else if (space_found(data) != SUCCESS)
+			return (NO_QUOTE);
 	}
-	printf("After counting words\n");
 	return (SUCCESS);
 }

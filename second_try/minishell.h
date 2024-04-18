@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/17 14:15:50 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/18 09:34:21 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,24 +163,27 @@ typedef struct s_new_string_data
 }	t_new_string_data;
 
 //A struct for the mini_split
-typedef struct s_mini_split_data
+
+typedef struct s_split_data
 {
-	char	quote;
-	
-}
-
-
+	int				i;
+	int				len;
+	int				word_count;
+	char			quote;
+	char			*input;
+	t_input_list	*node_one;
+}	t_split_data;
 //readline functions
 
-int			rl_clear_history(void);
-void		rl_replace_line(char *str, int num);
+//int			rl_clear_history(void);
+//void		rl_replace_line(char *str, int num);
 
 //data_parser functions
 
-int			count_words(char *input, int *word_count);
+int			count_words(t_split_data *split_data);
 int			mini_split(char *input, t_shelldata *data);
 int			parse_split_input(t_shelldata *data);
-int			parser_quote_found(char *input, int *i, int len);
+int			parser_quote_found(t_split_data *data);
 
 //input_list functions
 void		add_input_list(t_input_list *input_list, t_input_list *new_node);
