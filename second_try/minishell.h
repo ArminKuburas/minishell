@@ -32,9 +32,13 @@
 /*libft functions*/
 # include "libft/libft.h"
 
+/*For boolean type*/
+# include <stdbool.h>
+
 /*Definition for SIGINT*/
 # define CTRL_C SIGINT
 # define CTRL_BS SIGQUIT
+
 
 typedef enum e_state
 {
@@ -113,11 +117,19 @@ enum e_export_input_type
 	VALID_EXPORT_COMMAND = 86
 };
 
+enum e_yes_no
+{
+	NO = 0,
+	YES = 1
+};
+
 typedef struct s_input_list
 {
 	int					type;
 	int					word_split;
+	bool				needs_cleaning;
 	char				*input;
+	char				*old_input;
 	struct s_input_list	*next;
 	struct s_input_list	*prev;
 }	t_input_list;
@@ -140,6 +152,7 @@ typedef struct s_shelldata
 {
 	t_env_list		*env_list;
 	t_input_list	*input_list;
+	t_parse_data	child_data;
 	char			**env_variables;
 	char			*cwd; // subject for change
 	char			*input;
@@ -157,6 +170,17 @@ typedef struct s_new_string_data
 	t_env_list		*env;
 }	t_new_string_data;
 
+//A struct for the mini_split
+
+typedef struct s_split_data
+{
+	int				i;
+	int				len;
+	int				word_count;
+	char			quote;
+	char			*input;
+	t_input_list	*node_one;
+}	t_split_data;
 //readline functions
 
 typedef void	(*t_handler)(int);
@@ -166,10 +190,10 @@ void		rl_replace_line(char *str, int num);
 
 //data_parser functions
 
-int			count_words(char *input, int *word_count);
+int			count_words(t_split_data *split_data);
 int			mini_split(char *input, t_shelldata *data);
 int			parse_split_input(t_shelldata *data);
-int			parser_quote_found(char *input, int *i, int len);
+int			parser_quote_found(t_split_data *data);
 
 //input_list functions
 void		add_input_list(t_input_list *input_list, t_input_list *new_node);
@@ -186,6 +210,12 @@ int			env_str_cmpr(char *env, char *str, int len);
 //data_cleaner functions
 int			new_length(t_input_list *temp, t_env_list *env);
 int			split_cleaner(t_shelldata *data);
+void		copy_dollar(t_new_string_data *data);
+t_env_list	*try_to_find_env(t_env_list *env, char *str, int len);
+void		potential_split_create(t_new_string_data *data);
+
+int	new_mini_split(t_shelldata *data);
+
 
 //signal handler
 

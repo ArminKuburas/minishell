@@ -6,7 +6,7 @@
 #    By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/04/16 19:11:28 by tvalimak         ###   ########.fr        #
+#    Updated: 2024/04/19 04:14:43 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = minishell
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 RLFLAGS = -lreadline -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include
-#RLFLAGS = -lreadline -L
+DEBUGFLAGS = -Wall -Wextra -Werror -g
 
 MAKE = make bonus
 LIBFTDIR = libft
@@ -26,6 +26,11 @@ SRCS = main.c \
 		input_list_functions.c \
 		create_env_list.c \
 		type_assigner.c \
+		split_cleaner.c \
+		split_cleaner_dollar_functions.c \
+		cleaner_length_functions.c \
+		potential_split_functions.c \
+		new_mini_split.c \
 		signal.c \
 		echo.c \
 		cd.c \
@@ -51,5 +56,7 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 re: fclean all
+debug: fclean $(OBJS) $(LIBFT)
+		$(CC) $(DEBUGFLAGS) $(OBJS) $(LIBFT) -o $(NAME) $(RLFLAGS)
 
-.PHONY: all clean fclean re valgrind
+.PHONY: all clean fclean re valgrind debug

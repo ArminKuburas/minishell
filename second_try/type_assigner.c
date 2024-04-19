@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 05:59:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/11 10:54:04 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/19 06:26:26 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void	assign_command_or_pipe(t_input_list *temp)
 {
 	static int	command_flag = 0;
 
+	if (temp->type != 0)
+		return ;
 	if (temp->input[0] == '|')
 	{
 		temp->type = PIPE;

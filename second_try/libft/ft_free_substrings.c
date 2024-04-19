@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_free_substrings.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 17:36:57 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/17 12:29:05 by akuburas         ###   ########.fr       */
+/*   Created: 2024/04/16 03:57:27 by akuburas          #+#    #+#             */
+/*   Updated: 2024/04/16 04:00:11 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+void	ft_free_substrings(char ***arr_str)
 {
-	while (*s != '\0')
+	int	i;
+
+	i = 0;
+	while ((*arr_str)[i] != NULL)
 	{
-		if (*s == (char)c)
-		{
-			return ((char *)s);
-		}
-		s++;
+		free((*arr_str)[i]);
+		(*arr_str)[i] = NULL;
+		i++;
 	}
-	if ((char)c == '\0')
+	if ((*arr_str) != NULL)
 	{
-		return ((char *)s);
+		free((*arr_str));
+		(*arr_str) = NULL;
 	}
-	return (NULL);
 }

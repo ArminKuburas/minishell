@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:56:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/12 10:12:56 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/18 13:18:30 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@ void	new_str_quote_found(t_new_string_data *data, char *temp)
 	}
 }
 
-int	new_string_last_check(t_input_list *temp, int *i, int j)
+int	new_string_last_check(t_input_list *temp)
 {
-	if (ft_strchr("'\"", temp->input[j]) == NULL)
-		(*i)++;
 	if (temp->word_split == FAILURE)
 		return (NO_MEMORY);
 	return (SUCCESS);
@@ -48,33 +46,36 @@ void	set_up_string_data(t_new_string_data *data, t_input_list *temp,
 void	handle_dollar_sign(t_new_string_data *data)
 {
 	if (data->quote == 'a')
-		data->i += potential_split_create(data);
+		potential_split_create(data);
 	else
-		data->i += copy_dollar(data);
+		copy_dollar(data);
 }
 
-int	create_new_string(t_input_list *temp, t_env_list *env, char *new_string)
+int	create_new_string(t_input_list *temp, t_env_list *env, char *n_str)
 {
 	t_new_string_data	data;
 
-	set_up_string_data(&data, temp, env, new_string);
-	while (temp->input[data.j] != '\0')
+	set_up_string_data(&data, temp, env, n_str);
+	while (data.temp->input[data.j] != '\0')
 	{
-		if (ft_strchr("'\"", temp->input[data.j]) != NULL)
-			new_str_quote_found(&data, &temp->input[data.j]);
-		else if (temp->input[data.j] != '$' || data.quote == '\'')
+		if (ft_strchr("'\"", data.temp->input[data.j]) != NULL)
+			new_str_quote_found(&data, &data.temp->input[data.j]);
+		else if (data.temp->input[data.j] != '$' || data.quote == '\'')
 		{
-			new_string[data.i] = temp->input[data.j];
+			data.new_string[data.i] = data.temp->input[data.j];
 			data.i++;
 		}
 		else
 			handle_dollar_sign(&data);
-		if (new_string_last_check(temp, &data.i, data.j) == NO_MEMORY)
+		if (new_string_last_check(data.temp) == NO_MEMORY)
 			return (NO_MEMORY);
 		data.j++;
 	}
-	free(temp->input);
-	temp->input = new_string;
+	if (data.temp->word_split != WORD_SPLIT)
+		data.temp->old_input = temp->input;
+	else
+		free(data.temp->input);
+	data.temp->input = data.new_string;
 	return (SUCCESS);
 }
 
@@ -87,8 +88,8 @@ int	split_cleaner(t_shelldata *data)
 	temp = data->input_list;
 	while (temp != NULL)
 	{
-		length = new_length(temp, data->env_variables);
-		if (length != ft_strlen(temp->input))
+		length = new_length(temp, data->env_list);
+		if (temp->needs_cleaning != 0)
 		{
 			str = (char *)ft_calloc(length + 1, sizeof(char));
 			if (str == NULL)
@@ -96,13 +97,15 @@ int	split_cleaner(t_shelldata *data)
 				clear_input(data->input_list, NO_MEMORY);
 				return (NO_MEMORY);
 			}
-			if (create_new_string(temp, data->env_variables, str) != SUCCESS)
+			if (create_new_string(temp, data->env_list, str) != SUCCESS)
 			{
 				clear_input(data->input_list, NO_MEMORY);
 				return (NO_MEMORY);
 			}
 		}
 		temp = temp->next;
+		while (temp != NULL && temp->word_split == WORD_SPLIT)
+			temp = temp->next;
 	}
 	return (SUCCESS);
 }

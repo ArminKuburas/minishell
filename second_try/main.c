@@ -6,7 +6,7 @@
 /*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/16 19:11:03 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/19 06:07:22 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,8 @@
 
 int	main(int argc, char **argv, char **env)
 {
-	char		*input;
 	t_shelldata	data;
 	int			error;
-	int			i;
 
 	if (argc < 1)
 		printf("wtf\n");
@@ -51,72 +49,45 @@ int	main(int argc, char **argv, char **env)
 	}
 	while (1)
 	{
-		parent_signals();
-		input = readline("bananashell-0.11:");
-		if (!input)
+    parent_signals();
+		data.input = readline("bananashell-0.14:");
+		if (!data.input)
 		{
 			printf("exit\n");
 			clear_env_list(data.env_list, SUCCESS);
 			break ;
 		}
-		if (input)
+		if (data.input)
 		{
-			if (ft_strcmp(input, "exit") == 0)
+			if (ft_strcmp(data.input, "exit") == 0)
 			{
 				printf("exit\n");
-				free(input);
+				free(data.input);
 				clear_env_list(data.env_list, SUCCESS);
 				break ;
 			}
-			if (ft_strlen(input) == 0)
+			if (ft_strlen(data.input) == 0)
 			{
-				free(input);
+				free(data.input);
 				continue ;
 			}
-			error = mini_split(input, &data);
+			error = new_mini_split(&data);
 			if (error == SUCCESS)
 			{
-				i = 0;
-				printf("This is i %d\n", i);
-				//while (data.split_input[i])
-				//{
-				//	printf("split_input[%d] = %s\n", i, data.split_input[i]);
-				//	i++;
-				//}
-				//printf("--------------------\n");
-				//parse_split_input(&data);
 				t_input_list *temp = data.input_list;
+				int i = 0;
 				while (temp != NULL)
 				{
-					if (temp->type == COMMAND)
-					{
-						if (ft_strcmp(temp->input, "echo") == 0)
-							my_echo(temp);
-						if (ft_strcmp(temp->input, "cd") == 0)
-							my_cd(data, temp);
-						if (ft_strcmp(temp->input, "pwd") == 0)
-							my_pwd(data, temp);
-						if (ft_strcmp(temp->input, "export") == 0)
-							my_export(data, temp);
-						// compare the input of the command with the built-in
-						// names.
-						// next step is to feed the input to the proper function
-						// for example echo
-					}
-					//printf("input_list->input = %s\n", temp->input);
+					printf("This is input %d: %s\n", i, temp->input);
+					i++;
 					temp = temp->next;
 				}
 				clear_input(data.input_list, SUCCESS);
 			}
-			else
-			{
-				clear_env_list(data.env_list, SUCCESS);
-				break ;
-			}
-			add_history(input);
+			add_history(data.input);
 		}
-		free(input);
-		input = NULL;
+		free(data.input);
+		data.input = NULL;
 	}
 	rl_clear_history();
 }

@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 19:06:55 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/11 18:45:48 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/18 13:22:34 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,13 @@ int	env_str_cmpr(char *env, char *str, int len)
 
 int	length_find_env(t_env_list *env, char *str, int len)
 {
-	int			length;
 	t_env_list	*temp;
 
 	temp = env;
-	length = 0;
+	printf("Inside length find env\n");
 	while (temp != NULL)
 	{
-		if (ft_strlen(temp->env_var_name) != len)
+		if (ft_strlen(temp->env_var_name) != (size_t)len)
 		{
 			temp = temp->next;
 			continue ;
@@ -54,6 +53,7 @@ int	found_dollar(t_input_list *temp, int *i, char quote, t_env_list *env)
 	int	start;
 
 	length = 0;
+	printf("Inside found dollar\n");
 	if (quote == '\'')
 		return (1);
 	if (ft_strchr(" \t$'\"", temp->input[(*i) + 1]) == NULL)
@@ -62,17 +62,20 @@ int	found_dollar(t_input_list *temp, int *i, char quote, t_env_list *env)
 		start = *i;
 		while (ft_strchr(" \t$'\"", temp->input[(*i)]) == NULL)
 			(*i)++;
-		length += length_find_env(env, temp->input[start], (*i) - start);
+		length += length_find_env(env, &temp->input[start], (*i) - start);
+		printf("Length: %d\n", length);
 		(*i)--;
 		if (quote == 'a')
 			temp->word_split = POTENTIAL_SPLIT;
+		temp->needs_cleaning = 1;
 		return (length);
 	}
 	return (1);
 }
 
-int	cleaner_quote_found(char input, char *quote)
+int	cleaner_quote_found(char input, char *quote, t_input_list *temp)
 {
+	temp->needs_cleaning = 1;
 	if (*quote == 'a')
 		*quote = input;
 	else if (*quote == input)
@@ -91,10 +94,10 @@ int	new_length(t_input_list *temp, t_env_list *env)
 	i = 0;
 	quote = 'a';
 	length = 0;
-	while (temp->input != '\0')
+	while (temp->input[i] != '\0')
 	{
 		if (ft_strchr("'\"", temp->input[i]) != NULL)
-			length += cleaner_quote_found(temp->input[i], &quote);
+			length += cleaner_quote_found(temp->input[i], &quote, temp);
 		else if (temp->input[i] != '$')
 			length++;
 		else
