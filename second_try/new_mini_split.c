@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:41:10 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/19 06:04:38 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/19 06:42:06 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	duplicate_input(char *input, t_input_list *input_list, int *i)
 	{
 		if (input[j] == '\'' || input[j] == '"')
 			quote_found(&quote, input[j]);
-		if (quote == '\0' && ft_strchr("<>| /t", input[j]))
+		if (quote == '\0' && ft_strchr("<>| \t", input[j]))
 			break ;
 		j++;
 	}
