@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 11:44:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/18 13:08:49 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/19 04:19:14 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	duplicate_quote(t_split_data *data, t_shelldata *shell_data)
 	return (SUCCESS);
 }
 
-int	duplicate_special_character(t_split_data *data, t_input_list *input_list)
+int	old_duplicate_special_character(t_split_data *data, t_input_list *input_list)
 {
 	if (ft_strchr("><", data->input[data->i + 1])
 		!= NULL && data->input[data->i] == data->input[data->i + 1])
@@ -73,14 +73,14 @@ int	duplicate_special_character(t_split_data *data, t_input_list *input_list)
 	return (SUCCESS);
 }
 
-int	duplicate_input(t_split_data *data, t_shelldata *shell_data)
+int	old_duplicate_input(t_split_data *data, t_shelldata *shell_data)
 {
 	int	i;
 
 	i = data->i;
 	printf("Inside duplicate input\n");
 	if (ft_strchr("><|", data->input[data->i]) != NULL)
-		return (duplicate_special_character(data, shell_data->input_list));
+		return (old_duplicate_special_character(data, shell_data->input_list));
 	while (data->input[data->i] != '\0' && data->input[data->i] != ' ')
 	{
 		if (data->input[data->i] == '\'' || data->input[data->i] == '"')
@@ -112,7 +112,7 @@ int	create_strings(t_split_data *data, t_shelldata *shell_data)
 		if (data->input[data->i] == '"' || data->input[data->i] == '\'')
 			error = duplicate_quote(data, shell_data);
 		else
-			error = duplicate_input(data, shell_data);
+			error = old_duplicate_input(data, shell_data);
 		if (error != SUCCESS)
 			return (FAILURE);
 		data->i += strlen_last_input(shell_data->input_list);

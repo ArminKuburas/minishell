@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/17 10:49:26 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/19 06:07:22 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ static void	set_state(t_state state)
 
 int	main(int argc, char **argv, char **env)
 {
-	char		*input;
 	t_shelldata	data;
 	int			error;
 
@@ -92,28 +91,28 @@ int	main(int argc, char **argv, char **env)
 		set_state(HANDLER);
 		//set_state(DEFAULT);
 		signal(CTRL_C, signal_handler);
-		input = readline("bananashell-0.13:");
-		if (!input)
+		data.input = readline("bananashell-0.14:");
+		if (!data.input)
 		{
 			printf("exit\n");
 			clear_env_list(data.env_list, SUCCESS);
 			break ;
 		}
-		if (input)
+		if (data.input)
 		{
-			if (ft_strcmp(input, "exit") == 0)
+			if (ft_strcmp(data.input, "exit") == 0)
 			{
 				printf("exit\n");
-				free(input);
+				free(data.input);
 				clear_env_list(data.env_list, SUCCESS);
 				break ;
 			}
-			if (ft_strlen(input) == 0)
+			if (ft_strlen(data.input) == 0)
 			{
-				free(input);
+				free(data.input);
 				continue ;
 			}
-			error = mini_split(input, &data);
+			error = new_mini_split(&data);
 			if (error == SUCCESS)
 			{
 				t_input_list *temp = data.input_list;
@@ -126,10 +125,10 @@ int	main(int argc, char **argv, char **env)
 				}
 				clear_input(data.input_list, SUCCESS);
 			}
-			add_history(input);
+			add_history(data.input);
 		}
-		free(input);
-		input = NULL;
+		free(data.input);
+		data.input = NULL;
 	}
 	rl_clear_history();
 }

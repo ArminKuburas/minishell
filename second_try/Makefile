@@ -6,7 +6,7 @@
 #    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/04/17 10:30:08 by akuburas         ###   ########.fr        #
+#    Updated: 2024/04/19 04:14:43 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS = main.c \
 		split_cleaner_dollar_functions.c \
 		cleaner_length_functions.c \
 		potential_split_functions.c \
+		new_mini_split.c \
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)
