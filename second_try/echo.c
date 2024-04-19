@@ -6,26 +6,39 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:55:23 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/14 11:44:12 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/19 19:18:10 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	free_to_print(t_input_list *temp)
+static void	echo_env(t_shelldata data, t_input_list *temp, int n_flag)
 {
+	char	*value;
+	char	*key;
+	int		i;
+
+	i = 0;
 	while (temp)
 	{
-		ft_putstr(temp->input);
-		if (temp->next)
-			ft_putstr(" ");
-		temp = temp->next;
+		key = ft_strdup(temp->input + 1);
+		value = get_env(key);
+		if (value)
+			ft_putstr(value);
+		free(key);
 	}
+	ft_putstr(temp->input);
+	if (temp->next)
+		ft_putstr(" ");
+	temp = temp->next;
 	ft_putstr("\n");
 }
 
-void	my_echo(t_input_list *temp)
+void	my_echo(t_shelldata data, t_input_list *temp)
 {
+	int	n_flag;
+
+	n_flag = 0;
 	if (!temp->next)
 	{
 		ft_putstr("\n");
@@ -33,23 +46,21 @@ void	my_echo(t_input_list *temp)
 	}
 	temp = temp->next;
 	if (ft_strncmp(temp->input, "-n", 3) == 0)
+		n_flag = 1;
+	while (temp)
 	{
-		while (ft_strncmp(temp->input, "-n", 3) == 0)
-		{
-			if (!temp->next)
-				return ;
-			temp = temp->next;
-		}
-		while (temp)
+		if (temp->input[0] == '$')
+			echo_env(data, temp, n_flag);
+		else
 		{
 			ft_putstr(temp->input);
 			if (temp->next)
 				ft_putstr(" ");
-			temp = temp->next;
 		}
+		temp = temp->next;
 	}
-	else
-		free_to_print(temp);
+	if (n_flag == 0)
+		ft_putstr('\n');
 }
 /*
 void execute_command(char *command[])
