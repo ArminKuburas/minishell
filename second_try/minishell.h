@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/18 17:56:17 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:33:09 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ typedef struct s_child_data
 	int		fd_in;
 	int		fd_out;
 	char	**env;
+	t_input_list	*input_list;
+	t_env_list		*env_list;
 	char	*command;
 	char	**command_inputs;
 }	t_child_data;
@@ -114,7 +116,10 @@ enum e_export_input_type
 {
 	INVALID_EXPORT_INPUT = 84,
 	VALID_EXPORT_INPUT = 85,
-	VALID_EXPORT_COMMAND = 86
+	VALID_EXPORT_COMMAND = 86,
+	INVALID_UNSET_INPUT = 87,
+	VALID_UNSET_INPUT = 88,
+	VALID_UNSET_COMMAND = 89,
 };
 
 enum e_yes_no
@@ -229,5 +234,6 @@ void		my_echo(t_input_list *temp);
 void		my_cd(t_shelldata data, t_input_list *temp);
 void		my_pwd(t_shelldata data, t_input_list *temp);
 void		my_export(t_shelldata data, t_input_list *temp);
+void		my_unset(t_shelldata data, t_input_list *temp);
 
 #endif

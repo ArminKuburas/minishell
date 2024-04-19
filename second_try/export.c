@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:30:01 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/19 12:28:21 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/19 16:24:44 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,20 @@ export export
 // remember to check exit code when error handling takes place
 /*This function checks all arguments for export and flags them if
   they are good for execution*/
-static void	is_var_name_valid(t_input_list *temp)
+
+/*Valid input tag is 84 and invalid is 85*/
+/*
+static void	ft_export_type_printer(t_input_list *temp)
+{
+	while (temp)
+	{
+		ft_printf("type of the input node: %d\n", temp->type);
+		ft_printf("string in the input node: %s\n", temp->input);
+		temp = temp->next;
+	}
+}*/
+/*This one checks if the export command is formatted properly*/
+static void	is_export_var_name_valid(t_input_list *temp)
 {
 	int	i;
 
@@ -115,6 +128,7 @@ static void	is_var_name_valid(t_input_list *temp)
 	}
 	temp->type = VALID_EXPORT_INPUT;
 }
+
 /*Function to imitate export command without arguments*/
 static void	export_no_commands(t_shelldata data)
 {
@@ -128,18 +142,9 @@ static void	export_no_commands(t_shelldata data)
 	}
 }
 
-/*Valid input tag is 84 and invalid is 85*/
-static void	ft_export_type_printer(t_input_list *temp)
-{
-	while (temp)
-	{
-		ft_printf("type of the input node: %d\n", temp->type);
-		ft_printf("string in the input node: %s\n", temp->input);
-		temp = temp->next;
-	}
-}
-
-static int	check_if_env_exists(t_shelldata data, t_input_list *temp)
+/*This one goes through the env list and sees if the new env var
+  already exists*/
+static int	check_if_export_env_exists(t_shelldata data, t_input_list *temp)
 {
 	ft_printf("got into the check_if_env_exists\n");
 	while (data.env_list)
@@ -147,7 +152,6 @@ static int	check_if_env_exists(t_shelldata data, t_input_list *temp)
 		if (!ft_strncmp(data.env_list->env_var_name, temp->input, \
 		ft_strlen(data.env_list->env_var_name)))
 		{
-			// update the value of the env node
 			ft_printf("env found\n");
 			return (1);
 		}
@@ -156,9 +160,9 @@ static int	check_if_env_exists(t_shelldata data, t_input_list *temp)
 	return (0);
 }
 
-/*  This function will go through the input list and find all keys that are exportable.
-	Also figures out if they have any value pairs */
-static void	execute_commands(t_shelldata data, t_input_list *temp)
+/*  This function will go through the input list and figures out do we
+    replace or add the new key/value pair */
+static void	execute_export_commands(t_shelldata data, t_input_list *temp)
 {
 	char	*value_index;
 
@@ -169,7 +173,7 @@ static void	execute_commands(t_shelldata data, t_input_list *temp)
 			value_index = ft_strchr(temp->input, 075);
 			if (value_index != NULL)
 			{
-				if (check_if_env_exists(data, temp) == 1)
+				if (check_if_export_env_exists(data, temp) == 1)
 				{
 					ft_printf("env exists, we should replace it\n");
 					break ;
@@ -184,7 +188,7 @@ static void	execute_commands(t_shelldata data, t_input_list *temp)
 		temp = temp->next;
 	}
 }
-
+/* my_export main function*/
 void	my_export(t_shelldata data, t_input_list *temp)
 {
 	t_input_list	*input_head;
@@ -199,12 +203,12 @@ void	my_export(t_shelldata data, t_input_list *temp)
 	}
 	while (temp)
 	{
-		is_var_name_valid(temp);
+		is_export_var_name_valid(temp);
 		temp = temp->next;
 	}
 	temp = input_head;
 	data = *data_head;
-	execute_commands(data, temp);
-	ft_export_type_printer(temp);
+	execute_export_commands(data, temp);
+	//ft_export_type_printer(temp);
 	ft_printf("export finished\n");
 }
