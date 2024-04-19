@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:30:01 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/18 19:22:46 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/19 12:28:21 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ export export
  */
 
 // remember to check exit code when error handling takes place
+/*This function checks all arguments for export and flags them if
+  they are good for execution*/
 static void	is_var_name_valid(t_input_list *temp)
 {
 	int	i;
@@ -113,7 +115,7 @@ static void	is_var_name_valid(t_input_list *temp)
 	}
 	temp->type = VALID_EXPORT_INPUT;
 }
-
+/*Function to imitate export command without arguments*/
 static void	export_no_commands(t_shelldata data)
 {
 	// the formatting of the output needs reworking
@@ -125,27 +127,6 @@ static void	export_no_commands(t_shelldata data)
 		data.env_list = data.env_list->next;
 	}
 }
-/*
-static void	is_env_existent(t_shelldata data, t_input_list *temp)
-{
-	while (ft_strchr(temp->input, 075) == NULL) // check if the current input split has '='
-	{
-		ft_printf("got into the ft_strchr\n");
-		temp = temp->next;
-	}
-	while (data.env_list)
-	{
-		// compare for the ft_strlen of the env.var_name between the input and the env names
-		if (!ft_strncmp(data.env_list->env_var_name, temp->input, \
-		ft_strlen(data.env_list->env_var_name)))
-			data.env_list = data.env_list->next;
-		else
-		{
-			ft_printf("env found\n");
-			return ;
-		}
-	}
-}*/
 
 /*Valid input tag is 84 and invalid is 85*/
 static void	ft_export_type_printer(t_input_list *temp)
@@ -158,25 +139,26 @@ static void	ft_export_type_printer(t_input_list *temp)
 	}
 }
 
-/*This function will figure out if there is actual value string after the '= 'sign of the
-  current key, it also checks if the value string is in double quotes when it will allow
-  value string with spaces as well*/
-static	void	value_parser(char *value_index, int allow_spaces)
+static int	check_if_env_exists(t_shelldata data, t_input_list *temp)
 {
-	int	allow_space;
-
-	allow_space = 0;
-	while (value_index)
+	ft_printf("got into the check_if_env_exists\n");
+	while (data.env_list)
 	{
-		value_index++;
-		if ((char)value_index == '"')
-			allow_space = 1;
+		if (!ft_strncmp(data.env_list->env_var_name, temp->input, \
+		ft_strlen(data.env_list->env_var_name)))
+		{
+			// update the value of the env node
+			ft_printf("env found\n");
+			return (1);
+		}
+		data.env_list = data.env_list->next;
 	}
+	return (0);
 }
 
 /*  This function will go through the input list and find all keys that are exportable.
 	Also figures out if they have any value pairs */
-static void	execute_commands(t_input_list *temp)
+static void	execute_commands(t_shelldata data, t_input_list *temp)
 {
 	char	*value_index;
 
@@ -186,7 +168,18 @@ static void	execute_commands(t_input_list *temp)
 		{
 			value_index = ft_strchr(temp->input, 075);
 			if (value_index != NULL)
-				value_parser(value_index);
+			{
+				if (check_if_env_exists(data, temp) == 1)
+				{
+					ft_printf("env exists, we should replace it\n");
+					break ;
+				}
+				else
+				{
+					ft_printf("env does not exist, we should create it\n");
+					break ;
+				}
+			}
 		}
 		temp = temp->next;
 	}
@@ -194,9 +187,11 @@ static void	execute_commands(t_input_list *temp)
 
 void	my_export(t_shelldata data, t_input_list *temp)
 {
-	t_input_list	*head;
+	t_input_list	*input_head;
+	t_shelldata		*data_head;
 
-	head = temp;
+	input_head = temp;
+	data_head = &data;
 	if (!temp->next)
 	{
 		export_no_commands(data);
@@ -207,10 +202,9 @@ void	my_export(t_shelldata data, t_input_list *temp)
 		is_var_name_valid(temp);
 		temp = temp->next;
 	}
-	temp = head;
-	// now the inputs have been validated and flagged, next thing is to go through them again and flag
-	// the ones that are valid and contain '=' sign for execution.
-	execute_commands(temp);
+	temp = input_head;
+	data = *data_head;
+	execute_commands(data, temp);
 	ft_export_type_printer(temp);
 	ft_printf("export finished\n");
 }
