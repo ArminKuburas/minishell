@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/12 11:53:26 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/18 17:56:17 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,15 @@ enum e_input_type
 	COMMAND = 62,
 	COMMAND_ARGUMENT = 63,
 	PIPE = 72,
-	NO_SPLIT = 82,
-	WORD_SPLIT = 83
+	POTENTIAL_SPLIT = 82,
+	WORD_SPLIT = 83,
+};
+
+enum e_export_input_type
+{
+	INVALID_EXPORT_INPUT = 84,
+	VALID_EXPORT_INPUT = 85,
+	VALID_EXPORT_COMMAND = 86
 };
 
 typedef struct s_input_list
@@ -134,10 +141,10 @@ typedef struct s_shelldata
 	t_env_list		*env_list;
 	t_input_list	*input_list;
 	char			**env_variables;
+	char			*cwd; // subject for change
 	char			*input;
 	int				exit_value;
 }		t_shelldata;
-
 
 //A required struct for the functions that create new strings
 typedef struct s_new_string_data
@@ -151,6 +158,8 @@ typedef struct s_new_string_data
 }	t_new_string_data;
 
 //readline functions
+
+typedef void	(*t_handler)(int);
 
 int			rl_clear_history(void);
 void		rl_replace_line(char *str, int num);
@@ -178,6 +187,17 @@ int			env_str_cmpr(char *env, char *str, int len);
 int			new_length(t_input_list *temp, t_env_list *env);
 int			split_cleaner(t_shelldata *data);
 
-// static void	signal_handler(int signal);
+//signal handler
+
+void		sigint_handler(int sig);
+void		signal_handler(int signal, t_handler handler);
+void		parent_signals(void);
+
+//built_in functions
+void		execute_command(char *command[]);
+void		my_echo(t_input_list *temp);
+void		my_cd(t_shelldata data, t_input_list *temp);
+void		my_pwd(t_shelldata data, t_input_list *temp);
+void		my_export(t_shelldata data, t_input_list *temp);
 
 #endif
