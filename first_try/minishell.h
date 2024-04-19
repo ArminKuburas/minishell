@@ -124,7 +124,6 @@ int			rl_clear_history(void);
 int			mini_split(char *input, t_shelldata *data);
 void		free_double_array(char ***array);
 void		rl_replace_line(char *str, int num);
-<<<<<<< HEAD
 int			parse_split_input(t_shelldata *data);
 int			split_cleaner(t_shelldata *data);
 void		carrot_toggle(int on);
@@ -132,10 +131,5 @@ void		set_state(t_state state);
 void		parent_signals(void);
 void		signal_handler(int signal, t_handler handler);
 void		sigint_handler(int sig);
-=======
-// static void	signal_handler(int signal);
-int			parse_split_input(t_shelldata *data);
-int			split_cleaner(t_shelldata *data);
->>>>>>> main
 
 #endif

@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
+#    By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
 #    Updated: 2024/04/19 04:14:43 by akuburas         ###   ########.fr        #
@@ -12,7 +12,7 @@
 
 NAME = minishell
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 RLFLAGS = -lreadline -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include
 DEBUGFLAGS = -Wall -Wextra -Werror -g
 
@@ -31,6 +31,11 @@ SRCS = main.c \
 		cleaner_length_functions.c \
 		potential_split_functions.c \
 		new_mini_split.c \
+		signal.c \
+		echo.c \
+		cd.c \
+		pwd.c \
+		export.c
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)
