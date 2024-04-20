@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/19 16:19:22 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/20 12:51:24 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	main(int argc, char **argv, char **env)
 		if (!data.input)
 		{
 			printf("exit\n");
+			rl_clear_history();
 			clear_env_list(data.env_list, SUCCESS);
 			break ;
 		}

@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/19 19:08:56 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/20 18:03:29 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,6 @@ typedef struct s_child_data
 	int		fd_in;
 	int		fd_out;
 	char	**env;
-	t_input_list	*input_list;
-	t_env_list		*env_list;
 	char	*command;
 	char	**command_inputs;
 }	t_child_data;

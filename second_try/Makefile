@@ -6,7 +6,7 @@
 #    By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/04/19 14:51:46 by tvalimak         ###   ########.fr        #
+#    Updated: 2024/04/20 18:03:43 by tvalimak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,11 +32,11 @@ SRCS = main.c \
 		potential_split_functions.c \
 		new_mini_split.c \
 		signal.c \
-		echo.c \
 		cd.c \
 		pwd.c \
 		export.c \
-		unset.c
+		unset.c \
+		echo.c
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)
