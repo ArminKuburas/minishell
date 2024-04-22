@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/20 18:03:29 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/22 20:47:07 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,8 @@ typedef struct s_shelldata
 	t_input_list	*input_list;
 	t_parse_data	child_data;
 	char			**env_variables;
-	char			*cwd; // subject for change
+	char			*pwd; // subject for change
+	char			*old_pwd; // subject for change
 	char			*input;
 	int				exit_value;
 }		t_shelldata;
@@ -228,10 +229,11 @@ void		parent_signals(void);
 
 //built_in functions
 void		execute_command(char *command[]);
-void		my_echo(t_shelldata data, t_input_list *temp);
+void		my_echo(t_input_list *temp);
 void		my_cd(t_shelldata data, t_input_list *temp);
 void		my_pwd(t_shelldata data, t_input_list *temp);
 void		my_export(t_shelldata data, t_input_list *temp);
 void		my_unset(t_shelldata data, t_input_list *temp);
+
 
 #endif

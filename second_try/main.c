@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/20 12:51:24 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/22 19:14:58 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
 		parent_signals();
+		data.pwd = getcwd(NULL, 0);
+		if (!data.pwd)
+			ft_putendl_fd("Fail in getcwd", 2);
 		data.input = readline("bananashell-0.14:");
 		if (!data.input)
 		{
