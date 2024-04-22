@@ -6,12 +6,13 @@
 /*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:10:36 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/22 20:43:47 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/22 20:48:35 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*This function updates the pwd and old_pwd information in the env's*/
 static void	update_env_pwd(t_shelldata *data)
 {
 	t_env_list	*temp;
