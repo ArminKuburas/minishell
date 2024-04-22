@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/19 06:07:22 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/21 16:30:47 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,13 @@ int	main(int argc, char **argv, char **env)
 				while (temp != NULL)
 				{
 					printf("This is input %d: %s\n", i, temp->input);
+					printf("This is word_split %d: %d\n", i, temp->word_split);
+					printf("")
 					i++;
 					temp = temp->next;
 				}
+				printf("--------------------\n");
+				
 				clear_input(data.input_list, SUCCESS);
 			}
 			add_history(data.input);
