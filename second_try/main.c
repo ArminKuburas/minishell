@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/21 16:30:47 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/22 11:59:22 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	main(int argc, char **argv, char **env)
 				{
 					printf("This is input %d: %s\n", i, temp->input);
 					printf("This is word_split %d: %d\n", i, temp->word_split);
-					printf("")
+					printf("This is type = %d\n", temp->type);
 					i++;
 					temp = temp->next;
 				}
