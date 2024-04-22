@@ -6,7 +6,7 @@
 /*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/22 19:14:58 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/22 22:40:32 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,6 @@ int	main(int argc, char **argv, char **env)
 		}
 		if (data.input)
 		{
-			if (ft_strcmp(data.input, "exit") == 0)
-			{
-				printf("exit\n");
-				free(data.input);
-				clear_env_list(data.env_list, SUCCESS);
-				break ;
-			}
 			if (ft_strlen(data.input) == 0)
 			{
 				free(data.input);
@@ -79,12 +72,33 @@ int	main(int argc, char **argv, char **env)
 			if (error == SUCCESS)
 			{
 				t_input_list *temp = data.input_list;
+				t_input_list *data_head = temp;
 				int i = 0;
 				while (temp != NULL)
 				{
 					printf("This is input %d: %s\n", i, temp->input);
 					i++;
 					temp = temp->next;
+				}
+				temp = data_head;
+				if (ft_strcmp(temp->input, "pwd") == 0)
+				{
+					my_pwd(data, temp);
+					free(data.input);
+					continue ;
+				}
+				if (ft_strcmp(temp->input, "cd") == 0)
+				{
+					my_cd(data, temp);
+					free(data.input);
+					continue ;
+				}
+				if (ft_strcmp(temp->input, "exit") == 0)
+				{
+					printf("exit\n");
+					free(data.input);
+					clear_env_list(data.env_list, SUCCESS);
+					break ;
 				}
 				clear_input(data.input_list, SUCCESS);
 			}
