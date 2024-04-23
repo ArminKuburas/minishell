@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/22 12:03:37 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/23 12:19:30 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ enum e_input_type
 	PIPE = 72,
 	POTENTIAL_SPLIT = 82,
 	WORD_SPLIT = 83,
+	BUILTIN = 92
 };
 
 enum e_export_input_type

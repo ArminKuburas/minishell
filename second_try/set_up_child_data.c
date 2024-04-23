@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:58:42 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/23 09:43:41 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/23 12:22:49 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,23 @@ To use the PATH env variable. We handle errors as needed.*/
 void	setup_command(t_shelldata *data, int index)
 {
 	t_input_list	*temp;
+	int				i;
 
 	temp = data->input_list;
-	while (index > 0)
+	i = index;
+	while (i > 0)
 	{
 		while (temp->type != PIPE)
 			temp = temp->next;
 		temp = temp->next;
-		index--;
+		i--;
 	}
 	while (temp && temp->type != PIPE)
 	{
 		if (temp->type == COMMAND)
 		{
 		}
+		temp = temp->next;
 	}
 }
 
@@ -61,7 +64,7 @@ void	create_child_data(t_shelldata *data, int amount)
 	{
 		setup_redirects(data, i);
 		if (data->child_data[i].exit_value == 0)
-			setup_command(data, i);
+			if (setup_command(data, i) == FAILURE)
 		i++;
 	}
 }

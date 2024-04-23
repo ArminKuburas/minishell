@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:08:59 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/23 09:30:24 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/23 12:08:06 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,16 @@ void	handle_redirect_append(t_child_data *data, t_input_list *input)
 void	setup_redirects(t_shelldata *data, int index)
 {
 	t_input_list	*temp;
+	int				i;
 
 	temp = data->input_list;
-	while (index > 0)
+	i = index;
+	while (i > 0)
 	{
 		while (temp->type != PIPE)
 			temp = temp->next;
 		temp = temp->next;
-		index--;
+		i--;
 	}
 	while (temp && temp->type != PIPE)
 	{
