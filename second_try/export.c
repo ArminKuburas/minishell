@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:30:01 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/19 16:24:44 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/23 23:00:52 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,44 @@ static int	check_if_export_env_exists(t_shelldata data, t_input_list *temp)
 	return (0);
 }
 
+/*This function adds a new env var to the env list*/
+static void	add_new_env_var(t_shelldata data, t_input_list *temp)
+{
+	t_env_list	*new_env;
+	t_env_list	*temp_env;
+
+	new_env = ft_calloc(1, sizeof(t_env_list));
+	if (!new_env)
+		return ;
+	new_env->env_var_name = ft_strdup(temp->input);
+	new_env->env_var_value = ft_strdup(temp->input);
+	new_env->env_var = ft_strjoin(temp->input, "=");
+	new_env->next = NULL;
+	temp_env = data.env_list;
+	while (temp_env->next)
+		temp_env = temp_env->next;
+	temp_env->next = new_env;
+}
+
+/*This function replaces the env var value if it already exists*/
+static void replace_env_var(t_shelldata data, t_input_list *temp)
+{
+	t_env_list	*temp_env;
+
+	temp_env = data.env_list;
+	while (temp_env)
+	{
+		if (!ft_strncmp(temp_env->env_var_name, temp->input, \
+		ft_strlen(temp_env->env_var_name)))
+		{
+			temp_env->env_var_value = ft_strdup(temp->input);
+			temp_env->env_var = ft_strjoin(temp->input, "=");
+			break ;
+		}
+		temp_env = temp_env->next;
+	}
+}
+
 /*  This function will go through the input list and figures out do we
     replace or add the new key/value pair */
 static void	execute_export_commands(t_shelldata data, t_input_list *temp)
@@ -175,12 +213,12 @@ static void	execute_export_commands(t_shelldata data, t_input_list *temp)
 			{
 				if (check_if_export_env_exists(data, temp) == 1)
 				{
-					ft_printf("env exists, we should replace it\n");
+					replace_env_var(data, temp);
 					break ;
 				}
 				else
 				{
-					ft_printf("env does not exist, we should create it\n");
+					add_new_env_var(data, temp);
 					break ;
 				}
 			}
