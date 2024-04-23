@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/23 13:25:56 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/23 22:10:35 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,9 @@ enum e_errors
 	NO_PIPE = 7,
 	NO_FORK = 8,
 	NO_QUOTE = 9,
-	NOT_FOUND = 10
+	NOT_FOUND = 10,
+	EXECUTION_FORBIDDEN = 11,
+	FOUND = 12
 };
 
 enum e_child_status
