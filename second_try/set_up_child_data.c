@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:58:42 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/22 16:09:05 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/23 09:43:41 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,30 @@ int	count_processes(t_input_list *start)
 	}
 }
 
+/*This function first tries to see if a command exists
+If one does exist it tries to check if its perhaps a builtin
+If it isn't we will then try to find it. First we try as is
+Since it might have the path already there. Otherwise we try
+To use the PATH env variable. We handle errors as needed.*/
+void	setup_command(t_shelldata *data, int index)
+{
+	t_input_list	*temp;
 
+	temp = data->input_list;
+	while (index > 0)
+	{
+		while (temp->type != PIPE)
+			temp = temp->next;
+		temp = temp->next;
+		index--;
+	}
+	while (temp && temp->type != PIPE)
+	{
+		if (temp->type == COMMAND)
+		{
+		}
+	}
+}
 
 void	create_child_data(t_shelldata *data, int amount)
 {
@@ -38,7 +61,7 @@ void	create_child_data(t_shelldata *data, int amount)
 	{
 		setup_redirects(data, i);
 		if (data->child_data[i].exit_value == 0)
-			setup_function(data, i);
+			setup_command(data, i);
 		i++;
 	}
 }
@@ -56,6 +79,5 @@ int	set_up_child_data(t_shelldata *data)
 		return (NO_MEMORY);
 	}
 	create_child_data(data, processes);
-
 	return (SUCCESS);
 }
