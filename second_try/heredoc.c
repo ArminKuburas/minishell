@@ -6,7 +6,7 @@
 /*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 21:14:23 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/23 22:30:45 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/23 22:33:40 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,5 @@ void	heredoc(t_shelldata data, t_input_list *temp)
 	if (pid == 0)
 		heredoc_child(data, temp);
 	waitpid(pid, &data.exit_value, 0);
+	handler_signals();
 }
