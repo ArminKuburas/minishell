@@ -6,7 +6,7 @@
 /*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/22 22:40:32 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/23 22:22:20 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ int	main(int argc, char **argv, char **env)
 					temp = temp->next;
 				}
 				temp = data_head;
+				if (temp->next && temp->next->type == REDIRECT_HEREDOC)
+					heredoc(data, temp);
 				if (ft_strcmp(temp->input, "pwd") == 0)
 				{
 					my_pwd(data, temp);

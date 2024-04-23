@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+         #
+#    By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/04/20 18:03:43 by tvalimak         ###   ########.fr        #
+#    Updated: 2024/04/23 22:05:58 by tvalimak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ SRCS = main.c \
 		pwd.c \
 		export.c \
 		unset.c \
-		echo.c
+		echo.c \
+		heredoc.c
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)

@@ -6,7 +6,7 @@
 /*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/22 22:40:55 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/23 22:31:22 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@
 
 /*For boolean type*/
 # include <stdbool.h>
+
+/*For the waitpid function*/
+# include <sys/wait.h>
 
 /*Definition for SIGINT*/
 # define CTRL_C SIGINT
@@ -218,14 +221,18 @@ void		copy_dollar(t_new_string_data *data);
 t_env_list	*try_to_find_env(t_env_list *env, char *str, int len);
 void		potential_split_create(t_new_string_data *data);
 
-int	new_mini_split(t_shelldata *data);
+int			new_mini_split(t_shelldata *data);
 
 
 //signal handler
 
 void		sigint_handler(int sig);
+void		heredoc_handler(int sig);
 void		signal_handler(int signal, t_handler handler);
 void		parent_signals(void);
+void		heredoc_signals(void);
+void		standby_signals(void);
+void		caret_switch(int on);
 
 //built_in functions
 void		execute_command(char *command[]);
@@ -235,5 +242,7 @@ void		my_pwd(t_shelldata data, t_input_list *temp);
 void		my_export(t_shelldata data, t_input_list *temp);
 void		my_unset(t_shelldata data, t_input_list *temp);
 
+//heredoc
+void		heredoc(t_shelldata data, t_input_list *temp);
 
 #endif
