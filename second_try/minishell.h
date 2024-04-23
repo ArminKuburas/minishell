@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/23 12:19:30 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/23 13:25:56 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ enum e_errors
 	NO_MEMORY = 6,
 	NO_PIPE = 7,
 	NO_FORK = 8,
-	NO_QUOTE = 9
+	NO_QUOTE = 9,
+	NOT_FOUND = 10
 };
 
 enum e_child_status
@@ -149,6 +150,7 @@ typedef struct s_shelldata
 	t_env_list		*env_list;
 	t_input_list	*input_list;
 	t_child_data	*child_data;
+	int				command_amount;
 	char			**env_variables;
 	char			*cwd; // subject for change
 	char			*input;
