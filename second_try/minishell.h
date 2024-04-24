@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/23 22:10:35 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/24 16:28:55 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ enum e_errors
 	NO_QUOTE = 9,
 	NOT_FOUND = 10,
 	EXECUTION_FORBIDDEN = 11,
-	FOUND = 12
+	IS_DIRECTORY = 12,
+	FOUND = 13
 };
 
 enum e_child_status
@@ -86,8 +87,8 @@ enum e_child_status
 typedef struct s_child_data
 {
 	int		pipe_situation;
-	int		p_fd_1[2];
-	int		p_fd_2[2];
+	int		p_fd_in[2];
+	int		p_fd_out[2];
 	int		redirections;
 	int		fd_in;
 	int		fd_out;
@@ -229,5 +230,13 @@ void		my_echo(t_input_list *temp);
 void		my_cd(t_shelldata data, t_input_list *temp);
 void		my_pwd(t_shelldata data, t_input_list *temp);
 void		my_export(t_shelldata data, t_input_list *temp);
+
+//child processing functions
+int			set_up_child_data(t_shelldata *data);
+void		setup_redirects(t_shelldata *data, int index);
+int			setup_command(t_shelldata *data, int index);
+int			is_it_command(char *input, t_shelldata *data, int index);
+void		free_child_data(t_child_data *data, int index);
+
 
 #endif

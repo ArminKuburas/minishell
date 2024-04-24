@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/22 11:59:22 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/24 16:35:37 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,11 @@ int	main(int argc, char **argv, char **env)
 					temp = temp->next;
 				}
 				printf("--------------------\n");
-				
+				set_up_child_data(&data);
+				i = 0
+				printf("--------------------\n");
 				clear_input(data.input_list, SUCCESS);
+				free_child_data(data.child_data, data.command_amount);
 			}
 			add_history(data.input);
 		}

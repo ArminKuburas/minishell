@@ -6,29 +6,34 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:04:17 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/24 10:04:47 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/24 16:28:41 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	create_variables(char ***path_variables, t_env_list *env_list)
+static void	close_pipes(t_child_data *data)
 {
-	t_env_list	*temp;
-	int			i;
+	if (data->p_fd_in[0] != 0)
+		close(data->p_fd_in[0]);
+	if (data->p_fd_in[1] != 0)
+		close(data->p_fd_in[1]);
+	if (data->p_fd_out[0] != 0)
+		close(data->p_fd_out[0]);
+	if (data->p_fd_out[1] != 0)
+		close(data->p_fd_out[1]);
+}
 
-	temp = env_list;
-	i = 0;
-	while (temp != NULL)
-	{
-		if (ft_strncmp(temp->env_var_name, "PATH", 4) == 0)
-		{
-			*path_variables = ft_split(temp->env_var_value, ':');
-			if (*path_variables == NULL)
-				return (NO_MEMORY);
-			return (SUCCESS);
-		}
-		temp = temp->next;
-	}
-	return (NOT_FOUND);
+void	free_child_data(t_child_data *data, int index)
+{
+	if (data->fd_in != 0)
+		close(data->fd_in);
+	if (data->fd_out != 1)
+		close(data->fd_out);
+	if (data->command != NULL)
+		free(data->command);
+	if (data->command_inputs != NULL)
+		free(data->command_inputs);
+	if (index % 2 == 1)
+		close_pipes(data);
 }

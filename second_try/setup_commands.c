@@ -6,22 +6,47 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 09:35:02 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/24 09:56:54 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/24 11:08:42 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	check_command(const char *builtin, char *command)
+static int	check_command(const char *builtin, char *command)
 {
 	if (ft_strlen(builtin) != ft_strlen(command))
-		return (0);
+		return (-1);
 	if (ft_strcmp(builtin, command) == 0)
-		return (1);
-	return (0);
+		return (0);
+	return (-1);
 }
 
+static int	is_it_builtin(char *command, t_child_data *child_data)
+{
+	const char	builtins[7][20] = {
+		"echo",
+		"cd",
+		"pwd",
+		"export",
+		"unset",
+		"env",
+		"exit"
+	};
+	int			i;
 
+	while (i < 7)
+	{
+		if (check_command(builtins[i], command) == 0)
+		{
+			child_data->command = ft_strdup(command);
+			if (child_data->command == NULL)
+				return (NO_MEMORY);
+			return (SUCCESS);
+		}
+		i++;
+	}
+	return (NOT_FOUND);
+}
 
 /*This function first tries to see if a command exists
 If one does exist it tries to check if its perhaps a builtin

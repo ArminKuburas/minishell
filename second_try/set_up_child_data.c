@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:58:42 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/24 10:04:42 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/24 11:31:13 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,56 @@ int	count_processes(t_input_list *start)
 	}
 }
 
+void	print_command_error_message(int error, t_shelldata *data, int amount)
+{
+	t_input_list	*temp;
+	int				i;
+
+	temp = data->input_list;
+	i = amount;
+	while (i > 0)
+	{
+		while (temp->type != PIPE)
+			temp = temp->next;
+		temp = temp->next;
+		i--;
+	}
+	while (temp->type != COMMAND)
+		temp = temp->next;
+	if (error == NO_MEMORY)
+		ft_putstr_fd("memory allocation failed\n", 2);
+	else if (error == NOT_FOUND)
+	{
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(temp->input, 2);
+		ft_putstr_fd(": command not found\n", 2);
+		data->child_data[amount].exit_value = 127;
+	}
+	else if (error == EXECUTION_FORBIDDEN)
+	{
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(temp->input, 2);
+		ft_putstr_fd(": Permission denied\n", 2);
+		data->child_data[amount].exit_value = 126;
+	}
+}
+
 int	create_child_data(t_shelldata *data, int amount)
 {
 	int	i;
+	int	error;
 
 	i = 0;
 	while (i < amount)
 	{
 		setup_redirects(data, i);
 		if (data->child_data[i].exit_value == 0)
-			if (setup_command(data, i) != SUCCESS)
-				return (FAILURE);
+		{
+			error = setup_command(data, i);
+			if (error != SUCCESS)
+				print_command_error_message(error, data, i);
+
+		}
 		i++;
 	}
 	return (SUCCESS);
