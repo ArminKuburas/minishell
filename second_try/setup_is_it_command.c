@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 09:54:36 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/24 12:48:44 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/24 23:56:31 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 int	create_variables(char ***path_variables, t_env_list *env_list)
 {
 	t_env_list	*temp;
-	int			i;
 
 	temp = env_list;
-	i = 0;
 	while (temp != NULL)
 	{
 		if (ft_strncmp(temp->env_var_name, "PATH", 4) == 0)
@@ -64,8 +62,8 @@ char	*create_path(char *path_variable, char *input, int *error)
 		*error = NO_MEMORY;
 		return (NULL);
 	}
-	try_access(temp2, &error);
-	if (error != FOUND)
+	try_access(temp2, error);
+	if (*error != FOUND)
 	{
 		free(temp2);
 		temp2 = NULL;
@@ -133,6 +131,7 @@ int check_if_given_path(char *input, t_shelldata *data, int index)
 		else
 			return (NOT_FOUND);
 	}
+	return (NOT_FOUND);
 }
 
 int	is_it_command(char *input, t_shelldata *data, int index)

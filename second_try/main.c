@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/24 16:35:37 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/25 00:44:25 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,26 @@ int	main(int argc, char **argv, char **env)
 			temp = temp->next;
 		}
 	}
+	ft_memset(&data, 0, sizeof(t_shelldata));
 	while (1)
 	{
-    parent_signals();
+		printf("inside while loop\n");
+		parent_signals();
+		printf("before readline after parent signals\n");
+		printf("data.input is %s\n", data.input);
 		data.input = readline("bananashell-0.14:");
+		printf("after readline\n");
 		if (!data.input)
 		{
-			printf("exit\n");
+			if (feof(stdin))
+			{
+				printf("EOF signal received\n");
+			}
+			else if (ferror(stdin))
+			{
+				printf("Read error occurred\n");
+			}
+			printf("exit1\n");
 			clear_env_list(data.env_list, SUCCESS);
 			break ;
 		}
@@ -61,7 +74,7 @@ int	main(int argc, char **argv, char **env)
 		{
 			if (ft_strcmp(data.input, "exit") == 0)
 			{
-				printf("exit\n");
+				printf("exit2\n");
 				free(data.input);
 				clear_env_list(data.env_list, SUCCESS);
 				break ;
@@ -86,10 +99,20 @@ int	main(int argc, char **argv, char **env)
 				}
 				printf("--------------------\n");
 				set_up_child_data(&data);
-				i = 0
+				i = 0;
+				printf("--------------------\n");
+				while (i < data.command_amount)
+				{
+					printf("This is command %d: %s\n", i, data.child_data[i].command);
+					printf("This is fd_in %d: %d\n", i, data.child_data[i].fd_in);
+					printf("This is fd_out %d: %d\n", i, data.child_data[i].fd_out);
+					printf("This is exit value %d: %d\n", i, data.child_data[i].exit_value);
+					free_child_data(&data.child_data[i]);
+					i++;
+				}
 				printf("--------------------\n");
 				clear_input(data.input_list, SUCCESS);
-				free_child_data(data.child_data, data.command_amount);
+				free(data.child_data);
 			}
 			add_history(data.input);
 		}

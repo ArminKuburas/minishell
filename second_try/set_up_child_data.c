@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:58:42 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/24 11:31:13 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/24 23:51:20 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	count_processes(t_input_list *start)
 			amount++;
 		temp = temp->next;
 	}
+	return (amount);
 }
 
 void	print_command_error_message(int error, t_shelldata *data, int amount)

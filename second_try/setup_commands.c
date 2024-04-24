@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 09:35:02 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/24 11:08:42 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/24 23:51:57 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	check_command(const char *builtin, char *command)
 {
 	if (ft_strlen(builtin) != ft_strlen(command))
 		return (-1);
-	if (ft_strcmp(builtin, command) == 0)
+	if (ft_strcmp((char *)builtin, command) == 0)
 		return (0);
 	return (-1);
 }

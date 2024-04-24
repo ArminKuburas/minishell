@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/24 16:28:55 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/24 23:54:30 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,8 +186,8 @@ typedef struct s_split_data
 
 typedef void	(*t_handler)(int);
 
-int			rl_clear_history(void);
-void		rl_replace_line(char *str, int num);
+//int			rl_clear_history(void);
+//void		rl_replace_line(char *str, int num);
 
 //data_parser functions
 
@@ -236,7 +236,7 @@ int			set_up_child_data(t_shelldata *data);
 void		setup_redirects(t_shelldata *data, int index);
 int			setup_command(t_shelldata *data, int index);
 int			is_it_command(char *input, t_shelldata *data, int index);
-void		free_child_data(t_child_data *data, int index);
+void		free_child_data(t_child_data *data);
 
 
 #endif
