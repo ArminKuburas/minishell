@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 09:35:02 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/24 23:51:57 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/25 11:38:56 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static int	is_it_builtin(char *command, t_child_data *child_data)
 	};
 	int			i;
 
+	i = 0;
 	while (i < 7)
 	{
 		if (check_command(builtins[i], command) == 0)

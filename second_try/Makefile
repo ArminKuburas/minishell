@@ -6,7 +6,7 @@
 #    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/04/24 16:30:23 by akuburas         ###   ########.fr        #
+#    Updated: 2024/04/25 16:36:35 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRCS = main.c \
 		setup_helpers.c \
 		setup_is_it_command.c \
 		setup_redirects.c \
+		setup_pipes.c \
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)

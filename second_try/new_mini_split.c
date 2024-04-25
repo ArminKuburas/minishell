@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:41:10 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/19 12:05:33 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/25 15:39:45 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int	new_mini_split(t_shelldata *data)
 	data->input_list = ft_calloc(1, sizeof(t_input_list));
 	if (data->input_list == NULL)
 		return (NO_MEMORY);
+	printf("before duplicating strings in new mini split.\n");
+	printf("This is data env_list %s.\n", data->env_list->env_var);
 	while (data->input[i])
 	{
 		while (data->input[i] == ' ' || data->input[i] == '\t')
@@ -99,8 +101,6 @@ int	new_mini_split(t_shelldata *data)
 	}
 	t_input_list *temp = data->input_list;
 	int j = 0;
-	printf("--------------------\n");
-	printf("input before cleaning\n");
 	while (temp != NULL)
 	{
 		printf("input[%d] = %s\n", j, temp->input);
@@ -109,8 +109,6 @@ int	new_mini_split(t_shelldata *data)
 	input_type_assigner(data->input_list);
 	temp = data->input_list;
 	j = 0;
-	printf("--------------------\n");
-	printf("after input type assigner\n");
 	while (temp != NULL)
 	{
 		printf("input[%d] type = %d\n", j, temp->type);

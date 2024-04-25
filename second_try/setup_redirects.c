@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:08:59 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/25 08:49:30 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/25 10:40:51 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,14 @@ static void	handle_redirect_output(t_child_data *data, t_input_list *input)
 		return ;
 	if (data->fd_out != 0)
 		close(data->fd_out);
+	if (input->word_split == WORD_SPLIT || (ft_strcmp(input->input, "") == 0 && input->old_input[0] == '$'))
+	{
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(input->old_input, 2);
+		ft_putstr_fd(": ambiguous redirect\n", 2);
+		data->exit_value = 1;
+		return ;
+	}
 	data->fd_out = open(input->input, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (data->fd_out == -1 && !access(input->input, F_OK))
 	{
@@ -66,10 +74,7 @@ static void	handle_redirect_append(t_child_data *data, t_input_list *input)
 	if (data->exit_value != 0)
 		return ;
 	if (data->fd_out != 0)
-	{
 		close(data->fd_out);
-		data->fd_out = 0;
-	}
 	if (input->word_split == WORD_SPLIT || (ft_strcmp(input->input, "") == 0 && input->old_input[0] == '$'))
 	{
 		ft_putstr_fd("minishell: ", 2);

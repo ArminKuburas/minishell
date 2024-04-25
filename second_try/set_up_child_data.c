@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:58:42 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/25 08:06:36 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/25 16:57:39 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,79 @@ void	print_command_error_message(int error, t_shelldata *data, int amount)
 	}
 }
 
+int	create_command_arguments(t_child_data *child, t_input_list *start)
+{
+	t_input_list	*temp;
+	int				i;
+
+	i = 0;
+	temp = start;
+	printf("Inside create command arguments.\n");
+	while (temp && temp->type != PIPE)
+	{
+		if (temp->type == COMMAND_ARGUMENT)
+			i++;
+		temp = temp->next;
+	}
+	printf("After while loop. i = %d\n", i);
+	if (i == 0)
+		return (0);
+	child->command_inputs = ft_calloc(i + 1, sizeof(char *));
+	if (child->command_inputs == NULL)
+		return (1);
+	i = 0;
+	temp = start;
+	while (temp && temp->type != PIPE)
+	{
+		if (temp->type == COMMAND_ARGUMENT)
+		{
+			child->command_inputs[i] = temp->input;
+			i++;
+		}
+		temp = temp->next;
+	}
+	return (0);
+}
+
+void	setup_command_inputs(t_shelldata *data, int i)
+{
+	int				j;
+	int				error;
+	t_input_list	*temp;
+
+	j = 0;
+	temp = data->input_list;
+	printf("inside setup command inputs\n");
+	while (j < i)
+	{
+		while (temp->type != PIPE)
+			temp = temp->next;
+		temp = temp->next;
+		j++;
+	}
+	printf("After initial while loop inside setup command inputs j = %d\n", j);
+	while (temp->type != COMMAND)
+	{
+		temp = temp->next;
+	}
+	printf("after second while loop. temp input equals %s\n", temp->input);
+	error = create_command_arguments(&data->child_data[i], temp);
+	data->child_data[i].exit_value = error;
+}
+
+void	set_all_error(t_shelldata *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->command_amount)
+	{
+		if (data->child_data[i].exit_value == 0)
+			data->child_data[i].exit_value = 1;
+		i++;
+	}
+}
+
 int	create_child_data(t_shelldata *data, int amount)
 {
 	int	i;
@@ -74,10 +147,15 @@ int	create_child_data(t_shelldata *data, int amount)
 		if (data->child_data[i].exit_value == 0)
 		{
 			error = setup_command(data, i);
+			printf("after setup command inside create child data\n");
 			if (error != SUCCESS)
 				print_command_error_message(error, data, i);
-
+			else
+				setup_command_inputs(data, i);
 		}
+		error = setup_pipes(data, i);
+		if (error != SUCCESS)
+			set_all_error(data);
 		i++;
 	}
 	return (SUCCESS);
@@ -86,6 +164,7 @@ int	create_child_data(t_shelldata *data, int amount)
 int	set_up_child_data(t_shelldata *data)
 {
 	int	processes;
+
 	printf("set_up_child_data\n");
 	processes = count_processes(data->input_list);
 	printf("processes = %d\n", processes);

@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/25 08:19:14 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:02:06 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	main(int argc, char **argv, char **env)
 	t_shelldata	data;
 	int			error;
 
+
+	ft_memset(&data, 0, sizeof(t_shelldata));
 	if (argc < 1)
 		printf("wtf\n");
 	if (!argv[0])
@@ -46,27 +48,16 @@ int	main(int argc, char **argv, char **env)
 			printf("--------------------\n");
 			temp = temp->next;
 		}
+		printf("After printing env.\n");
+		printf("This is data env_list %s.\n", data.env_list->env_var);
 	}
-	ft_memset(&data, 0, sizeof(t_shelldata));
 	while (1)
 	{
-		printf("inside while loop\n");
 		parent_signals();
-		printf("before readline after parent signals\n");
-		printf("data.input is %s\n", data.input);
 		data.input = readline("bananashell-0.14:");
-		printf("after readline\n");
 		if (!data.input)
 		{
-			if (feof(stdin))
-			{
-				printf("EOF signal received\n");
-			}
-			else if (ferror(stdin))
-			{
-				printf("Read error occurred\n");
-			}
-			printf("exit1\n");
+			printf("exit");
 			clear_env_list(data.env_list, SUCCESS);
 			break ;
 		}
@@ -74,7 +65,7 @@ int	main(int argc, char **argv, char **env)
 		{
 			if (ft_strcmp(data.input, "exit") == 0)
 			{
-				printf("exit2\n");
+				printf("exit\n");
 				free(data.input);
 				clear_env_list(data.env_list, SUCCESS);
 				break ;
@@ -100,6 +91,7 @@ int	main(int argc, char **argv, char **env)
 				printf("--------------------\n");
 				error = set_up_child_data(&data);
 				i = 0;
+				int x = 0;
 				printf("--------------------\n");
 				if (error == SUCCESS)
 				{
@@ -108,7 +100,15 @@ int	main(int argc, char **argv, char **env)
 						printf("This is command %d: %s\n", i, data.child_data[i].command);
 						printf("This is fd_in %d: %d\n", i, data.child_data[i].fd_in);
 						printf("This is fd_out %d: %d\n", i, data.child_data[i].fd_out);
+						printf("This is pipe fd out 0 and 1: %d %d\n", data.child_data[i].p_fd_out[0], data.child_data[i].p_fd_out[1]);
+						printf("This is pipe fd in 0 and 1: %d %d\n", data.child_data[i].p_fd_in[0], data.child_data[i].p_fd_in[1]);
 						printf("This is exit value %d: %d\n", i, data.child_data[i].exit_value);
+						while (data.child_data[i].command_inputs && data.child_data[i].command_inputs[x] != NULL)
+						{
+							printf("This is command inputs inside child data %d: command inputs %x = %s\n", i, x, data.child_data[i].command_inputs[x]);
+							x++;
+						}
+						x = 0;
 						free_child_data(&data.child_data[i]);
 						i++;
 					}
