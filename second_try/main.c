@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/25 00:44:25 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/25 08:19:14 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,17 +98,20 @@ int	main(int argc, char **argv, char **env)
 					temp = temp->next;
 				}
 				printf("--------------------\n");
-				set_up_child_data(&data);
+				error = set_up_child_data(&data);
 				i = 0;
 				printf("--------------------\n");
-				while (i < data.command_amount)
+				if (error == SUCCESS)
 				{
-					printf("This is command %d: %s\n", i, data.child_data[i].command);
-					printf("This is fd_in %d: %d\n", i, data.child_data[i].fd_in);
-					printf("This is fd_out %d: %d\n", i, data.child_data[i].fd_out);
-					printf("This is exit value %d: %d\n", i, data.child_data[i].exit_value);
-					free_child_data(&data.child_data[i]);
-					i++;
+					while (i < data.command_amount)
+					{
+						printf("This is command %d: %s\n", i, data.child_data[i].command);
+						printf("This is fd_in %d: %d\n", i, data.child_data[i].fd_in);
+						printf("This is fd_out %d: %d\n", i, data.child_data[i].fd_out);
+						printf("This is exit value %d: %d\n", i, data.child_data[i].exit_value);
+						free_child_data(&data.child_data[i]);
+						i++;
+					}
 				}
 				printf("--------------------\n");
 				clear_input(data.input_list, SUCCESS);

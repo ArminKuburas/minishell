@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:04:17 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/24 23:54:15 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/25 08:30:11 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	free_child_data(t_child_data *data)
 {
 	if (data->fd_in != 0)
 		close(data->fd_in);
-	if (data->fd_out != 1)
+	if (data->fd_out != 0)
 		close(data->fd_out);
 	if (data->command != NULL)
 		free(data->command);

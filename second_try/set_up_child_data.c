@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:58:42 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/24 23:51:20 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/25 08:06:36 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,9 @@ int	create_child_data(t_shelldata *data, int amount)
 int	set_up_child_data(t_shelldata *data)
 {
 	int	processes;
-
+	printf("set_up_child_data\n");
 	processes = count_processes(data->input_list);
+	printf("processes = %d\n", processes);
 	data->command_amount = processes;
 	data->child_data
 		= (t_child_data *)ft_calloc(processes, sizeof(t_child_data));
