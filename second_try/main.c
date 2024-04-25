@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/24 18:43:54 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/25 19:46:49 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ int	main(int argc, char **argv, char **env)
 					i++;
 					temp = temp->next;
 				}
-
 				temp = data_head;
 				if (temp->next && temp->next->type == REDIRECT_HEREDOC)
 					heredoc(data, temp);
@@ -107,7 +106,13 @@ int	main(int argc, char **argv, char **env)
 				}
 				if (ft_strcmp(temp->input, "env") == 0)
 				{
-					my_env(data);
+					my_env(&data);
+					free(data.input);
+					continue ;
+				}
+				if (ft_strcmp(temp->input, "unset") == 0)
+				{
+					my_unset(&data, temp);
 					free(data.input);
 					continue ;
 				}

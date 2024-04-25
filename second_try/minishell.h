@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/25 09:05:41 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/25 19:47:03 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,10 +241,10 @@ void		my_echo(t_input_list *temp);
 void		my_cd(t_shelldata data, t_input_list *temp);
 void		my_pwd(t_shelldata data, t_input_list *temp);
 void		my_export(t_shelldata data, t_input_list *temp);
-void		my_unset(t_shelldata data, t_input_list *temp);
+void		my_unset(t_shelldata *data, t_input_list *temp);
 
 //execute functions
-void		my_env(t_shelldata data);
+void		my_env(t_shelldata *data);
 
 //heredoc
 void		heredoc(t_shelldata data, t_input_list *temp);
