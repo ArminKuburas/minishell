@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/25 17:02:06 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:17:56 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
 		parent_signals();
-		data.input = readline("bananashell-0.14:");
+		data.input = readline("bananashell-0.17:");
 		if (!data.input)
 		{
 			printf("exit");
