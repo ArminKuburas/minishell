@@ -6,7 +6,7 @@
 #    By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/04/23 22:05:58 by tvalimak         ###   ########.fr        #
+#    Updated: 2024/04/24 18:16:32 by tvalimak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS = main.c \
 		export.c \
 		unset.c \
 		echo.c \
+		env.c \
 		heredoc.c
 
 OBJS = $(SRCS:.c=.o)

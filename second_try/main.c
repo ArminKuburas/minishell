@@ -6,7 +6,7 @@
 /*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/23 22:22:20 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:43:54 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,18 @@ int	main(int argc, char **argv, char **env)
 		error = duplicate_env(env, &data);
 		if (error != SUCCESS)
 			return (FAILURE);
-		t_env_list	*temp = data.env_list;
-		while (temp != NULL)
+		t_env_list	*env_temp = data.env_list;
+		t_env_list	*env_head = env_temp;
+		while (env_temp != NULL)
 		{
 			printf("--------------------\n");
-			printf("env_var = %s\n", temp->env_var);
-			printf("env_var_name = %s\n", temp->env_var_name);
-			printf("env_var_value = %s\n", temp->env_var_value);
+			printf("env_var = %s\n", env_temp->env_var);
+			printf("env_var_name = %s\n", env_temp->env_var_name);
+			printf("env_var_value = %s\n", env_temp->env_var_value);
 			printf("--------------------\n");
-			temp = temp->next;
+			env_temp = env_temp->next;
 		}
+		env_temp = env_head;
 	}
 	while (1)
 	{
@@ -80,6 +82,7 @@ int	main(int argc, char **argv, char **env)
 					i++;
 					temp = temp->next;
 				}
+
 				temp = data_head;
 				if (temp->next && temp->next->type == REDIRECT_HEREDOC)
 					heredoc(data, temp);
@@ -101,6 +104,12 @@ int	main(int argc, char **argv, char **env)
 					free(data.input);
 					clear_env_list(data.env_list, SUCCESS);
 					break ;
+				}
+				if (ft_strcmp(temp->input, "env") == 0)
+				{
+					my_env(data);
+					free(data.input);
+					continue ;
 				}
 				clear_input(data.input_list, SUCCESS);
 			}

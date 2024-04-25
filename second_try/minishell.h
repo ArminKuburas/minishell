@@ -6,7 +6,7 @@
 /*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/23 22:35:36 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/25 09:05:41 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,8 +192,8 @@ typedef struct s_split_data
 
 typedef void	(*t_handler)(int);
 
-//int			rl_clear_history(void);
-//void		rl_replace_line(char *str, int num);
+int			rl_clear_history(void);
+void		rl_replace_line(char *str, int num);
 
 //data_parser functions
 
@@ -242,6 +242,9 @@ void		my_cd(t_shelldata data, t_input_list *temp);
 void		my_pwd(t_shelldata data, t_input_list *temp);
 void		my_export(t_shelldata data, t_input_list *temp);
 void		my_unset(t_shelldata data, t_input_list *temp);
+
+//execute functions
+void		my_env(t_shelldata data);
 
 //heredoc
 void		heredoc(t_shelldata data, t_input_list *temp);
