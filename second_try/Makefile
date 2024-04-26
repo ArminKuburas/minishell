@@ -6,7 +6,7 @@
 #    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/04/26 15:44:36 by akuburas         ###   ########.fr        #
+#    Updated: 2024/04/26 17:09:23 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ SRCS = main.c \
 		unset.c \
 		echo.c \
 		env.c \
-		heredoc.c
+		heredoc.c \
 		set_up_child_data.c \
 		setup_commands.c \
 		setup_helpers.c \
