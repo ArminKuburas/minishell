@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 11:44:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/19 04:19:14 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/26 03:52:43 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	old_duplicate_special_character(t_split_data *data, t_input_list *input_list
 	{
 		if (ft_strchr("><|", data->input[data->i + 2]) != NULL)
 		{
-			ft_putstr_fd("Error: Syntax error\n", 2);
+			ft_putstr_fd("Error: Syntax error1\n", 2);
 			return (FAILURE);
 		}
 		else
@@ -68,8 +68,10 @@ int	old_duplicate_special_character(t_split_data *data, t_input_list *input_list
 				return (FAILURE);
 	}
 	else
+	{
 		if (create_input(data->input + data->i, 1, input_list) != SUCCESS)
 			return (FAILURE);
+	}
 	return (SUCCESS);
 }
 

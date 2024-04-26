@@ -6,11 +6,40 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 21:29:51 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/12 10:22:32 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/26 12:34:25 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	create_2d_env(t_shelldata *data)
+{
+	int			i;
+	int			j;
+	t_env_list	*temp;
+
+	if (data->env_variables != NULL)
+		free(data->env_variables);
+	i = 0;
+	temp = data->env_list;
+	while (temp != NULL)
+	{
+		i++;
+		temp = temp->next;
+	}
+	data->env_variables = ft_calloc(i + 1, sizeof(char *));
+	if (data->env_variables == NULL)
+		return (NO_MEMORY);
+	j = 0;
+	temp = data->env_list;
+	while (j < i)
+	{
+		data->env_variables[j] = temp->env_var;
+		j++;
+		temp = temp->next;
+	}
+	return (SUCCESS);
+}
 
 int	clear_env_list(t_env_list *env_list, int error)
 {
@@ -99,5 +128,7 @@ int	duplicate_env(char **env, t_shelldata *data)
 			temp = temp->next;
 		i++;
 	}
+	if (create_2d_env(data) != SUCCESS)
+		return (clear_env_list(data->env_list, NO_MEMORY));
 	return (SUCCESS);
 }
