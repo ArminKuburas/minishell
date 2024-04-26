@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:05:58 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/26 15:08:36 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/26 15:27:51 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,20 +88,42 @@ static void	remove_from_env_list(t_env_list *env_list, char *specifier)
 	}
 }*/
 
-void remove_from_env_list(t_env_list *env_list, char *specifier)
+int	check_if_first_node(t_shelldata *data, char *specifier)
+{
+	t_env_list	*next;
+
+	if (!ft_strcmp(data->env_list->env_var_name, specifier))
+	{
+		free(data->env_list->env_var_name);
+		free(data->env_list->env_var_value);
+		free(data->env_list->env_var);
+		next = data->env_list->next;
+		free(data->env_list);
+		data->env_list = next;
+		return (YES);
+	}
+	return (NO);
+}
+
+void	remove_from_env_list(t_shelldata *data, char *specifier)
 {
 	t_env_list	*temp;
+	t_env_list	*temp2;
 
-	temp = env_list;
-	while (temp != NULL)
+	temp = data->env_list;
+	if (check_if_first_node(data, specifier) == YES)
+		return ;
+	while (temp->next != NULL)
 	{
-		if (!ft_strcmp(temp->env_var_name, specifier))
+		if (!ft_strcmp(temp->next->env_var_name, specifier))
 		{
-			free(temp->env_var_name);
-			free(temp->env_var_value);
-			free(temp->env_var);
-			env_list = temp;
-			return; // Exit after removing the node
+			free(temp->next->env_var_name);
+			free(temp->next->env_var_value);
+			free(temp->next->env_var);
+			temp2 = temp->next->next;
+			free(temp->next);
+			temp->next = temp2;
+			return ; // Exit after removing the node
 		}
 		temp = temp->next;
 	}
@@ -119,7 +141,7 @@ static void	execute_unset_commands(t_shelldata *data, t_input_list *temp)
 			if (check_if_unset_env_exists(data, temp) == 1)
 			{
 				ft_printf("env exists, we should remove it\n");
-				remove_from_env_list(data->env_list, temp->input);
+				remove_from_env_list(data, temp->input);
 				//break ;
 			}
 			else

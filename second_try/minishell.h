@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/25 19:47:03 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/26 15:39:18 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,7 +240,7 @@ void		execute_command(char *command[]);
 void		my_echo(t_input_list *temp);
 void		my_cd(t_shelldata data, t_input_list *temp);
 void		my_pwd(t_shelldata data, t_input_list *temp);
-void		my_export(t_shelldata data, t_input_list *temp);
+void		my_export(t_shelldata *data, t_input_list *temp);
 void		my_unset(t_shelldata *data, t_input_list *temp);
 
 //execute functions

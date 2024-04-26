@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/25 19:46:49 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/26 15:38:39 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,12 @@ int	main(int argc, char **argv, char **env)
 				if (ft_strcmp(temp->input, "unset") == 0)
 				{
 					my_unset(&data, temp);
+					free(data.input);
+					continue ;
+				}
+				if (ft_strcmp(temp->input, "export") == 0)
+				{
+					my_export(&data, temp);
 					free(data.input);
 					continue ;
 				}
