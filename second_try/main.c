@@ -27,6 +27,8 @@ int	main(int argc, char **argv, char **env)
 	t_shelldata	data;
 	int			error;
 
+
+	ft_memset(&data, 0, sizeof(t_shelldata));
 	if (argc < 1)
 		printf("wtf\n");
 	if (!argv[0])
@@ -36,9 +38,9 @@ int	main(int argc, char **argv, char **env)
 		error = duplicate_env(env, &data);
 		if (error != SUCCESS)
 			return (FAILURE);
-		t_env_list	*env_temp = data.env_list;
-		t_env_list	*env_head = env_temp;
-		while (env_temp != NULL)
+		error = update_shell_level(&data);
+		t_env_list	*temp = data.env_list;
+		while (temp != NULL)
 		{
 			printf("--------------------\n");
 			printf("env_var = %s\n", env_temp->env_var);
@@ -47,7 +49,13 @@ int	main(int argc, char **argv, char **env)
 			printf("--------------------\n");
 			env_temp = env_temp->next;
 		}
-		env_temp = env_head;
+		int z = 0;
+		while (data.env_variables[z] != NULL)
+		{
+			printf("This is data.env_variables[%d] = %s\n", z, data.env_variables[z]);
+			z++;
+		}
+		printf("--------------------\n");
 	}
 	while (1)
 	{
@@ -55,11 +63,10 @@ int	main(int argc, char **argv, char **env)
 		data.pwd = getcwd(NULL, 0);
 		if (!data.pwd)
 			ft_putendl_fd("Fail in getcwd", 2);
-		data.input = readline("bananashell-0.14:");
+		data.input = readline("bananashell-0.17:");
 		if (!data.input)
 		{
-			printf("exit\n");
-			rl_clear_history();
+			printf("exit");
 			clear_env_list(data.env_list, SUCCESS);
 			break ;
 		}
@@ -79,49 +86,38 @@ int	main(int argc, char **argv, char **env)
 				while (temp != NULL)
 				{
 					printf("This is input %d: %s\n", i, temp->input);
+					printf("This is word_split %d: %d\n", i, temp->word_split);
+					printf("This is type = %d\n", temp->type);
 					i++;
 					temp = temp->next;
 				}
-				temp = data_head;
-				if (temp->next && temp->next->type == REDIRECT_HEREDOC)
-					heredoc(data, temp);
-				if (ft_strcmp(temp->input, "pwd") == 0)
+				printf("--------------------\n");
+				error = set_up_child_data(&data);
+				i = 0;
+				int x = 0;
+				printf("--------------------\n");
+				if (error == SUCCESS)
 				{
-					my_pwd(data, temp);
-					free(data.input);
-					continue ;
+					while (i < data.command_amount)
+					{
+						printf("This is command %d: %s\n", i, data.child_data[i].command);
+						printf("This is fd_in %d: %d\n", i, data.child_data[i].fd_in);
+						printf("This is fd_out %d: %d\n", i, data.child_data[i].fd_out);
+						printf("This is pipe fd out 0 and 1: %d %d\n", data.child_data[i].p_fd_out[0], data.child_data[i].p_fd_out[1]);
+						printf("This is pipe fd in 0 and 1: %d %d\n", data.child_data[i].p_fd_in[0], data.child_data[i].p_fd_in[1]);
+						printf("This is exit value %d: %d\n", i, data.child_data[i].exit_value);
+						while (data.child_data[i].command_inputs && data.child_data[i].command_inputs[x] != NULL)
+						{
+							printf("This is command inputs inside child data %d: command inputs %x = %s\n", i, x, data.child_data[i].command_inputs[x]);
+							x++;
+						}
+						x = 0;
+						free_child_data(&data.child_data[i]);
+						i++;
+					}
+					free(data.child_data);
 				}
-				if (ft_strcmp(temp->input, "cd") == 0)
-				{
-					my_cd(data, temp);
-					free(data.input);
-					continue ;
-				}
-				if (ft_strcmp(temp->input, "exit") == 0)
-				{
-					printf("exit\n");
-					free(data.input);
-					clear_env_list(data.env_list, SUCCESS);
-					break ;
-				}
-				if (ft_strcmp(temp->input, "env") == 0)
-				{
-					my_env(&data);
-					free(data.input);
-					continue ;
-				}
-				if (ft_strcmp(temp->input, "unset") == 0)
-				{
-					my_unset(&data, temp);
-					free(data.input);
-					continue ;
-				}
-				if (ft_strcmp(temp->input, "export") == 0)
-				{
-					my_export(&data, temp);
-					free(data.input);
-					continue ;
-				}
+				printf("--------------------\n");
 				clear_input(data.input_list, SUCCESS);
 			}
 			add_history(data.input);

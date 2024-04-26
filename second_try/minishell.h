@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/26 15:39:18 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/26 15:40:55 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,11 @@ enum e_errors
 	NO_MEMORY = 6,
 	NO_PIPE = 7,
 	NO_FORK = 8,
-	NO_QUOTE = 9
+	NO_QUOTE = 9,
+	NOT_FOUND = 10,
+	EXECUTION_FORBIDDEN = 11,
+	IS_DIRECTORY = 12,
+	FOUND = 13
 };
 
 enum e_child_status
@@ -86,14 +90,15 @@ enum e_child_status
 typedef struct s_child_data
 {
 	int		pipe_situation;
-	int		p_fd_1[2];
-	int		p_fd_2[2];
+	int		p_fd_in[2];
+	int		p_fd_out[2];
 	int		redirections;
 	int		fd_in;
 	int		fd_out;
 	char	**env;
 	char	*command;
 	char	**command_inputs;
+	int		exit_value;
 }	t_child_data;
 
 enum e_input_type
@@ -111,6 +116,7 @@ enum e_input_type
 	PIPE = 72,
 	POTENTIAL_SPLIT = 82,
 	WORD_SPLIT = 83,
+	BUILTIN = 92
 };
 
 enum e_export_input_type
@@ -148,17 +154,12 @@ typedef struct s_env_list
 	struct s_env_list	*next;
 }	t_env_list;
 
-typedef struct s_parse_data
-{
-	int				processes;
-	t_child_data	*child_data;
-}	t_parse_data;
-
 typedef struct s_shelldata
 {
 	t_env_list		*env_list;
 	t_input_list	*input_list;
-	t_parse_data	child_data;
+	t_child_data	*child_data;
+	int				command_amount;
 	char			**env_variables;
 	char			*pwd; // subject for change
 	char			*old_pwd; // subject for change
@@ -213,6 +214,8 @@ int			strlen_last_input(t_input_list *input_list);
 int			duplicate_env(char **env, t_shelldata *data);
 int			clear_env_list(t_env_list *env_list, int error);
 int			env_str_cmpr(char *env, char *str, int len);
+int			update_shell_level(t_shelldata *data);
+
 
 //data_cleaner functions
 int			new_length(t_input_list *temp, t_env_list *env);
@@ -248,5 +251,15 @@ void		my_env(t_shelldata *data);
 
 //heredoc
 void		heredoc(t_shelldata data, t_input_list *temp);
+
+//child processing functions
+int			set_up_child_data(t_shelldata *data);
+void		setup_redirects(t_shelldata *data, int index);
+int			setup_command(t_shelldata *data, int index);
+int			is_it_command(char *input, t_shelldata *data, int index);
+void		free_child_data(t_child_data *data);
+int			setup_pipes(t_shelldata *data, int amount);
+
+
 
 #endif
