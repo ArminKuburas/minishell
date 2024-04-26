@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/25 16:36:14 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/26 03:11:14 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,8 +186,8 @@ typedef struct s_split_data
 
 typedef void	(*t_handler)(int);
 
-int			rl_clear_history(void);
-void		rl_replace_line(char *str, int num);
+//int			rl_clear_history(void);
+//void		rl_replace_line(char *str, int num);
 
 //data_parser functions
 

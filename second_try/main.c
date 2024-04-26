@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/25 17:17:56 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/26 03:45:15 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int	main(int argc, char **argv, char **env)
 			printf("--------------------\n");
 			temp = temp->next;
 		}
-		printf("After printing env.\n");
-		printf("This is data env_list %s.\n", data.env_list->env_var);
 	}
 	while (1)
 	{
@@ -112,10 +110,10 @@ int	main(int argc, char **argv, char **env)
 						free_child_data(&data.child_data[i]);
 						i++;
 					}
+					free(data.child_data);
 				}
 				printf("--------------------\n");
 				clear_input(data.input_list, SUCCESS);
-				free(data.child_data);
 			}
 			add_history(data.input);
 		}

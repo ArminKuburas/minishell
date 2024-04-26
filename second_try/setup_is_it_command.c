@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 09:54:36 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/25 12:46:04 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/26 03:40:48 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,7 @@ int	is_it_command(char *input, t_shelldata *data, int index)
 	if (path_variables == NULL)
 		return (NOT_FOUND);
 	error = find_path(path_variables, data, index, input);
+	ft_free_substrings(&path_variables);
 	printf("After find_path\n");
 	return (error);
 }

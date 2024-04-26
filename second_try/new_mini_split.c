@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:41:10 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/25 15:39:45 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/26 03:57:58 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int	duplicate_special_character(char *input, t_input_list *input_list, int *i)
 {
 	if (ft_strchr("><", input[1]) != NULL && input[0] == input[1])
 	{
-		if (ft_strchr("><|", input[2]) != NULL)
+		if (input[2] != '\0' && ft_strchr("><|", input[2]) != NULL)
 		{
-			ft_putstr_fd("Error: Syntax error\n", 2);
+			ft_putstr_fd("Error: Syntax error2\n", 2);
 			return (FAILURE);
 		}
 		if (create_input(input, 2, input_list) != SUCCESS)
@@ -62,13 +62,38 @@ int	duplicate_special_character(char *input, t_input_list *input_list, int *i)
 	{
 		if (ft_strchr("><|", input[1]) != NULL)
 		{
-			ft_putstr_fd("Error: Syntax error\n", 2);
+			ft_putstr_fd("Error: Syntax error3\n", 2);
 			return (FAILURE);
 		}
 		if (create_input(input, 1, input_list) != SUCCESS)
 			return (FAILURE);
 	}
 	*i += strlen_last_input(input_list) - 1;
+	return (SUCCESS);
+}
+
+/*
+This is a simple function.
+It finds all the pipes and then checks if there is input before and after the pipe
+If not then it prints out a syntax error.
+*/
+int	check_pipes(t_shelldata *data)
+{
+	t_input_list	*temp;
+
+	temp = data->input_list;
+	while (temp != NULL)
+	{
+		if (temp->type == PIPE)
+		{
+			if (temp->prev == NULL || temp->next == NULL)
+			{
+				ft_putstr_fd("Error: Syntax error4\n", 2);
+				return (FAILURE);
+			}
+		}
+		temp = temp->next;
+	}
 	return (SUCCESS);
 }
 
@@ -107,6 +132,8 @@ int	new_mini_split(t_shelldata *data)
 		temp = temp->next;
 	}
 	input_type_assigner(data->input_list);
+	if (check_pipes(data) != SUCCESS)
+		return (FAILURE);
 	temp = data->input_list;
 	j = 0;
 	while (temp != NULL)
