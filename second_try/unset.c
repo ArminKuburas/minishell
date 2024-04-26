@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:05:58 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/25 19:50:15 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/26 15:08:36 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,44 +55,56 @@ static int	check_if_unset_env_exists(t_shelldata *data, t_input_list *temp)
 	}
 	return (0);
 }
-
-static void	remove_from_env_list(t_shelldata *data, char *specifier)
+/*
+static void	remove_from_env_list(t_env_list *env_list, char *specifier)
 {
-	t_env_list	*prev = NULL;
-	t_env_list	*current = data->env_list;
+	t_env_list	*temp;
+	t_env_list	*prev;
 
-	while (current)
+	temp = env_list;
+	prev = NULL;
+	while (temp != NULL)
 	{
-		if (!ft_strncmp(current->env_var_name, specifier, \
-		ft_strlen(current->env_var_name))) // check if env_var with given spec exist
-		{
-			if (prev) // if we are not in the first node
-			{
-				prev->next = current->next;    // detach the current from the list
-				free (current->env_var_name);  // free everything from the current
-				free (current->env_var_value);
-				free (current->env_var);
-				free (current);				   // free the node itself
-				current = prev->next;		   // set the new current
-			}
-			else
-			{
-				data->env_list = current->next;
-				free (current->env_var_name);
-				free (current->env_var_value);
-				free (current->env_var);
-				free (current);
-				current = data->env_list;
-			}
-			break ;
-		}
+		if (prev)
+			prev->next = temp->next;
 		else
 		{
-			prev = current;
-			current = current->next;
+			prev = temp;
+			temp = temp->next;
 		}
+		if (!ft_strcmp(temp->env_var_name, specifier))
+		{
+			free(temp->env_var_name);
+			free(temp->env_var_value);
+			free(temp->env_var);
+			free(temp);
+			temp = temp->next;
+			free(env_list);
+			env_list = temp;
+			break ;
+		}
+		prev = temp;
+		temp = temp->next;
 	}
-	ft_printf("deleted the env \n");
+}*/
+
+void remove_from_env_list(t_env_list *env_list, char *specifier)
+{
+	t_env_list	*temp;
+
+	temp = env_list;
+	while (temp != NULL)
+	{
+		if (!ft_strcmp(temp->env_var_name, specifier))
+		{
+			free(temp->env_var_name);
+			free(temp->env_var_value);
+			free(temp->env_var);
+			env_list = temp;
+			return; // Exit after removing the node
+		}
+		temp = temp->next;
+	}
 }
 
 static void	execute_unset_commands(t_shelldata *data, t_input_list *temp)
@@ -107,7 +119,7 @@ static void	execute_unset_commands(t_shelldata *data, t_input_list *temp)
 			if (check_if_unset_env_exists(data, temp) == 1)
 			{
 				ft_printf("env exists, we should remove it\n");
-				remove_from_env_list(data, temp->input);
+				remove_from_env_list(data->env_list, temp->input);
 				//break ;
 			}
 			else
