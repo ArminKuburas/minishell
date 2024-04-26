@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/26 03:45:15 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/26 15:43:57 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	main(int argc, char **argv, char **env)
 		error = duplicate_env(env, &data);
 		if (error != SUCCESS)
 			return (FAILURE);
+		error = update_shell_level(&data);
 		t_env_list	*temp = data.env_list;
 		while (temp != NULL)
 		{
@@ -48,6 +49,13 @@ int	main(int argc, char **argv, char **env)
 			printf("--------------------\n");
 			temp = temp->next;
 		}
+		int z = 0;
+		while (data.env_variables[z] != NULL)
+		{
+			printf("This is data.env_variables[%d] = %s\n", z, data.env_variables[z]);
+			z++;
+		}
+		printf("--------------------\n");
 	}
 	while (1)
 	{

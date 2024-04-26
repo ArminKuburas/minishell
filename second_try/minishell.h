@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/26 03:11:14 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/26 15:40:55 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,8 +186,8 @@ typedef struct s_split_data
 
 typedef void	(*t_handler)(int);
 
-//int			rl_clear_history(void);
-//void		rl_replace_line(char *str, int num);
+int			rl_clear_history(void);
+void		rl_replace_line(char *str, int num);
 
 //data_parser functions
 
@@ -207,6 +207,8 @@ int			strlen_last_input(t_input_list *input_list);
 int			duplicate_env(char **env, t_shelldata *data);
 int			clear_env_list(t_env_list *env_list, int error);
 int			env_str_cmpr(char *env, char *str, int len);
+int			update_shell_level(t_shelldata *data);
+
 
 //data_cleaner functions
 int			new_length(t_input_list *temp, t_env_list *env);
