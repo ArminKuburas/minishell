@@ -6,7 +6,7 @@
 /*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:43:48 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/15 19:29:30 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/25 08:53:15 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,25 @@ void	sigint_handler(int sig)
 	rl_redisplay();
 }
 
+void	heredoc_handler(int sig)
+{
+	(void)sig;
+	write(1, "\n", 1);
+	exit(1);
+}
+
+void	caret_switch(int on)
+{
+	struct termios	term;
+
+	tcgetattr(STDIN_FILENO, &term);
+	if (!on)
+		term.c_lflag &= ~ECHOCTL;
+	else
+		term.c_lflag |= ECHOCTL;
+	tcsetattr(STDIN_FILENO, TCSANOW, &term);
+}
+
 void	signal_handler(int signal, t_handler handler)
 {
 	struct sigaction	action;
@@ -37,16 +56,28 @@ void	signal_handler(int signal, t_handler handler)
 
 void	parent_signals(void)
 {
-	struct termios	term;
-
-	tcgetattr(STDIN_FILENO, &term);
-	term.c_lflag &= ~ECHOCTL;
-	tcsetattr(STDIN_FILENO, TCSANOW, &term);
+	caret_switch(0);
 	signal_handler(SIGINT, sigint_handler);
 	signal_handler(SIGQUIT, SIG_IGN);
-	signal_handler(SIGTTIN, SIG_IGN);
-	signal_handler(SIGTTOU, SIG_IGN);
-	signal_handler(SIGTSTP, SIG_IGN);
+}
+
+void	heredoc_signals(void)
+{
+	signal_handler(SIGINT, heredoc_handler);
+	signal_handler(SIGQUIT, SIG_IGN);
+}
+
+void	standby_signals(void)
+{
+	signal_handler(SIGINT, SIG_IGN);
+	signal_handler(SIGQUIT, SIG_IGN);
+}
+
+void	handler_signals(void)
+{
+	caret_switch(0);
+	signal_handler(SIGINT, SIG_DFL);
+	signal_handler(SIGQUIT, SIG_DFL);
 }
 
 /*Old signal handler for safekeep

@@ -35,6 +35,9 @@
 /*For boolean type*/
 # include <stdbool.h>
 
+/*For the waitpid function*/
+# include <sys/wait.h>
+
 /*Definition for SIGINT*/
 # define CTRL_C SIGINT
 # define CTRL_BS SIGQUIT
@@ -120,7 +123,10 @@ enum e_export_input_type
 {
 	INVALID_EXPORT_INPUT = 84,
 	VALID_EXPORT_INPUT = 85,
-	VALID_EXPORT_COMMAND = 86
+	VALID_EXPORT_COMMAND = 86,
+	INVALID_UNSET_INPUT = 87,
+	VALID_UNSET_INPUT = 88,
+	VALID_UNSET_COMMAND = 89,
 };
 
 enum e_yes_no
@@ -155,7 +161,8 @@ typedef struct s_shelldata
 	t_child_data	*child_data;
 	int				command_amount;
 	char			**env_variables;
-	char			*cwd; // subject for change
+	char			*pwd; // subject for change
+	char			*old_pwd; // subject for change
 	char			*input;
 	int				exit_value;
 }		t_shelldata;
@@ -217,21 +224,33 @@ void		copy_dollar(t_new_string_data *data);
 t_env_list	*try_to_find_env(t_env_list *env, char *str, int len);
 void		potential_split_create(t_new_string_data *data);
 
-int	new_mini_split(t_shelldata *data);
+int			new_mini_split(t_shelldata *data);
 
 
 //signal handler
 
 void		sigint_handler(int sig);
+void		heredoc_handler(int sig);
 void		signal_handler(int signal, t_handler handler);
 void		parent_signals(void);
+void		heredoc_signals(void);
+void		standby_signals(void);
+void		handler_signals(void);
+void		caret_switch(int on);
 
 //built_in functions
 void		execute_command(char *command[]);
 void		my_echo(t_input_list *temp);
 void		my_cd(t_shelldata data, t_input_list *temp);
 void		my_pwd(t_shelldata data, t_input_list *temp);
-void		my_export(t_shelldata data, t_input_list *temp);
+void		my_export(t_shelldata *data, t_input_list *temp);
+void		my_unset(t_shelldata *data, t_input_list *temp);
+
+//execute functions
+void		my_env(t_shelldata *data);
+
+//heredoc
+void		heredoc(t_shelldata data, t_input_list *temp);
 
 //child processing functions
 int			set_up_child_data(t_shelldata *data);

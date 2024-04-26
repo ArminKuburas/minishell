@@ -32,10 +32,13 @@ SRCS = main.c \
 		potential_split_functions.c \
 		new_mini_split.c \
 		signal.c \
-		echo.c \
 		cd.c \
 		pwd.c \
 		export.c \
+		unset.c \
+		echo.c \
+		env.c \
+		heredoc.c
 		set_up_child_data.c \
 		setup_commands.c \
 		setup_helpers.c \

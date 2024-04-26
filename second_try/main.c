@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/26 15:43:57 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/26 15:38:39 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ int	main(int argc, char **argv, char **env)
 		while (temp != NULL)
 		{
 			printf("--------------------\n");
-			printf("env_var = %s\n", temp->env_var);
-			printf("env_var_name = %s\n", temp->env_var_name);
-			printf("env_var_value = %s\n", temp->env_var_value);
+			printf("env_var = %s\n", env_temp->env_var);
+			printf("env_var_name = %s\n", env_temp->env_var_name);
+			printf("env_var_value = %s\n", env_temp->env_var_value);
 			printf("--------------------\n");
-			temp = temp->next;
+			env_temp = env_temp->next;
 		}
 		int z = 0;
 		while (data.env_variables[z] != NULL)
@@ -60,6 +60,9 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
 		parent_signals();
+		data.pwd = getcwd(NULL, 0);
+		if (!data.pwd)
+			ft_putendl_fd("Fail in getcwd", 2);
 		data.input = readline("bananashell-0.17:");
 		if (!data.input)
 		{
@@ -69,13 +72,6 @@ int	main(int argc, char **argv, char **env)
 		}
 		if (data.input)
 		{
-			if (ft_strcmp(data.input, "exit") == 0)
-			{
-				printf("exit\n");
-				free(data.input);
-				clear_env_list(data.env_list, SUCCESS);
-				break ;
-			}
 			if (ft_strlen(data.input) == 0)
 			{
 				free(data.input);
@@ -85,6 +81,7 @@ int	main(int argc, char **argv, char **env)
 			if (error == SUCCESS)
 			{
 				t_input_list *temp = data.input_list;
+				t_input_list *data_head = temp;
 				int i = 0;
 				while (temp != NULL)
 				{
