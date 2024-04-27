@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 12:38:55 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/26 15:53:20 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/27 01:43:58 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,25 @@ int	set_new_node_data(t_env_list *node, char *new_value)
 	return (SUCCESS);
 }
 
+void	repoint_shell_env(t_shelldata *data)
+{
+	int			i;
+	t_env_list	*temp;
+
+	i = 0;
+	temp = data->env_list;
+	while (temp != NULL)
+	{
+		data->env_variables[i] = temp->env_var;
+		i++;
+		temp = temp->next;
+	}
+}
+
 int	update_shell_level(t_shelldata *data)
 {
 	t_env_list	*temp;
 	int			shell_level;
-	int			i;
 	char		*temp_string;
 
 	temp = data->env_list;
@@ -56,7 +70,6 @@ int	update_shell_level(t_shelldata *data)
 		temp = temp->next;
 	if (temp == NULL)
 		return (NO_ERROR);
-	i = 0;
 	shell_level = check_shell_level_value(temp->env_var_value);
 	if (shell_level == 1)
 		shell_level = ft_atoi(temp->env_var_value);
@@ -65,5 +78,6 @@ int	update_shell_level(t_shelldata *data)
 		return (NO_MEMORY);
 	if (set_new_node_data(temp, temp_string) != SUCCESS)
 		return (FAILURE);
+	repoint_shell_env(data);
 	return (SUCCESS);
 }

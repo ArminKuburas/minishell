@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:58:42 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/25 16:57:39 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/27 02:13:45 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,6 @@ int	create_child_data(t_shelldata *data, int amount)
 		if (data->child_data[i].exit_value == 0)
 		{
 			error = setup_command(data, i);
-			printf("after setup command inside create child data\n");
 			if (error != SUCCESS)
 				print_command_error_message(error, data, i);
 			else
@@ -156,6 +155,7 @@ int	create_child_data(t_shelldata *data, int amount)
 		error = setup_pipes(data, i);
 		if (error != SUCCESS)
 			set_all_error(data);
+		data->child_data[i].env = data->env_variables;
 		i++;
 	}
 	return (SUCCESS);

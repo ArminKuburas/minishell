@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/26 17:11:59 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/28 00:15:06 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int	main(int argc, char **argv, char **env)
 		{
 			printf("exit");
 			clear_env_list(data.env_list, SUCCESS);
+			free(data.env_variables);
+			free(data.pwd);
 			break ;
 		}
 		if (data.input)
@@ -97,6 +99,7 @@ int	main(int argc, char **argv, char **env)
 				printf("--------------------\n");
 				if (error == SUCCESS)
 				{
+					error = execute_commands(&data);
 					while (i < data.command_amount)
 					{
 						printf("This is command %d: %s\n", i, data.child_data[i].command);
@@ -122,7 +125,10 @@ int	main(int argc, char **argv, char **env)
 			add_history(data.input);
 		}
 		free(data.input);
+		free(data.pwd);
 		data.input = NULL;
+		if (error == FAILURE)
+			break ;
 	}
 	rl_clear_history();
 }

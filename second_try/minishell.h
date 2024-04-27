@@ -6,12 +6,15 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/26 15:40:55 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/28 01:53:03 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+
+/*For errno global variable*/
+# include <errno.h>
 
 /* For the readline functions*/
 # include <readline/history.h>
@@ -69,10 +72,11 @@ enum e_errors
 	NO_PIPE = 7,
 	NO_FORK = 8,
 	NO_QUOTE = 9,
-	NOT_FOUND = 10,
-	EXECUTION_FORBIDDEN = 11,
-	IS_DIRECTORY = 12,
-	FOUND = 13
+	NO_DUP = 10,
+	NOT_FOUND = 11,
+	EXECUTION_FORBIDDEN = 12,
+	IS_DIRECTORY = 13,
+	FOUND = 14
 };
 
 enum e_child_status
@@ -89,10 +93,9 @@ enum e_child_status
 
 typedef struct s_child_data
 {
-	int		pipe_situation;
+	pid_t	pid;
 	int		p_fd_in[2];
 	int		p_fd_out[2];
-	int		redirections;
 	int		fd_in;
 	int		fd_out;
 	char	**env;
@@ -193,8 +196,8 @@ typedef struct s_split_data
 
 typedef void	(*t_handler)(int);
 
-int			rl_clear_history(void);
-void		rl_replace_line(char *str, int num);
+//int			rl_clear_history(void);
+//void		rl_replace_line(char *str, int num);
 
 //data_parser functions
 
@@ -259,6 +262,10 @@ int			setup_command(t_shelldata *data, int index);
 int			is_it_command(char *input, t_shelldata *data, int index);
 void		free_child_data(t_child_data *data);
 int			setup_pipes(t_shelldata *data, int amount);
+
+//execute_children functions
+int			execute_commands(t_shelldata *data);
+
 
 
 
