@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:55:23 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/20 17:57:08 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/27 10:44:33 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,33 +51,3 @@ void	my_echo(t_input_list *temp)
 	else
 		free_to_print(temp);
 }
-/*
-void execute_command(char *command[])
-{
-	//char builtin[4][7];
-
-	//builtin[0] = "echo";
-    if (ft_strcmp(command[0], "echo") == 0)
-        my_echo(command);
-	//if (ft_strcmp(command[0], "cd") == 0)
-	//	my_cd(command);
-	//if (ft_strcmp(command[0], "pwd") == 0)
-	//	my_pwd(command);
-	//if (ft_strcmp(command[0], "export") == 0)
-	//{
-	//	if (command[1] == NULL)
-	//		print_env();
-	//	else
-	//		export_env(command);
-}
-	//if (strcmp(command[0], "unset") == 0)
-	//if (strcmp(command[0], "env") == 0)
-	//if (strcmp(command[0], "exit") == 0)
-	//	exit(0);
-    else
-    {
-        // Execute external command here
-        // For simplicity, you can use execvp to execute external commands
-        //execvp(command[0], command);
-        //perror("execvp");
-    }*/

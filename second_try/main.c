@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/26 17:11:59 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/27 14:51:22 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	main(int argc, char **argv, char **env)
 {
 	t_shelldata	data;
 	int			error;
-
 
 	ft_memset(&data, 0, sizeof(t_shelldata));
 	if (argc < 1)
@@ -90,6 +89,7 @@ int	main(int argc, char **argv, char **env)
 					i++;
 					temp = temp->next;
 				}
+				temp = data.input_list;
 				printf("--------------------\n");
 				error = set_up_child_data(&data);
 				i = 0;
@@ -117,11 +117,13 @@ int	main(int argc, char **argv, char **env)
 					free(data.child_data);
 				}
 				printf("--------------------\n");
+				execute_built_ins(&data, temp);
 				clear_input(data.input_list, SUCCESS);
 			}
 			add_history(data.input);
 		}
 		free(data.input);
+		free(data.pwd);
 		data.input = NULL;
 	}
 	rl_clear_history();

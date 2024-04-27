@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:30:01 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/26 16:37:11 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/27 11:28:27 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,10 +241,7 @@ void	my_export(t_shelldata *data, t_input_list *temp)
 	input_head = temp;
 	data_head = data;
 	if (!temp->next)
-	{
 		export_no_commands(data);
-		return ;
-	}
 	while (temp)
 	{
 		is_export_var_name_valid(temp);

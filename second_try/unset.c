@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:05:58 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/26 15:27:51 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/27 16:37:17 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,50 +55,21 @@ static int	check_if_unset_env_exists(t_shelldata *data, t_input_list *temp)
 	}
 	return (0);
 }
-/*
-static void	remove_from_env_list(t_env_list *env_list, char *specifier)
-{
-	t_env_list	*temp;
-	t_env_list	*prev;
-
-	temp = env_list;
-	prev = NULL;
-	while (temp != NULL)
-	{
-		if (prev)
-			prev->next = temp->next;
-		else
-		{
-			prev = temp;
-			temp = temp->next;
-		}
-		if (!ft_strcmp(temp->env_var_name, specifier))
-		{
-			free(temp->env_var_name);
-			free(temp->env_var_value);
-			free(temp->env_var);
-			free(temp);
-			temp = temp->next;
-			free(env_list);
-			env_list = temp;
-			break ;
-		}
-		prev = temp;
-		temp = temp->next;
-	}
-}*/
 
 int	check_if_first_node(t_shelldata *data, char *specifier)
 {
 	t_env_list	*next;
 
-	if (!ft_strcmp(data->env_list->env_var_name, specifier))
+	next = data->env_list->next;
+	//if (!ft_strcmp(data->env_list->env_var_name, specifier))
+	if (!ft_strncmp(data->env_list->env_var_name, specifier, \
+	ft_strlen(specifier) + 1))
 	{
 		free(data->env_list->env_var_name);
 		free(data->env_list->env_var_value);
 		free(data->env_list->env_var);
-		next = data->env_list->next;
 		free(data->env_list);
+		data->env_list = NULL;
 		data->env_list = next;
 		return (YES);
 	}
@@ -115,15 +86,17 @@ void	remove_from_env_list(t_shelldata *data, char *specifier)
 		return ;
 	while (temp->next != NULL)
 	{
-		if (!ft_strcmp(temp->next->env_var_name, specifier))
+		if (!ft_strncmp(temp->next->env_var_name, specifier, \
+		ft_strlen(specifier) + 1))
 		{
+			temp2 = temp->next->next;
+			temp->next = temp2;
 			free(temp->next->env_var_name);
 			free(temp->next->env_var_value);
 			free(temp->next->env_var);
-			temp2 = temp->next->next;
-			free(temp->next);
-			temp->next = temp2;
-			return ; // Exit after removing the node
+			free(data->env_list);
+			data->env_list = NULL;
+			return ;
 		}
 		temp = temp->next;
 	}
@@ -131,9 +104,6 @@ void	remove_from_env_list(t_shelldata *data, char *specifier)
 
 static void	execute_unset_commands(t_shelldata *data, t_input_list *temp)
 {
-	t_env_list	*env_head;
-
-	env_head = data->env_list;
 	while (temp)
 	{
 		if (temp->type == VALID_UNSET_INPUT)
@@ -142,17 +112,14 @@ static void	execute_unset_commands(t_shelldata *data, t_input_list *temp)
 			{
 				ft_printf("env exists, we should remove it\n");
 				remove_from_env_list(data, temp->input);
-				//break ;
 			}
 			else
 			{
 				ft_printf("env does not exist, do nothing\n");
-				//break ;
 			}
 		}
 		temp = temp->next;
 	}
-	data->env_list = env_head;
 }
 
 void	my_unset(t_shelldata *data, t_input_list *temp)
@@ -175,6 +142,7 @@ void	my_unset(t_shelldata *data, t_input_list *temp)
 	temp = input_head;
 	data = data_head;
 	execute_unset_commands(data, temp);
+	//create_2d_env(data);
 	temp = input_head;
 	data = data_head;
 	data->env_list = env_head;

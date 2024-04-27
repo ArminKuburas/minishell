@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:33:57 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/26 10:55:09 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/27 14:55:24 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,15 @@
    if they are proper key/value pairs*/
 void	my_env(t_shelldata *data)
 {
-	t_env_list	*current_node;
-	t_env_list	*head;
+	t_env_list	*temp;
 
-	head = data->env_list;
-	current_node = data->env_list;
+	temp = data->env_list;
 	if (!data->env_list)
 		return ;
-	while (current_node)
+	while (temp)
 	{
-		if (ft_strchr(current_node->env_var, '='))
-			ft_printf("%s\n", current_node->env_var);
-		current_node = current_node->next;
+		if (ft_strchr(temp->env_var, '=') && temp->env_var)
+			ft_printf("%s\n", temp->env_var);
+		temp = temp->next;
 	}
-	data->env_list = head;
 }

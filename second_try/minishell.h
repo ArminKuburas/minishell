@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/26 15:40:55 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/27 17:34:05 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,6 +215,7 @@ int			duplicate_env(char **env, t_shelldata *data);
 int			clear_env_list(t_env_list *env_list, int error);
 int			env_str_cmpr(char *env, char *str, int len);
 int			update_shell_level(t_shelldata *data);
+int			create_2d_env(t_shelldata *data);
 
 
 //data_cleaner functions
@@ -239,12 +240,12 @@ void		handler_signals(void);
 void		caret_switch(int on);
 
 //built_in functions
-void		execute_command(char *command[]);
 void		my_echo(t_input_list *temp);
-void		my_cd(t_shelldata data, t_input_list *temp);
-void		my_pwd(t_shelldata data, t_input_list *temp);
+void		my_cd(t_shelldata *data, t_input_list *temp);
+void		my_pwd(t_shelldata *data, t_input_list *temp);
 void		my_export(t_shelldata *data, t_input_list *temp);
 void		my_unset(t_shelldata *data, t_input_list *temp);
+void		my_exit(t_shelldata *data, t_input_list *temp);
 
 //execute functions
 void		my_env(t_shelldata *data);
@@ -260,6 +261,7 @@ int			is_it_command(char *input, t_shelldata *data, int index);
 void		free_child_data(t_child_data *data);
 int			setup_pipes(t_shelldata *data, int amount);
 
-
+//executioner
+int			execute_built_ins(t_shelldata *data, t_input_list *temp);
 
 #endif
