@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/28 01:53:03 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/28 13:06:04 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,6 +267,8 @@ int			setup_pipes(t_shelldata *data, int amount);
 int			execute_commands(t_shelldata *data);
 
 
+void	remove_from_env_list(t_shelldata *data, char *specifier);
+int	create_2d_env(t_shelldata *data);
 
 
 #endif

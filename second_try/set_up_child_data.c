@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:58:42 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/27 02:13:45 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/29 01:37:29 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,11 @@ int	create_command_arguments(t_child_data *child, t_input_list *start)
 	printf("After while loop. i = %d\n", i);
 	if (i == 0)
 		return (0);
-	child->command_inputs = ft_calloc(i + 1, sizeof(char *));
+	child->command_inputs = ft_calloc(i + 2, sizeof(char *));
 	if (child->command_inputs == NULL)
 		return (1);
-	i = 0;
+	i = 1;
+	child->command_inputs[0] = child->command;
 	temp = start;
 	while (temp && temp->type != PIPE)
 	{

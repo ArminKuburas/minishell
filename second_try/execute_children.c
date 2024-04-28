@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 02:36:27 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/28 04:34:40 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/29 01:28:57 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,14 @@ void	child_handler(t_shelldata *data, t_child_data *child_data, int i)
 	ft_putstr_fd("Cleaning other children child number \n", 2);
 	clean_other_children(data, i);
 	ft_putstr_fd("Executing command child number \n", 2);
+	int	x = 0;
+	while (child_data->command_inputs[x] != NULL)
+	{
+		ft_putstr_fd("command_inputs: ", 2);
+		ft_putstr_fd(child_data->command_inputs[x], 2);
+		ft_putstr_fd("\n", 2);
+		x++;
+	}
 	if (execve(child_data->command,
 			child_data->command_inputs, child_data->env) == -1)
 	{

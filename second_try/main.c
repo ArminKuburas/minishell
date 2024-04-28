@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/28 04:36:47 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/29 01:26:55 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,21 @@ int	main(int argc, char **argv, char **env)
 			return (FAILURE);
 		error = update_shell_level(&data);
 		t_env_list	*temp = data.env_list;
+		while (temp != NULL)
+		{
+			printf("--------------------\n");
+			printf("env_var = %s\n", temp->env_var);
+			printf("env_var_name = %s\n", temp->env_var_name);
+			printf("env_var_value = %s\n", temp->env_var_value);
+			printf("--------------------\n");
+			temp = temp->next;
+		}
+		//remove_from_env_list(&data, "PATH");
+		//remove_from_env_list(&data, "LS_COLORS");
+		//create_2d_env(&data);
+		temp = data.env_list;
+		printf("after remove\n");
+		printf("--------------------\n\n\n\n");
 		while (temp != NULL)
 		{
 			printf("--------------------\n");
@@ -107,7 +122,7 @@ int	main(int argc, char **argv, char **env)
 						printf("This is pipe fd out 0 and 1: %d %d\n", data.child_data[i].p_fd_out[0], data.child_data[i].p_fd_out[1]);
 						printf("This is pipe fd in 0 and 1: %d %d\n", data.child_data[i].p_fd_in[0], data.child_data[i].p_fd_in[1]);
 						printf("This is exit value %d: %d\n", i, data.child_data[i].exit_value);
-						while (data.child_data[i].command_inputs && data.child_data[i].command_inputs[x] != NULL)
+						while (data.child_data[i].command_inputs[x] != NULL)
 						{
 							printf("This is command inputs inside child data %d: command inputs %x = %s\n", i, x, data.child_data[i].command_inputs[x]);
 							x++;
