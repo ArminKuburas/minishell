@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_built_ins.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 10:27:06 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/27 13:32:00 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/27 22:12:26 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	execute_built_ins(t_shelldata *data, t_input_list *temp)
 {
+	temp = data->input_list;
 	ft_printf("got inside the executioner\n");
 	if (temp->input == NULL)
 		return (0);

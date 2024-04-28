@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_helper_functions.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 12:38:55 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/26 15:53:20 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/27 21:40:27 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	update_shell_level(t_shelldata *data)
 {
 	t_env_list	*temp;
 	int			shell_level;
-	int			i;
 	char		*temp_string;
 
 	temp = data->env_list;
@@ -56,7 +55,6 @@ int	update_shell_level(t_shelldata *data)
 		temp = temp->next;
 	if (temp == NULL)
 		return (NO_ERROR);
-	i = 0;
 	shell_level = check_shell_level_value(temp->env_var_value);
 	if (shell_level == 1)
 		shell_level = ft_atoi(temp->env_var_value);
