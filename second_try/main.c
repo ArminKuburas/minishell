@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/29 01:26:55 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/29 23:55:34 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,11 +122,16 @@ int	main(int argc, char **argv, char **env)
 						printf("This is pipe fd out 0 and 1: %d %d\n", data.child_data[i].p_fd_out[0], data.child_data[i].p_fd_out[1]);
 						printf("This is pipe fd in 0 and 1: %d %d\n", data.child_data[i].p_fd_in[0], data.child_data[i].p_fd_in[1]);
 						printf("This is exit value %d: %d\n", i, data.child_data[i].exit_value);
-						while (data.child_data[i].command_inputs[x] != NULL)
+						if (data.child_data[i].command_inputs != NULL && data.child_data[i].command != NULL)
 						{
-							printf("This is command inputs inside child data %d: command inputs %x = %s\n", i, x, data.child_data[i].command_inputs[x]);
-							x++;
+							while (data.child_data[i].command_inputs[x] != NULL)
+							{
+								printf("This is command inputs inside child data %d: command inputs %x = %s\n", i, x, data.child_data[i].command_inputs[x]);
+								x++;
+							}
 						}
+						else
+							printf("child %d command inputs are NULL\n", i);
 						x = 0;
 						i++;
 					}

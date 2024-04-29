@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 09:35:02 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/25 11:38:56 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/29 23:16:27 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ int	setup_command(t_shelldata *data, int index)
 		}
 		temp = temp->next;
 	}
+	printf("No command found\n");
 	return (SUCCESS);
 }

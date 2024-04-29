@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:58:42 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/29 01:37:29 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/29 23:21:21 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,11 +114,15 @@ void	setup_command_inputs(t_shelldata *data, int i)
 		j++;
 	}
 	printf("After initial while loop inside setup command inputs j = %d\n", j);
-	while (temp->type != COMMAND)
+	while (temp != NULL && temp->type != COMMAND)
 	{
 		temp = temp->next;
 	}
-	printf("after second while loop. temp input equals %s\n", temp->input);
+	printf("After second while loop.\n");
+	if (temp)
+		printf("temp input equals %s\n", temp->input);
+	else
+		printf("temp is NULL\n");
 	error = create_command_arguments(&data->child_data[i], temp);
 	data->child_data[i].exit_value = error;
 }
@@ -142,8 +146,10 @@ int	create_child_data(t_shelldata *data, int amount)
 	int	error;
 
 	i = 0;
+	printf("inside create child data\n");
 	while (i < amount)
 	{
+		printf("inside while loop\n");
 		setup_redirects(data, i);
 		if (data->child_data[i].exit_value == 0)
 		{

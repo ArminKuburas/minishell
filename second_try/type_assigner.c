@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   type_assigner.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 05:59:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/23 21:07:53 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/30 00:41:42 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,13 @@ void	try_append_or_heredoc(t_input_list *temp)
 	if (ft_strcmp(temp->input, ">>") == 0)
 	{
 		temp->type = REDIRECT_APPEND;
-		temp = temp->next;
-		temp->type = APPEND_FILE;
+		temp->next->type = APPEND_FILE;
 		potential_split(temp);
 	}
 	else if (ft_strcmp(temp->input, "<<") == 0)
 	{
 		temp->type = REDIRECT_HEREDOC;
-		temp = temp->next;
-		temp->type = HEREDOC_FILE;
+		temp->next->type = HEREDOC_FILE;
 		potential_split(temp);
 	}
 }
@@ -82,18 +80,16 @@ void	input_type_assigner(t_input_list *input_list)
 	{
 		potential_split(temp);
 		try_append_or_heredoc(temp);
-		if (ft_strcmp(temp->input, ">") == 0)
+		if (temp->type == 0 && ft_strcmp(temp->input, ">") == 0)
 		{
 			temp->type = REDIRECT_OUTPUT;
-			temp = temp->next;
-			temp->type = OUTPUT_FILE;
+			temp->next->type = OUTPUT_FILE;
 			potential_split(temp);
 		}
-		else if (ft_strcmp(temp->input, "<") == 0)
+		else if (temp->type == 0 && ft_strcmp(temp->input, "<") == 0)
 		{
 			temp->type = REDIRECT_INPUT;
-			temp = temp->next;
-			temp->type = INPUT_FILE;
+			temp->next->type = INPUT_FILE;
 			potential_split(temp);
 		}
 		else
