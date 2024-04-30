@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 02:36:27 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/29 01:28:57 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/30 07:26:44 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,38 +75,76 @@ int	check_fds(t_child_data *child_data)
 void	close_my_fds(t_child_data *child_data)
 {
 	if (child_data->fd_in != 0)
+	{
+		ft_putstr_fd("Closing fd_in\n", 2);
 		close(child_data->fd_in);
+	}
 	if (child_data->fd_out != 0)
+	{
+		ft_putstr_fd("Closing fd_out\n", 2);
 		close(child_data->fd_out);
+	}
 	if (child_data->p_fd_out[0] != 0)
+	{
+		ft_putstr_fd("Closing p_fd_out[0]\n", 2);
 		close(child_data->p_fd_out[0]);
+	}
 	if (child_data->p_fd_out[1] != 0)
+	{
+		ft_putstr_fd("Closing p_fd_out[1]\n", 2);
 		close(child_data->p_fd_out[1]);
+	}
 	if (child_data->p_fd_in[0] != 0)
+	{
+		ft_putstr_fd("Closing p_fd_in[0]\n", 2);
 		close(child_data->p_fd_in[0]);
+	}
 	if (child_data->p_fd_in[1] != 0)
+	{
+		ft_putstr_fd("Closing p_fd_in[1]\n", 2);
 		close(child_data->p_fd_in[1]);
+	}
 }
 
 void	close_other_fds(t_shelldata *data, int j, int i)
 {
 	if (data->child_data[j].fd_in != 0)
+	{
+		ft_putstr_fd("Closing fd_in\n", 2);
 		close(data->child_data[j].fd_in);
+	}
 	if (data->child_data[j].fd_out != 0)
+	{
+		ft_putstr_fd("Closing fd_out\n", 2);
 		close(data->child_data[j].fd_out);
+	}
 	if (j != i - 1)
 	{
+		ft_putstr_fd("Closing other fds\n", 2);
 		if (data->child_data[j].p_fd_out[0] != 0)
+		{
+			ft_putstr_fd("Closing p_fd_out[0]\n", 2);
 			close(data->child_data[j].p_fd_out[0]);
+		}
 		if (data->child_data[j].p_fd_out[1] != 0)
+		{
+			ft_putstr_fd("Closing p_fd_out[1]\n", 2);
 			close(data->child_data[j].p_fd_out[1]);
+		}
 	}
 	if (j != i + 1)
 	{
+		ft_putstr_fd("Closing other fds2\n", 2);
 		if (data->child_data[j].p_fd_in[0] != 0 && j != i)
+		{
+			ft_putstr_fd("Closing p_fd_in[0]\n", 2);
 			close(data->child_data[j].p_fd_in[0]);
+		}
 		if (data->child_data[j].p_fd_in[1] != 0 && j != i)
+		{
+			ft_putstr_fd("Closing p_fd_in[1]\n", 2);
 			close(data->child_data[j].p_fd_in[1]);
+		}
 	}
 }
 
@@ -119,6 +157,13 @@ void	clean_other_children(t_shelldata *data, int i)
 	{
 		if (j != i)
 		{
+			ft_putstr_fd("Cleaning other children\n", 2);
+			ft_putstr_fd("j: ", 2);
+			ft_putnbr_fd(j, 2);
+			ft_putstr_fd("\n", 2);
+			ft_putstr_fd("command is: ", 2);
+			ft_putstr_fd(data->child_data[j].command, 2);
+			ft_putstr_fd("\n", 2);
 			free(data->child_data[j].command);
 			data->child_data[j].command = NULL;
 			free(data->child_data[j].command_inputs);
@@ -183,7 +228,7 @@ void	child_handler(t_shelldata *data, t_child_data *child_data, int i)
 	clean_other_children(data, i);
 	ft_putstr_fd("Executing command child number \n", 2);
 	int	x = 0;
-	while (child_data->command_inputs[x] != NULL)
+	while (child_data->command_inputs != NULL && child_data->command_inputs[x] != NULL)
 	{
 		ft_putstr_fd("command_inputs: ", 2);
 		ft_putstr_fd(child_data->command_inputs[x], 2);
@@ -193,6 +238,7 @@ void	child_handler(t_shelldata *data, t_child_data *child_data, int i)
 	if (execve(child_data->command,
 			child_data->command_inputs, child_data->env) == -1)
 	{
+		ft_putstr_fd("execve failed\n", 2);
 		execve_failed_cleanup(data, child_data);
 		exit(errno);
 	}

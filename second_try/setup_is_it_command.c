@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 09:54:36 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/26 03:40:48 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/30 07:12:45 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@ int	create_variables(char ***path_variables, t_env_list *env_list)
 
 	temp = env_list;
 	printf("inside create_variables\n");
-	printf("temp  var is %s \n", temp->env_var);
 	while (temp != NULL)
 	{
-		printf("This is temp->env_var_name %s\n", temp->env_var_name);
 		if (ft_strcmp(temp->env_var_name, "PATH") == 0)
 		{
 			printf("Found PATH.\n");
@@ -158,12 +156,6 @@ int	is_it_command(char *input, t_shelldata *data, int index)
 	if (create_variables(&path_variables, data->env_list) == NO_MEMORY)
 		return (NO_MEMORY);
 	printf("After create variables.\n");
-	int i = 0;
-	while (path_variables[i] != NULL)
-	{
-		printf("This is path_variables[%d] = %s\n", i, path_variables[i]);
-		i++;
-	}
 	if (path_variables == NULL)
 		return (NOT_FOUND);
 	error = find_path(path_variables, data, index, input);

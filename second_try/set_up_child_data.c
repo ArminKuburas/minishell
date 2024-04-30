@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:58:42 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/29 23:21:21 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/30 07:11:25 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int	create_command_arguments(t_child_data *child, t_input_list *start)
 	printf("After while loop. i = %d\n", i);
 	if (i == 0)
 		return (0);
+	printf("Before calloc inside create_command_arguments\n");
 	child->command_inputs = ft_calloc(i + 2, sizeof(char *));
 	if (child->command_inputs == NULL)
 		return (1);

@@ -6,35 +6,32 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 05:59:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/30 00:41:42 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/30 07:30:17 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	assign_command_or_pipe(t_input_list *temp)
+static void	assign_command_or_pipe(t_input_list *temp, int *command_flag)
 {
-	static int	command_flag = 0;
 
 	if (temp->type != 0)
 		return ;
 	if (temp->input[0] == '|')
 	{
 		temp->type = PIPE;
-		command_flag = 0;
+		*command_flag = 0;
 	}
 	else
 	{
-		if (command_flag == 0)
+		if (*command_flag == 0)
 		{
 			temp->type = COMMAND;
-			command_flag = 1;
+			*command_flag = 1;
 		}
 		else
 			temp->type = COMMAND_ARGUMENT;
 	}
-	if (temp->next == NULL)
-		command_flag = 0;
 }
 
 void	potential_split(t_input_list *temp)
@@ -74,6 +71,7 @@ void	try_append_or_heredoc(t_input_list *temp)
 void	input_type_assigner(t_input_list *input_list)
 {
 	t_input_list	*temp;
+	static int		command_flag = 0;
 
 	temp = input_list;
 	while (temp != NULL)
@@ -93,7 +91,8 @@ void	input_type_assigner(t_input_list *input_list)
 			potential_split(temp);
 		}
 		else
-			assign_command_or_pipe(temp);
+			assign_command_or_pipe(temp, &command_flag);
 		temp = temp->next;
 	}
+	command_flag = 0;
 }
