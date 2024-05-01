@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/29 23:55:34 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/30 11:49:29 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,10 @@ int	main(int argc, char **argv, char **env)
 		data.input = readline("bananashell-0.19:");
 		if (!data.input)
 		{
-			printf("exit");
+			if (errno != 0)
+				ft_putendl_fd("Fail in readline", STDERR_FILENO);
+			else
+				printf("exit");
 			clear_env_list(data.env_list, SUCCESS);
 			free(data.env_variables);
 			free(data.pwd);
@@ -135,7 +138,7 @@ int	main(int argc, char **argv, char **env)
 						x = 0;
 						i++;
 					}
-					error = execute_commands(&data);
+					error = child_pre_check(&data);
 				}
 				printf("--------------------\n");
 				clear_input(data.input_list, SUCCESS);

@@ -6,7 +6,7 @@
 #    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/04/28 01:53:17 by akuburas         ###   ########.fr        #
+#    Updated: 2024/04/30 12:10:05 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,8 @@ SRCS = main.c \
 		setup_pipes.c \
 		env_helper_functions.c \
 		execute_children.c \
+		ft_echo.c \
+		ft_pwd.c \
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)

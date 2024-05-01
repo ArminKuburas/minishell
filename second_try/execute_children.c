@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 02:36:27 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/30 07:26:44 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/30 12:06:24 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,29 +211,45 @@ void	clean_everything_up(t_shelldata *data, int exit_value)
 		exit(1);
 }
 
+int	use_builtin(t_child_data *child_data, int fd, t_shelldata *data)
+{
+	if (fd == 0)
+		fd = STDOUT_FILENO;
+	if (ft_strcmp(child_data->command, "echo") == 0)
+		return (ft_echo(child_data, fd));
+	// else if (ft_strcmp(child_data->command, "cd") == 0)
+	// 	return (ft_cd(child_data->command_inputs));
+	else if (ft_strcmp(child_data->command, "pwd") == 0)
+		return (ft_pwd(data->pwd));
+	// else if (ft_strcmp(child_data->command, "export") == 0)
+	// 	return (ft_export(child_data->command_inputs));
+	// else if (ft_strcmp(child_data->command, "unset") == 0)
+	// 	return (ft_unset(child_data->command_inputs));
+	// else if (ft_strcmp(child_data->command, "env") == 0)
+	// 	return (ft_env(child_data->command_inputs, fd));
+	// else if (ft_strcmp(child_data->command, "exit") == 0)
+	// 	return (ft_exit(child_data->command_inputs));
+	return (FAILURE);
+}
+
 void	child_handler(t_shelldata *data, t_child_data *child_data, int i)
 {
-	printf("Inside child_handler child number %d\n", i);
 	if (check_child_pipes(child_data) != SUCCESS)
 		clean_everything_up(data, FAILURE);
-	ft_putstr_fd("Checking fds after checking pipes child number\n", 2);
 	if (check_fds(child_data) != SUCCESS)
-	{
-		printf("check_fds failed child number %d\n", i);
 		clean_everything_up(data, FAILURE);
-	}
-	ft_putstr_fd("Closing fds child number \n", 2);
 	close_my_fds(child_data);
-	ft_putstr_fd("Cleaning other children child number \n", 2);
 	clean_other_children(data, i);
-	ft_putstr_fd("Executing command child number \n", 2);
-	int	x = 0;
-	while (child_data->command_inputs != NULL && child_data->command_inputs[x] != NULL)
+	if (child_data->command[0] != '/')
 	{
-		ft_putstr_fd("command_inputs: ", 2);
-		ft_putstr_fd(child_data->command_inputs[x], 2);
-		ft_putstr_fd("\n", 2);
-		x++;
+		if (use_builtin(child_data, STDOUT_FILENO, data) == SUCCESS)
+			exit(0);
+		else
+		{
+			ft_putstr_fd("execve failed\n", 2);
+			execve_failed_cleanup(data, child_data);
+			exit(child_data->exit_value);
+		}
 	}
 	if (execve(child_data->command,
 			child_data->command_inputs, child_data->env) == -1)
@@ -292,4 +308,27 @@ int	execute_commands(t_shelldata *data)
 		i++;
 	}
 	return (SUCCESS);
+}
+
+int	one_builtin(t_shelldata *data)
+{
+	int	return_value;
+
+	return_value = use_builtin(&data->child_data[0],
+			data->child_data[0].fd_out, data);
+	free_child_data(&data->child_data[0]);
+	return (return_value);
+}
+
+int	child_pre_check(t_shelldata *data)
+{
+	if (data->command_amount == 1)
+	{
+		if (data->child_data[0].command != NULL
+			&& data->child_data->command[0] != '/')
+			return (one_builtin(data));
+		else
+			return (execute_commands(data));
+	}
+	return (execute_commands(data));
 }

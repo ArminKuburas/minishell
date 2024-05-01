@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/28 13:06:04 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/30 13:44:16 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,7 @@ typedef struct s_new_string_data
 {
 	int				i;
 	int				j;
+	int				exit_value;
 	char			quote;
 	char			*new_string;
 	t_input_list	*temp;
@@ -196,8 +197,8 @@ typedef struct s_split_data
 
 typedef void	(*t_handler)(int);
 
-//int			rl_clear_history(void);
-//void		rl_replace_line(char *str, int num);
+int			rl_clear_history(void);
+void		rl_replace_line(char *str, int num);
 
 //data_parser functions
 
@@ -262,13 +263,19 @@ int			setup_command(t_shelldata *data, int index);
 int			is_it_command(char *input, t_shelldata *data, int index);
 void		free_child_data(t_child_data *data);
 int			setup_pipes(t_shelldata *data, int amount);
+void		set_all_error(t_shelldata *data);
 
 //execute_children functions
 int			execute_commands(t_shelldata *data);
 
 
-void	remove_from_env_list(t_shelldata *data, char *specifier);
-int	create_2d_env(t_shelldata *data);
+void		remove_from_env_list(t_shelldata *data, char *specifier);
+int			create_2d_env(t_shelldata *data);
 
+
+//armin version of builtins
+int			ft_echo(t_child_data *data, int fd);
+int			child_pre_check(t_shelldata *data);
+int			ft_pwd(char *pwd);
 
 #endif

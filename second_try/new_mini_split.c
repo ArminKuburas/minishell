@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:41:10 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/26 03:57:58 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/30 13:32:20 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,13 @@ int	new_mini_split(t_shelldata *data)
 	if (data->input_list == NULL)
 		return (NO_MEMORY);
 	printf("before duplicating strings in new mini split.\n");
-	printf("This is data env_list %s.\n", data->env_list->env_var);
 	while (data->input[i])
 	{
 		while (data->input[i] == ' ' || data->input[i] == '\t')
 			i++;
+		if (data->input[i] == '\0')
+			break ;
+		printf("after space while loop input[%d] = %s\n", i, data->input);
 		if (ft_strchr("><|", data->input[i]) != NULL)
 		{
 			if (duplicate_special_character(&data->input[i],
@@ -121,6 +123,7 @@ int	new_mini_split(t_shelldata *data)
 			if (duplicate_input(&data->input[i], data->input_list,
 					&i) != SUCCESS)
 				return (clear_input(data->input_list, FAILURE));
+		printf("after if statements input[%d] = %s\n", i, data->input);
 		if (data->input[i] != '\0')
 			i++;
 	}
