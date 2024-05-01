@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:41:10 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/30 13:32:20 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/01 12:04:26 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,14 +105,12 @@ int	new_mini_split(t_shelldata *data)
 	data->input_list = ft_calloc(1, sizeof(t_input_list));
 	if (data->input_list == NULL)
 		return (NO_MEMORY);
-	printf("before duplicating strings in new mini split.\n");
 	while (data->input[i])
 	{
 		while (data->input[i] == ' ' || data->input[i] == '\t')
 			i++;
 		if (data->input[i] == '\0')
 			break ;
-		printf("after space while loop input[%d] = %s\n", i, data->input);
 		if (ft_strchr("><|", data->input[i]) != NULL)
 		{
 			if (duplicate_special_character(&data->input[i],
@@ -123,31 +121,8 @@ int	new_mini_split(t_shelldata *data)
 			if (duplicate_input(&data->input[i], data->input_list,
 					&i) != SUCCESS)
 				return (clear_input(data->input_list, FAILURE));
-		printf("after if statements input[%d] = %s\n", i, data->input);
 		if (data->input[i] != '\0')
 			i++;
 	}
-	t_input_list *temp = data->input_list;
-	int j = 0;
-	while (temp != NULL)
-	{
-		printf("input[%d] = %s\n", j, temp->input);
-		temp = temp->next;
-	}
-	input_type_assigner(data->input_list);
-	if (check_pipes(data) != SUCCESS)
-		return (FAILURE);
-	temp = data->input_list;
-	j = 0;
-	while (temp != NULL)
-	{
-		printf("input[%d] type = %d\n", j, temp->type);
-		j++;
-		temp = temp->next;
-	}
-	if (split_cleaner(data) != SUCCESS)
-		return (FAILURE);
-	printf("--------------------\n");
-	printf("input after cleaning\n");
 	return (SUCCESS);
 }
