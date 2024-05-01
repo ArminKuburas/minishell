@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/30 11:49:29 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/01 09:57:26 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,60 @@
 // When terminal is opened for the first time and you do CTRL+C in bash, the ^C is shown for once,
 // need to figure out why.
 // CTRL + \ = SIGQUIT
+
+int	new_env_node(t_env_list *old_node, char *env_var_name, char *env_var_value)
+{
+	t_env_list	*new_node;
+	char		*temp;
+
+	new_node = ft_calloc(1, sizeof(t_env_list));
+	if (!new_node)
+		return (NO_MEMORY);
+	old_node->next = new_node;
+	new_node->env_var_name = env_var_name;
+	new_node->env_var_value = env_var_value;
+	temp = ft_strjoin(env_var_name, "=");
+	if (!temp)
+		return (NO_MEMORY);
+	new_node->env_var = ft_strjoin(temp, env_var_value);
+	free(temp);
+	if (!new_node->env_var)
+		return (NO_MEMORY);
+	return (SUCCESS);
+}
+
+int	create_question_node(t_shelldata *data, t_env_list *temp)
+{
+	char	*env_var_name;
+
+
+	env_var_name = ft_strdup("?");
+	if (!env_var_name)
+		return (NO_MEMORY);
+	return (new_env_node(temp, env_var_name, ft_itoa(data->exit_value)));
+}
+
+int	create_exit_value_env(t_shelldata *data)
+{
+	t_env_list	*temp;
+
+	temp = data->env_list;
+	while (temp != NULL)
+	{
+		if (ft_strcmp(temp->env_var_name, "?") == 0)
+		{
+			free (temp->env_var_value);
+			temp->env_var_value = ft_itoa(data->exit_value);
+			if (!temp->env_var_value)
+				return (NO_MEMORY);
+			return (SUCCESS);
+		}
+		if (temp->next == NULL)
+			return (create_question_node(data, temp));
+		temp = temp->next;
+	}
+	return (FAILURE);
+}
 
 int	main(int argc, char **argv, char **env)
 {
@@ -39,6 +93,17 @@ int	main(int argc, char **argv, char **env)
 		if (error != SUCCESS)
 			return (FAILURE);
 		error = update_shell_level(&data);
+		if (error != SUCCESS)
+		{
+			clear_env_list(data.env_list, FAILURE);
+			return (FAILURE);
+		}
+		error = create_exit_value_env(&data);
+		if (error != SUCCESS)
+		{
+			clear_env_list(data.env_list, FAILURE);
+			return (FAILURE);
+		}
 		t_env_list	*temp = data.env_list;
 		while (temp != NULL)
 		{
@@ -78,7 +143,7 @@ int	main(int argc, char **argv, char **env)
 		data.pwd = getcwd(NULL, 0);
 		if (!data.pwd)
 			ft_putendl_fd("Fail in getcwd", 2);
-		data.input = readline("bananashell-0.19:");
+		data.input = readline("bananashell-0.21:");
 		if (!data.input)
 		{
 			if (errno != 0)
@@ -139,6 +204,16 @@ int	main(int argc, char **argv, char **env)
 						i++;
 					}
 					error = child_pre_check(&data);
+					error = create_exit_value_env(&data);
+					if (error != SUCCESS)
+					{
+						clear_env_list(data.env_list, FAILURE);
+						free(data.env_variables);
+						free(data.pwd);
+						free(data.input);
+						clear_input(data.input_list, FAILURE);
+						break ;
+					}
 				}
 				printf("--------------------\n");
 				clear_input(data.input_list, SUCCESS);
@@ -146,8 +221,9 @@ int	main(int argc, char **argv, char **env)
 			add_history(data.input);
 		}
 		free(data.input);
-		free(data.pwd);
 		data.input = NULL;
+		free(data.pwd);
+		data.pwd = NULL;
 		if (error == FAILURE)
 			break ;
 	}

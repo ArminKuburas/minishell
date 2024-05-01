@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 02:36:27 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/30 12:06:24 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/01 09:49:50 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -300,6 +300,7 @@ int	execute_commands(t_shelldata *data)
 	while (i < data->command_amount)
 	{
 		free_child_data(&data->child_data[i]);
+		data->exit_value = data->child_data[i].exit_value;
 		printf("Waiting for child %d\n", i);
 		if (data->child_data[i].command != NULL
 			&& data->child_data[i].exit_value == 0)
@@ -316,6 +317,7 @@ int	one_builtin(t_shelldata *data)
 
 	return_value = use_builtin(&data->child_data[0],
 			data->child_data[0].fd_out, data);
+	data->exit_value = return_value;
 	free_child_data(&data->child_data[0]);
 	return (return_value);
 }
