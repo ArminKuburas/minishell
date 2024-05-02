@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   split_cleaner_helper_funcs.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/19 16:33:57 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/02 11:34:09 by akuburas         ###   ########.fr       */
+/*   Created: 2024/05/02 09:18:26 by akuburas          #+#    #+#             */
+/*   Updated: 2024/05/02 09:18:56 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/* my_env goes through the env list and prints out the variables
-   if they are proper key/value pairs*/
-void	my_env(t_shelldata *data)
+void	set_up_string_data(t_new_string_data *data, t_input_list *temp,
+	t_shelldata *shell_data, char *new_string)
 {
-	t_env_list	*current_node;
-	t_env_list	*head;
-
-	head = data->env_list;
-	current_node = data->env_list;
-	if (!data->env_list)
-		return ;
-	while (current_node)
-		current_node = current_node->next;
-	data->env_list = head;
+	data->i = 0;
+	data->j = 0;
+	data->quote = 'a';
+	data->temp = temp;
+	data->env = shell_data->env_list;
+	data->new_string = new_string;
+	data->shell_data = shell_data;
 }

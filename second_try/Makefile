@@ -6,13 +6,13 @@
 #    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/05/02 04:37:45 by akuburas         ###   ########.fr        #
+#    Updated: 2024/05/02 11:15:35 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 RLFLAGS = -lreadline -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include
 DEBUGFLAGS = -Wall -Wextra -Werror -g
 
@@ -49,6 +49,9 @@ SRCS =	main.c \
 		ft_pwd.c \
 		new_mini_split_helpers.c \
 		check_for_errors.c \
+		split_cleaner_helper_funcs.c \
+		potential_split_helpers.c \
+		child_data_helpers.c \
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)

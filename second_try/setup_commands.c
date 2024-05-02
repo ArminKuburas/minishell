@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 09:35:02 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/29 23:16:27 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/02 12:59:05 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	check_command(const char *builtin, char *command)
 	return (-1);
 }
 
-static int	is_it_builtin(char *command, t_child_data *child_data)
+static int	is_it_builtin(char *command, t_shelldata *data, int index)
 {
 	const char	builtins[7][20] = {
 		"echo",
@@ -39,9 +39,9 @@ static int	is_it_builtin(char *command, t_child_data *child_data)
 	{
 		if (check_command(builtins[i], command) == 0)
 		{
-			child_data->command = ft_strdup(command);
-			if (child_data->command == NULL)
-				return (NO_MEMORY);
+			data->child_data[index].command = ft_strdup(command);
+			if (data->child_data[index].command == NULL)
+				child_failed(data, NO_MEMORY);
 			return (SUCCESS);
 		}
 		i++;
@@ -73,13 +73,12 @@ int	setup_command(t_shelldata *data, int index)
 	{
 		if (temp->type == COMMAND)
 		{
-			error = is_it_builtin(temp->input, &data->child_data[index]);
+			error = is_it_builtin(temp->input, data, index);
 			if (error == NOT_FOUND)
 				error = is_it_command(temp->input, data, index);
 			return (error);
 		}
 		temp = temp->next;
 	}
-	printf("No command found\n");
 	return (SUCCESS);
 }

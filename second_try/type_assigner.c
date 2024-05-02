@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 05:59:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/30 07:30:17 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/02 11:35:03 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	potential_split(t_input_list *temp)
 			i++;
 		}
 		temp->word_split = POTENTIAL_SPLIT;
-		printf("This is a potential split: %s\n", temp->input);
 	}
 }
 

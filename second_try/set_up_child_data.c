@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:58:42 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/30 08:17:48 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/02 11:20:10 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,12 @@ int	create_command_arguments(t_child_data *child, t_input_list *start)
 
 	i = 0;
 	temp = start;
-	printf("Inside create command arguments.\n");
 	while (temp && temp->type != PIPE)
 	{
 		if (temp->type == COMMAND_ARGUMENT)
 			i++;
 		temp = temp->next;
 	}
-	printf("After while loop. i = %d\n", i);
-	printf("Before calloc inside create_command_arguments\n");
 	child->command_inputs = ft_calloc(i + 2, sizeof(char *));
 	if (child->command_inputs == NULL)
 		return (FAILURE);
@@ -106,7 +103,6 @@ void	setup_command_inputs(t_shelldata *data, int i)
 
 	j = 0;
 	temp = data->input_list;
-	printf("inside setup command inputs\n");
 	while (j < i)
 	{
 		while (temp->type != PIPE)
@@ -114,16 +110,10 @@ void	setup_command_inputs(t_shelldata *data, int i)
 		temp = temp->next;
 		j++;
 	}
-	printf("After initial while loop inside setup command inputs j = %d\n", j);
 	while (temp != NULL && temp->type != COMMAND)
 	{
 		temp = temp->next;
 	}
-	printf("After second while loop.\n");
-	if (temp)
-		printf("temp input equals %s\n", temp->input);
-	else
-		printf("temp is NULL\n");
 	error = create_command_arguments(&data->child_data[i], temp);
 	data->child_data[i].exit_value = error;
 }
@@ -147,10 +137,8 @@ int	create_child_data(t_shelldata *data, int amount)
 	int	error;
 
 	i = 0;
-	printf("inside create child data\n");
 	while (i < amount)
 	{
-		printf("inside while loop\n");
 		setup_redirects(data, i);
 		if (data->child_data[i].exit_value == 0)
 		{
@@ -162,7 +150,7 @@ int	create_child_data(t_shelldata *data, int amount)
 		}
 		error = setup_pipes(data, i);
 		if (error != SUCCESS)
-			set_all_error(data);
+			child_failed(data, NO_PIPE);
 		data->child_data[i].env = data->env_variables;
 		i++;
 	}
@@ -173,17 +161,12 @@ int	set_up_child_data(t_shelldata *data)
 {
 	int	processes;
 
-	printf("set_up_child_data\n");
 	processes = count_processes(data->input_list);
-	printf("processes = %d\n", processes);
 	data->command_amount = processes;
 	data->child_data
 		= (t_child_data *)ft_calloc(processes, sizeof(t_child_data));
 	if (data->child_data == NULL)
-	{
-		ft_putstr_fd("memory allocation failed\n", 2);
-		return (NO_MEMORY);
-	}
+		split_memory_failed(data);
 	create_child_data(data, processes);
 	return (SUCCESS);
 }

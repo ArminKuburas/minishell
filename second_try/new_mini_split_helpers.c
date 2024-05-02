@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 04:14:46 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/02 04:53:44 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:21:52 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	split_memory_failed(t_shelldata *data)
 	ft_putstr_fd("bananashell: Memory allocation failed\n", 2);
 	clear_input(data->input_list, FAILURE);
 	free(data->input);
-	clear_env_list(data->env_list);
+	clear_env_list(data->env_list, FAILURE);
 	rl_clear_history();
 	exit(1);
 }

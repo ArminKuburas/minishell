@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 06:19:36 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/02 06:21:20 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:47:56 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	initialize_first_link(t_new_string_data *data, char **strings)
 	j = 0;
 	while (strings[0][j] != '\0')
 	{
-		data->new_string[data->i] = strings[i][j];
+		data->new_string[data->i] = strings[0][j];
 		data->i++;
 		j++;
 	}
@@ -85,8 +85,8 @@ static void	finish_last_link(t_new_string_data *data, char **strings)
 	data->temp->input = NULL;
 	old_link = data->temp;
 	while (old_link->old_input == NULL)
-		old_link = new_link->prev;
-	data->temp->input = ft_strdup(new_link->old_input);
+		old_link = old_link->prev;
+	data->temp->input = ft_strdup(old_link->old_input);
 	data->j--;
 	if (data->temp->input == NULL)
 	{

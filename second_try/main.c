@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/02 05:05:13 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:26:34 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,16 +100,16 @@ int	initial_env_creation(char **env, t_shelldata *data)
 {
 	int	error;
 
-	error = duplicate_env(env, &data);
+	error = duplicate_env(env, data);
 	if (error != SUCCESS)
 		return (FAILURE);
-	error = update_shell_level(&data);
+	error = update_shell_level(data);
 	if (error != SUCCESS)
 	{
 		clear_env_list(data->env_list, FAILURE);
 		return (FAILURE);
 	}
-	error = create_exit_value_env(&data);
+	error = create_exit_value_env(data);
 	if (error != SUCCESS)
 	{
 		clear_env_list(data->env_list, FAILURE);
@@ -127,8 +127,9 @@ int initial_setup(t_shelldata *data, int argc, char **argv, char **env)
 	if (check_argc_argv(argc, argv) == FAILURE)
 		return (FAILURE);
 	if (env)
-		if (initial_env_creation(env, &data) == FAILURE)
+		if (initial_env_creation(env, data) == FAILURE)
 			return (FAILURE);
+	data->pwd = getcwd(NULL, 0);
 	if (!data->pwd)
 	{
 		ft_putendl_fd("getcwd has failed", 2);
@@ -142,26 +143,21 @@ void	end_of_file_reached(t_shelldata *data)
 {
 	ft_putstr("exit");
 	clear_env_list(data->env_list, SUCCESS);
-	free(data->env_variables);
 	free(data->pwd);
-	clear_input(data->input_list, SUCCESS);
 	rl_clear_history();
 	exit(0);
 }
 
 int	set_up_data(t_shelldata *data)
 {
-	int	error;
-
-	/*Continue work from here. Its gonna be a lot lol*/
-	if (new_mini_split(&data) != SUCCESS)
-		return (FAILURE);
-	if (check_pipes(data) != SUCCESS)
+	if (new_mini_split(data) != SUCCESS)
 		return (FAILURE);
 	input_type_assigner(data->input_list);
-	if (split_cleaner(data) != SUCCESS)
-		exit_time(data, FAILURE);
-	error = set_up_child_data(&data);
+	if (check_pipes(data) != SUCCESS)
+		return (FAILURE);
+	split_cleaner(data);
+	set_up_child_data(data);
+	return (SUCCESS);
 }
 
 int	main(int argc, char **argv, char **env)
@@ -183,7 +179,11 @@ int	main(int argc, char **argv, char **env)
 			free(data.input);
 			continue ;
 		}
-		set_up_data(&data)
+		if (set_up_data(&data) != SUCCESS)
+		{
+			free(data.input);
+			continue ;
+		}
 		if (error == SUCCESS)
 		{
 			error = child_pre_check(&data);
@@ -202,8 +202,6 @@ int	main(int argc, char **argv, char **env)
 		add_history(data.input);
 		free(data.input);
 		data.input = NULL;
-		free(data.pwd);
-		data.pwd = NULL;
 		if (error == FAILURE)
 			break ;
 	}

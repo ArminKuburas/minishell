@@ -1,7 +1,1 @@
-CC = cc
-		$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME) $(RLFLAGS)
-		$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME) $(RLFLAGS) -g
-	$(CC) $(CFLAGS) -c $< -o $@
-		$(CC) $(DEBUGFLAGS) $(OBJS) $(LIBFT) -o $(NAME) $(RLFLAGS)
-banana CC
-CC banana
+fuck off

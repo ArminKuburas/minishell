@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/02 06:20:16 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:59:59 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,6 +229,8 @@ void		copy_dollar(t_new_string_data *data);
 t_env_list	*try_to_find_env(t_env_list *env, char *str, int len);
 void		potential_split_create(t_new_string_data *data);
 void		split_env(t_new_string_data *data, t_env_list	*temp_env);
+void		set_up_string_data(t_new_string_data *data, t_input_list *temp,
+				t_shelldata *shell_data, char *new_string);
 
 
 
@@ -270,6 +272,8 @@ int			is_it_command(char *input, t_shelldata *data, int index);
 void		free_child_data(t_child_data *data);
 int			setup_pipes(t_shelldata *data, int amount);
 void		set_all_error(t_shelldata *data);
+void		child_failed(t_shelldata *data, int error);
+
 
 //execute_children functions
 int			execute_commands(t_shelldata *data);

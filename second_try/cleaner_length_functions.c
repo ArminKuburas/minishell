@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 19:06:55 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/01 09:06:56 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/02 11:33:57 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	found_dollar(t_input_list *temp, int *i, char quote, t_env_list *env)
 	int	start;
 
 	length = 0;
-	printf("Inside found dollar\n");
 	if (quote == '\'')
 		return (1);
 	if (ft_strchr(" \t$'\"", temp->input[(*i) + 1]) == NULL)
@@ -63,9 +62,7 @@ int	found_dollar(t_input_list *temp, int *i, char quote, t_env_list *env)
 			(*i)++;
 		if (temp->input[*i] == '?' && start == *i)
 			(*i)++;
-		printf("Length is %d\n", *i - start);
 		length += length_find_env(env, &temp->input[start], (*i) - start);
-		printf("Length: %d\n", length);
 		(*i)--;
 		if (quote == 'a')
 			temp->word_split = POTENTIAL_SPLIT;

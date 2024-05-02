@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 09:54:36 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/30 07:12:45 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/02 11:22:03 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,10 @@ int	create_variables(char ***path_variables, t_env_list *env_list)
 	t_env_list	*temp;
 
 	temp = env_list;
-	printf("inside create_variables\n");
 	while (temp != NULL)
 	{
 		if (ft_strcmp(temp->env_var_name, "PATH") == 0)
 		{
-			printf("Found PATH.\n");
 			*path_variables = ft_split(temp->env_var_value, ':');
 			if (*path_variables == NULL)
 				return (NO_MEMORY);
@@ -116,7 +114,6 @@ int	check_if_directory(char *input, t_shelldata *data, int index)
 
 int check_if_given_path(char *input, t_shelldata *data, int index)
 {
-	printf("Inside check if given path\n");
 	if (ft_strchr("./", input[0]) != NULL)
 	{
 		if (access(input, F_OK) == 0)
@@ -134,7 +131,6 @@ int check_if_given_path(char *input, t_shelldata *data, int index)
 		else
 			return (NOT_FOUND);
 	}
-	printf("After the initial if statement of check if given path\n");
 	return (NOT_FOUND);
 }
 
@@ -144,22 +140,16 @@ int	is_it_command(char *input, t_shelldata *data, int index)
 	int		error;
 
 	path_variables = NULL;
-	printf("Inside is it command\n");
 	error = check_if_given_path(input, data, index);
-	printf("After check if given path. error = %d\n", error);
 	if (error == SUCCESS)
 		return (SUCCESS);
 	else if (error != NOT_FOUND)
 		return (error);
-	printf("Before create variables. \n");
-	printf("This is data->env_list %s\n", data->env_list->env_var);
 	if (create_variables(&path_variables, data->env_list) == NO_MEMORY)
 		return (NO_MEMORY);
-	printf("After create variables.\n");
 	if (path_variables == NULL)
 		return (NOT_FOUND);
 	error = find_path(path_variables, data, index, input);
 	ft_free_substrings(&path_variables);
-	printf("After find_path\n");
 	return (error);
 }
