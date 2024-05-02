@@ -6,12 +6,15 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/26 15:40:55 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:59:59 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+
+/*For errno global variable*/
+# include <errno.h>
 
 /* For the readline functions*/
 # include <readline/history.h>
@@ -69,10 +72,11 @@ enum e_errors
 	NO_PIPE = 7,
 	NO_FORK = 8,
 	NO_QUOTE = 9,
-	NOT_FOUND = 10,
-	EXECUTION_FORBIDDEN = 11,
-	IS_DIRECTORY = 12,
-	FOUND = 13
+	NO_DUP = 10,
+	NOT_FOUND = 11,
+	EXECUTION_FORBIDDEN = 12,
+	IS_DIRECTORY = 13,
+	FOUND = 14
 };
 
 enum e_child_status
@@ -89,10 +93,9 @@ enum e_child_status
 
 typedef struct s_child_data
 {
-	int		pipe_situation;
+	pid_t	pid;
 	int		p_fd_in[2];
 	int		p_fd_out[2];
-	int		redirections;
 	int		fd_in;
 	int		fd_out;
 	char	**env;
@@ -172,10 +175,12 @@ typedef struct s_new_string_data
 {
 	int				i;
 	int				j;
+	int				exit_value;
 	char			quote;
 	char			*new_string;
 	t_input_list	*temp;
 	t_env_list		*env;
+	t_shelldata		*shell_data;
 }	t_new_string_data;
 
 //A struct for the mini_split
@@ -223,8 +228,15 @@ int			split_cleaner(t_shelldata *data);
 void		copy_dollar(t_new_string_data *data);
 t_env_list	*try_to_find_env(t_env_list *env, char *str, int len);
 void		potential_split_create(t_new_string_data *data);
+void		split_env(t_new_string_data *data, t_env_list	*temp_env);
+void		set_up_string_data(t_new_string_data *data, t_input_list *temp,
+				t_shelldata *shell_data, char *new_string);
 
+
+
+//new mini split functions
 int			new_mini_split(t_shelldata *data);
+int			duplicate_input(char *input, t_shelldata *data, int *i);
 
 
 //signal handler
@@ -259,7 +271,26 @@ int			setup_command(t_shelldata *data, int index);
 int			is_it_command(char *input, t_shelldata *data, int index);
 void		free_child_data(t_child_data *data);
 int			setup_pipes(t_shelldata *data, int amount);
+void		set_all_error(t_shelldata *data);
+void		child_failed(t_shelldata *data, int error);
 
+
+//execute_children functions
+int			execute_commands(t_shelldata *data);
+
+
+void		remove_from_env_list(t_shelldata *data, char *specifier);
+int			create_2d_env(t_shelldata *data);
+
+
+//armin version of builtins
+int			ft_echo(t_child_data *data, int fd);
+int			child_pre_check(t_shelldata *data);
+int			ft_pwd(char *pwd);
+
+//error functions
+int			check_pipes(t_shelldata *data);
+void		split_memory_failed(t_shelldata *data);
 
 
 #endif

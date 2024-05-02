@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:24:02 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/19 06:05:33 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/02 04:50:18 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	clear_input(t_input_list *input_list, int error)
 		if (input_list->old_input != NULL)
 			free(input_list->old_input);
 		input_list->input = NULL;
+		input_list->old_input = NULL;
 		free(input_list);
 		input_list = temp;
 	}
@@ -52,17 +53,17 @@ int	create_input(char *input, int len, t_input_list *input_list)
 	{
 		input_list->input = ft_strndup(input, len);
 		if (input_list->input == NULL)
-			return (clear_input(input_list, NO_MEMORY));
+			return (NO_MEMORY);
 	}
 	else
 	{
 		new_node = (t_input_list *)ft_calloc(1, sizeof(t_input_list));
 		if (new_node == NULL)
-			return (clear_input(input_list, NO_MEMORY));
+			return (NO_MEMORY);
+		add_input_list(input_list, new_node);
 		new_node->input = ft_strndup(input, len);
 		if (new_node->input == NULL)
-			return (clear_input(input_list, NO_MEMORY));
-		add_input_list(input_list, new_node);
+			return (NO_MEMORY);
 	}
 	return (SUCCESS);
 }

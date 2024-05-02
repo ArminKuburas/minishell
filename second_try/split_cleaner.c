@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:56:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/18 13:18:30 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:41:20 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,7 @@ void	new_str_quote_found(t_new_string_data *data, char *temp)
 	}
 }
 
-int	new_string_last_check(t_input_list *temp)
-{
-	if (temp->word_split == FAILURE)
-		return (NO_MEMORY);
-	return (SUCCESS);
-}
 
-void	set_up_string_data(t_new_string_data *data, t_input_list *temp,
-	t_env_list *env, char *new_string)
-{
-	data->i = 0;
-	data->j = 0;
-	data->quote = 'a';
-	data->temp = temp;
-	data->env = env;
-	data->new_string = new_string;
-}
 
 void	handle_dollar_sign(t_new_string_data *data)
 {
@@ -51,11 +35,11 @@ void	handle_dollar_sign(t_new_string_data *data)
 		copy_dollar(data);
 }
 
-int	create_new_string(t_input_list *temp, t_env_list *env, char *n_str)
+int	create_new_string(t_input_list *temp, t_shelldata *shell_data, char *n_str)
 {
 	t_new_string_data	data;
 
-	set_up_string_data(&data, temp, env, n_str);
+	set_up_string_data(&data, temp, shell_data, n_str);
 	while (data.temp->input[data.j] != '\0')
 	{
 		if (ft_strchr("'\"", data.temp->input[data.j]) != NULL)
@@ -67,42 +51,34 @@ int	create_new_string(t_input_list *temp, t_env_list *env, char *n_str)
 		}
 		else
 			handle_dollar_sign(&data);
-		if (new_string_last_check(data.temp) == NO_MEMORY)
-			return (NO_MEMORY);
 		data.j++;
 	}
-	if (data.temp->word_split != WORD_SPLIT)
-		data.temp->old_input = temp->input;
-	else
-		free(data.temp->input);
+	data.temp->old_input = temp->input;
 	data.temp->input = data.new_string;
 	return (SUCCESS);
+}
+
+void	clean_up_split(t_shelldata *data, t_input_list *temp, size_t length)
+{
+	char	*str;
+
+	str = (char *)ft_calloc(length + 1, sizeof(char));
+	if (str == NULL)
+		split_memory_failed(data);
+	create_new_string(temp, data, str);
 }
 
 int	split_cleaner(t_shelldata *data)
 {
 	size_t			length;
 	t_input_list	*temp;
-	char			*str;
 
 	temp = data->input_list;
 	while (temp != NULL)
 	{
 		length = new_length(temp, data->env_list);
 		if (temp->needs_cleaning != 0)
-		{
-			str = (char *)ft_calloc(length + 1, sizeof(char));
-			if (str == NULL)
-			{
-				clear_input(data->input_list, NO_MEMORY);
-				return (NO_MEMORY);
-			}
-			if (create_new_string(temp, data->env_list, str) != SUCCESS)
-			{
-				clear_input(data->input_list, NO_MEMORY);
-				return (NO_MEMORY);
-			}
-		}
+			clean_up_split(data, temp, length);
 		temp = temp->next;
 		while (temp != NULL && temp->word_split == WORD_SPLIT)
 			temp = temp->next;

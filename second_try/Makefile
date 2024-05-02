@@ -6,13 +6,13 @@
 #    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/04/26 15:44:36 by akuburas         ###   ########.fr        #
+#    Updated: 2024/05/02 11:15:35 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 RLFLAGS = -lreadline -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include
 DEBUGFLAGS = -Wall -Wextra -Werror -g
 
@@ -20,9 +20,7 @@ MAKE = make bonus
 LIBFTDIR = libft
 LIBFT = $(LIBFTDIR)/libft.a
 
-SRCS = main.c \
-		mini_split.c \
-		mini_split_counter.c \
+SRCS =	main.c \
 		input_list_functions.c \
 		create_env_list.c \
 		type_assigner.c \
@@ -38,7 +36,7 @@ SRCS = main.c \
 		unset.c \
 		echo.c \
 		env.c \
-		heredoc.c
+		heredoc.c \
 		set_up_child_data.c \
 		setup_commands.c \
 		setup_helpers.c \
@@ -46,6 +44,14 @@ SRCS = main.c \
 		setup_redirects.c \
 		setup_pipes.c \
 		env_helper_functions.c \
+		execute_children.c \
+		ft_echo.c \
+		ft_pwd.c \
+		new_mini_split_helpers.c \
+		check_for_errors.c \
+		split_cleaner_helper_funcs.c \
+		potential_split_helpers.c \
+		child_data_helpers.c \
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)

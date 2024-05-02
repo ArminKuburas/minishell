@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:04:17 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/26 03:37:11 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/30 11:34:03 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,4 @@ void	free_child_data(t_child_data *data)
 		close(data->p_fd_out[0]);
 	if (data->p_fd_out[1] != 0)
 		close(data->p_fd_out[1]);
-	
 }

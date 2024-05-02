@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:05:58 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/26 15:27:51 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/28 12:47:32 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void	remove_from_env_list(t_shelldata *data, char *specifier)
 			temp2 = temp->next->next;
 			free(temp->next);
 			temp->next = temp2;
-			return ; // Exit after removing the node
+			return ;
 		}
 		temp = temp->next;
 	}

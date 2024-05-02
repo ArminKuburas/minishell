@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 19:06:55 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/18 13:22:34 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/02 11:33:57 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	length_find_env(t_env_list *env, char *str, int len)
 	t_env_list	*temp;
 
 	temp = env;
-	printf("Inside length find env\n");
 	while (temp != NULL)
 	{
 		if (ft_strlen(temp->env_var_name) != (size_t)len)
@@ -53,17 +52,17 @@ int	found_dollar(t_input_list *temp, int *i, char quote, t_env_list *env)
 	int	start;
 
 	length = 0;
-	printf("Inside found dollar\n");
 	if (quote == '\'')
 		return (1);
 	if (ft_strchr(" \t$'\"", temp->input[(*i) + 1]) == NULL)
 	{
 		(*i)++;
 		start = *i;
-		while (ft_strchr(" \t$'\"", temp->input[(*i)]) == NULL)
+		while (ft_strchr(" \t$'\"?", temp->input[(*i)]) == NULL)
+			(*i)++;
+		if (temp->input[*i] == '?' && start == *i)
 			(*i)++;
 		length += length_find_env(env, &temp->input[start], (*i) - start);
-		printf("Length: %d\n", length);
 		(*i)--;
 		if (quote == 'a')
 			temp->word_split = POTENTIAL_SPLIT;

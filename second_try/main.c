@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/26 15:38:39 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:26:34 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,108 +22,189 @@
 // need to figure out why.
 // CTRL + \ = SIGQUIT
 
+int	new_env_node(t_env_list *old_node, char *env_var_name, char *env_var_value)
+{
+	t_env_list	*new_node;
+	char		*temp;
+
+	new_node = ft_calloc(1, sizeof(t_env_list));
+	if (!new_node)
+		return (NO_MEMORY);
+	old_node->next = new_node;
+	new_node->env_var_name = env_var_name;
+	new_node->env_var_value = env_var_value;
+	temp = ft_strjoin(env_var_name, "=");
+	if (!temp)
+		return (NO_MEMORY);
+	new_node->env_var = ft_strjoin(temp, env_var_value);
+	free(temp);
+	if (!new_node->env_var)
+		return (NO_MEMORY);
+	return (SUCCESS);
+}
+
+int	create_question_node(t_shelldata *data, t_env_list *temp)
+{
+	char	*env_var_name;
+
+
+	env_var_name = ft_strdup("?");
+	if (!env_var_name)
+		return (NO_MEMORY);
+	return (new_env_node(temp, env_var_name, ft_itoa(data->exit_value)));
+}
+
+int	create_exit_value_env(t_shelldata *data)
+{
+	t_env_list	*temp;
+
+	temp = data->env_list;
+	while (temp != NULL)
+	{
+		if (ft_strcmp(temp->env_var_name, "?") == 0)
+		{
+			free (temp->env_var_value);
+			temp->env_var_value = ft_itoa(data->exit_value);
+			if (!temp->env_var_value)
+				return (NO_MEMORY);
+			return (SUCCESS);
+		}
+		if (temp->next == NULL)
+			return (create_question_node(data, temp));
+		temp = temp->next;
+	}
+	return (FAILURE);
+}
+
+int	check_argc_argv(int argc, char **argv)
+{
+	if (argc > 1)
+	{
+		ft_putendl_fd("Too many arguments", STDERR_FILENO);
+		return (FAILURE);
+	}
+	if (argc < 1)
+	{
+		ft_putendl_fd("How did you do that?", STDERR_FILENO);
+		return (FAILURE);
+	}
+	if (argv[0] == NULL)
+	{
+		ft_putendl_fd("What. How did you do that? A null name?", STDERR_FILENO);
+		return (FAILURE);
+	}
+	return (SUCCESS);
+}
+
+int	initial_env_creation(char **env, t_shelldata *data)
+{
+	int	error;
+
+	error = duplicate_env(env, data);
+	if (error != SUCCESS)
+		return (FAILURE);
+	error = update_shell_level(data);
+	if (error != SUCCESS)
+	{
+		clear_env_list(data->env_list, FAILURE);
+		return (FAILURE);
+	}
+	error = create_exit_value_env(data);
+	if (error != SUCCESS)
+	{
+		clear_env_list(data->env_list, FAILURE);
+		return (FAILURE);
+	}
+	return (SUCCESS);
+	//remove_from_env_list(&data, "PATH");
+	//remove_from_env_list(&data, "LS_COLORS");
+	//create_2d_env(&data);
+}
+
+int initial_setup(t_shelldata *data, int argc, char **argv, char **env)
+{
+
+	if (check_argc_argv(argc, argv) == FAILURE)
+		return (FAILURE);
+	if (env)
+		if (initial_env_creation(env, data) == FAILURE)
+			return (FAILURE);
+	data->pwd = getcwd(NULL, 0);
+	if (!data->pwd)
+	{
+		ft_putendl_fd("getcwd has failed", 2);
+		clear_env_list(data->env_list, FAILURE);
+		return (FAILURE);
+	}
+	return (SUCCESS);
+}
+
+void	end_of_file_reached(t_shelldata *data)
+{
+	ft_putstr("exit");
+	clear_env_list(data->env_list, SUCCESS);
+	free(data->pwd);
+	rl_clear_history();
+	exit(0);
+}
+
+int	set_up_data(t_shelldata *data)
+{
+	if (new_mini_split(data) != SUCCESS)
+		return (FAILURE);
+	input_type_assigner(data->input_list);
+	if (check_pipes(data) != SUCCESS)
+		return (FAILURE);
+	split_cleaner(data);
+	set_up_child_data(data);
+	return (SUCCESS);
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	t_shelldata	data;
 	int			error;
 
-
-	ft_memset(&data, 0, sizeof(t_shelldata));
-	if (argc < 1)
-		printf("wtf\n");
-	if (!argv[0])
-		printf("wtf2\n");
-	if (env)
-	{
-		error = duplicate_env(env, &data);
-		if (error != SUCCESS)
-			return (FAILURE);
-		error = update_shell_level(&data);
-		t_env_list	*temp = data.env_list;
-		while (temp != NULL)
-		{
-			printf("--------------------\n");
-			printf("env_var = %s\n", env_temp->env_var);
-			printf("env_var_name = %s\n", env_temp->env_var_name);
-			printf("env_var_value = %s\n", env_temp->env_var_value);
-			printf("--------------------\n");
-			env_temp = env_temp->next;
-		}
-		int z = 0;
-		while (data.env_variables[z] != NULL)
-		{
-			printf("This is data.env_variables[%d] = %s\n", z, data.env_variables[z]);
-			z++;
-		}
-		printf("--------------------\n");
-	}
+	data = (t_shelldata){0};
+	if (initial_setup(&data, argc, argv, env) == FAILURE)
+		return (FAILURE);
 	while (1)
 	{
 		parent_signals();
-		data.pwd = getcwd(NULL, 0);
-		if (!data.pwd)
-			ft_putendl_fd("Fail in getcwd", 2);
-		data.input = readline("bananashell-0.17:");
+		data.input = readline("bananashell-0.21:");
 		if (!data.input)
+			end_of_file_reached(&data);
+		if (ft_strlen(data.input) == 0)
 		{
-			printf("exit");
-			clear_env_list(data.env_list, SUCCESS);
-			break ;
+			free(data.input);
+			continue ;
 		}
-		if (data.input)
+		if (set_up_data(&data) != SUCCESS)
 		{
-			if (ft_strlen(data.input) == 0)
+			free(data.input);
+			continue ;
+		}
+		if (error == SUCCESS)
+		{
+			error = child_pre_check(&data);
+			error = create_exit_value_env(&data);
+			if (error != SUCCESS)
 			{
+				clear_env_list(data.env_list, FAILURE);
+				free(data.env_variables);
+				free(data.pwd);
 				free(data.input);
-				continue ;
+				clear_input(data.input_list, FAILURE);
+				break ;
 			}
-			error = new_mini_split(&data);
-			if (error == SUCCESS)
-			{
-				t_input_list *temp = data.input_list;
-				t_input_list *data_head = temp;
-				int i = 0;
-				while (temp != NULL)
-				{
-					printf("This is input %d: %s\n", i, temp->input);
-					printf("This is word_split %d: %d\n", i, temp->word_split);
-					printf("This is type = %d\n", temp->type);
-					i++;
-					temp = temp->next;
-				}
-				printf("--------------------\n");
-				error = set_up_child_data(&data);
-				i = 0;
-				int x = 0;
-				printf("--------------------\n");
-				if (error == SUCCESS)
-				{
-					while (i < data.command_amount)
-					{
-						printf("This is command %d: %s\n", i, data.child_data[i].command);
-						printf("This is fd_in %d: %d\n", i, data.child_data[i].fd_in);
-						printf("This is fd_out %d: %d\n", i, data.child_data[i].fd_out);
-						printf("This is pipe fd out 0 and 1: %d %d\n", data.child_data[i].p_fd_out[0], data.child_data[i].p_fd_out[1]);
-						printf("This is pipe fd in 0 and 1: %d %d\n", data.child_data[i].p_fd_in[0], data.child_data[i].p_fd_in[1]);
-						printf("This is exit value %d: %d\n", i, data.child_data[i].exit_value);
-						while (data.child_data[i].command_inputs && data.child_data[i].command_inputs[x] != NULL)
-						{
-							printf("This is command inputs inside child data %d: command inputs %x = %s\n", i, x, data.child_data[i].command_inputs[x]);
-							x++;
-						}
-						x = 0;
-						free_child_data(&data.child_data[i]);
-						i++;
-					}
-					free(data.child_data);
-				}
-				printf("--------------------\n");
-				clear_input(data.input_list, SUCCESS);
-			}
-			add_history(data.input);
 		}
+		clear_input(data.input_list, SUCCESS);
+		add_history(data.input);
 		free(data.input);
 		data.input = NULL;
+		if (error == FAILURE)
+			break ;
 	}
 	rl_clear_history();
+	return (0);
 }
