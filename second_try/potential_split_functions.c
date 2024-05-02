@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 07:34:43 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/18 13:19:56 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/02 06:19:34 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,87 +81,7 @@ t_env_list	*potential_find_env(t_new_string_data *data, bool *split_check)
 	return (NULL);
 }
 
-/*This function just establishes the new data.
-Given parameters are the old link, the new link and the input*/
-void	set_up_new_link(t_input_list *o_link, t_input_list *n_link, char *input)
-{
-	n_link->next = o_link->next;
-	o_link->next = n_link;
-	n_link->input = input;
-	n_link->prev = o_link;
-	n_link->word_split = WORD_SPLIT;
-}
 
-void	split_env(t_new_string_data *data, t_env_list	*temp_env)
-{
-	char			**strings;
-	t_input_list	*new_link;
-	int				i;
-	int				j;
-
-	strings = ft_split(temp_env->env_var_value, ' ');
-	if (strings == NULL)
-		data->temp->word_split = FAILURE;
-	else
-	{
-		i = 0;
-		j = 0;
-		while (strings[i][j] != '\0')
-		{
-			data->new_string[data->i] = strings[i][j];
-			data->i++;
-			j++;
-		}
-		data->temp->word_split = WORD_SPLIT;
-		data->temp->old_input = data->temp->input;
-		data->temp->input = ft_strdup(data->new_string);
-		if (data->temp->input == NULL)
-		{
-			data->temp->word_split = FAILURE;
-			ft_free_substrings(&strings);
-			return ;
-		}
-		free(strings[0]);
-		i = 1;
-		while (strings[i] != NULL)
-		{
-			new_link = ft_calloc(1, sizeof(t_input_list));
-			if (new_link == NULL)
-			{
-				data->temp->word_split = FAILURE;
-				ft_free_substrings(&strings);
-				return ;
-			}
-			set_up_new_link(data->temp, new_link, strings[i]);
-			i++;
-			new_link = NULL;
-			data->temp = data->temp->next;
-		}
-		ft_memset(data->new_string, 0, ft_strlen(data->new_string));
-		j = 0;
-		data->i = 0;
-		while (data->temp->input[j] != '\0')
-		{
-			data->new_string[data->i] = data->temp->input[j];
-			j++;
-			data->i++;
-		}
-		free(data->temp->input);
-		data->temp->input = NULL;
-		new_link = data->temp;
-		while (new_link->old_input == NULL)
-			new_link = new_link->prev;
-		data->temp->input = ft_strdup(new_link->old_input);
-		data->j--;
-		if (data->temp->input == NULL)
-		{
-			data->temp->word_split = FAILURE;
-			ft_free_substrings(&strings);
-			return ;
-		}
-		free(strings);
-	}
-}
 
 void	potential_split_create(t_new_string_data *data)
 {

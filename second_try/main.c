@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/01 12:05:34 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/02 05:05:13 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,27 +149,19 @@ void	end_of_file_reached(t_shelldata *data)
 	exit(0);
 }
 
-void	set_up_data(t_shelldata *data)
+int	set_up_data(t_shelldata *data)
 {
 	int	error;
 
 	/*Continue work from here. Its gonna be a lot lol*/
-	new_mini_split(&data);
-	input_type_assigner(data->input_list);
+	if (new_mini_split(&data) != SUCCESS)
+		return (FAILURE);
 	if (check_pipes(data) != SUCCESS)
-		exit_time(data, FAILURE);
+		return (FAILURE);
+	input_type_assigner(data->input_list);
 	if (split_cleaner(data) != SUCCESS)
 		exit_time(data, FAILURE);
-	if (error != SUCCESS)
-	{
-		clear_input(data->input_list, FAILURE);
-		free(data->input);
-		data->input = NULL;
-	}
-	else
-	{
 	error = set_up_child_data(&data);
-	}
 }
 
 int	main(int argc, char **argv, char **env)
@@ -192,10 +184,8 @@ int	main(int argc, char **argv, char **env)
 			continue ;
 		}
 		set_up_data(&data)
-		error = new_mini_split(&data);
 		if (error == SUCCESS)
 		{
-			error = set_up_child_data(&data);
 			error = child_pre_check(&data);
 			error = create_exit_value_env(&data);
 			if (error != SUCCESS)
@@ -218,4 +208,5 @@ int	main(int argc, char **argv, char **env)
 			break ;
 	}
 	rl_clear_history();
+	return (0);
 }

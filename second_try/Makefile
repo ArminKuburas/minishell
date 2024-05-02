@@ -6,7 +6,7 @@
 #    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/04/30 12:10:05 by akuburas         ###   ########.fr        #
+#    Updated: 2024/05/02 04:37:45 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,7 @@ MAKE = make bonus
 LIBFTDIR = libft
 LIBFT = $(LIBFTDIR)/libft.a
 
-SRCS = main.c \
-		mini_split.c \
-		mini_split_counter.c \
+SRCS =	main.c \
 		input_list_functions.c \
 		create_env_list.c \
 		type_assigner.c \
@@ -49,6 +47,8 @@ SRCS = main.c \
 		execute_children.c \
 		ft_echo.c \
 		ft_pwd.c \
+		new_mini_split_helpers.c \
+		check_for_errors.c \
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)

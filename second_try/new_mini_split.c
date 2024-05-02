@@ -6,47 +6,13 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:41:10 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/01 12:04:26 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/02 04:48:06 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	quote_found(char *quote, char c)
-{
-	if (*quote == '\0')
-		*quote = c;
-	else if (*quote == c)
-		*quote = '\0';
-}
-
-int	duplicate_input(char *input, t_input_list *input_list, int *i)
-{
-	int		j;
-	char	quote;
-
-	quote = '\0';
-	j = 0;
-	while (input[j])
-	{
-		if (input[j] == '\'' || input[j] == '"')
-			quote_found(&quote, input[j]);
-		if (quote == '\0' && ft_strchr("<>| \t", input[j]))
-			break ;
-		j++;
-	}
-	if (quote != '\0')
-	{
-		ft_putstr_fd("Error: No closing quote found\n", 2);
-		return (NO_QUOTE);
-	}
-	if (create_input(input, j, input_list) != SUCCESS)
-		return (FAILURE);
-	*i += j - 1;
-	return (SUCCESS);
-}
-
-int	duplicate_special_character(char *input, t_input_list *input_list, int *i)
+static int	dup_special_character(char *input, t_shelldata *data, int *i)
 {
 	if (ft_strchr("><", input[1]) != NULL && input[0] == input[1])
 	{
@@ -55,8 +21,8 @@ int	duplicate_special_character(char *input, t_input_list *input_list, int *i)
 			ft_putstr_fd("Error: Syntax error2\n", 2);
 			return (FAILURE);
 		}
-		if (create_input(input, 2, input_list) != SUCCESS)
-			return (FAILURE);
+		if (create_input(input, 2, data->input_list) != SUCCESS)
+			split_memory_failed(data);
 	}
 	else
 	{
@@ -65,34 +31,34 @@ int	duplicate_special_character(char *input, t_input_list *input_list, int *i)
 			ft_putstr_fd("Error: Syntax error3\n", 2);
 			return (FAILURE);
 		}
-		if (create_input(input, 1, input_list) != SUCCESS)
-			return (FAILURE);
+		if (create_input(input, 1, data->input_list) != SUCCESS)
+			split_memory_failed(data);
 	}
-	*i += strlen_last_input(input_list) - 1;
+	*i += strlen_last_input(data->input_list) - 1;
 	return (SUCCESS);
 }
 
-/*
-This is a simple function.
-It finds all the pipes and then checks if there is input before and after the pipe
-If not then it prints out a syntax error.
-*/
-int	check_pipes(t_shelldata *data)
+static int	mini_split_loop(t_shelldata *data)
 {
-	t_input_list	*temp;
+	int		i;
 
-	temp = data->input_list;
-	while (temp != NULL)
+	i = 0;
+	while (data->input[i])
 	{
-		if (temp->type == PIPE)
+		while (data->input[i] == ' ' || data->input[i] == '\t')
+			i++;
+		if (data->input[i] == '\0')
+			break ;
+		if (ft_strchr("><|", data->input[i]) != NULL)
 		{
-			if (temp->prev == NULL || temp->next == NULL)
-			{
-				ft_putstr_fd("Error: Syntax error4\n", 2);
-				return (FAILURE);
-			}
+			if (dup_special_character(&data->input[i], data, &i) != SUCCESS)
+				return (clear_input(data->input_list, FAILURE));
 		}
-		temp = temp->next;
+		else
+			if (duplicate_input(&data->input[i], data, &i) != SUCCESS)
+				return (clear_input(data->input_list, FAILURE));
+		if (data->input[i] != '\0')
+			i++;
 	}
 	return (SUCCESS);
 }
@@ -105,24 +71,5 @@ int	new_mini_split(t_shelldata *data)
 	data->input_list = ft_calloc(1, sizeof(t_input_list));
 	if (data->input_list == NULL)
 		return (NO_MEMORY);
-	while (data->input[i])
-	{
-		while (data->input[i] == ' ' || data->input[i] == '\t')
-			i++;
-		if (data->input[i] == '\0')
-			break ;
-		if (ft_strchr("><|", data->input[i]) != NULL)
-		{
-			if (duplicate_special_character(&data->input[i],
-					data->input_list, &i) != SUCCESS)
-				return (clear_input(data->input_list, FAILURE));
-		}
-		else
-			if (duplicate_input(&data->input[i], data->input_list,
-					&i) != SUCCESS)
-				return (clear_input(data->input_list, FAILURE));
-		if (data->input[i] != '\0')
-			i++;
-	}
-	return (SUCCESS);
+	return (mini_split_loop(data));
 }

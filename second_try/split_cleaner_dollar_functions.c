@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 18:35:36 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/01 09:09:26 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/02 05:19:04 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	copy_dollar(t_new_string_data *data)
 			data->j++;
 		if (data->temp->input[data->j] == '?' && start == data->j)
 			data->j++;
-	
 		copy_find_env(data, start);
 		data->j--;
 		return ;
