@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/02 13:26:34 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/02 20:33:10 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,13 @@ int	main(int argc, char **argv, char **env)
 		return (FAILURE);
 	while (1)
 	{
+		data.pwd = getcwd(NULL, 0);
+		if (!data.pwd)
+		{
+			ft_putendl_fd("getcwd has failed", 2);
+			//clear_env_list(data->env_list, FAILURE);
+			return (FAILURE);
+		}
 		parent_signals();
 		data.input = readline("bananashell-0.21:");
 		if (!data.input)

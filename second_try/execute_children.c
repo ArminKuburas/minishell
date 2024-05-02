@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_children.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 02:36:27 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/02 13:04:53 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/02 18:43:05 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,12 +161,12 @@ int	use_builtin(t_child_data *child_data, int fd, t_shelldata *data)
 	// 	return (ft_cd(child_data->command_inputs));
 	else if (ft_strcmp(child_data->command, "pwd") == 0)
 		return (ft_pwd(data->pwd));
-	// else if (ft_strcmp(child_data->command, "export") == 0)
-	// 	return (ft_export(child_data->command_inputs));
-	// else if (ft_strcmp(child_data->command, "unset") == 0)
-	// 	return (ft_unset(child_data->command_inputs));
-	// else if (ft_strcmp(child_data->command, "env") == 0)
-	// 	return (ft_env(child_data->command_inputs, fd));
+	else if (ft_strcmp(child_data->command, "export") == 0)
+		return (ft_export(data));
+	else if (ft_strcmp(child_data->command, "unset") == 0)
+		return (ft_unset(data));
+	else if (ft_strcmp(child_data->command, "env") == 0)
+		return (my_env(data));
 	// else if (ft_strcmp(child_data->command, "exit") == 0)
 	// 	return (ft_exit(child_data->command_inputs));
 	return (FAILURE);

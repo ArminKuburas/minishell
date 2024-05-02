@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export.c                                           :+:      :+:    :+:   */
+/*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:30:01 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/02 09:10:02 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/02 20:30:33 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,11 @@ static void	export_no_commands(t_shelldata *data)
 	// the formatting of the output needs reworking
 	if (!temp)
 		return ;
-	while ( A <= 'Z')
+	while (A <= 'Z')
 	{
 		if (temp->env_var_name[0] == A)
-			ft_printf("declare -x %s\n", temp->env_var);
+			ft_printf("declare -x %s=\"%s\"\n", temp->env_var_name, \
+			temp->env_var_value);
 		if (temp->next == NULL)
 		{
 			temp = data->env_list;
@@ -150,6 +151,65 @@ static int	check_if_export_env_exists(t_shelldata *data, t_input_list *temp)
 }
 
 /*This function adds a new env var to the env list*/
+/*
+static void	add_new_env_var(t_shelldata *data, t_input_list *temp)
+{
+	t_env_list	*new_env;
+	t_env_list	*temp_env;
+
+	new_env = ft_calloc(1, sizeof(t_env_list));
+	if (!new_env)
+		return ;
+	new_env->env_var_name = ft_strdup(temp->input);
+	new_env->env_var_value = ft_strdup(temp->input);
+	new_env->env_var = ft_strdup(temp->input);
+	new_env->next = NULL;
+	temp_env = data->env_list;
+	while (temp_env->next)
+		temp_env = temp_env->next;
+	temp_env->next = new_env;
+	ft_printf("new env var added\n");
+}*/
+
+/*This function adds a new env var to the env list*/
+/*
+static void	add_new_env_var(t_shelldata *data, t_input_list *temp)
+{
+	int			i;
+	t_env_list	*new_env;
+	t_env_list	*temp_env;
+
+	i = 0;
+	ft_printf("new env var added\n");
+	new_env = ft_calloc(1, sizeof(t_env_list));
+	if (!new_env)
+		return ;
+	new_env->env_var_name = ft_strdup(temp->input);
+	new_env->env_var_value = ft_strdup(temp->input);
+	new_env->env_var = ft_strdup(temp->input);
+	new_env->next = NULL;
+	if (data->env_list == NULL)
+	{
+		data->env_list = new_env;
+		return ;
+	}
+	temp_env = data->env_list;
+	while (temp_env->next != NULL)
+	{
+		if (ft_strncmp(new_env->env_var_name, temp_env->env_var_name, \
+		ft_strlen(temp_env->env_var_name)) < 0)
+		{
+			new_env->next = temp_env->next;
+			temp_env->next = new_env;
+			//new_env->next = temp_env->next->next;
+			ft_printf("new env var added\n");
+			return ;
+		}
+		temp_env = temp_env->next;
+	}
+	temp_env->next = new_env;
+}*/
+
 static void	add_new_env_var(t_shelldata *data, t_input_list *temp)
 {
 	t_env_list	*new_env;
@@ -213,12 +273,15 @@ static void	execute_export_commands(t_shelldata *data, t_input_list *temp)
 	}
 }
 /* my_export main function*/
-void	my_export(t_shelldata *data, t_input_list *temp)
+int	ft_export(t_shelldata *data)
 {
-	if (!temp->next)
+	t_input_list	*temp;
+
+	temp = data->input_list;
+	if (temp->next == NULL)
 	{
 		export_no_commands(data);
-		return ;
+		return (SUCCESS);
 	}
 	temp = temp->next;
 	while (temp)
@@ -226,8 +289,9 @@ void	my_export(t_shelldata *data, t_input_list *temp)
 		is_export_var_name_valid(temp);
 		temp = temp->next;
 	}
-	temp = data->input_list->next;
+	temp = data->input_list;
 	execute_export_commands(data, temp);
 	create_2d_env(data);
 	ft_printf("export finished\n");
+	return (SUCCESS);
 }

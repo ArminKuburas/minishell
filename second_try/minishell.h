@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/02 09:09:59 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/02 18:45:49 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,12 +232,9 @@ void		split_env(t_new_string_data *data, t_env_list	*temp_env);
 void		set_up_string_data(t_new_string_data *data, t_input_list *temp,
 				t_shelldata *shell_data, char *new_string);
 
-
-
 //new mini split functions
 int			new_mini_split(t_shelldata *data);
 int			duplicate_input(char *input, t_shelldata *data, int *i);
-
 
 //signal handler
 
@@ -254,12 +251,13 @@ void		caret_switch(int on);
 void		my_echo(t_input_list *temp);
 void		my_cd(t_shelldata *data, t_input_list *temp);
 void		my_pwd(t_shelldata *data, t_input_list *temp);
-void		my_export(t_shelldata *data, t_input_list *temp);
 void		my_unset(t_shelldata *data, t_input_list *temp);
 void		my_exit(t_shelldata *data, t_input_list *temp);
+int			ft_export(t_shelldata *data);
+int			ft_unset(t_shelldata *data);
 
 //execute functions
-void		my_env(t_shelldata *data);
+int			my_env(t_shelldata *data);
 
 //heredoc
 void		heredoc(t_shelldata data, t_input_list *temp);
