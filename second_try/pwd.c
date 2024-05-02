@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 18:10:36 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/22 21:03:24 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/04/27 11:12:54 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void	refresh_pwd(t_shelldata *data)
 	update_env_pwd(data);
 }
 
-void	my_pwd(t_shelldata data, t_input_list *temp)
+void	my_pwd(t_shelldata *data, t_input_list *temp)
 {
 	(void)temp;
-	ft_putendl_fd(data.pwd, 1);
+	ft_putendl_fd(data->pwd, 1);
 }

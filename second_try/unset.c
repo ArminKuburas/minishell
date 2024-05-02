@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:05:58 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/28 12:47:32 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/28 17:54:23 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,51 +42,22 @@ static void	is_unset_var_name_valid(t_input_list *temp)
 
 static int	check_if_unset_env_exists(t_shelldata *data, t_input_list *temp)
 {
+	t_env_list	*temp2;
+
+	temp2 = data->env_list;
 	ft_printf("got into the check_if_env_exists\n");
-	while (data->env_list)
+	while (temp2)
 	{
-		if (!ft_strncmp(data->env_list->env_var_name, temp->input, \
-		ft_strlen(data->env_list->env_var_name)))
+		if (!ft_strncmp(temp2->env_var_name, temp->input, \
+		ft_strlen(temp2->env_var_name)))
 		{
 			ft_printf("env found\n");
 			return (1);
 		}
-		data->env_list = data->env_list->next;
+		temp2 = temp2->next;
 	}
 	return (0);
 }
-/*
-static void	remove_from_env_list(t_env_list *env_list, char *specifier)
-{
-	t_env_list	*temp;
-	t_env_list	*prev;
-
-	temp = env_list;
-	prev = NULL;
-	while (temp != NULL)
-	{
-		if (prev)
-			prev->next = temp->next;
-		else
-		{
-			prev = temp;
-			temp = temp->next;
-		}
-		if (!ft_strcmp(temp->env_var_name, specifier))
-		{
-			free(temp->env_var_name);
-			free(temp->env_var_value);
-			free(temp->env_var);
-			free(temp);
-			temp = temp->next;
-			free(env_list);
-			env_list = temp;
-			break ;
-		}
-		prev = temp;
-		temp = temp->next;
-	}
-}*/
 
 int	check_if_first_node(t_shelldata *data, char *specifier)
 {
@@ -131,39 +102,24 @@ void	remove_from_env_list(t_shelldata *data, char *specifier)
 
 static void	execute_unset_commands(t_shelldata *data, t_input_list *temp)
 {
-	t_env_list	*env_head;
-
-	env_head = data->env_list;
-	while (temp)
+	temp = temp->next;
+	while (temp->type == VALID_UNSET_INPUT)
 	{
-		if (temp->type == VALID_UNSET_INPUT)
+		if (check_if_unset_env_exists(data, temp) == 1)
 		{
-			if (check_if_unset_env_exists(data, temp) == 1)
-			{
-				ft_printf("env exists, we should remove it\n");
-				remove_from_env_list(data, temp->input);
-				//break ;
-			}
-			else
-			{
-				ft_printf("env does not exist, do nothing\n");
-				//break ;
-			}
+			ft_printf("env exists, we should remove it\n");
+			remove_from_env_list(data, temp->input);
+		}
+		else
+		{
+			ft_printf("env does not exist, do nothing\n");
 		}
 		temp = temp->next;
 	}
-	data->env_list = env_head;
 }
-
+/* my_unset main function*/
 void	my_unset(t_shelldata *data, t_input_list *temp)
 {
-	t_input_list	*input_head;
-	t_env_list		*env_head;
-	t_shelldata		*data_head;
-
-	input_head = temp;
-	data_head = data;
-	env_head = data->env_list;
 	if (!temp->next)
 		return ;
 	temp = temp->next;
@@ -172,11 +128,8 @@ void	my_unset(t_shelldata *data, t_input_list *temp)
 		is_unset_var_name_valid(temp);
 		temp = temp->next;
 	}
-	temp = input_head;
-	data = data_head;
+	temp = data->input_list;
 	execute_unset_commands(data, temp);
-	temp = input_head;
-	data = data_head;
-	data->env_list = env_head;
+	create_2d_env(data);
 	ft_printf("unset finished\n");
 }

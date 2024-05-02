@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/02 10:59:59 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/02 09:09:59 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@
 /*Definition for SIGINT*/
 # define CTRL_C SIGINT
 # define CTRL_BS SIGQUIT
-
 
 typedef enum e_state
 {
@@ -220,6 +219,7 @@ int			duplicate_env(char **env, t_shelldata *data);
 int			clear_env_list(t_env_list *env_list, int error);
 int			env_str_cmpr(char *env, char *str, int len);
 int			update_shell_level(t_shelldata *data);
+int			create_2d_env(t_shelldata *data);
 
 
 //data_cleaner functions
@@ -251,12 +251,12 @@ void		handler_signals(void);
 void		caret_switch(int on);
 
 //built_in functions
-void		execute_command(char *command[]);
 void		my_echo(t_input_list *temp);
-void		my_cd(t_shelldata data, t_input_list *temp);
-void		my_pwd(t_shelldata data, t_input_list *temp);
+void		my_cd(t_shelldata *data, t_input_list *temp);
+void		my_pwd(t_shelldata *data, t_input_list *temp);
 void		my_export(t_shelldata *data, t_input_list *temp);
 void		my_unset(t_shelldata *data, t_input_list *temp);
+void		my_exit(t_shelldata *data, t_input_list *temp);
 
 //execute functions
 void		my_env(t_shelldata *data);
@@ -288,6 +288,8 @@ int			ft_echo(t_child_data *data, int fd);
 int			child_pre_check(t_shelldata *data);
 int			ft_pwd(char *pwd);
 
+//executioner
+int			execute_built_ins(t_shelldata *data, t_input_list *temp);
 //error functions
 int			check_pipes(t_shelldata *data);
 void		split_memory_failed(t_shelldata *data);

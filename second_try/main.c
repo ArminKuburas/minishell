@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
 /*   Updated: 2024/05/02 13:26:34 by akuburas         ###   ########.fr       */
@@ -201,6 +201,7 @@ int	main(int argc, char **argv, char **env)
 		clear_input(data.input_list, SUCCESS);
 		add_history(data.input);
 		free(data.input);
+		free(data.pwd);
 		data.input = NULL;
 		if (error == FAILURE)
 			break ;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_helper_functions.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 12:38:55 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/27 01:43:58 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/27 21:40:27 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

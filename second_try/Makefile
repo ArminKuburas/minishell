@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
+#    By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/05/02 11:15:35 by akuburas         ###   ########.fr        #
+#    Updated: 2024/04/27 11:22:50 by tvalimak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS =	main.c \
 		unset.c \
 		echo.c \
 		env.c \
+		exit.c \
 		heredoc.c \
 		set_up_child_data.c \
 		setup_commands.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_env_list.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 21:29:51 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/26 12:34:25 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/04/27 17:34:21 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

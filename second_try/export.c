@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:30:01 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/26 16:37:11 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/02 09:10:02 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,24 +47,6 @@
 // export my fucking test var= value becomes var= , so space after the =
 // makes the value string non-existent.
 /*
-static int	is_var_name_valid(t_input_list *temp)
-{
-	int	i;
-
-	i = 0;
-	if (!ft_isalpha(temp->next->input[i]) && temp->next->input[i] != '_')
-		return (0);
-	while (temp->next->input[i] && temp->next->input[i] != '=' && \
-	(ft_strlen(temp->next->input) > 1))
-	{
-		if (ft_isalnum(temp->next->input[i]) || temp->next->input[i] == '_')
-			i++;
-		else
-			return (0);
-	}
-	return (1);
-}*/
-/*
 bash-3.2$ export asd!=val! asd1=val1 asd2=val2
 bash: export: `asd!=val!': not a valid identifier
 in this case only the asd1=val1 gets ignored, asd1 and asd2 still gets
@@ -90,19 +72,7 @@ export export
 /*This function checks all arguments for export and flags them if
   they are good for execution*/
 
-/*Valid input tag is 84 and invalid is 85*/
-/*
-static void	ft_export_type_printer(t_input_list *temp)
-{
-	while (temp)
-	{
-		ft_printf("type of the input node: %d\n", temp->type);
-		ft_printf("string in the input node: %s\n", temp->input);
-		temp = temp->next;
-	}
-}*/
 /*This one checks if the export command is formatted properly*/
-
 static void	is_export_var_name_valid(t_input_list *temp)
 {
 	int	i;
@@ -128,38 +98,53 @@ static void	is_export_var_name_valid(t_input_list *temp)
 		}
 	}
 	temp->type = VALID_EXPORT_INPUT;
+	ft_printf("export input was valid\n");
 }
 
 /*Function to imitate export command without arguments*/
+
 static void	export_no_commands(t_shelldata *data)
 {
+	char			A;
+	t_env_list		*temp;
+
+	A = 'A';
+	temp = data->env_list;
 	// the formatting of the output needs reworking
-	if (!data->env_list)
+	if (!temp)
 		return ;
-	while (data->env_list)
+	while ( A <= 'Z')
 	{
-		ft_printf("declare -x %s\n", data->env_list->env_var);
-		data->env_list = data->env_list->next;
+		if (temp->env_var_name[0] == A)
+			ft_printf("declare -x %s\n", temp->env_var);
+		if (temp->next == NULL)
+		{
+			temp = data->env_list;
+			A++;
+		}
+		else
+			temp = temp->next;
 	}
+	ft_printf("export without commands finished\n");
 }
 
 /*This one goes through the env list and sees if the new env var
   already exists*/
-  /*		if (!ft_strncmp(data->env_list->env_var_name, temp->input, \
-		ft_strlen(data->env_list->env_var_name)))*/
-		// ft_strrchr(args[1], (int)'=')
 static int	check_if_export_env_exists(t_shelldata *data, t_input_list *temp)
 {
+	t_env_list	*temp_env;
+
+	temp_env = data->env_list;
 	ft_printf("got into the check_if_env_exists\n");
-	while (data->env_list->next)
+	while (temp_env)
 	{
-		if (!ft_strncmp(data->env_list->env_var_name, temp->input, \
-		ft_strlen(temp->input)))
+		if (!ft_strncmp(temp_env->env_var_name, temp->input, \
+		ft_strlen(temp_env->env_var_name)))
 		{
 			ft_printf("env found\n");
 			return (1);
 		}
-		data->env_list = data->env_list->next;
+		temp_env = temp_env->next;
 	}
 	return (0);
 }
@@ -181,6 +166,7 @@ static void	add_new_env_var(t_shelldata *data, t_input_list *temp)
 	while (temp_env->next)
 		temp_env = temp_env->next;
 	temp_env->next = new_env;
+	ft_printf("new env var added\n");
 }
 
 /*This function replaces the env var value if it already exists*/
@@ -196,12 +182,12 @@ static void replace_env_var(t_shelldata *data, t_input_list *temp)
 		{
 			temp_env->env_var_value = ft_strdup(temp->input);
 			temp_env->env_var = ft_strdup(temp->input);
-			break ;
+			ft_printf("env var replaced\n");
+			return ;
 		}
 		temp_env = temp_env->next;
 	}
 }
-
 /*  This function will go through the input list and figures out do we
     replace or add the new key/value pair */
 static void	execute_export_commands(t_shelldata *data, t_input_list *temp)
@@ -216,46 +202,32 @@ static void	execute_export_commands(t_shelldata *data, t_input_list *temp)
 			if (value_index != NULL)
 			{
 				if (check_if_export_env_exists(data, temp) == 1)
-				{
 					replace_env_var(data, temp);
-					break ;
-				}
 				else
-				{
 					add_new_env_var(data, temp);
-					break ;
-				}
 			}
 		}
+		else
+			return ;
 		temp = temp->next;
 	}
 }
 /* my_export main function*/
 void	my_export(t_shelldata *data, t_input_list *temp)
 {
-	t_input_list	*input_head;
-	t_env_list		*env_head;
-	t_shelldata		*data_head;
-
-	env_head = data->env_list;
-	input_head = temp;
-	data_head = data;
 	if (!temp->next)
 	{
 		export_no_commands(data);
 		return ;
 	}
+	temp = temp->next;
 	while (temp)
 	{
 		is_export_var_name_valid(temp);
 		temp = temp->next;
 	}
-	temp = input_head;
-	data = data_head;
+	temp = data->input_list->next;
 	execute_export_commands(data, temp);
-	temp = input_head;
-	data = data_head;
-	data->env_list = env_head;
-	//ft_export_type_printer(temp);
+	create_2d_env(data);
 	ft_printf("export finished\n");
 }
