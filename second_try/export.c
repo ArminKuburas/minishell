@@ -6,7 +6,7 @@
 /*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:30:01 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/28 19:52:15 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/02 09:10:02 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,24 +46,6 @@
 
 // export my fucking test var= value becomes var= , so space after the =
 // makes the value string non-existent.
-/*
-static int	is_var_name_valid(t_input_list *temp)
-{
-	int	i;
-
-	i = 0;
-	if (!ft_isalpha(temp->next->input[i]) && temp->next->input[i] != '_')
-		return (0);
-	while (temp->next->input[i] && temp->next->input[i] != '=' && \
-	(ft_strlen(temp->next->input) > 1))
-	{
-		if (ft_isalnum(temp->next->input[i]) || temp->next->input[i] == '_')
-			i++;
-		else
-			return (0);
-	}
-	return (1);
-}*/
 /*
 bash-3.2$ export asd!=val! asd1=val1 asd2=val2
 bash: export: `asd!=val!': not a valid identifier
@@ -120,27 +102,34 @@ static void	is_export_var_name_valid(t_input_list *temp)
 }
 
 /*Function to imitate export command without arguments*/
+
 static void	export_no_commands(t_shelldata *data)
 {
-	t_env_list	*temp;
+	char			A;
+	t_env_list		*temp;
 
+	A = 'A';
 	temp = data->env_list;
 	// the formatting of the output needs reworking
 	if (!temp)
 		return ;
-	while (temp->next)
+	while ( A <= 'Z')
 	{
-		ft_printf("declare -x %s\n", temp->env_var);
-		temp = temp->next;
+		if (temp->env_var_name[0] == A)
+			ft_printf("declare -x %s\n", temp->env_var);
+		if (temp->next == NULL)
+		{
+			temp = data->env_list;
+			A++;
+		}
+		else
+			temp = temp->next;
 	}
 	ft_printf("export without commands finished\n");
 }
 
 /*This one goes through the env list and sees if the new env var
   already exists*/
-  /*		if (!ft_strncmp(data->env_list->env_var_name, temp->input, \
-		ft_strlen(data->env_list->env_var_name)))*/
-		// ft_strrchr(args[1], (int)'=')
 static int	check_if_export_env_exists(t_shelldata *data, t_input_list *temp)
 {
 	t_env_list	*temp_env;
