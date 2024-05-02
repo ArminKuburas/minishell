@@ -12,7 +12,7 @@
 
 NAME = minishell
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 RLFLAGS = -lreadline -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include
 DEBUGFLAGS = -Wall -Wextra -Werror -g
 
@@ -20,9 +20,7 @@ MAKE = make bonus
 LIBFTDIR = libft
 LIBFT = $(LIBFTDIR)/libft.a
 
-SRCS = main.c \
-		mini_split.c \
-		mini_split_counter.c \
+SRCS =	main.c \
 		input_list_functions.c \
 		create_env_list.c \
 		type_assigner.c \
@@ -47,7 +45,14 @@ SRCS = main.c \
 		setup_redirects.c \
 		setup_pipes.c \
 		env_helper_functions.c \
-		exec_built_ins.c
+		execute_children.c \
+		ft_echo.c \
+		ft_pwd.c \
+		new_mini_split_helpers.c \
+		check_for_errors.c \
+		split_cleaner_helper_funcs.c \
+		potential_split_helpers.c \
+		child_data_helpers.c \
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)

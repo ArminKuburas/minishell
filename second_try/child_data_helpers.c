@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setup_helpers.c                                    :+:      :+:    :+:   */
+/*   child_data_helpers.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/24 10:04:17 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/30 11:34:03 by akuburas         ###   ########.fr       */
+/*   Created: 2024/05/02 10:47:30 by akuburas          #+#    #+#             */
+/*   Updated: 2024/05/02 10:56:49 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_child_data(t_child_data *data)
+void	child_failed(t_shelldata *data, int error)
 {
-	if (data->fd_in != 0)
-		close(data->fd_in);
-	if (data->fd_out != 0)
-		close(data->fd_out);
-	if (data->command != NULL)
-		free(data->command);
-	if (data->command_inputs != NULL)
-		free(data->command_inputs);
-	if (data->p_fd_out[0] != 0)
-		close(data->p_fd_out[0]);
-	if (data->p_fd_out[1] != 0)
-		close(data->p_fd_out[1]);
+	int	i;
+
+	i = 0;
+	if (error == NO_PIPE)
+		ft_putstr_fd("minishell: pipe failed\n", 2);
+	else if (error == NO_FORK)
+		ft_putstr_fd("minishell: fork failed\n", 2);
+	while (i < data->command_amount)
+	{
+		free_child_data(&data->child_data[i]);
+		i++;
+	}
+	clear_input(data->input_list, FAILURE);
+	free(data->input);
+	clear_env_list(data->env_list, FAILURE);
+	rl_clear_history();
+	exit(1);
 }

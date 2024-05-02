@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 11:14:29 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/25 17:09:43 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/02 11:22:27 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	setup_pipes(t_shelldata *data, int amount)
 			temp = temp->next;
 		i--;
 	}
-	printf("Inside setup ipes\n");
 	if (temp->type == PIPE)
 		error = setup_input_pipe(data, amount);
 	temp = temp->next;
@@ -49,6 +48,5 @@ int	setup_pipes(t_shelldata *data, int amount)
 		temp = temp->next;
 	if (error == SUCCESS && temp && temp->type == PIPE)
 		error = setup_output_pipe(data, amount);
-	printf("After if statement of setup outout pupes\n");
 	return (error);
 }

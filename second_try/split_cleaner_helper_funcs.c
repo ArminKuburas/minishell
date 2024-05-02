@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setup_helpers.c                                    :+:      :+:    :+:   */
+/*   split_cleaner_helper_funcs.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/24 10:04:17 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/30 11:34:03 by akuburas         ###   ########.fr       */
+/*   Created: 2024/05/02 09:18:26 by akuburas          #+#    #+#             */
+/*   Updated: 2024/05/02 09:18:56 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_child_data(t_child_data *data)
+void	set_up_string_data(t_new_string_data *data, t_input_list *temp,
+	t_shelldata *shell_data, char *new_string)
 {
-	if (data->fd_in != 0)
-		close(data->fd_in);
-	if (data->fd_out != 0)
-		close(data->fd_out);
-	if (data->command != NULL)
-		free(data->command);
-	if (data->command_inputs != NULL)
-		free(data->command_inputs);
-	if (data->p_fd_out[0] != 0)
-		close(data->p_fd_out[0]);
-	if (data->p_fd_out[1] != 0)
-		close(data->p_fd_out[1]);
+	data->i = 0;
+	data->j = 0;
+	data->quote = 'a';
+	data->temp = temp;
+	data->env = shell_data->env_list;
+	data->new_string = new_string;
+	data->shell_data = shell_data;
 }

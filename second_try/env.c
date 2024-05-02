@@ -24,10 +24,6 @@ void	my_env(t_shelldata *data)
 	if (!data->env_list)
 		return ;
 	while (current_node)
-	{
-		if (ft_strchr(current_node->env_var, '='))
-			ft_printf("%s\n", current_node->env_var);
 		current_node = current_node->next;
-	}
 	data->env_list = head;
 }

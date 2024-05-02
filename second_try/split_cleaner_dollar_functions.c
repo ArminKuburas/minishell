@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 18:35:36 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/18 13:18:51 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/02 05:19:04 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,15 @@ void	copy_dollar(t_new_string_data *data)
 	{
 		data->j++;
 		start = data->j;
-		while (ft_strchr(" \t$'\"", data->temp->input[data->j]) == NULL)
+		while (ft_strchr(" \t$'\"?", data->temp->input[data->j]) == NULL)
+			data->j++;
+		if (data->temp->input[data->j] == '?' && start == data->j)
 			data->j++;
 		copy_find_env(data, start);
 		data->j--;
 		return ;
 	}
-	data->new_string[data->i] = data->temp->input[data->j];
+	else
+		data->new_string[data->i] = data->temp->input[data->j];
 	data->i++;
 }
