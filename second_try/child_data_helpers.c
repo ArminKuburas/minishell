@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 10:47:30 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/02 10:56:49 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/05 21:41:04 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	child_failed(t_shelldata *data, int error)
 		free_child_data(&data->child_data[i]);
 		i++;
 	}
+	printf("clear input being called inside child_failed\n");
 	clear_input(data->input_list, FAILURE);
 	free(data->input);
 	clear_env_list(data->env_list, FAILURE);

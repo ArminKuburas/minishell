@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:58:25 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/02 13:27:52 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/05 21:40:46 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	check_pipes(t_shelldata *data)
 				ft_putstr_fd("bananashell: syntax error", 2);
 				ft_putendl_fd(" near unexpected token `|'", 2);
 				data->exit_value = 2;
+				printf("clear input being called inside check_pipes\n");
 				clear_input(data->input_list, FAILURE);
 				return (FAILURE);
 			}

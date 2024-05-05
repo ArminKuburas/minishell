@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/02 09:09:59 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/05 19:19:55 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,8 +197,8 @@ typedef struct s_split_data
 
 typedef void	(*t_handler)(int);
 
-int			rl_clear_history(void);
-void		rl_replace_line(char *str, int num);
+//int			rl_clear_history(void);
+//void		rl_replace_line(char *str, int num);
 
 //data_parser functions
 
@@ -221,7 +221,6 @@ int			env_str_cmpr(char *env, char *str, int len);
 int			update_shell_level(t_shelldata *data);
 int			create_2d_env(t_shelldata *data);
 
-
 //data_cleaner functions
 int			new_length(t_input_list *temp, t_env_list *env);
 int			split_cleaner(t_shelldata *data);
@@ -232,12 +231,9 @@ void		split_env(t_new_string_data *data, t_env_list	*temp_env);
 void		set_up_string_data(t_new_string_data *data, t_input_list *temp,
 				t_shelldata *shell_data, char *new_string);
 
-
-
 //new mini split functions
 int			new_mini_split(t_shelldata *data);
 int			duplicate_input(char *input, t_shelldata *data, int *i);
-
 
 //signal handler
 

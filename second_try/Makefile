@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+         #
+#    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/04/27 11:22:50 by tvalimak         ###   ########.fr        #
+#    Updated: 2024/05/05 21:31:04 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = minishell
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RLFLAGS = -lreadline -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include
-DEBUGFLAGS = -Wall -Wextra -Werror -g
+DEBUGFLAGS = -g -Wall -Wextra -Werror
 
 MAKE = make bonus
 LIBFTDIR = libft
@@ -61,9 +61,6 @@ $(NAME): $(OBJS) $(LIBFT)
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFTDIR)
-
-valgrind: $(OBJS) $(LIBFT)
-		$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME) $(RLFLAGS) -g
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
