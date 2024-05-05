@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/05 21:38:06 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/05 23:26:35 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,85 +151,52 @@ void	end_of_file_reached(t_shelldata *data)
 
 int	set_up_data(t_shelldata *data)
 {
+	if (data->input == NULL)
+		return (FAILURE);
+	if (ft_strlen(data->input) == 0)
+		return (FAILURE);
 	if (new_mini_split(data) != SUCCESS)
 		return (FAILURE);
-	printf("New mini split done\n");
 	input_type_assigner(data->input_list);
-	printf("Input type assigner done\n");
 	if (check_pipes(data) != SUCCESS)
 		return (FAILURE);
-	printf("Check pipes done\n");
 	split_cleaner(data);
-	printf("Split cleaner done\n");
 	set_up_child_data(data);
-	printf("Set up child data done\n");
 	return (SUCCESS);
+}
+
+void	child_handling(t_shelldata *data)
+{
+	int	error;
+	//We need to do proper error handling here.
+	error = child_pre_check(data);
+	error = create_exit_value_env(data);
+	if (error != SUCCESS)
+		exit(1);
 }
 
 int	main(int argc, char **argv, char **env)
 {
 	t_shelldata	data;
-	int			error;
 
-	data = (t_shelldata){0};
-	printf("Inside main\n");
+	ft_memset(&data, 0, sizeof(t_shelldata));
 	if (initial_setup(&data, argc, argv, env) == FAILURE)
 		return (FAILURE);
-	printf("Initial setup done\n");
 	while (1)
 	{
-		printf("Inside while loop\n");
 		parent_signals();
 		data.input = readline("bananashell-0.22:");
 		if (!data.input)
 			end_of_file_reached(&data);
-		printf("Input: %s\n", data.input);
-		if (ft_strlen(data.input) == 0)
-		{
-			free(data.input);
-			continue ;
-		}
 		if (set_up_data(&data) != SUCCESS)
 		{
-			printf("Set up data failed\n");
 			free(data.input);
 			continue ;
 		}
-		else
-		{
-			printf("set up data is success\n");
-			error = child_pre_check(&data);
-			printf("Child pre check done\n");
-			error = create_exit_value_env(&data);
-			printf("Exit value env done\n");
-			if (error != SUCCESS)
-			{
-				printf("Error in exit value env\n");
-				clear_env_list(data.env_list, FAILURE);
-				free(data.pwd);
-				free(data.input);
-				clear_input(data.input_list, FAILURE);
-				break ;
-			}
-			else
-				printf("Exit value env success\n");
-		}
-		t_input_list *temp = data.input_list;
-		int i = 0;
-		while (temp)
-		{
-			printf("input data [%d] temp->input: %s\n", i, temp->input);
-			temp = temp->next;
-			i++;
-		}
-		printf("Before clean input\n");
-		clear_input(data.input_list, SUCCESS);
-		printf("After clean input\n");
+		child_handling(&data);
 		add_history(data.input);
 		free(data.input);
 		data.input = NULL;
-		if (error == FAILURE)
-			break ;
 	}
 	rl_clear_history();
 	return (0);
