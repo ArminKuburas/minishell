@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:30:01 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/03 19:14:15 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/05 17:24:45 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,71 +117,27 @@ static void	is_export_var_name_valid(t_input_list *temp)
 	ft_printf("export input was valid\n");
 }
 
-/*Function to imitate export command without arguments*/
-/*
 static void	export_no_commands(t_shelldata *data)
 {
 	t_env_list		*temp;
 
 	temp = data->env_list;
-	// the formatting of the output needs reworking
 	if (!temp)
 		return ;
 	while (temp)
 	{
-		if (temp->env_var_name[0] == A)
+		if (temp->env_var_value != NULL)
 		{
-			if (temp->env_var_value != NULL)
-			{
-				ft_printf("declare -x %s=\"%s\"\n", temp->env_var_name, \
-				temp->env_var_value);
-			}
-			else
-				ft_printf("declare -x %s\n", temp->env_var_name);
-		}
-		if (temp->next == NULL)
-		{
-			temp = data->env_list;
-			A++;
+			ft_printf("declare -x %s=\"%s\"\n", temp->env_var_name, \
+			temp->env_var_value);
 		}
 		else
-			temp = temp->next;
-	}
-	ft_printf("export without commands finished\n");
-}*/
-
-static void	export_no_commands(t_shelldata *data)
-{
-	char			A;
-	t_env_list		*temp;
-
-	A = 'A';
-	temp = data->env_list;
-	// the formatting of the output needs reworking
-	if (!temp)
-		return ;
-	while (A <= 'z')
-	{
-		if (temp->env_var_name[0] == A)
-		{
-			if (temp->env_var_value != NULL)
-			{
-				ft_printf("declare -x %s=\"%s\"\n", temp->env_var_name, \
-				temp->env_var_value);
-			}
-			else
-				ft_printf("declare -x %s\n", temp->env_var_name);
-		}
-		if (temp->next == NULL)
-		{
-			temp = data->env_list;
-			A++;
-		}
-		else
-			temp = temp->next;
+			ft_printf("declare -x %s\n", temp->env_var_name);
+		temp = temp->next;
 	}
 	ft_printf("export without commands finished\n");
 }
+
 // if (!ft_strcmp(temp_env->env_var_name, temp->input))
 // we need to compare the input string until char = against the temp_env->env_var_name
 /*This one goes through the env list and sees if the new env var
@@ -292,7 +248,6 @@ static int	execute_export_commands(t_shelldata *data, t_input_list *temp)
 			{
 				if (check_if_export_env_exists(data, temp) == 1)
 					return (SUCCESS);
-					//return (replace_env_var(data, temp, 0, 0));
 				else
 					return (add_new_env_var(data, temp, 0, 0));
 			}
@@ -301,6 +256,7 @@ static int	execute_export_commands(t_shelldata *data, t_input_list *temp)
 	}
 	return (SUCCESS);
 }
+
 /* my_export main function*/
 int	ft_export(t_shelldata *data)
 {

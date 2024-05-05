@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/02 18:45:49 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/05 17:29:10 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -291,6 +291,5 @@ int			execute_built_ins(t_shelldata *data, t_input_list *temp);
 //error functions
 int			check_pipes(t_shelldata *data);
 void		split_memory_failed(t_shelldata *data);
-
 
 #endif

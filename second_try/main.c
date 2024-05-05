@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/02 20:33:10 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/05 17:29:46 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,6 @@ int	initial_env_creation(char **env, t_shelldata *data)
 
 int initial_setup(t_shelldata *data, int argc, char **argv, char **env)
 {
-
 	if (check_argc_argv(argc, argv) == FAILURE)
 		return (FAILURE);
 	if (env)
