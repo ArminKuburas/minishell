@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 06:19:36 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/02 13:47:56 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/06 10:57:40 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	set_up_link(t_input_list *o_link, t_input_list *n_link, char *input)
 	n_link->input = input;
 	n_link->prev = o_link;
 	n_link->word_split = WORD_SPLIT;
+	n_link->type = COMMAND_ARGUMENT;
 }
 
 static void	initialize_first_link(t_new_string_data *data, char **strings)
@@ -49,10 +50,8 @@ static void	create_middle_links(t_new_string_data *data, char **strings)
 {
 	t_input_list	*new_link;
 	int				i;
-	int				j;
 
 	i = 1;
-	j = 0;
 	while (strings[i] != NULL)
 	{
 		new_link = ft_calloc(1, sizeof(t_input_list));

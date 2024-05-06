@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:41:10 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/02 04:48:06 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/05 19:20:08 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,6 @@ static int	mini_split_loop(t_shelldata *data)
 
 int	new_mini_split(t_shelldata *data)
 {
-	int		i;
-
-	i = 0;
 	data->input_list = ft_calloc(1, sizeof(t_input_list));
 	if (data->input_list == NULL)
 		return (NO_MEMORY);
