@@ -42,6 +42,7 @@ int	check_argc_argv(int argc, char **argv)
 	return (SUCCESS);
 }
 
+
 void	end_of_file_reached(t_shelldata *data)
 {
 	ft_putstr("exit");
@@ -81,6 +82,13 @@ void	main_loop(t_shelldata *data)
 {
 	while (1)
 	{
+		data.pwd = getcwd(NULL, 0);
+		if (!data.pwd)
+		{
+			ft_putendl_fd("getcwd has failed", 2);
+			//clear_env_list(data->env_list, FAILURE);
+			return (FAILURE);
+		}
 		parent_signals();
 		data->input = readline("bananashell-0.23:");
 		if (!data->input)
@@ -90,10 +98,6 @@ void	main_loop(t_shelldata *data)
 			free(data->input);
 			continue ;
 		}
-		child_handling(data);
-		add_history(data->input);
-		free(data->input);
-		data->input = NULL;
 	}
 }
 

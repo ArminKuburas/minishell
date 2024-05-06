@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:05:58 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/28 17:54:23 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/02 20:28:29 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	remove_from_env_list(t_shelldata *data, char *specifier)
 static void	execute_unset_commands(t_shelldata *data, t_input_list *temp)
 {
 	temp = temp->next;
-	while (temp->type == VALID_UNSET_INPUT)
+	while (temp && temp->type == VALID_UNSET_INPUT)
 	{
 		if (check_if_unset_env_exists(data, temp) == 1)
 		{
@@ -118,10 +118,13 @@ static void	execute_unset_commands(t_shelldata *data, t_input_list *temp)
 	}
 }
 /* my_unset main function*/
-void	my_unset(t_shelldata *data, t_input_list *temp)
+int	ft_unset(t_shelldata *data)
 {
+	t_input_list	*temp;
+
+	temp = data->input_list;
 	if (!temp->next)
-		return ;
+		return (SUCCESS);
 	temp = temp->next;
 	while (temp)
 	{
@@ -130,6 +133,8 @@ void	my_unset(t_shelldata *data, t_input_list *temp)
 	}
 	temp = data->input_list;
 	execute_unset_commands(data, temp);
+	ft_printf("after execution\n");
 	create_2d_env(data);
 	ft_printf("unset finished\n");
+	return (SUCCESS);
 }

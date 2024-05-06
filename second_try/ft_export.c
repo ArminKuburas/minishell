@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export.c                                           :+:      :+:    :+:   */
+/*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:30:01 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/02 09:10:02 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/06 11:02:56 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,22 @@ export export
   they are good for execution*/
 
 /*This one checks if the export command is formatted properly*/
+/*
+static void	print_env_list(t_shelldata *data)
+{
+	t_env_list		*temp;
+
+	temp = data->env_list;
+	while (temp)
+	{
+		printf("%s\n", temp->env_var_name);
+		printf("%s\n", temp->env_var_value);
+		printf("%s\n", temp->env_var);
+		printf("---------------------------------------------\n");
+		temp = temp->next;
+	}
+}*/
+
 static void	is_export_var_name_valid(t_input_list *temp)
 {
 	int	i;
@@ -101,76 +117,121 @@ static void	is_export_var_name_valid(t_input_list *temp)
 	ft_printf("export input was valid\n");
 }
 
-/*Function to imitate export command without arguments*/
+static void export_sorted_list(t_env_list *temp_list)
+{
+	t_env_list		*temp;
+	t_env_list		*temp2;
+	char			*temp_env;
+
+	temp = temp_list;
+	while (temp)
+	{
+		temp2 = temp->next;
+		while (temp2)
+		{
+			if (ft_strcmp(temp->env_var_name, temp2->env_var_name) > 0)
+			{
+				temp_env = temp->env_var;
+				temp->env_var = temp2->env_var;
+				temp2->env_var = temp_env;
+				temp_env = temp->env_var_name;
+				temp->env_var_name = temp2->env_var_name;
+				temp2->env_var_name = temp_env;
+				temp_env = temp->env_var_value;
+				temp->env_var_value = temp2->env_var_value;
+				temp2->env_var_value = temp_env;
+			}
+			temp2 = temp2->next;
+		}
+		temp = temp->next;
+	}
+}
 
 static void	export_no_commands(t_shelldata *data)
 {
-	char			A;
 	t_env_list		*temp;
 
-	A = 'A';
 	temp = data->env_list;
-	// the formatting of the output needs reworking
 	if (!temp)
 		return ;
-	while ( A <= 'Z')
+	while (temp)
 	{
-		if (temp->env_var_name[0] == A)
-			ft_printf("declare -x %s\n", temp->env_var);
-		if (temp->next == NULL)
+		if (temp->env_var_name[0] != '?')
 		{
-			temp = data->env_list;
-			A++;
+			if (temp->env_var_value != NULL)
+			{
+				ft_printf("declare -x %s=\"%s\"\n", temp->env_var_name, \
+				temp->env_var_value);
+			}
+			else
+				ft_printf("declare -x %s\n", temp->env_var_name);
 		}
-		else
-			temp = temp->next;
+		temp = temp->next;
 	}
 	ft_printf("export without commands finished\n");
 }
 
+// if (!ft_strcmp(temp_env->env_var_name, temp->input))
+// we need to compare the input string until char = against the temp_env->env_var_name
 /*This one goes through the env list and sees if the new env var
   already exists*/
 static int	check_if_export_env_exists(t_shelldata *data, t_input_list *temp)
 {
+	int i;
 	t_env_list	*temp_env;
 
+	i = 0;
+	while (temp->input[i] != '=')
+		i++;
 	temp_env = data->env_list;
 	ft_printf("got into the check_if_env_exists\n");
 	while (temp_env)
 	{
-		if (!ft_strncmp(temp_env->env_var_name, temp->input, \
-		ft_strlen(temp_env->env_var_name)))
+		if (!ft_strncmp(temp->input, temp_env->env_var_name, i))
 		{
 			ft_printf("env found\n");
 			return (1);
 		}
 		temp_env = temp_env->next;
 	}
+	ft_printf("env not found\n");
 	return (0);
 }
 
-/*This function adds a new env var to the env list*/
-static void	add_new_env_var(t_shelldata *data, t_input_list *temp)
+static int	add_new_env_var(t_shelldata *data, t_input_list *temp, int i, int flag)
 {
 	t_env_list	*new_env;
 	t_env_list	*temp_env;
 
+	while (temp->input[i] != '=')
+		i++;
 	new_env = ft_calloc(1, sizeof(t_env_list));
 	if (!new_env)
-		return ;
-	new_env->env_var_name = ft_strdup(temp->input);
-	new_env->env_var_value = ft_strdup(temp->input);
-	new_env->env_var = ft_strdup(temp->input);
+		return (NO_MEMORY);
+	new_env->env_var_name = ft_substr(temp->input, 0, i);
+	if (new_env->env_var_name == NULL)
+		return (NO_MEMORY);
+	if (flag == 1)
+	{
+		new_env->env_var_value = ft_substr(temp->input, i + 1,
+				ft_strlen(temp->input) - i - 1);
+		if (new_env->env_var_value == NULL)
+			return (NO_MEMORY);
+		new_env->env_var = ft_strdup(temp->input);
+		if (new_env->env_var == NULL)
+			return (NO_MEMORY);
+	}
 	new_env->next = NULL;
 	temp_env = data->env_list;
 	while (temp_env->next)
 		temp_env = temp_env->next;
 	temp_env->next = new_env;
+	return (SUCCESS);
 	ft_printf("new env var added\n");
 }
 
 /*This function replaces the env var value if it already exists*/
-static void replace_env_var(t_shelldata *data, t_input_list *temp)
+static int	replace_env_var(t_shelldata *data, t_input_list *temp, int i, int flag)
 {
 	t_env_list	*temp_env;
 
@@ -180,17 +241,27 @@ static void replace_env_var(t_shelldata *data, t_input_list *temp)
 		if (!ft_strncmp(temp_env->env_var_name, temp->input, \
 		ft_strlen(temp_env->env_var_name)))
 		{
-			temp_env->env_var_value = ft_strdup(temp->input);
-			temp_env->env_var = ft_strdup(temp->input);
-			ft_printf("env var replaced\n");
-			return ;
+			if (flag == 1)
+			{
+				while (temp->input[i] != '=')
+					i++;
+				temp_env->env_var_value = ft_substr(temp->input, i + 1, \
+				ft_strlen(temp->input) - i - 1);
+				if (temp_env->env_var_value == NULL)
+					return (NO_MEMORY);
+				ft_printf("env var replaced\n");
+				return (SUCCESS);
+			}
+			else
+				temp_env->env_var_value = "";
 		}
 		temp_env = temp_env->next;
 	}
+	return (SUCCESS);
 }
 /*  This function will go through the input list and figures out do we
     replace or add the new key/value pair */
-static void	execute_export_commands(t_shelldata *data, t_input_list *temp)
+static int	execute_export_commands(t_shelldata *data, t_input_list *temp)
 {
 	char	*value_index;
 
@@ -202,23 +273,35 @@ static void	execute_export_commands(t_shelldata *data, t_input_list *temp)
 			if (value_index != NULL)
 			{
 				if (check_if_export_env_exists(data, temp) == 1)
-					replace_env_var(data, temp);
+					return (replace_env_var(data, temp, 0, 1));
 				else
-					add_new_env_var(data, temp);
+					return (add_new_env_var(data, temp, 0, 1));
+			}
+			else
+			{
+				if (check_if_export_env_exists(data, temp) == 1)
+					return (SUCCESS);
+				else
+					return (add_new_env_var(data, temp, 0, 0));
 			}
 		}
-		else
-			return ;
 		temp = temp->next;
 	}
+	return (SUCCESS);
 }
+
 /* my_export main function*/
-void	my_export(t_shelldata *data, t_input_list *temp)
+int	ft_export(t_shelldata *data)
 {
-	if (!temp->next)
+	t_input_list	*temp;
+
+	temp = data->input_list;
+	if (temp->next == NULL)
 	{
+		export_sorted_list(data->env_list);
 		export_no_commands(data);
-		return ;
+		//print_env_list(data);
+		return (SUCCESS);
 	}
 	temp = temp->next;
 	while (temp)
@@ -226,8 +309,10 @@ void	my_export(t_shelldata *data, t_input_list *temp)
 		is_export_var_name_valid(temp);
 		temp = temp->next;
 	}
-	temp = data->input_list->next;
+	temp = data->input_list;
 	execute_export_commands(data, temp);
 	create_2d_env(data);
 	ft_printf("export finished\n");
+	//print_env_list(data);
+	return (SUCCESS);
 }

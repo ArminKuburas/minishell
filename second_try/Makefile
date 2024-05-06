@@ -32,7 +32,6 @@ SRCS =	main.c \
 		signal.c \
 		cd.c \
 		pwd.c \
-		export.c \
 		unset.c \
 		echo.c \
 		env.c \
@@ -48,6 +47,7 @@ SRCS =	main.c \
 		execute_children.c \
 		ft_echo.c \
 		ft_pwd.c \
+		ft_export.c \
 		new_mini_split_helpers.c \
 		check_for_errors.c \
 		split_cleaner_helper_funcs.c \

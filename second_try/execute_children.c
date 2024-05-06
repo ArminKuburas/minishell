@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_children.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 02:36:27 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 10:41:20 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/05 17:26:51 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,6 @@ void	execve_failed_cleanup(t_shelldata *data, t_child_data *child_data)
 	clear_env_list(data->env_list, SUCCESS);
 	free(data->env_variables);
 	free(data->child_data);
-	ft_putstr_fd("clear input being called inside execve_failed_cleanup\n", 2);
 	clear_input(data->input_list, SUCCESS);
 }
 
@@ -145,7 +144,6 @@ void	clean_everything_up(t_shelldata *data, int exit_value)
 		free_child_data(&data->child_data[i]);
 	}
 	free(data->child_data);
-	ft_putstr_fd("clear input being called inside clean_everything_up\n", 2);
 	clear_input(data->input_list, SUCCESS);
 	if (exit_value == FAILURE)
 		exit(1);
@@ -161,12 +159,12 @@ int	use_builtin(t_child_data *child_data, int fd, t_shelldata *data)
 	// 	return (ft_cd(child_data->command_inputs));
 	else if (ft_strcmp(child_data->command, "pwd") == 0)
 		return (ft_pwd(data->pwd));
-	// else if (ft_strcmp(child_data->command, "export") == 0)
-	// 	return (ft_export(child_data->command_inputs));
-	// else if (ft_strcmp(child_data->command, "unset") == 0)
-	// 	return (ft_unset(child_data->command_inputs));
-	// else if (ft_strcmp(child_data->command, "env") == 0)
-	// 	return (ft_env(child_data->command_inputs, fd));
+	else if (ft_strcmp(child_data->command, "export") == 0)
+		return (ft_export(data));
+	else if (ft_strcmp(child_data->command, "unset") == 0)
+		return (ft_unset(data));
+	else if (ft_strcmp(child_data->command, "env") == 0)
+		return (my_env(data));
 	// else if (ft_strcmp(child_data->command, "exit") == 0)
 	// 	return (ft_exit(child_data->command_inputs));
 	return (FAILURE);
