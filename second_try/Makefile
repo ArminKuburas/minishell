@@ -6,7 +6,7 @@
 #    By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/05/02 16:05:33 by tvalimak         ###   ########.fr        #
+#    Updated: 2024/05/06 13:21:55 by tvalimak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,6 @@ SRCS =	main.c \
 		signal.c \
 		cd.c \
 		pwd.c \
-		unset.c \
 		echo.c \
 		env.c \
 		exit.c \
@@ -48,6 +47,7 @@ SRCS =	main.c \
 		ft_echo.c \
 		ft_pwd.c \
 		ft_export.c \
+		ft_unset.c \
 		new_mini_split_helpers.c \
 		check_for_errors.c \
 		split_cleaner_helper_funcs.c \

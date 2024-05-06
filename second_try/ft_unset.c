@@ -1,62 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset.c                                            :+:      :+:    :+:   */
+/*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:05:58 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/02 20:28:29 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:55:08 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	is_unset_var_name_valid(t_input_list *temp)
+static int	is_unset_var_name_valid(char *input)
 {
 	int	i;
 
 	i = 0;
-	if (!ft_isalpha(temp->input[i]) && temp->input[i] != '_')
+	if (input[i] != '_' || !ft_isalpha(input[i]))
 	{
-		ft_printf("bananashell: unset: `%s': not a valid identifier\n", \
-		temp->input);
-		temp->type = INVALID_UNSET_INPUT;
-		return ;
+		ft_printf("1\n");
+		ft_putstr_fd("bananashell: unset: `", STDERR_FILENO);
+		ft_putstr_fd(input, STDERR_FILENO);
+		ft_putstr_fd("': not a valid identifier\n", STDERR_FILENO);
+		return (FAILURE);
 	}
-	while (temp->input[i] != '\0' && temp->input[i] != '=')
+	while (input[i] != '\0' && input[i] != '=')
 	{
-		if (ft_isalnum(temp->input[i]) || temp->input[i] == '_')
+		if (input[i] == '_' || ft_isalpha(input[i]))
 			i++;
 		else
 		{
-			ft_printf("bananashell: unset: `%s': not a valid identifier\n", \
-			temp->input);
-			temp->type = INVALID_UNSET_INPUT;
-			return ;
+			ft_printf("2\n");
+			ft_putstr_fd("bananashell: unset: `", STDERR_FILENO);
+			ft_putstr_fd(input, STDERR_FILENO);
+			ft_putstr_fd("': not a valid identifier\n", STDERR_FILENO);
+			return (FAILURE);
 		}
 	}
-	temp->type = VALID_UNSET_INPUT;
-	ft_printf("unset input was valid\n");
+	return (SUCCESS);
 }
 
-static int	check_if_unset_env_exists(t_shelldata *data, t_input_list *temp)
+static int	check_if_unset_env_exists(t_shelldata *data, char *input)
 {
 	t_env_list	*temp2;
 
 	temp2 = data->env_list;
-	ft_printf("got into the check_if_env_exists\n");
 	while (temp2)
 	{
-		if (!ft_strncmp(temp2->env_var_name, temp->input, \
+		if (!ft_strncmp(temp2->env_var_name, input, \
 		ft_strlen(temp2->env_var_name)))
-		{
-			ft_printf("env found\n");
-			return (1);
-		}
+			return (YES);
 		temp2 = temp2->next;
 	}
-	return (0);
+	return (NO);
 }
 
 int	check_if_first_node(t_shelldata *data, char *specifier)
@@ -100,41 +97,34 @@ void	remove_from_env_list(t_shelldata *data, char *specifier)
 	}
 }
 
-static void	execute_unset_commands(t_shelldata *data, t_input_list *temp)
+static int	execute_unset_commands(t_shelldata *data, char *input)
 {
-	temp = temp->next;
-	while (temp && temp->type == VALID_UNSET_INPUT)
+	if (check_if_unset_env_exists(data, input) == YES)
 	{
-		if (check_if_unset_env_exists(data, temp) == 1)
-		{
-			ft_printf("env exists, we should remove it\n");
-			remove_from_env_list(data, temp->input);
-		}
-		else
-		{
-			ft_printf("env does not exist, do nothing\n");
-		}
-		temp = temp->next;
+		remove_from_env_list(data, input);
+		return (SUCCESS);
 	}
+	else
+		return (SUCCESS);
 }
 /* my_unset main function*/
-int	ft_unset(t_shelldata *data)
+int	ft_unset(t_shelldata *data, char **inputs)
 {
-	t_input_list	*temp;
+	int	i;
+	int	return_value;
 
-	temp = data->input_list;
-	if (!temp->next)
+	i = 1;
+	return_value = SUCCESS;
+	if (inputs[i] == NULL)
 		return (SUCCESS);
-	temp = temp->next;
-	while (temp)
+	while (inputs[i] != NULL)
 	{
-		is_unset_var_name_valid(temp);
-		temp = temp->next;
+		if (is_unset_var_name_valid(inputs[i]) == SUCCESS)
+			execute_unset_commands(data, inputs[i]);
+		else
+			return_value = FAILURE;
+		i++;
 	}
-	temp = data->input_list;
-	execute_unset_commands(data, temp);
-	ft_printf("after execution\n");
 	create_2d_env(data);
-	ft_printf("unset finished\n");
-	return (SUCCESS);
+	return (return_value);
 }
