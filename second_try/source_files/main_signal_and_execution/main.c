@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 16:01:58 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:07:50 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	main_loop(t_shelldata *data)
 	while (1)
 	{
 		parent_signals();
-		data->input = readline("bananashell-0.23:");
+		data->input = readline(YELLOW"🍌bananashell-0.23:"RESET);
 		if (!data->input)
 			end_of_file_reached(data);
 		if (set_up_data(data) != SUCCESS)

@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 14:28:16 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:06:58 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@
 /*Definition for SIGINT*/
 # define CTRL_C SIGINT
 # define CTRL_BS SIGQUIT
+
+# define RED	"\x1b[31m"
+# define GREEN	"\x1b[32m"
+# define YELLOW	"\x1b[33m"
+# define RESET	"\x1b[0m"
 
 typedef enum e_state
 {
