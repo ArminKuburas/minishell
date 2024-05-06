@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 09:43:54 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/06 11:21:20 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,6 @@ void	main_loop(t_shelldata *data)
 {
 	while (1)
 	{
-		data.pwd = getcwd(NULL, 0);
-		if (!data.pwd)
-		{
-			ft_putendl_fd("getcwd has failed", 2);
-			//clear_env_list(data->env_list, FAILURE);
-			return (FAILURE);
-		}
 		parent_signals();
 		data->input = readline("bananashell-0.23:");
 		if (!data->input)
@@ -98,6 +91,10 @@ void	main_loop(t_shelldata *data)
 			free(data->input);
 			continue ;
 		}
+		child_handling(data);
+		add_history(data->input);
+		free(data->input);
+		data->input = NULL;
 	}
 }
 
