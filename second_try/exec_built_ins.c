@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_built_ins.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 10:27:06 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/04/27 22:12:26 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/06 10:38:53 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	execute_built_ins(t_shelldata *data, t_input_list *temp)
 {
 	temp = data->input_list;
-	ft_printf("got inside the executioner\n");
 	if (temp->input == NULL)
 		return (0);
 	else if (ft_strncmp(temp->input, "export", 7) == 0)

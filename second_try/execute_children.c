@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 02:36:27 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/05 21:40:29 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/06 10:41:20 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,8 +153,6 @@ void	clean_everything_up(t_shelldata *data, int exit_value)
 
 int	use_builtin(t_child_data *child_data, int fd, t_shelldata *data)
 {
-	printf("use_builtin\n");
-	printf("child_data->command: %s\n", child_data->command);
 	if (fd == 0)
 		fd = STDOUT_FILENO;
 	if (ft_strcmp(child_data->command, "echo") == 0)

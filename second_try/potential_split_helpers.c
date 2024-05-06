@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 06:19:36 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/05 21:20:21 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/06 10:57:40 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,28 +98,12 @@ void	split_env(t_new_string_data *data, t_env_list	*temp_env)
 {
 	char			**strings;
 
-	printf("split_env\n");
 	strings = ft_split(temp_env->env_var_value, ' ');
 	if (strings == NULL)
 		split_memory_failed(data->shell_data);
 	initialize_first_link(data, strings);
-	printf("after initialize_first_link\n");
 	create_middle_links(data, strings);
-	printf("after create_middle_links\n");
 	ft_memset(data->new_string, 0, ft_strlen(data->new_string));
 	finish_last_link(data, strings);
-	printf("after finish_last_link\n");
 	free(strings);
-	t_input_list	*temp;
-	int				i;
-	temp = data->shell_data->input_list;
-	i = 0;
-	while (temp != NULL)
-	{
-		printf("input_data[%d] temp->input: %s\n", i, temp->input);
-		temp = temp->next;
-		i++;
-	}
-	printf("end of split_env\n");
-	printf("data->new_string: %s\n", data->new_string);
 }
