@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_children.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 02:36:27 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 14:18:26 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:35:24 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,8 +155,8 @@ int	use_builtin(t_child_data *child_data, int fd, t_shelldata *data)
 		fd = STDOUT_FILENO;
 	if (ft_strcmp(child_data->command, "echo") == 0)
 		return (ft_echo(child_data, fd));
-	// else if (ft_strcmp(child_data->command, "cd") == 0)
-	// 	return (ft_cd(child_data->command_inputs));
+	else if (ft_strcmp(child_data->command, "cd") == 0)
+		return (ft_cd(data, child_data->command_inputs));
 	else if (ft_strcmp(child_data->command, "pwd") == 0)
 		return (ft_pwd(data->pwd));
 	else if (ft_strcmp(child_data->command, "export") == 0)

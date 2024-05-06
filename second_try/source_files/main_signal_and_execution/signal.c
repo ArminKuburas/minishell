@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:43:48 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/06 14:18:38 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/06 18:26:09 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	sigint_handler(int sig)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
+	// exit_code needs to be updated to 1 when this goes on empty prompt
 }
 
 void	heredoc_handler(int sig)
@@ -69,7 +70,9 @@ void	heredoc_signals(void)
 
 void	standby_signals(void)
 {
+	caret_switch(1);
 	signal_handler(SIGINT, SIG_IGN);
+	//signal_handler(SIGINT, sigint_handler);
 	signal_handler(SIGQUIT, SIG_IGN);
 }
 

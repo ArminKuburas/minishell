@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 14:28:16 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:36:13 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,7 +248,7 @@ void		caret_switch(int on);
 
 //built_in functions
 void		my_echo(t_input_list *temp);
-void		my_cd(t_shelldata *data, t_input_list *temp);
+int			ft_cd(t_shelldata *data, char **inputs);
 void		my_pwd(t_shelldata *data, t_input_list *temp);
 int			ft_export(t_shelldata *data, char **inputs, int fd);
 void		my_unset(t_shelldata *data, t_input_list *temp);
@@ -256,7 +256,7 @@ void		my_exit(t_shelldata *data, t_input_list *temp);
 int			ft_unset(t_shelldata *data, char **inputs);
 
 //execute functions
-int		my_env(t_shelldata *data);
+int			my_env(t_shelldata *data);
 
 //heredoc
 void		heredoc(t_shelldata data, t_input_list *temp);

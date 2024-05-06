@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 14:18:34 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/06 18:27:09 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	set_up_data(t_shelldata *data)
 
 void	child_handling(t_shelldata *data)
 {
+	standby_signals();
 	int	error;
 	//We need to do proper error handling here.
 	error = child_pre_check(data);
@@ -92,6 +93,7 @@ void	main_loop(t_shelldata *data)
 			continue ;
 		}
 		child_handling(data);
+		handler_signals();
 		add_history(data->input);
 		free(data->input);
 		data->input = NULL;
