@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:30:01 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/05 17:24:45 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/06 10:45:55 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,36 @@ static void	is_export_var_name_valid(t_input_list *temp)
 	ft_printf("export input was valid\n");
 }
 
+static void export_sorted_list(t_env_list *temp_list)
+{
+	t_env_list		*temp;
+	t_env_list		*temp2;
+	char			*temp_env;
+
+	temp = temp_list;
+	while (temp)
+	{
+		temp2 = temp->next;
+		while (temp2)
+		{
+			if (ft_strcmp(temp->env_var_name, temp2->env_var_name) > 0)
+			{
+				temp_env = temp->env_var;
+				temp->env_var = temp2->env_var;
+				temp2->env_var = temp_env;
+				temp_env = temp->env_var_name;
+				temp->env_var_name = temp2->env_var_name;
+				temp2->env_var_name = temp_env;
+				temp_env = temp->env_var_value;
+				temp->env_var_value = temp2->env_var_value;
+				temp2->env_var_value = temp_env;
+			}
+			temp2 = temp2->next;
+		}
+		temp = temp->next;
+	}
+}
+/*
 static void	export_no_commands(t_shelldata *data)
 {
 	t_env_list		*temp;
@@ -136,7 +166,7 @@ static void	export_no_commands(t_shelldata *data)
 		temp = temp->next;
 	}
 	ft_printf("export without commands finished\n");
-}
+}*/
 
 // if (!ft_strcmp(temp_env->env_var_name, temp->input))
 // we need to compare the input string until char = against the temp_env->env_var_name
@@ -265,7 +295,8 @@ int	ft_export(t_shelldata *data)
 	temp = data->input_list;
 	if (temp->next == NULL)
 	{
-		export_no_commands(data);
+		export_sorted_list(data->env_list);
+		//export_no_commands(data);
 		//print_env_list(data);
 		return (SUCCESS);
 	}

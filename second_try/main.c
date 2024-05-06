@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/05 17:29:46 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/06 10:46:53 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,7 @@ int	main(int argc, char **argv, char **env)
 			free(data.input);
 			continue ;
 		}
-		if (error == SUCCESS)
+		else
 		{
 			error = child_pre_check(&data);
 			error = create_exit_value_env(&data);

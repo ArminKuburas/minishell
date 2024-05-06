@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 21:29:51 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/05 18:37:08 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/06 10:47:35 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int	create_env(char *env, t_env_list *env_list)
 	}
 	return (SUCCESS);
 }
-
+/*
 static int	get_env_list_size(char **env)
 {
 	int i;
@@ -182,8 +182,8 @@ int	duplicate_env(char **env, t_shelldata *data)
 	}
 	temp = data->env_list;
 	return (SUCCESS);
-}
-/*
+}*/
+
 int	duplicate_env(char **env, t_shelldata *data)
 {
 	int			i;
@@ -205,4 +205,4 @@ int	duplicate_env(char **env, t_shelldata *data)
 	if (create_2d_env(data) != SUCCESS)
 		return (clear_env_list(data->env_list, NO_MEMORY));
 	return (SUCCESS);
-}*/
+}
