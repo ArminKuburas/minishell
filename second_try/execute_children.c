@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 02:36:27 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/02 13:04:53 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/06 10:41:20 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void	execve_failed_cleanup(t_shelldata *data, t_child_data *child_data)
 	clear_env_list(data->env_list, SUCCESS);
 	free(data->env_variables);
 	free(data->child_data);
+	ft_putstr_fd("clear input being called inside execve_failed_cleanup\n", 2);
 	clear_input(data->input_list, SUCCESS);
 }
 
@@ -144,6 +145,7 @@ void	clean_everything_up(t_shelldata *data, int exit_value)
 		free_child_data(&data->child_data[i]);
 	}
 	free(data->child_data);
+	ft_putstr_fd("clear input being called inside clean_everything_up\n", 2);
 	clear_input(data->input_list, SUCCESS);
 	if (exit_value == FAILURE)
 		exit(1);
@@ -151,8 +153,6 @@ void	clean_everything_up(t_shelldata *data, int exit_value)
 
 int	use_builtin(t_child_data *child_data, int fd, t_shelldata *data)
 {
-	printf("use_builtin\n");
-	printf("child_data->command: %s\n", child_data->command);
 	if (fd == 0)
 		fd = STDOUT_FILENO;
 	if (ft_strcmp(child_data->command, "echo") == 0)

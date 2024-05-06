@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/02 09:09:59 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/06 10:55:49 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,7 +221,6 @@ int			env_str_cmpr(char *env, char *str, int len);
 int			update_shell_level(t_shelldata *data);
 int			create_2d_env(t_shelldata *data);
 
-
 //data_cleaner functions
 int			new_length(t_input_list *temp, t_env_list *env);
 int			split_cleaner(t_shelldata *data);
@@ -232,12 +231,9 @@ void		split_env(t_new_string_data *data, t_env_list	*temp_env);
 void		set_up_string_data(t_new_string_data *data, t_input_list *temp,
 				t_shelldata *shell_data, char *new_string);
 
-
-
 //new mini split functions
 int			new_mini_split(t_shelldata *data);
 int			duplicate_input(char *input, t_shelldata *data, int *i);
-
 
 //signal handler
 
@@ -274,14 +270,11 @@ int			setup_pipes(t_shelldata *data, int amount);
 void		set_all_error(t_shelldata *data);
 void		child_failed(t_shelldata *data, int error);
 
-
 //execute_children functions
 int			execute_commands(t_shelldata *data);
 
-
 void		remove_from_env_list(t_shelldata *data, char *specifier);
 int			create_2d_env(t_shelldata *data);
-
 
 //armin version of builtins
 int			ft_echo(t_child_data *data, int fd);
@@ -294,5 +287,12 @@ int			execute_built_ins(t_shelldata *data, t_input_list *temp);
 int			check_pipes(t_shelldata *data);
 void		split_memory_failed(t_shelldata *data);
 
+//main helpers
+int			new_env_node(t_env_list *old_node, char *env_name, char *env_value);
+int			create_question_node(t_shelldata *data, t_env_list *temp);
+int			create_exit_value_env(t_shelldata *data);
+int			initial_env_creation(char **env, t_shelldata *data);
+int			initial_setup(t_shelldata *data, int argc, char **argv, char **env);
+int			check_argc_argv(int argc, char **argv); //might need to be moved to main_helpers
 
 #endif

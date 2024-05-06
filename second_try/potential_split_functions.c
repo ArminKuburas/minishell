@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 07:34:43 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/02 06:19:34 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/06 10:57:05 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ t_env_list	*potential_find_env(t_new_string_data *data, bool *split_check)
 	}
 	return (NULL);
 }
-
-
 
 void	potential_split_create(t_new_string_data *data)
 {
