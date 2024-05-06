@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:30:01 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/06 14:18:10 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/06 15:23:51 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static int	is_export_var_name_valid(char *input)
 	int	i;
 
 	i = 0;
-	if (!ft_isalpha(input[i]))
+	if (input[i] != '_' && !ft_isalpha(input[i]))
 	{
 		ft_putstr_fd("bananashell: export: `", STDERR_FILENO);
 		ft_putstr_fd(input, STDERR_FILENO);
@@ -240,7 +240,6 @@ static int	add_new_env_var(t_shelldata *data, char *input, int i, int flag)
 		temp_env = temp_env->next;
 	temp_env->next = new_env;
 	return (SUCCESS);
-	ft_printf("new env var added\n");
 }
 
 /*This function replaces the env var value if it already exists*/
@@ -262,7 +261,6 @@ static int	replace_env_var(t_shelldata *data, char *input, int i, int flag)
 				ft_strlen(input) - i - 1);
 				if (temp_env->env_var_value == NULL)
 					return (NO_MEMORY);
-				ft_printf("env var replaced\n");
 				return (SUCCESS);
 			}
 			else
@@ -308,7 +306,6 @@ int	ft_export(t_shelldata *data, char **inputs, int fd)
 	{
 		export_sorted_list(data->env_list);
 		export_no_commands(data, fd);
-		//print_env_list(data);
 		return (SUCCESS);
 	}
 	while (inputs[i] != NULL)
@@ -320,7 +317,5 @@ int	ft_export(t_shelldata *data, char **inputs, int fd)
 		i++;
 	}
 	create_2d_env(data);
-	ft_printf("export finished\n");
-	//print_env_list(data);
 	return (SUCCESS);
 }

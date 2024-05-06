@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:05:58 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/06 14:18:19 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/06 14:45:45 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	is_unset_var_name_valid(char *input)
 	int	i;
 
 	i = 0;
-	if (input[i] != '_' || !ft_isalpha(input[i]))
+	if (input[i] != '_' && !ft_isalpha(input[i]))
 	{
 		ft_printf("1\n");
 		ft_putstr_fd("bananashell: unset: `", STDERR_FILENO);
@@ -27,7 +27,7 @@ static int	is_unset_var_name_valid(char *input)
 	}
 	while (input[i] != '\0' && input[i] != '=')
 	{
-		if (input[i] == '_' || ft_isalpha(input[i]))
+		if (ft_isalnum(input[i]) || input[i] == '_')
 			i++;
 		else
 		{
