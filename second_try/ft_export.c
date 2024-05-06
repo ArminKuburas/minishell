@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:30:01 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/06 12:57:49 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/06 14:01:27 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,10 +164,8 @@ static void	export_no_commands(t_shelldata *data, int fd)
 		{
 			if (temp->env_var_value != NULL)
 			{
-				ft_putstr_fd("declare -x ", fd);
-				ft_putstr_fd(temp->env_var_name, fd);
-				ft_putstr_fd("=\"", fd);
-				ft_putendl_fd(temp->env_var_value, fd);
+				ft_printf("declare -x %s=\"%s\"\n", temp->env_var_name, \
+				temp->env_var_value);
 			}
 			else
 			{
@@ -213,26 +211,26 @@ static int	check_if_export_env_exists(t_shelldata *data, char *input)
 	return (NO);
 }
 
-static int	add_new_env_var(t_shelldata *data, t_input_list *temp, int i, int flag)
+static int	add_new_env_var(t_shelldata *data, char *input, int i, int flag)
 {
 	t_env_list	*new_env;
 	t_env_list	*temp_env;
 
-	while (temp->input[i] != '=')
+	while (input[i] != '=')
 		i++;
 	new_env = ft_calloc(1, sizeof(t_env_list));
 	if (!new_env)
 		return (NO_MEMORY);
-	new_env->env_var_name = ft_substr(temp->input, 0, i);
+	new_env->env_var_name = ft_substr(input, 0, i);
 	if (new_env->env_var_name == NULL)
 		return (NO_MEMORY);
 	if (flag == 1)
 	{
-		new_env->env_var_value = ft_substr(temp->input, i + 1,
-				ft_strlen(temp->input) - i - 1);
+		new_env->env_var_value = ft_substr(input, i + 1,
+				ft_strlen(input) - i - 1);
 		if (new_env->env_var_value == NULL)
 			return (NO_MEMORY);
-		new_env->env_var = ft_strdup(temp->input);
+		new_env->env_var = ft_strdup(input);
 		if (new_env->env_var == NULL)
 			return (NO_MEMORY);
 	}
@@ -246,22 +244,22 @@ static int	add_new_env_var(t_shelldata *data, t_input_list *temp, int i, int fla
 }
 
 /*This function replaces the env var value if it already exists*/
-static int	replace_env_var(t_shelldata *data, t_input_list *temp, int i, int flag)
+static int	replace_env_var(t_shelldata *data, char *input, int i, int flag)
 {
 	t_env_list	*temp_env;
 
 	temp_env = data->env_list;
 	while (temp_env)
 	{
-		if (!ft_strncmp(temp_env->env_var_name, temp->input, \
+		if (!ft_strncmp(temp_env->env_var_name, input, \
 		ft_strlen(temp_env->env_var_name)))
 		{
 			if (flag == 1)
 			{
-				while (temp->input[i] != '=')
+				while (input[i] != '=')
 					i++;
-				temp_env->env_var_value = ft_substr(temp->input, i + 1, \
-				ft_strlen(temp->input) - i - 1);
+				temp_env->env_var_value = ft_substr(input, i + 1, \
+				ft_strlen(input) - i - 1);
 				if (temp_env->env_var_value == NULL)
 					return (NO_MEMORY);
 				ft_printf("env var replaced\n");
@@ -324,5 +322,5 @@ int	ft_export(t_shelldata *data, char **inputs, int fd)
 	create_2d_env(data);
 	ft_printf("export finished\n");
 	//print_env_list(data);
-	return (return_value);
+	return (SUCCESS);
 }

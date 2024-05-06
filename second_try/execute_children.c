@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_children.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 02:36:27 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 11:29:14 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/06 14:03:37 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ int	use_builtin(t_child_data *child_data, int fd, t_shelldata *data)
 	else if (ft_strcmp(child_data->command, "export") == 0)
 		return (ft_export(data, child_data->command_inputs, fd));
 	else if (ft_strcmp(child_data->command, "unset") == 0)
-		return (ft_unset(data));
+		return (ft_unset(data, child_data->command_inputs));
 	else if (ft_strcmp(child_data->command, "env") == 0)
 		return (my_env(data));
 	// else if (ft_strcmp(child_data->command, "exit") == 0)
