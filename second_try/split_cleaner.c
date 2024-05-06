@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:56:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/02 13:41:20 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/05 21:56:22 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ int	create_new_string(t_input_list *temp, t_shelldata *shell_data, char *n_str)
 			handle_dollar_sign(&data);
 		data.j++;
 	}
-	data.temp->old_input = temp->input;
+	if (data.temp->word_split != WORD_SPLIT)
+		data.temp->old_input = temp->input;
 	data.temp->input = data.new_string;
 	return (SUCCESS);
 }

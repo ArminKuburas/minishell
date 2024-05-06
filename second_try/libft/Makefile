@@ -6,7 +6,7 @@
 #    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/27 08:04:40 by akuburas          #+#    #+#              #
-#    Updated: 2024/04/16 03:58:09 by akuburas         ###   ########.fr        #
+#    Updated: 2024/05/05 21:31:10 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,6 +81,7 @@ LIB = ranlib
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
+DEBUG = -g
 
 all: ${NAME}
 
@@ -99,7 +100,6 @@ fclean: clean
 
 re: fclean all
 bonus: .bonus
-
 		
 .bonus: $(OBJS) $(BONUS_OBJS)
 		$(AR) $(NAME) $(OBJS) $(BONUS_OBJS)

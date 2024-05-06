@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:30:01 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/06 13:42:48 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/06 14:01:27 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,11 +164,8 @@ static void	export_no_commands(t_shelldata *data, int fd)
 		{
 			if (temp->env_var_value != NULL)
 			{
-				ft_putstr_fd("declare -x ", fd);
-				ft_putstr_fd(temp->env_var_name, fd);
-				ft_putstr_fd("=\"", fd);
-				ft_putstr_fd(temp->env_var_value, fd);
-				ft_putendl_fd("\"", fd);
+				ft_printf("declare -x %s=\"%s\"\n", temp->env_var_name, \
+				temp->env_var_value);
 			}
 			else
 			{
@@ -323,5 +320,7 @@ int	ft_export(t_shelldata *data, char **inputs, int fd)
 		i++;
 	}
 	create_2d_env(data);
-	return (return_value);
+	ft_printf("export finished\n");
+	//print_env_list(data);
+	return (SUCCESS);
 }

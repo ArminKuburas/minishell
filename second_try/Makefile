@@ -6,7 +6,7 @@
 #    By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/05/06 13:21:55 by tvalimak         ###   ########.fr        #
+#    Updated: 2024/05/06 14:03:08 by tvalimak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = minishell
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RLFLAGS = -lreadline -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include
-DEBUGFLAGS = -Wall -Wextra -Werror -g
+DEBUGFLAGS = -g -Wall -Wextra -Werror
 
 MAKE = make bonus
 LIBFTDIR = libft
@@ -53,6 +53,7 @@ SRCS =	main.c \
 		split_cleaner_helper_funcs.c \
 		potential_split_helpers.c \
 		child_data_helpers.c \
+		main_helpers.c \
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)
@@ -61,9 +62,6 @@ $(NAME): $(OBJS) $(LIBFT)
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFTDIR)
-
-valgrind: $(OBJS) $(LIBFT)
-		$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME) $(RLFLAGS) -g
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
