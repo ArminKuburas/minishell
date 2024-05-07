@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/07 16:22:29 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/07 23:19:32 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	check_argc_argv(int argc, char **argv)
 	return (SUCCESS);
 }
 
-
 void	end_of_file_reached(t_shelldata *data)
 {
 	ft_putstr("exit");
@@ -70,14 +69,12 @@ int	set_up_data(t_shelldata *data)
 
 void	child_handling(t_shelldata *data)
 {
-	//standby_signals();
 	int	error;
 	//We need to do proper error handling here.
 	error = child_pre_check(data);
 	error = create_exit_value_env(data);
 	if (error != SUCCESS)
 		exit(1);
-	handler_signals();
 }
 
 void	main_loop(t_shelldata *data)
@@ -101,12 +98,12 @@ void	main_loop(t_shelldata *data)
 
 int	main(int argc, char **argv, char **env)
 {
-	t_shelldata	data;
+	t_shelldata		data;
 
+	handler_signals();
 	ft_memset(&data, 0, sizeof(t_shelldata));
 	if (initial_setup(&data, argc, argv, env) == FAILURE)
 		return (FAILURE);
-	handler_signals();
 	main_loop(&data);
 	rl_clear_history();
 	return (0);

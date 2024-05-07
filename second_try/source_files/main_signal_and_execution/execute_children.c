@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_children.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 02:36:27 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/07 16:20:34 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/07 23:26:05 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	close_my_fds(t_child_data *child_data)
 	if (child_data->p_fd_out[1] != 0)
 		close(child_data->p_fd_out[1]);
 	if (child_data->p_fd_in[0] != 0)
-
 		close(child_data->p_fd_in[0]);
 	if (child_data->p_fd_in[1] != 0)
 		close(child_data->p_fd_in[1]);
@@ -172,6 +171,7 @@ int	use_builtin(t_child_data *child_data, int fd, t_shelldata *data)
 
 void	child_handler(t_shelldata *data, t_child_data *child_data, int i)
 {
+	ft_printf("child_handler\n");
 	if (check_child_pipes(child_data) != SUCCESS)
 		clean_everything_up(data, FAILURE);
 	if (check_fds(child_data) != SUCCESS)
@@ -181,13 +181,18 @@ void	child_handler(t_shelldata *data, t_child_data *child_data, int i)
 	if (ft_strchr("/.", child_data->command[0]) == NULL)
 	{
 		if (use_builtin(child_data, STDOUT_FILENO, data) == SUCCESS)
+		{
+			ft_printf("use_builtin\n");
 			exit(0);
+		}
 		else
 		{
 			execve_failed_cleanup(data, child_data);
 			exit(child_data->exit_value);
 		}
 	}
+	ft_printf("execve\n");
+	signals_off();
 	if (execve(child_data->command,
 			child_data->command_inputs, child_data->env) == -1)
 	{
@@ -198,6 +203,7 @@ void	child_handler(t_shelldata *data, t_child_data *child_data, int i)
 
 int	execute_child(t_shelldata *data, t_child_data *child_data, int i)
 {
+	ft_printf("execute_child\n");
 	child_data->pid = fork();
 	if (child_data->pid == -1)
 	{
@@ -206,7 +212,7 @@ int	execute_child(t_shelldata *data, t_child_data *child_data, int i)
 	}
 	if (child_data->pid == 0)
 	{
-		standby_signals();
+		// handler_signals();
 		child_handler(data, child_data, i);
 	}
 	return (SUCCESS);
@@ -238,6 +244,7 @@ int	execute_commands(t_shelldata *data)
 				&data->child_data[i].exit_value, 0);
 		i++;
 	}
+	handler_signals();
 	return (SUCCESS);
 }
 
@@ -258,9 +265,15 @@ int	child_pre_check(t_shelldata *data)
 	{
 		if (data->child_data[0].command != NULL
 			&& ft_strchr("/.", data->child_data[0].command[0]) == NULL)
+		{
+			ft_printf("one_builtin\n");
 			return (one_builtin(data));
+		}
 		else
+		{
+			ft_printf("execute_commands\n");
 			return (execute_commands(data));
+		}
 	}
 	return (execute_commands(data));
 }

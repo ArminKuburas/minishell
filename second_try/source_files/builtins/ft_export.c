@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:30:01 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/06 16:39:13 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/07 22:07:26 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -306,7 +306,7 @@ int	ft_export(t_shelldata *data, char **inputs, int fd)
 	{
 		export_sorted_list(data->env_list);
 		export_no_commands(data, fd);
-		return (SUCCESS);
+		return (return_value);
 	}
 	while (inputs[i] != NULL)
 	{
@@ -317,5 +317,5 @@ int	ft_export(t_shelldata *data, char **inputs, int fd)
 		i++;
 	}
 	create_2d_env(data);
-	return (SUCCESS);
+	return (return_value);
 }

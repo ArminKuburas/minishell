@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/07 13:07:16 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/07 23:27:42 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,6 +245,7 @@ void		heredoc_signals(void);
 void		standby_signals(void);
 void		handler_signals(void);
 void		caret_switch(int on);
+void		signals_off(void);
 
 //built_in functions
 void		my_echo(t_input_list *temp);

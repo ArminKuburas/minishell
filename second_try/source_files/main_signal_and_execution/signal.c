@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:43:48 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/07 15:34:29 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/07 22:48:21 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,13 @@ void	handler_signals(void)
 	ft_printf("handler_signals\n");
 	caret_switch(0);
 	signal_handler(SIGINT, sigint_handler);
+	signal_handler(SIGQUIT, SIG_IGN);
+}
+
+void	signals_off(void)
+{
+	ft_printf("signals_off\n");
+	signal_handler(SIGINT, SIG_IGN);
 	signal_handler(SIGQUIT, SIG_IGN);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:22:59 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/07 11:58:46 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/07 22:06:38 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,6 @@ static void	cd_home(t_shelldata *data, char *cmd)
 
 int	ft_cd(t_shelldata *data, char **inputs)
 {
-	int	i;
-
-	i = 1;
 	if (!inputs[1] || (ft_strncmp(inputs[1], "~", 2) == 0))
 	{
 		cd_home(data, "HOME");
