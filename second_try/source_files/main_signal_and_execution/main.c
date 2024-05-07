@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 16:07:50 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/07 12:37:29 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ int	check_argc_argv(int argc, char **argv)
 	return (SUCCESS);
 }
 
-
 void	end_of_file_reached(t_shelldata *data)
 {
 	ft_putendl_fd("exit", STDOUT_FILENO);
 	clear_env_list(data->env_list, SUCCESS);
 	free(data->pwd);
+	free(data->env_variables);
 	rl_clear_history();
 	exit(0);
 }
@@ -95,6 +95,7 @@ void	main_loop(t_shelldata *data)
 		add_history(data->input);
 		free(data->input);
 		data->input = NULL;
+		clear_input(data->input_list, SUCCESS);
 	}
 }
 

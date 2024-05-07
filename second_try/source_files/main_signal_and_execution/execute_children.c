@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 02:36:27 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 15:47:28 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/07 12:42:03 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,6 +235,7 @@ int	execute_commands(t_shelldata *data)
 				&data->child_data[i].exit_value, 0);
 		i++;
 	}
+	free(data->child_data);
 	return (SUCCESS);
 }
 
@@ -246,6 +247,7 @@ int	one_builtin(t_shelldata *data)
 			data->child_data[0].fd_out, data);
 	data->exit_value = return_value;
 	free_child_data(&data->child_data[0]);
+	free(data->child_data);
 	return (return_value);
 }
 

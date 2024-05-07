@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:30:01 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/06 14:18:10 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/06 16:43:41 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -322,5 +322,5 @@ int	ft_export(t_shelldata *data, char **inputs, int fd)
 	create_2d_env(data);
 	ft_printf("export finished\n");
 	//print_env_list(data);
-	return (SUCCESS);
+	return (return_value);
 }

@@ -23,48 +23,6 @@
 // need to figure out why.
 // CTRL + \ = SIGQUIT
 
-<<<<<<< HEAD
-=======
-static void	signal_handler(int signal)
-{
-	if (signal == CTRL_C)
-	{
-		write(1, "\n", 1);
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-	}
-}
-
-static void	carrot_toggle(int on)
-{
-	struct termios	term;
-
-	tcgetattr(STDIN_FILENO, &term);
-	if (!on)
-		term.c_lflag &= ~ECHOCTL;
-	else
-		term.c_lflag |= ECHOCTL;
-	tcsetattr(STDIN_FILENO, TCSANOW, &term);
-}
-
-static void	set_state(t_state state)
-{
-	if (state == DEFAULT)
-	{
-		carrot_toggle(1);
-	}
-	if (state == HEREDOC)
-	{
-		return ;
-	}
-	if (state == HANDLER)
-	{
-		carrot_toggle(0);
-	}
-}
-
->>>>>>> main
 int	duplicate_env(char **env, t_shelldata *data)
 {
 	int	i;
@@ -112,15 +70,8 @@ int	main(int argc, char **argv, char **env)
 	}
 	while (1)
 	{
-<<<<<<< HEAD
 		parent_signals();
 		input = readline("bananashell-0.09:");
-=======
-		set_state(HANDLER);
-		//set_state(DEFAULT);
-		signal(CTRL_C, signal_handler);
-		input = readline("bananashell-0.10:");
->>>>>>> main
 		if (!input)
 		{
 			printf("exit\n");
