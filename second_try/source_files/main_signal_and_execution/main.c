@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/07 12:37:29 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/07 23:53:13 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,6 @@ int	set_up_data(t_shelldata *data)
 	split_cleaner(data);
 	set_up_child_data(data);
 	return (SUCCESS);
-}
-
-void	child_handling(t_shelldata *data)
-{
-	int	error;
-	//We need to do proper error handling here.
-	error = child_pre_check(data);
-	error = create_exit_value_env(data);
-	if (error != SUCCESS)
-		exit(1);
 }
 
 void	main_loop(t_shelldata *data)

@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 16:43:20 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/07 23:53:48 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -300,5 +300,6 @@ int			create_exit_value_env(t_shelldata *data);
 int			initial_env_creation(char **env, t_shelldata *data);
 int			initial_setup(t_shelldata *data, int argc, char **argv, char **env);
 int			check_argc_argv(int argc, char **argv); //might need to be moved to main_helpers
+void		child_handling(t_shelldata *data);
 
 #endif
