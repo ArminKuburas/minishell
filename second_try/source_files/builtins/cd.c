@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cd.c                                            :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:22:59 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/07 11:58:46 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/07 11:57:51 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,16 @@ static void	cd_home(t_shelldata *data, char *cmd)
 	ft_printf("cd succeeded\n");
 }
 
-int	ft_cd(t_shelldata *data, char **inputs)
+void	my_cd(t_shelldata *data, t_input_list *temp)
 {
-	int	i;
-
-	i = 1;
-	if (!inputs[1] || (ft_strncmp(inputs[1], "~", 2) == 0))
-	{
+	if (!temp->next || (ft_strncmp(temp->next->input, "~", 2) == 0))
 		cd_home(data, "HOME");
-		return (SUCCESS);
-	}
-	if (inputs[1] && ft_strncmp(inputs[1], "..", 3) == 0)
+	if (temp->next && ft_strncmp(temp->next->input, "..", 3) == 0)
 	{
 		if (chdir("..") == -1)
 		{
 			ft_printf("ERROR IN CD\n");
-			return (FAILURE);
+			return ;
 		}
 	}
-	return (SUCCESS);
 }

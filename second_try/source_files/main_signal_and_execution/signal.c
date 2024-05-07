@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:43:48 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/06 18:26:09 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:34:29 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,13 @@ void	sigint_handler(int sig)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
-	// exit_code needs to be updated to 1 when this goes on empty prompt
+}
+
+void	sigint_post_handler(int sig)
+{
+	(void)sig;
+	write(1, "\n", 1);
+	rl_redisplay();
 }
 
 void	heredoc_handler(int sig)
@@ -57,6 +63,7 @@ void	signal_handler(int signal, t_handler handler)
 
 void	parent_signals(void)
 {
+	ft_printf("parent_signals\n");
 	caret_switch(0);
 	signal_handler(SIGINT, sigint_handler);
 	signal_handler(SIGQUIT, SIG_IGN);
@@ -64,23 +71,25 @@ void	parent_signals(void)
 
 void	heredoc_signals(void)
 {
+	ft_printf("heredoc_signals\n");
 	signal_handler(SIGINT, heredoc_handler);
 	signal_handler(SIGQUIT, SIG_IGN);
 }
 
 void	standby_signals(void)
 {
+	ft_printf("standby_signals\n");
 	caret_switch(1);
-	signal_handler(SIGINT, SIG_IGN);
-	//signal_handler(SIGINT, sigint_handler);
+	signal_handler(SIGINT, sigint_post_handler);
 	signal_handler(SIGQUIT, SIG_IGN);
 }
 
 void	handler_signals(void)
 {
+	ft_printf("handler_signals\n");
 	caret_switch(0);
-	signal_handler(SIGINT, SIG_DFL);
-	signal_handler(SIGQUIT, SIG_DFL);
+	signal_handler(SIGINT, sigint_handler);
+	signal_handler(SIGQUIT, SIG_IGN);
 }
 
 /*Old signal handler for safekeep

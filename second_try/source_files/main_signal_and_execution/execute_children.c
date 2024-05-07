@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 02:36:27 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 16:35:24 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:20:34 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,7 +205,10 @@ int	execute_child(t_shelldata *data, t_child_data *child_data, int i)
 		return (FAILURE);
 	}
 	if (child_data->pid == 0)
+	{
+		standby_signals();
 		child_handler(data, child_data, i);
+	}
 	return (SUCCESS);
 }
 

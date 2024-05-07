@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 18:27:09 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:22:29 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,20 +70,20 @@ int	set_up_data(t_shelldata *data)
 
 void	child_handling(t_shelldata *data)
 {
-	standby_signals();
+	//standby_signals();
 	int	error;
 	//We need to do proper error handling here.
 	error = child_pre_check(data);
 	error = create_exit_value_env(data);
 	if (error != SUCCESS)
 		exit(1);
+	handler_signals();
 }
 
 void	main_loop(t_shelldata *data)
 {
 	while (1)
 	{
-		parent_signals();
 		data->input = readline("bananashell-0.23:");
 		if (!data->input)
 			end_of_file_reached(data);
@@ -93,7 +93,6 @@ void	main_loop(t_shelldata *data)
 			continue ;
 		}
 		child_handling(data);
-		handler_signals();
 		add_history(data->input);
 		free(data->input);
 		data->input = NULL;
@@ -107,6 +106,7 @@ int	main(int argc, char **argv, char **env)
 	ft_memset(&data, 0, sizeof(t_shelldata));
 	if (initial_setup(&data, argc, argv, env) == FAILURE)
 		return (FAILURE);
+	handler_signals();
 	main_loop(&data);
 	rl_clear_history();
 	return (0);

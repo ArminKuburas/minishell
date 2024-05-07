@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
+#    By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/05/06 14:28:50 by akuburas         ###   ########.fr        #
+#    Updated: 2024/05/07 11:58:17 by tvalimak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ SRCS =	$(MAINDIR)/main.c \
 		$(SPLITDIR)/potential_split_functions.c \
 		$(SPLITDIR)/new_mini_split.c \
 		$(MAINDIR)/signal.c \
-		$(BUILTINDIR)/cd.c \
+		$(BUILTINDIR)/ft_cd.c \
 		$(BUILTINDIR)/pwd.c \
 		$(BUILTINDIR)/echo.c \
 		$(BUILTINDIR)/env.c \
