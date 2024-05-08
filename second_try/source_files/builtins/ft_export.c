@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:30:01 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/07 22:07:26 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/08 17:46:22 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,6 @@ static void	swap_env_vars(t_env_list *temp, t_env_list *temp2)
 	temp_env = temp->env_var_value;
 	temp->env_var_value = temp2->env_var_value;
 	temp2->env_var_value = temp_env;
-
 }
 
 static void export_sorted_list(t_env_list *env_list)

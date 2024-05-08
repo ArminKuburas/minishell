@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 02:36:27 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/08 10:35:46 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/08 18:31:52 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,14 +164,15 @@ int	use_builtin(t_child_data *child_data, int fd, t_shelldata *data)
 		return (ft_unset(data, child_data->command_inputs));
 	else if (ft_strcmp(child_data->command, "env") == 0)
 		return (my_env(data));
-	// else if (ft_strcmp(child_data->command, "exit") == 0)
-	// 	return (ft_exit(child_data->command_inputs));
+	else if (ft_strcmp(child_data->command, "exit") == 0)
+		return (ft_exit(data, child_data->command_inputs));
 	return (FAILURE);
 }
 
+#include <string.h>
+
 void	child_handler(t_shelldata *data, t_child_data *child_data, int i)
 {
-	ft_printf("child_handler\n");
 	if (check_child_pipes(child_data) != SUCCESS)
 		clean_everything_up(data, FAILURE);
 	if (check_fds(child_data) != SUCCESS)
@@ -181,18 +182,13 @@ void	child_handler(t_shelldata *data, t_child_data *child_data, int i)
 	if (ft_strchr("/.", child_data->command[0]) == NULL)
 	{
 		if (use_builtin(child_data, STDOUT_FILENO, data) == SUCCESS)
-		{
-			ft_printf("use_builtin\n");
 			exit(0);
-		}
 		else
 		{
 			execve_failed_cleanup(data, child_data);
 			exit(child_data->exit_value);
 		}
 	}
-	ft_printf("execve\n");
-	//standby_signals();
 	if (execve(child_data->command,
 			child_data->command_inputs, child_data->env) == -1)
 	{
@@ -203,16 +199,63 @@ void	child_handler(t_shelldata *data, t_child_data *child_data, int i)
 
 int	execute_child(t_shelldata *data, t_child_data *child_data, int i)
 {
-	ft_printf("execute_child\n");
+	int	j;
+
 	child_data->pid = fork();
 	if (child_data->pid == -1)
 	{
+		j = 0;
 		data->exit_value = 1;
-		return (FAILURE);
+		ft_putstr_fd("fork failed\n", STDERR_FILENO);
+		while (j < i)
+		{
+			free_child_data(&data->child_data[j]);
+			if (data->child_data[j].command != NULL
+				&& data->child_data[j].exit_value == 0)
+				waitpid(data->child_data[j].pid,
+					&data->child_data[j].exit_value, 0);
+			j++;
+		}
+		free(data->child_data);
+		clear_input(data->input_list, FAILURE);
+		clear_env_list(data->env_list, FAILURE);
+		free(data->env_variables);
+		free(data->input);
+		rl_clear_history();
+		exit(1);
 	}
 	if (child_data->pid == 0)
+	{
 		child_handler(data, child_data, i);
+	}
 	return (SUCCESS);
+}
+
+void	wait_for_children(t_shelldata *data)
+{
+	int	i;
+	int	already_printed;
+
+	i = 0;
+	already_printed = NO;
+	while (i < data->command_amount)
+	{
+		if (data->child_data[i].command != NULL
+			&& data->child_data[i].exit_value == 0)
+			waitpid(data->child_data[i].pid,
+				&data->child_data[i].exit_value, 0);
+		if (data->child_data[i].exit_value == 2 && already_printed == NO)
+		{
+			ft_putendl_fd("", STDOUT_FILENO);
+			already_printed = YES;
+		}
+		else if (already_printed == NO)
+		{
+			printf("Process %d exited normally\n", data->child_data[i].pid);
+			printf("this is exit value: %d\n", data->child_data[i].exit_value);
+		}
+		i++;
+	}
 }
 
 int	execute_commands(t_shelldata *data)
@@ -220,6 +263,7 @@ int	execute_commands(t_shelldata *data)
 	int				i;
 
 	i = 0;
+	child_signals();
 	while (i < data->command_amount)
 	{
 		if (data->child_data[i].command != NULL
@@ -230,17 +274,9 @@ int	execute_commands(t_shelldata *data)
 		}
 		i++;
 	}
-	i = 0;
-	while (i < data->command_amount)
-	{
-		free_child_data(&data->child_data[i]);
-		data->exit_value = data->child_data[i].exit_value;
-		if (data->child_data[i].command != NULL
-			&& data->child_data[i].exit_value == 0)
-			waitpid(data->child_data[i].pid,
-				&data->child_data[i].exit_value, 0);
-		i++;
-	}
+	standby_signals();
+	wait_for_children(data);
+	free(data->child_data);
 	return (SUCCESS);
 }
 
@@ -252,6 +288,7 @@ int	one_builtin(t_shelldata *data)
 			data->child_data[0].fd_out, data);
 	data->exit_value = return_value;
 	free_child_data(&data->child_data[0]);
+	free(data->child_data);
 	return (return_value);
 }
 
@@ -261,15 +298,9 @@ int	child_pre_check(t_shelldata *data)
 	{
 		if (data->child_data[0].command != NULL
 			&& ft_strchr("/.", data->child_data[0].command[0]) == NULL)
-		{
-			ft_printf("one_builtin\n");
 			return (one_builtin(data));
-		}
 		else
-		{
-			ft_printf("execute_commands\n");
 			return (execute_commands(data));
-		}
 	}
 	return (execute_commands(data));
 }

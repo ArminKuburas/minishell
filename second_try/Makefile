@@ -6,7 +6,7 @@
 #    By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/05/07 11:58:17 by tvalimak         ###   ########.fr        #
+#    Updated: 2024/05/08 18:31:31 by tvalimak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,10 +37,8 @@ SRCS =	$(MAINDIR)/main.c \
 		$(SPLITDIR)/new_mini_split.c \
 		$(MAINDIR)/signal.c \
 		$(BUILTINDIR)/ft_cd.c \
-		$(BUILTINDIR)/pwd.c \
 		$(BUILTINDIR)/echo.c \
 		$(BUILTINDIR)/env.c \
-		$(BUILTINDIR)/exit.c \
 		$(SETUPDIR)/heredoc.c \
 		$(SETUPDIR)/set_up_child_data.c \
 		$(SETUPDIR)/setup_commands.c \
@@ -51,6 +49,7 @@ SRCS =	$(MAINDIR)/main.c \
 		$(SETUPDIR)/env_helper_functions.c \
 		$(MAINDIR)/execute_children.c \
 		$(BUILTINDIR)/ft_echo.c \
+		$(BUILTINDIR)/ft_exit.c \
 		$(BUILTINDIR)/ft_pwd.c \
 		$(BUILTINDIR)/ft_export.c \
 		$(BUILTINDIR)/ft_unset.c \

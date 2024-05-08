@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/07 23:27:42 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/08 18:30:22 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,7 +195,7 @@ typedef struct s_split_data
 }	t_split_data;
 //readline functions
 
-typedef void	(*t_handler)(int);
+//typedef void	(*t_handler)(int);
 
 int			rl_clear_history(void);
 void		rl_replace_line(char *str, int num);
@@ -239,21 +239,23 @@ int			duplicate_input(char *input, t_shelldata *data, int *i);
 
 void		sigint_handler(int sig);
 void		heredoc_handler(int sig);
-void		signal_handler(int signal, t_handler handler);
+//void		signal_handler(int signal, t_handler handler);
 void		parent_signals(void);
 void		heredoc_signals(void);
 void		standby_signals(void);
 void		handler_signals(void);
 void		caret_switch(int on);
 void		signals_off(void);
+void		child_signals(void);
 
 //built_in functions
 void		my_echo(t_input_list *temp);
 int			ft_cd(t_shelldata *data, char **inputs);
-void		my_pwd(t_shelldata *data, t_input_list *temp);
+int			ft_pwd(char *pwd);
+void		refresh_pwd(t_shelldata *data);
 int			ft_export(t_shelldata *data, char **inputs, int fd);
 void		my_unset(t_shelldata *data, t_input_list *temp);
-void		my_exit(t_shelldata *data, t_input_list *temp);
+int			ft_exit(t_shelldata *data, char **inputs);
 int			ft_unset(t_shelldata *data, char **inputs);
 
 //execute functions
