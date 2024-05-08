@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_children.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 02:36:27 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/07 23:26:05 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/08 10:35:46 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ void	child_handler(t_shelldata *data, t_child_data *child_data, int i)
 		}
 	}
 	ft_printf("execve\n");
-	signals_off();
+	//standby_signals();
 	if (execve(child_data->command,
 			child_data->command_inputs, child_data->env) == -1)
 	{
@@ -211,10 +211,7 @@ int	execute_child(t_shelldata *data, t_child_data *child_data, int i)
 		return (FAILURE);
 	}
 	if (child_data->pid == 0)
-	{
-		// handler_signals();
 		child_handler(data, child_data, i);
-	}
 	return (SUCCESS);
 }
 
@@ -244,7 +241,6 @@ int	execute_commands(t_shelldata *data)
 				&data->child_data[i].exit_value, 0);
 		i++;
 	}
-	handler_signals();
 	return (SUCCESS);
 }
 

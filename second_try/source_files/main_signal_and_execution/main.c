@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/07 23:19:32 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/08 10:30:58 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,37 @@ void	child_handling(t_shelldata *data)
 		exit(1);
 }
 
+static int	check_shell_lvl(t_shelldata *data)
+{
+	int			shell_lvl;
+	t_env_list	*temp_env;
+
+	temp_env = data->env_list;
+	while (temp_env)
+	{
+		if (ft_strcmp(temp_env->env_var_name, "SHLVL") == 0)
+		{
+			if (ft_atoi(temp_env->env_var_value) > 1000)
+			{
+				ft_putendl_fd("bananashell: shell level too high", STDERR_FILENO);
+				return (-1);
+			}
+			else
+				shell_lvl = ft_atoi(temp_env->env_var_value);
+		}
+		temp_env = temp_env->next;
+	}
+	return (shell_lvl);
+}
+
 void	main_loop(t_shelldata *data)
 {
 	while (1)
 	{
+		if (check_shell_lvl(data) == 2)
+			handler_signals();
+		else
+			signals_off();
 		data->input = readline("bananashell-0.23:");
 		if (!data->input)
 			end_of_file_reached(data);
@@ -100,7 +127,7 @@ int	main(int argc, char **argv, char **env)
 {
 	t_shelldata		data;
 
-	handler_signals();
+	ft_printf("main\n");
 	ft_memset(&data, 0, sizeof(t_shelldata));
 	if (initial_setup(&data, argc, argv, env) == FAILURE)
 		return (FAILURE);
