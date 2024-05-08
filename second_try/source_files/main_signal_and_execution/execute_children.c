@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 02:36:27 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/07 23:52:19 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:01:12 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	close_my_fds(t_child_data *child_data)
 	if (child_data->p_fd_out[1] != 0)
 		close(child_data->p_fd_out[1]);
 	if (child_data->p_fd_in[0] != 0)
-
 		close(child_data->p_fd_in[0]);
 	if (child_data->p_fd_in[1] != 0)
 		close(child_data->p_fd_in[1]);
@@ -170,6 +169,8 @@ int	use_builtin(t_child_data *child_data, int fd, t_shelldata *data)
 	return (FAILURE);
 }
 
+#include <string.h>
+
 void	child_handler(t_shelldata *data, t_child_data *child_data, int i)
 {
 	if (check_child_pipes(child_data) != SUCCESS)
@@ -198,15 +199,63 @@ void	child_handler(t_shelldata *data, t_child_data *child_data, int i)
 
 int	execute_child(t_shelldata *data, t_child_data *child_data, int i)
 {
+	int	j;
+
 	child_data->pid = fork();
 	if (child_data->pid == -1)
 	{
+		j = 0;
 		data->exit_value = 1;
-		return (FAILURE);
+		ft_putstr_fd("fork failed\n", STDERR_FILENO);
+		while (j < i)
+		{
+			free_child_data(&data->child_data[j]);
+			if (data->child_data[j].command != NULL
+				&& data->child_data[j].exit_value == 0)
+				waitpid(data->child_data[j].pid,
+					&data->child_data[j].exit_value, 0);
+			j++;
+		}
+		free(data->child_data);
+		clear_input(data->input_list, FAILURE);
+		clear_env_list(data->env_list, FAILURE);
+		free(data->env_variables);
+		free(data->input);
+		rl_clear_history();
+		exit(1);
 	}
 	if (child_data->pid == 0)
+	{
 		child_handler(data, child_data, i);
+	}
 	return (SUCCESS);
+}
+
+void	wait_for_children(t_shelldata *data)
+{
+	int	i;
+	int	already_printed;
+
+	i = 0;
+	already_printed = NO;
+	while (i < data->command_amount)
+	{
+		if (data->child_data[i].command != NULL
+			&& data->child_data[i].exit_value == 0)
+			waitpid(data->child_data[i].pid,
+				&data->child_data[i].exit_value, 0);
+		if (data->child_data[i].exit_value == 2 && already_printed == NO)
+		{
+			ft_putendl_fd("", STDOUT_FILENO);
+			already_printed = YES;
+		}
+		else if (already_printed == NO)
+		{
+			printf("Process %d exited normally\n", data->child_data[i].pid);
+			printf("this is exit value: %d\n", data->child_data[i].exit_value);
+		}
+		i++;
+	}
 }
 
 int	execute_commands(t_shelldata *data)
@@ -214,6 +263,7 @@ int	execute_commands(t_shelldata *data)
 	int				i;
 
 	i = 0;
+	child_signals();
 	while (i < data->command_amount)
 	{
 		if (data->child_data[i].command != NULL
@@ -224,17 +274,8 @@ int	execute_commands(t_shelldata *data)
 		}
 		i++;
 	}
-	i = 0;
-	while (i < data->command_amount)
-	{
-		free_child_data(&data->child_data[i]);
-		data->exit_value = data->child_data[i].exit_value;
-		if (data->child_data[i].command != NULL
-			&& data->child_data[i].exit_value == 0)
-			waitpid(data->child_data[i].pid,
-				&data->child_data[i].exit_value, 0);
-		i++;
-	}
+	standby_signals();
+	wait_for_children(data);
 	free(data->child_data);
 	return (SUCCESS);
 }

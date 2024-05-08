@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:58:42 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 14:19:49 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/08 12:01:18 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,19 +116,6 @@ void	setup_command_inputs(t_shelldata *data, int i)
 	}
 	error = create_command_arguments(&data->child_data[i], temp);
 	data->child_data[i].exit_value = error;
-}
-
-void	set_all_error(t_shelldata *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->command_amount)
-	{
-		if (data->child_data[i].exit_value == 0)
-			data->child_data[i].exit_value = 1;
-		i++;
-	}
 }
 
 int	create_child_data(t_shelldata *data, int amount)

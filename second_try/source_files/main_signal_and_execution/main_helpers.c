@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 09:33:40 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/07 12:30:24 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/08 10:56:35 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	create_exit_value_env(t_shelldata *data)
 			return (create_question_node(data, temp));
 		temp = temp->next;
 	}
-	printf("returning FAILURE\n");
 	return (FAILURE);
 }
 

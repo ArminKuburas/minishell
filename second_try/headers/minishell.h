@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/07 23:53:48 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/08 13:40:34 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,8 +202,8 @@ typedef struct s_split_data
 
 typedef void	(*t_handler)(int);
 
-//int			rl_clear_history(void);
-//void		rl_replace_line(char *str, int num);
+int			rl_clear_history(void);
+void		rl_replace_line(char *str, int num);
 
 //data_parser functions
 
@@ -250,6 +250,7 @@ void		heredoc_signals(void);
 void		standby_signals(void);
 void		handler_signals(void);
 void		caret_switch(int on);
+void		child_signals(void);
 
 //built_in functions
 void		my_echo(t_input_list *temp);

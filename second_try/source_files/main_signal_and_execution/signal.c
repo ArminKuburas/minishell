@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:43:48 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/06 14:18:38 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/08 15:52:35 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@ void	sigint_handler(int sig)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
+}
+void	child_sigint_handler(int sig)
+{
+	(void)sig;
+	write(1, "\n", 1);
+}
+void	fake_sigint_handler(int sig)
+{
+	(void)sig;
+	return ;
 }
 
 void	heredoc_handler(int sig)
@@ -58,6 +68,19 @@ void	parent_signals(void)
 {
 	caret_switch(0);
 	signal_handler(SIGINT, sigint_handler);
+	signal_handler(SIGQUIT, SIG_IGN);
+}
+
+void	exit_child_sigint(int sig)
+{
+	(void)sig;
+	exit(1);
+}
+
+void	child_signals(void)
+{
+	caret_switch(1);
+	signal_handler(SIGINT, child_sigint_handler);
 	signal_handler(SIGQUIT, SIG_IGN);
 }
 

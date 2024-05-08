@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:08:59 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 14:19:49 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/08 12:57:56 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,30 +111,44 @@ static void	redirect_append(t_shelldata *data, int i, t_input_list *input)
 	}
 }
 
+void	write_loop(int fd, t_input_list *input)
+{
+	char	*line;
+
+	if (input->word_split == WORD_SPLIT)
+	{
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(input->old_input, 2);
+		ft_putstr_fd(": ambiguous redirect\n", 2);
+		return ;
+	}
+	while (1)
+	{
+		line = readline("heredoc> ");
+		if (!line)
+			break ;
+		write(fd, line, ft_strlen(line));
+		write(fd, "\n", 1);
+		free(line);
+	}
+}
+
 void	handle_heredoc(t_shelldata *data, int i, t_input_list *input)
 {
 	int		pipe_fd[2];
-	char	*heredoc_input;
 
 	if (data->child_data[i].exit_value != 0)
 		return ;
+	if (input->word_split == WORD_SPLIT
+		|| ((ft_strcmp(input->input, "") == 0 && input->old_input[0] == '$')))
+	{
+		handle_ambiguous_redirect(data, i, input);
+		return ;
+	}
 	if (pipe(pipe_fd) == -1)
 		child_failed(data, NO_PIPE);
 	data->child_data[i].fd_in = pipe_fd[0];
-	while (1)
-	{
-		heredoc_input = readline("heredoc> ");
-		if (!heredoc_input)
-			break ;
-		if (ft_strcmp(heredoc_input, input->input) == 0)
-		{
-			free(heredoc_input);
-			break ;
-		}
-		write(pipe_fd[1], heredoc_input, ft_strlen(heredoc_input));
-		write(pipe_fd[1], "\n", 1);
-		free(heredoc_input);
-	}
+	write_loop(pipe_fd[1], input);
 	close(pipe_fd[1]);
 }
 

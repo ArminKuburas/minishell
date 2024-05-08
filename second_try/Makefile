@@ -6,7 +6,7 @@
 #    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/05/06 14:28:50 by akuburas         ###   ########.fr        #
+#    Updated: 2024/05/08 10:42:16 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ SRCS =	$(MAINDIR)/main.c \
 		$(SPLITDIR)/potential_split_helpers.c \
 		$(SETUPDIR)/child_data_helpers.c \
 		$(MAINDIR)/main_helpers.c \
+		$(MAINDIR)/child_handling.c \
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)
