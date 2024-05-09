@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:22:59 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/09 17:06:18 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/09 18:42:47 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ int	cd_parent_directory(t_shelldata *data)
 	if (chdir("..") == 0)
 	{
 		temp = data->pwd;
+		ft_printf("temp: %s\n", temp);
 		if (data->pwd)
 			free(data->pwd);
+		ft_printf("temp after freeing pwd: %s\n", temp);
 		data->pwd = getcwd(NULL, 0);
 		if (data->pwd == NULL)
 		{
