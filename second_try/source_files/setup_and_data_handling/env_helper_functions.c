@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 12:38:55 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 14:18:56 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/09 13:23:37 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int	update_shell_level(t_shelldata *data)
 	char		*temp_string;
 
 	temp = data->env_list;
-
 	while (temp != NULL && ft_strcmp(temp->env_var_name, "SHLVL") != 0)
 		temp = temp->next;
 	if (temp == NULL)

@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/08 13:40:34 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/09 14:15:28 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,11 @@ enum e_errors
 	NO_FORK = 8,
 	NO_QUOTE = 9,
 	NO_DUP = 10,
-	NOT_FOUND = 11,
-	EXECUTION_FORBIDDEN = 12,
-	IS_DIRECTORY = 13,
-	FOUND = 14
+	NO_EXECVE = 11,
+	NOT_FOUND = 12,
+	EXECUTION_FORBIDDEN = 13,
+	IS_DIRECTORY = 14,
+	FOUND = 15
 };
 
 enum e_child_status
@@ -225,6 +226,7 @@ int			clear_env_list(t_env_list *env_list, int error);
 int			env_str_cmpr(char *env, char *str, int len);
 int			update_shell_level(t_shelldata *data);
 int			create_2d_env(t_shelldata *data);
+void		remove_from_env_list(t_shelldata *data, char *specifier);
 
 //data_cleaner functions
 int			new_length(t_input_list *temp, t_env_list *env);
@@ -241,7 +243,6 @@ int			new_mini_split(t_shelldata *data);
 int			duplicate_input(char *input, t_shelldata *data, int *i);
 
 //signal handler
-
 void		sigint_handler(int sig);
 void		heredoc_handler(int sig);
 void		signal_handler(int signal, t_handler handler);
@@ -262,7 +263,7 @@ void		my_exit(t_shelldata *data, t_input_list *temp);
 int			ft_unset(t_shelldata *data, char **inputs);
 
 //execute functions
-int		my_env(t_shelldata *data);
+int			my_env(t_shelldata *data);
 
 //heredoc
 void		heredoc(t_shelldata data, t_input_list *temp);
@@ -276,12 +277,25 @@ void		free_child_data(t_child_data *data);
 int			setup_pipes(t_shelldata *data, int amount);
 void		set_all_error(t_shelldata *data);
 void		child_failed(t_shelldata *data, int error);
+void		command_error_message(int error, t_shelldata *data, int amount);
+int			create_command_arguments(t_child_data *child, t_input_list *start);
+void		try_access(char *path, int *error);
+int			create_variables(char ***path_variables, t_env_list *env_list);
+void		ambiguous_redirect(t_shelldata *data, int i, t_input_list *input);
+void		handle_heredoc(t_shelldata *data, int i, t_input_list *input);
 
 //execute_children functions
 int			execute_commands(t_shelldata *data);
-
-void		remove_from_env_list(t_shelldata *data, char *specifier);
-int			create_2d_env(t_shelldata *data);
+void		clean_everything_up(t_shelldata *data, int exit_value);
+void		execve_failed_cleanup(t_shelldata *data, t_child_data *child_data);
+void		clean_other_children(t_shelldata *data, int i);
+int			check_child_pipes(t_child_data *child_data);
+int			use_builtin(t_child_data *child_data, int fd, t_shelldata *data);
+void		wait_for_children(t_shelldata *data);
+int			execute_child(t_shelldata *data, t_child_data *child_data, int i);
+void		child_handler(t_shelldata *data, t_child_data *child_data, int i);
+void		fork_failed(t_shelldata *data);
+void		close_other_fds(t_shelldata *data, int j, int i);
 
 //armin version of builtins
 int			ft_echo(t_child_data *data, int fd);

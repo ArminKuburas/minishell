@@ -6,7 +6,7 @@
 #    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/05/08 10:42:16 by akuburas         ###   ########.fr        #
+#    Updated: 2024/05/09 14:14:05 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,6 @@ SRCS =	$(MAINDIR)/main.c \
 		$(BUILTINDIR)/echo.c \
 		$(BUILTINDIR)/env.c \
 		$(BUILTINDIR)/exit.c \
-		$(SETUPDIR)/heredoc.c \
 		$(SETUPDIR)/set_up_child_data.c \
 		$(SETUPDIR)/setup_commands.c \
 		$(SETUPDIR)/setup_helpers.c \
@@ -61,6 +60,11 @@ SRCS =	$(MAINDIR)/main.c \
 		$(SETUPDIR)/child_data_helpers.c \
 		$(MAINDIR)/main_helpers.c \
 		$(MAINDIR)/child_handling.c \
+		$(MAINDIR)/child_cleaning_functions.c \
+		$(MAINDIR)/child_execute_help_functions.c \
+		$(SETUPDIR)/setup_command_helpers.c \
+		$(SETUPDIR)/setup_redirect_helpers.c \
+		$(SETUPDIR)/setup_heredoc.c \
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)
