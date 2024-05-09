@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:08:59 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/08 17:38:48 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/09 17:09:35 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,15 @@ static void	update_env_pwd(t_shelldata *data)
 	}
 }
 
+void	refresh_old_pwd(t_shelldata *data)
+{
+	if (data->old_pwd)
+		free(data->old_pwd);
+	data->old_pwd = ft_strdup(data->pwd);
+	if (!data->old_pwd)
+		ft_putendl_fd("Fail in strdup, inside pwd", 2); // replace with proper error handling
+}
+
 void	refresh_pwd(t_shelldata *data)
 {
 	if (data->old_pwd)
@@ -57,7 +66,12 @@ void	refresh_pwd(t_shelldata *data)
 
 int	ft_pwd(char *pwd)
 {
-	ft_putstr_fd(pwd, STDOUT_FILENO);
-	ft_putstr_fd("\n", STDOUT_FILENO);
+	//ft_putstr_fd(pwd, STDOUT_FILENO);
+	//ft_putstr_fd("\n", STDOUT_FILENO);
+	if (!pwd)
+	{
+		ft_putendl_fd("Fail in getcwd, inside pwd", 2); // replace with proper error handling
+	}
+	ft_putendl_fd(pwd, STDOUT_FILENO);
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:22:59 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/08 18:26:45 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/09 17:06:18 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,23 +58,107 @@ int	path_parser(t_shelldata *data, char *path)
 	return (SUCCESS);
 }
 
+int	cd_parent_directory(t_shelldata *data)
+{
+	char	*temp;
+
+	if (chdir("..") == 0)
+	{
+		temp = data->pwd;
+		if (data->pwd)
+			free(data->pwd);
+		data->pwd = getcwd(NULL, 0);
+		if (data->pwd == NULL)
+		{
+			ft_putendl_fd("cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory", 2);
+			data->pwd = ft_strjoin(temp, "/..");
+		}
+		refresh_old_pwd(data);
+		return (SUCCESS);
+	}
+	return (FAILURE);
+}
+
+int cd_current_directory(t_shelldata *data)
+{
+	char	*temp;
+
+	if (chdir(".") == 0)
+	{
+		temp = data->pwd;
+		ft_printf("temp: %s\n", temp);
+		if (data->pwd)
+			free(data->pwd);
+		data->pwd = getcwd(NULL, 0);
+		ft_printf("pwd: %s\n", data->pwd);
+		if (data->pwd == NULL)
+		{
+			ft_putendl_fd("cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory", 2);
+			data->pwd = ft_strjoin(temp, "/.");
+			if (data->pwd == NULL)
+				ft_putendl_fd("strjoin failed?", 2);
+		}
+		refresh_old_pwd(data);
+		return (SUCCESS);
+	}
+	return (FAILURE);
+}
+
 int	ft_cd(t_shelldata *data, char **inputs)
 {
+	int	return_value;
+
+	return_value = 0;
 	if (!inputs[1] || (ft_strncmp(inputs[1], "~", 2) == 0))
 	{
 		cd_home(data, "HOME");
+		refresh_pwd(data);
+		return (SUCCESS);
+	}
+	else if (inputs[1] && ft_strncmp(inputs[1], "..", 3) == 0)
+		return_value = cd_parent_directory(data);
+	else if (inputs[1] && ft_strncmp(inputs[1], ".", 3) == 0)
+		return_value = cd_current_directory(data);
+	else
+		return_value = path_parser(data, inputs[1]);
+	return (return_value);
+}
+
+/*
+int	ft_cd(t_shelldata *data, char **inputs)
+{
+	int	return_value;
+	char	*temp;
+
+	return_value = 0;
+	if (!inputs[1] || (ft_strncmp(inputs[1], "~", 2) == 0))
+	{
+		cd_home(data, "HOME");
+		refresh_pwd(data);
 		return (SUCCESS);
 	}
 	if (inputs[1] && ft_strncmp(inputs[1], "..", 3) == 0)
 	{
-		if (chdir("..") == -1)
-			return (FAILURE);
-		refresh_pwd(data);
+		if (chdir("..") == 0)
+		{
+			temp = data->pwd;
+			if (data->pwd)
+				free(data->pwd);
+			data->pwd = getcwd(NULL, 0);
+			if (!data->pwd)
+			{
+				ft_putendl_fd("cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory", 2);
+				data->pwd = ft_strjoin(temp, "/..");
+			}
+			refresh_old_pwd(data);
+			return (SUCCESS);
+		}
+		return (FAILURE);
 	}
 	else
 		path_parser(data, inputs[1]);
 	return (SUCCESS);
-}
+}*/
 
 // chdir("/Users/tvalimak/minitalk_two");
 // is how the chdir can be called with a absolute path

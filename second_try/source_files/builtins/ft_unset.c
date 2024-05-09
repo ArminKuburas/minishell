@@ -6,40 +6,11 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:05:58 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/06 16:21:10 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/09 10:58:22 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
-
-static int	is_unset_var_name_valid(char *input)
-{
-	int	i;
-
-	i = 0;
-	if (input[i] != '_' && !ft_isalpha(input[i]))
-	{
-		ft_printf("1\n");
-		ft_putstr_fd("bananashell: unset: `", STDERR_FILENO);
-		ft_putstr_fd(input, STDERR_FILENO);
-		ft_putstr_fd("': not a valid identifier\n", STDERR_FILENO);
-		return (FAILURE);
-	}
-	while (input[i] != '\0' && input[i] != '=')
-	{
-		if (ft_isalnum(input[i]) || input[i] == '_')
-			i++;
-		else
-		{
-			ft_printf("2\n");
-			ft_putstr_fd("bananashell: unset: `", STDERR_FILENO);
-			ft_putstr_fd(input, STDERR_FILENO);
-			ft_putstr_fd("': not a valid identifier\n", STDERR_FILENO);
-			return (FAILURE);
-		}
-	}
-	return (SUCCESS);
-}
 
 static int	check_if_unset_env_exists(t_shelldata *data, char *input)
 {
@@ -107,7 +78,7 @@ static int	execute_unset_commands(t_shelldata *data, char *input)
 	else
 		return (SUCCESS);
 }
-/* my_unset main function*/
+
 int	ft_unset(t_shelldata *data, char **inputs)
 {
 	int	i;

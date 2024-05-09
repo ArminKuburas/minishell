@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/08 18:30:22 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/09 14:53:24 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,8 @@
 /*For the waitpid function*/
 # include <sys/wait.h>
 
-/*Definition for SIGINT*/
-# define CTRL_C SIGINT
-# define CTRL_BS SIGQUIT
+/*for the tcgetattr and tcsetattr functions*/
+# include <termios.h>
 
 typedef enum e_state
 {
@@ -201,7 +200,6 @@ int			rl_clear_history(void);
 void		rl_replace_line(char *str, int num);
 
 //data_parser functions
-
 int			count_words(t_split_data *split_data);
 int			mini_split(char *input, t_shelldata *data);
 int			parse_split_input(t_shelldata *data);
@@ -247,16 +245,24 @@ void		handler_signals(void);
 void		caret_switch(int on);
 void		signals_off(void);
 void		child_signals(void);
+void		child_sigint_handler(int sig);
 
 //built_in functions
 void		my_echo(t_input_list *temp);
 int			ft_cd(t_shelldata *data, char **inputs);
 int			ft_pwd(char *pwd);
 void		refresh_pwd(t_shelldata *data);
+void		refresh_old_pwd(t_shelldata *data);
 int			ft_export(t_shelldata *data, char **inputs, int fd);
+int			replace_env_var(t_shelldata *data, char *input, int i, int flag);
+int			add_new_env_var(t_shelldata *data, char *input, int i, int flag);
+void		export_sorted_list(t_env_list *env_list);
+void		export_no_commands(t_shelldata *data, int fd);
+void		swap_env_vars(t_env_list *temp, t_env_list *temp2);
 void		my_unset(t_shelldata *data, t_input_list *temp);
 int			ft_exit(t_shelldata *data, char **inputs);
 int			ft_unset(t_shelldata *data, char **inputs);
+int			is_unset_var_name_valid(char *input);
 
 //execute functions
 int			my_env(t_shelldata *data);
