@@ -6,7 +6,7 @@
 /*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/10 22:01:11 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/10 23:01:45 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,8 +200,6 @@ typedef struct s_split_data
 }	t_split_data;
 //readline functions
 
-//typedef void	(*t_handler)(int);
-
 //int			rl_clear_history(void);
 //void		rl_replace_line(char *str, int num);
 
@@ -325,7 +323,6 @@ int			initial_env_creation(char **env, t_shelldata *data);
 int			initial_setup(t_shelldata *data, int argc, char **argv, char **env);
 int			check_argc_argv(int argc, char **argv); //might need to be moved to main_helpers
 void		child_handling(t_shelldata *data);
-
 int			check_shell_level_value(char *env_var_value);
 
 #endif
