@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 02:36:27 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/08 18:31:52 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/10 12:20:08 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ int	use_builtin(t_child_data *child_data, int fd, t_shelldata *data)
 	else if (ft_strcmp(child_data->command, "cd") == 0)
 		return (ft_cd(data, child_data->command_inputs));
 	else if (ft_strcmp(child_data->command, "pwd") == 0)
-		return (ft_pwd(data->pwd));
+		return (ft_pwd(data->pwd, fd));
 	else if (ft_strcmp(child_data->command, "export") == 0)
 		return (ft_export(data, child_data->command_inputs, fd));
 	else if (ft_strcmp(child_data->command, "unset") == 0)

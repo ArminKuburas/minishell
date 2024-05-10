@@ -6,13 +6,24 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:08:59 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/09 18:54:12 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/10 12:39:08 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
-static void	update_env_pwd(t_shelldata *data)
+char	*ret_env(t_shelldata *data, char *var)
+{
+	while (data->env_list)
+	{
+		if (ft_strcmp(data->env_list->env_var_name, var) == 0)
+			return (data->env_list->env_var_value);
+		data->env_list = data->env_list->next;
+	}
+	return (NULL);
+}
+
+void	update_env_pwd(t_shelldata *data)
 {
 	t_env_list	*temp;
 
@@ -43,10 +54,11 @@ void	refresh_old_pwd(t_shelldata *data)
 		free(data->old_pwd);
 	data->old_pwd = ft_strdup(data->pwd);
 	if (!data->old_pwd)
-		ft_putendl_fd("Fail in strdup, inside pwd", 2); // replace with proper error handling
+		ft_putendl_fd("Fail in strdup, inside pwd", 2);
+	update_env_pwd(data);
 }
 
-void	refresh_pwd(t_shelldata *data)
+int	refresh_pwd(t_shelldata *data)
 {
 	if (data->old_pwd)
 		free(data->old_pwd);
@@ -54,25 +66,30 @@ void	refresh_pwd(t_shelldata *data)
 	{
 		data->old_pwd = ft_strdup(data->pwd);
 		if (!data->old_pwd)
+		{
 			ft_putendl_fd("Fail in strdup, inside pwd", 2); // replace with proper error handling
+			return (FAILURE);
+		}
 	}
 	if (data->pwd)
 		free(data->pwd);
 	data->pwd = getcwd(NULL, 0);
 	if (!data->pwd)
-		ft_putendl_fd("Fail in getcwd, inside pwd", 2); // replace with proper error handling
-	update_env_pwd(data);
-}
-
-int	ft_pwd(char *pwd)
-{
-	//ft_putstr_fd(pwd, STDOUT_FILENO);
-	//ft_putstr_fd("\n", STDOUT_FILENO);
-	if (!pwd)
 	{
 		ft_putendl_fd("Fail in getcwd, inside pwd", 2); // replace with proper error handling
+		return (FAILURE);
 	}
-	//ft_putendl_fd(pwd, STDOUT_FILENO);
-	ft_printf("%s\n", pwd);
+	update_env_pwd(data);
+	return (SUCCESS);
+}
+
+int	ft_pwd(char *pwd, int fd)
+{
+	if (!pwd)
+	{
+		ft_putendl_fd("Fail in getcwd, inside pwd", 2);
+		return (FAILURE);
+	}
+	ft_putendl_fd(pwd, fd);
 	return (SUCCESS);
 }

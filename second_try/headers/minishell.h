@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/09 14:53:24 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/10 12:39:32 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,8 +250,8 @@ void		child_sigint_handler(int sig);
 //built_in functions
 void		my_echo(t_input_list *temp);
 int			ft_cd(t_shelldata *data, char **inputs);
-int			ft_pwd(char *pwd);
-void		refresh_pwd(t_shelldata *data);
+void		update_env_pwd(t_shelldata *data);
+int			refresh_pwd(t_shelldata *data);
 void		refresh_old_pwd(t_shelldata *data);
 int			ft_export(t_shelldata *data, char **inputs, int fd);
 int			replace_env_var(t_shelldata *data, char *input, int i, int flag);
@@ -289,7 +289,8 @@ int			create_2d_env(t_shelldata *data);
 //armin version of builtins
 int			ft_echo(t_child_data *data, int fd);
 int			child_pre_check(t_shelldata *data);
-int			ft_pwd(char *pwd);
+int			ft_pwd(char *pwd, int fd);
+char		*ret_env(t_shelldata *data, char *var);
 
 //executioner
 int			execute_built_ins(t_shelldata *data, t_input_list *temp);
