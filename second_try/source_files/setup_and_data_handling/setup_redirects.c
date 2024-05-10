@@ -6,13 +6,11 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:08:59 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/09 14:16:17 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/10 11:34:41 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
-
-
 
 /*  this function attempts to redirect input from a file
 It first confirms if it can access and open the given input_file.
