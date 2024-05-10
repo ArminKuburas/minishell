@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:04:01 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/10 12:18:27 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/10 14:51:13 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	found_dollar_sign(char *input, t_env_list *env_list, int *original_i)
 {
 	int			i;
-	t_env_list *temp;
+	t_env_list	*temp;
 
 	temp = env_list;
 	i = 0;
@@ -49,9 +49,11 @@ int	modified_length(char *input, t_env_list *env_list)
 		{
 			i++;
 			length += found_dollar_sign(&input[i], env_list, &i);
+			i--;
 		}
 		else
 			length++;
+		i++;
 	}
 	return (length);
 }
@@ -103,18 +105,21 @@ char	*heredoc_cleaner(char *input)
 {
 	char	*cleaned_input;
 	int		i;
+	int		j;
 
 	i = 0;
+	j = 0;
 	while (input[i] != '\0')
 	{
 		if (ft_strchr("'\"", input[i]) == NULL)
-			i++;
+			j++;
+		i++;
 	}
-	cleaned_input = ft_calloc(i + 1, sizeof(char));
+	cleaned_input = ft_calloc(j + 1, sizeof(char));
 	if (cleaned_input == NULL)
 		return (NULL);
 	i = 0;
-	while (input[i] == '\0')
+	while (i < j || input[i] != '\0')
 	{
 		if (ft_strchr("'\"", input[i]) == NULL)
 			cleaned_input[i] = input[i];
@@ -177,6 +182,11 @@ static void	write_loop(int fd, t_input_list *input, t_shelldata *data)
 			input_line = readline("> ");
 			if (!input_line)
 				break ;
+			if (ft_strcmp(input_line, break_line) == 0)
+			{
+				free(input_line);
+				break ;
+			}
 			ft_putendl_fd(input_line, fd);
 			free(input_line);
 		}
