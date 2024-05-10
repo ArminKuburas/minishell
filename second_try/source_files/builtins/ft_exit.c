@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 08:58:03 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/10 14:57:50 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/10 17:44:55 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,79 +46,88 @@ a char is one byte. an unsigned char would then only go from 0 to 255. Which is 
 
 // always check the length of the string to do the initial atoi check
 
-int exit_handler(t_shelldata *data, char **inputs)
-{
-	int		exit_value;
-
-	exit_value = 0;
-	if (data->exit_value != 0)
-		exit_value = data->exit_value;
-	if (inputs[1] != NULL)
-	{
-		if (inputs[2] != NULL)
-		{
-			ft_putendl_fd("exit", 2);
-			ft_putendl_fd("bananashell: exit: too many arguments", 2);
-			exit_value = 1;
-			return (exit_value);
-		}
-		while (inputs[1][exit_value] != '\0')
-		{
-			if (ft_isdigit(inputs[1][exit_value]) == 0)
-			{
-				ft_putendl_fd("bananashell: exit: numeric argument required", 2);
-				exit_value = 255;
-				return (exit_value);
-			}
-			exit_value++;
-		}
-		exit_value = ft_atoi(inputs[1]);
-	}
-	return (exit_value);
-}
-
-int	check_format(char **inputs)
+int	is_it_numeric(t_shelldata *data, char **inputs)
 {
 	int	i;
-	int	exit_value;
 
 	i = 0;
-	exit_value = 0;
-	if (!inputs[1])
-		exit_value = 0;
-	/*
-	else if (ft_isnum(inputs[1]) == 1)
-		ft_putendl_fd("bananashell: exit: too many arguments", 2);
-	*/
-	else if (inputs[1] && inputs [2])
+	while (inputs[1][i] != '\0')
+	{
+		if (ft_isdigit(inputs[1][i]) == 0)
+		{
+			data->exit_value = 255;
+			ft_putstr_fd("bananashell: exit: ", 2);
+			ft_putstr_fd(inputs[1], 2);
+			ft_putendl_fd(": numeric argument required", 2);
+			return (data->exit_value);
+		}
+		i++;
+	}
+	return (data->exit_value);
+}
+
+int	sign_fail(t_shelldata *data, char *input)
+{
+	data->exit_value = 255;
+	ft_putstr_fd("bananashell: exit: ", 2);
+	ft_putstr_fd(input, 2);
+	ft_putendl_fd(": numeric argument required", 2);
+	return (data->exit_value);
+}
+
+int	sign_check(t_shelldata *data, char *input, int i, int sign)
+{
+	int	count;
+
+	count = 0;
+	while (input[i] != '\0')
+	{
+		if (input[i] == '+' || input[i] == '-')
+		{
+			if (input[i] == '+')
+			{
+				count++;
+				sign = 0;
+			}
+			if (input[i] == '-')
+			{
+				count++;
+				sign = 1;
+			}
+			if (count > 1)
+				return (sign_fail(data, input));
+		}
+		i++;
+	}
+	data->exit_value = 0;
+	return (data->exit_value);
+}
+
+int	check_format(t_shelldata *data, char **inputs)
+{
+	int	i;
+
+	i = 0;
+	if (sign_check(data, inputs[1], 0, 0) != 0)
+		return (data->exit_value);
+	if (is_it_numeric(data, inputs) != 0)
+		return (data->exit_value);
+	if (inputs[1] && inputs [2])
 	{
 		ft_putendl_fd("bananashell: exit: too many arguments", 2);
-		exit_value = 1;
-		return (exit_value);
+		data->exit_value = 1;
+		return (data->exit_value);
 	}
-	return (exit_value);
+	return (data->exit_value);
 }
 
 int	ft_exit(t_shelldata *data, char **inputs)
 {
-	int		i;
-	int		exit_value;
-
-	(void)data;
-	i = 0;
-	exit_value = check_format(inputs);
-	/*
 	if (!inputs[1])
-		return (exit_no_args());
-	else if (inputs[1] && inputs [2])
 	{
-		ft_putendl_fd("bash: exit: too many arguments", 2);
-		return (SUCCESS);
+		data->exit_value = 0;
+		return (data->exit_value);
 	}
-	exit_value = exit_handler(data, inputs);
-	data->exit_value = exit_value;
-	ft_putendl_fd("exit", 1);
-	exit(exit_value);
-	*/
-	return (exit_value);
+	data->exit_value = check_format(data, inputs);
+	return (data->exit_value);
 }
