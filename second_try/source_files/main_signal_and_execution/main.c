@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/09 13:22:56 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/10 17:40:07 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	main_loop(t_shelldata *data)
 	while (1)
 	{
 		handler_signals();
-		data->input = readline(YELLOW"🍌bananashell-0.23:"RESET);
+		data->input = readline("\001" YELLOW "\xF0\x9F\x8D\x8C" "bananashell-0.25:" RESET "\002");
 		if (!data->input)
 			end_of_file_reached(data);
 		if (set_up_data(data) != SUCCESS)
