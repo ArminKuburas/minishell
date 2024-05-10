@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 09:33:40 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 14:18:29 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/09 10:36:03 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	create_exit_value_env(t_shelldata *data)
 			return (create_question_node(data, temp));
 		temp = temp->next;
 	}
-	printf("returning FAILURE\n");
 	return (FAILURE);
 }
 
@@ -86,9 +85,6 @@ int	initial_env_creation(char **env, t_shelldata *data)
 		return (FAILURE);
 	}
 	return (SUCCESS);
-	//remove_from_env_list(&data, "PATH");
-	//remove_from_env_list(&data, "LS_COLORS");
-	//create_2d_env(&data);
 }
 
 int	initial_setup(t_shelldata *data, int argc, char **argv, char **env)

@@ -20,6 +20,16 @@ void	sigint_handler(int sig)
 	rl_replace_line("", 0);
 	rl_redisplay();
 }
+void	child_sigint_handler(int sig)
+{
+	(void)sig;
+	write(1, "\n", 1);
+}
+void	fake_sigint_handler(int sig)
+{
+	(void)sig;
+	return ;
+}
 
 void	child_sigint_handler(int sig)
 {
@@ -30,6 +40,80 @@ void	child_sigint_handler(int sig)
 void	parent_sigint(int sig)
 {
 	if (sig == SIGINT)
+	struct termios	term;
+
+	tcgetattr(STDIN_FILENO, &term);
+	if (!on)
+		term.c_lflag &= ~ECHOCTL;
+	else
+		term.c_lflag |= ECHOCTL;
+	tcsetattr(STDIN_FILENO, TCSANOW, &term);
+}
+
+void	signal_handler(int signal, t_handler handler)
+{
+	struct sigaction	action;
+
+	action.sa_handler = handler;
+	sigemptyset(&action.sa_mask);
+	action.sa_flags = SA_SIGINFO;
+	if (sigaction(signal, &action, 0) < 0)
+		printf("sigaction error\n"); // Make this proper whenever we get error function
+}
+
+void	parent_signals(void)
+{
+	caret_switch(0);
+	signal_handler(SIGINT, sigint_handler);
+	signal_handler(SIGQUIT, SIG_IGN);
+}
+
+void	exit_child_sigint(int sig)
+{
+	(void)sig;
+	exit(1);
+}
+
+void	child_signals(void)
+{
+	caret_switch(1);
+	signal_handler(SIGINT, child_sigint_handler);
+	signal_handler(SIGQUIT, SIG_IGN);
+}
+
+void	heredoc_signals(void)
+{
+	signal_handler(SIGINT, heredoc_handler);
+	signal_handler(SIGQUIT, SIG_IGN);
+}
+
+void	standby_signals(void)
+{
+	signal_handler(SIGINT, SIG_IGN);
+	signal_handler(SIGQUIT, SIG_IGN);
+}
+
+void	handler_signals(void)
+{
+	caret_switch(0);
+	signal_handler(SIGINT, SIG_DFL);
+	signal_handler(SIGQUIT, SIG_DFL);
+}
+
+/*Old signal handler for safekeep
+called from main like this:
+		//set_state(HANDLER);
+		//set_state(DEFAULT);
+		//signal(SIGINT, signal_handler);
+		//signal(SIGQUIT, signal_handler);
+*/
+
+// void standby_signals(void)
+// void fork_signals(void)
+/*
+void	signal_handler(int signal)
+{
+	if (signal == SIGINT)
 	{
 		write(1, "\n", 1);
 		exit(1);

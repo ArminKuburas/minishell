@@ -40,7 +40,6 @@ SRCS =	$(MAINDIR)/main.c \
 		$(BUILTINDIR)/ft_cd.c \
 		$(BUILTINDIR)/echo.c \
 		$(BUILTINDIR)/env.c \
-		$(SETUPDIR)/heredoc.c \
 		$(SETUPDIR)/set_up_child_data.c \
 		$(SETUPDIR)/setup_commands.c \
 		$(SETUPDIR)/setup_helpers.c \
@@ -62,6 +61,12 @@ SRCS =	$(MAINDIR)/main.c \
 		$(SPLITDIR)/potential_split_helpers.c \
 		$(SETUPDIR)/child_data_helpers.c \
 		$(MAINDIR)/main_helpers.c \
+		$(MAINDIR)/child_handling.c \
+		$(MAINDIR)/child_cleaning_functions.c \
+		$(MAINDIR)/child_execute_help_functions.c \
+		$(SETUPDIR)/setup_command_helpers.c \
+		$(SETUPDIR)/setup_redirect_helpers.c \
+		$(SETUPDIR)/setup_heredoc.c \
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)

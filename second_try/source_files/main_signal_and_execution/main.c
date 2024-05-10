@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/09 18:45:29 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/09 13:22:56 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 #include <readline/readline.h>
 #include <termios.h>
 
-// when in heredoc and CTR+C the ^C will not display
-// when in bash and you have inputted cat for example, then you CTRL+C the ^C will display
-// without prompt.
-// When terminal is opened for the first time and you do CTRL+C in bash, the ^C is shown for once,
-// need to figure out why.
-// CTRL + \ = SIGQUIT
+/*when in heredoc and CTR+C the ^C will not display
+when in bash and you have inputted cat for example,
+then you CTRL+C the ^C will display
+without prompt.
+When terminal is opened for the first time and you do CTRL+C in bash, 
+the ^C is shown for once,
+need to figure out why.
+CTRL + \ = SIGQUIT*/
 
 int	check_argc_argv(int argc, char **argv)
 {
@@ -44,9 +46,10 @@ int	check_argc_argv(int argc, char **argv)
 
 void	end_of_file_reached(t_shelldata *data)
 {
-	ft_putstr("exit");
+	ft_putendl_fd("exit", STDOUT_FILENO);
 	clear_env_list(data->env_list, SUCCESS);
 	free(data->pwd);
+	free(data->env_variables);
 	rl_clear_history();
 	exit(0);
 }
@@ -67,22 +70,12 @@ int	set_up_data(t_shelldata *data)
 	return (SUCCESS);
 }
 
-void	child_handling(t_shelldata *data)
-{
-	int	error;
-	//We need to do proper error handling here.
-	error = child_pre_check(data);
-	error = create_exit_value_env(data);
-	if (error != SUCCESS)
-		exit(1);
-}
-
 void	main_loop(t_shelldata *data)
 {
 	while (1)
 	{
 		handler_signals();
-		data->input = readline("bananashell-0.23:");
+		data->input = readline(YELLOW"🍌bananashell-0.23:"RESET);
 		if (!data->input)
 			end_of_file_reached(data);
 		if (set_up_data(data) != SUCCESS)
@@ -94,6 +87,7 @@ void	main_loop(t_shelldata *data)
 		add_history(data->input);
 		free(data->input);
 		data->input = NULL;
+		clear_input(data->input_list, SUCCESS);
 	}
 }
 

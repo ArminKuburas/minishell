@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 10:47:30 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 14:18:47 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/08 10:58:39 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	child_failed(t_shelldata *data, int error)
 	clear_input(data->input_list, FAILURE);
 	free(data->input);
 	clear_env_list(data->env_list, FAILURE);
+	free(data->env_variables);
 	rl_clear_history();
 	exit(1);
 }

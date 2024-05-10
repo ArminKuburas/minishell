@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:24:02 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 14:19:04 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/08 13:43:15 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,13 @@ int	clear_input(t_input_list *input_list, int error)
 {
 	t_input_list	*temp;
 
-	printf("clear_input is being called\n");
 	while (input_list != NULL)
 	{
-		printf("input_list->input: %s\n", input_list->input);
-		if (input_list->old_input != NULL)
-			printf("input_list->old_input: %s\n", input_list->old_input);
 		temp = input_list->next;
 		if (input_list->input != NULL)
 			free(input_list->input);
-		printf("input_list->input freed\n");
 		if (input_list->old_input != NULL)
 			free(input_list->old_input);
-		printf("input_list->old_input freed\n");
 		input_list->input = NULL;
 		input_list->old_input = NULL;
 		free(input_list);
