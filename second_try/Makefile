@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+         #
+#    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/05/06 14:03:08 by tvalimak         ###   ########.fr        #
+#    Updated: 2024/05/09 14:14:05 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,45 +15,56 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RLFLAGS = -lreadline -L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include
 DEBUGFLAGS = -g -Wall -Wextra -Werror
+SRCDIR = source_files
+BUILTINDIR = $(SRCDIR)/builtins
+MAINDIR = $(SRCDIR)/main_signal_and_execution
+SETUPDIR = $(SRCDIR)/setup_and_data_handling
+SPLITDIR = $(SRCDIR)/split_and_cleaner
+
 
 MAKE = make bonus
 LIBFTDIR = libft
 LIBFT = $(LIBFTDIR)/libft.a
 
-SRCS =	main.c \
-		input_list_functions.c \
-		create_env_list.c \
-		type_assigner.c \
-		split_cleaner.c \
-		split_cleaner_dollar_functions.c \
-		cleaner_length_functions.c \
-		potential_split_functions.c \
-		new_mini_split.c \
-		signal.c \
-		cd.c \
-		pwd.c \
-		echo.c \
-		env.c \
-		exit.c \
-		heredoc.c \
-		set_up_child_data.c \
-		setup_commands.c \
-		setup_helpers.c \
-		setup_is_it_command.c \
-		setup_redirects.c \
-		setup_pipes.c \
-		env_helper_functions.c \
-		execute_children.c \
-		ft_echo.c \
-		ft_pwd.c \
-		ft_export.c \
-		ft_unset.c \
-		new_mini_split_helpers.c \
-		check_for_errors.c \
-		split_cleaner_helper_funcs.c \
-		potential_split_helpers.c \
-		child_data_helpers.c \
-		main_helpers.c \
+SRCS =	$(MAINDIR)/main.c \
+		$(SETUPDIR)/input_list_functions.c \
+		$(SETUPDIR)/create_env_list.c \
+		$(SETUPDIR)/type_assigner.c \
+		$(SPLITDIR)/split_cleaner.c \
+		$(SPLITDIR)/split_cleaner_dollar_functions.c \
+		$(SPLITDIR)/cleaner_length_functions.c \
+		$(SPLITDIR)/potential_split_functions.c \
+		$(SPLITDIR)/new_mini_split.c \
+		$(MAINDIR)/signal.c \
+		$(BUILTINDIR)/cd.c \
+		$(BUILTINDIR)/pwd.c \
+		$(BUILTINDIR)/echo.c \
+		$(BUILTINDIR)/env.c \
+		$(BUILTINDIR)/exit.c \
+		$(SETUPDIR)/set_up_child_data.c \
+		$(SETUPDIR)/setup_commands.c \
+		$(SETUPDIR)/setup_helpers.c \
+		$(SETUPDIR)/setup_is_it_command.c \
+		$(SETUPDIR)/setup_redirects.c \
+		$(SETUPDIR)/setup_pipes.c \
+		$(SETUPDIR)/env_helper_functions.c \
+		$(MAINDIR)/execute_children.c \
+		$(BUILTINDIR)/ft_echo.c \
+		$(BUILTINDIR)/ft_pwd.c \
+		$(BUILTINDIR)/ft_export.c \
+		$(BUILTINDIR)/ft_unset.c \
+		$(SPLITDIR)/new_mini_split_helpers.c \
+		$(SETUPDIR)/check_for_errors.c \
+		$(SPLITDIR)/split_cleaner_helper_funcs.c \
+		$(SPLITDIR)/potential_split_helpers.c \
+		$(SETUPDIR)/child_data_helpers.c \
+		$(MAINDIR)/main_helpers.c \
+		$(MAINDIR)/child_handling.c \
+		$(MAINDIR)/child_cleaning_functions.c \
+		$(MAINDIR)/child_execute_help_functions.c \
+		$(SETUPDIR)/setup_command_helpers.c \
+		$(SETUPDIR)/setup_redirect_helpers.c \
+		$(SETUPDIR)/setup_heredoc.c \
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)
