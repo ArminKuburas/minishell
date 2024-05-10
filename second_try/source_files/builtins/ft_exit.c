@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 08:58:03 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/10 17:44:55 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/10 22:07:52 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,29 +75,20 @@ int	sign_fail(t_shelldata *data, char *input)
 	return (data->exit_value);
 }
 
-int	sign_check(t_shelldata *data, char *input, int i, int sign)
+int	sign_check(t_shelldata *data, char *input)
 {
 	int	count;
 
 	count = 0;
-	while (input[i] != '\0')
+	while (*input != '\0')
 	{
-		if (input[i] == '+' || input[i] == '-')
+		if (*input == '+' || *input == '-')
 		{
-			if (input[i] == '+')
-			{
-				count++;
-				sign = 0;
-			}
-			if (input[i] == '-')
-			{
-				count++;
-				sign = 1;
-			}
+			count++;
 			if (count > 1)
 				return (sign_fail(data, input));
 		}
-		i++;
+		input++;
 	}
 	data->exit_value = 0;
 	return (data->exit_value);
@@ -105,10 +96,7 @@ int	sign_check(t_shelldata *data, char *input, int i, int sign)
 
 int	check_format(t_shelldata *data, char **inputs)
 {
-	int	i;
-
-	i = 0;
-	if (sign_check(data, inputs[1], 0, 0) != 0)
+	if (sign_check(data, inputs[1]) != 0)
 		return (data->exit_value);
 	if (is_it_numeric(data, inputs) != 0)
 		return (data->exit_value);

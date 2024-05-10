@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/10 13:40:19 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/10 22:01:11 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,8 +202,8 @@ typedef struct s_split_data
 
 //typedef void	(*t_handler)(int);
 
-int			rl_clear_history(void);
-void		rl_replace_line(char *str, int num);
+//int			rl_clear_history(void);
+//void		rl_replace_line(char *str, int num);
 
 //data_parser functions
 int			count_words(t_split_data *split_data);
