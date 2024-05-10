@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   execute_children.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 02:36:27 by akuburas          #+#    #+#             */
 /*   Updated: 2024/05/09 11:55:07 by akuburas         ###   ########.fr       */
@@ -97,12 +97,13 @@ void	child_handler(t_shelldata *data, t_child_data *child_data, int i)
 
 int	execute_child(t_shelldata *data, t_child_data *child_data, int i)
 {
+	int	j;
+
 	child_data->pid = fork();
 	if (child_data->pid == -1)
-		fork_failed(data);
-	if (child_data->pid == 0)
-	{
-		child_handler(data, child_data, i);
 	}
+	standby_signals();
+	wait_for_children(data);
+	free(data->child_data);
 	return (SUCCESS);
 }

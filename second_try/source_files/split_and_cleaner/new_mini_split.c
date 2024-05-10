@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   new_mini_split.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:41:10 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 14:19:49 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/07 11:52:05 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

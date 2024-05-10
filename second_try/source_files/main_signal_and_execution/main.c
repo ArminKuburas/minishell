@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
 /*   Updated: 2024/05/09 13:22:56 by akuburas         ###   ########.fr       */
@@ -74,7 +74,7 @@ void	main_loop(t_shelldata *data)
 {
 	while (1)
 	{
-		parent_signals();
+		handler_signals();
 		data->input = readline(YELLOW"🍌bananashell-0.23:"RESET);
 		if (!data->input)
 			end_of_file_reached(data);
@@ -93,7 +93,7 @@ void	main_loop(t_shelldata *data)
 
 int	main(int argc, char **argv, char **env)
 {
-	t_shelldata	data;
+	t_shelldata		data;
 
 	ft_memset(&data, 0, sizeof(t_shelldata));
 	if (initial_setup(&data, argc, argv, env) == FAILURE)

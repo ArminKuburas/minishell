@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:43:48 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/08 15:52:35 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/09 11:11:26 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
-#include <readline/history.h>
-#include <readline/readline.h>
-#include <termios.h>
 
 void	sigint_handler(int sig)
 {
@@ -34,15 +31,15 @@ void	fake_sigint_handler(int sig)
 	return ;
 }
 
-void	heredoc_handler(int sig)
+void	child_sigint_handler(int sig)
 {
 	(void)sig;
 	write(1, "\n", 1);
-	exit(1);
 }
 
-void	caret_switch(int on)
+void	parent_sigint(int sig)
 {
+	if (sig == SIGINT)
 	struct termios	term;
 
 	tcgetattr(STDIN_FILENO, &term);
@@ -119,17 +116,18 @@ void	signal_handler(int signal)
 	if (signal == SIGINT)
 	{
 		write(1, "\n", 1);
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-	}
-	if (signal == SIGQUIT)
-	{
-		rl_redisplay();
+		exit(1);
 	}
 }
 
-void	carrot_toggle(int on)
+void	heredoc_handler(int sig)
+{
+	(void)sig;
+	write(1, "\n", 1);
+	exit(1);
+}
+
+void	caret_switch(int on)
 {
 	struct termios	term;
 
@@ -140,19 +138,3 @@ void	carrot_toggle(int on)
 		term.c_lflag |= ECHOCTL;
 	tcsetattr(STDIN_FILENO, TCSANOW, &term);
 }
-
-void	set_state(t_state state)
-{
-	if (state == DEFAULT)
-	{
-		carrot_toggle(1);
-	}
-	if (state == HEREDOC)
-	{
-		return ;
-	}
-	if (state == HANDLER)
-	{
-		carrot_toggle(0);
-	}
-}*/

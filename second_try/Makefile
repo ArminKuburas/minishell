@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
+#    By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/05/09 14:14:05 by akuburas         ###   ########.fr        #
+#    Updated: 2024/05/09 11:09:21 by tvalimak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,11 +36,10 @@ SRCS =	$(MAINDIR)/main.c \
 		$(SPLITDIR)/potential_split_functions.c \
 		$(SPLITDIR)/new_mini_split.c \
 		$(MAINDIR)/signal.c \
-		$(BUILTINDIR)/cd.c \
-		$(BUILTINDIR)/pwd.c \
+		$(MAINDIR)/signal_helpers.c \
+		$(BUILTINDIR)/ft_cd.c \
 		$(BUILTINDIR)/echo.c \
 		$(BUILTINDIR)/env.c \
-		$(BUILTINDIR)/exit.c \
 		$(SETUPDIR)/set_up_child_data.c \
 		$(SETUPDIR)/setup_commands.c \
 		$(SETUPDIR)/setup_helpers.c \
@@ -50,8 +49,11 @@ SRCS =	$(MAINDIR)/main.c \
 		$(SETUPDIR)/env_helper_functions.c \
 		$(MAINDIR)/execute_children.c \
 		$(BUILTINDIR)/ft_echo.c \
+		$(BUILTINDIR)/ft_exit.c \
 		$(BUILTINDIR)/ft_pwd.c \
 		$(BUILTINDIR)/ft_export.c \
+		$(BUILTINDIR)/export_helpers.c \
+		$(BUILTINDIR)/export_unset_helpers.c \
 		$(BUILTINDIR)/ft_unset.c \
 		$(SPLITDIR)/new_mini_split_helpers.c \
 		$(SETUPDIR)/check_for_errors.c \
