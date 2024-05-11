@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/10 13:40:19 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/11 10:58:00 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@
 /*for the tcgetattr and tcsetattr functions*/
 # include <termios.h>
 
-# define RED	"\x1b[31m"
-# define GREEN	"\x1b[32m"
-# define YELLOW	"\x1b[33m"
-# define RESET	"\x1b[0m"
-
+# define RED	"\001\x1b[31m\002"
+# define GREEN	"\001\x1b[32m\002"
+# define YELLOW	"\001\x1b[33m\002"
+# define RESET	"\001\x1b[0m\002"
+# define BANANA_EMOJI "\001\xF0\x9F\x8D\x8C\002"
 typedef enum e_state
 {
 	DEFAULT,
@@ -202,8 +202,8 @@ typedef struct s_split_data
 
 //typedef void	(*t_handler)(int);
 
-int			rl_clear_history(void);
-void		rl_replace_line(char *str, int num);
+//int			rl_clear_history(void);
+//void		rl_replace_line(char *str, int num);
 
 //data_parser functions
 int			count_words(t_split_data *split_data);
