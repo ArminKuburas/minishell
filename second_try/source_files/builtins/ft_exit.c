@@ -6,7 +6,7 @@
 /*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 08:58:03 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/11 00:05:31 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/11 16:15:50 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,11 @@ int	ft_atol(const char *str)
 			sign = -1;
 		str++;
 	}
+	result = ft_parse_digits(str, sign);
 	if (sign == -1 || result == 0)
 		return (0);
 	if (sign == 1 && result == -1)
 		return (0);
-	result = ft_parse_digits(str, sign);
 	return ((long)(result * sign));
 }
 
@@ -86,7 +86,7 @@ int	check_format(t_shelldata *data, char **inputs)
 {
 	if (is_it_numeric(data, inputs[1]) != 0)
 		return (data->exit_value);
-	if (inputs[1] && inputs [2])
+	if (inputs[1] && inputs[2])
 	{
 		ft_putendl_fd("bananashell: exit: too many arguments", 2);
 		data->exit_value = 1;
@@ -106,5 +106,6 @@ int	ft_exit(t_shelldata *data, char **inputs)
 		return (data->exit_value);
 	}
 	data->exit_value = check_format(data, inputs);
+	ft_printf("exit code resulted in: %d\n", data->exit_value);
 	return (data->exit_value);
 }
