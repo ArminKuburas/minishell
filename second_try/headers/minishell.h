@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/10 23:01:45 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/12 12:49:44 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,11 @@
 /*For the waitpid function*/
 # include <sys/wait.h>
 
-/*for the tcgetattr and tcsetattr functions*/
+/*For the tcgetattr and tcsetattr functions*/
 # include <termios.h>
+
+/*For the overflow checks*/
+# include <limits.h>
 
 # define RED	"\x1b[31m"
 # define GREEN	"\x1b[32m"
@@ -200,8 +203,8 @@ typedef struct s_split_data
 }	t_split_data;
 //readline functions
 
-//int			rl_clear_history(void);
-//void		rl_replace_line(char *str, int num);
+int			rl_clear_history(void);
+void		rl_replace_line(char *str, int num);
 
 //data_parser functions
 int			count_words(t_split_data *split_data);
@@ -265,6 +268,7 @@ void		export_no_commands(t_shelldata *data, int fd);
 void		swap_env_vars(t_env_list *temp, t_env_list *temp2);
 void		my_unset(t_shelldata *data, t_input_list *temp);
 int			ft_exit(t_shelldata *data, char **inputs);
+int			check_format(t_shelldata *data, char **inputs);
 int			ft_unset(t_shelldata *data, char **inputs);
 int			is_unset_var_name_valid(char *input);
 
@@ -324,5 +328,8 @@ int			initial_setup(t_shelldata *data, int argc, char **argv, char **env);
 int			check_argc_argv(int argc, char **argv); //might need to be moved to main_helpers
 void		child_handling(t_shelldata *data);
 int			check_shell_level_value(char *env_var_value);
+
+//error messages
+int			num_fail(t_shelldata *data, char *input);
 
 #endif

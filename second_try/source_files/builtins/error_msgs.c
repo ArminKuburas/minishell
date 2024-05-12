@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   error_msgs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 08:58:03 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/12 12:52:11 by tvalimak         ###   ########.fr       */
+/*   Created: 2024/05/12 12:41:38 by tvalimak          #+#    #+#             */
+/*   Updated: 2024/05/12 12:41:47 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
-
-
-int	ft_exit(t_shelldata *data, char **inputs)
+int	num_fail(t_shelldata *data, char *input)
 {
-	if (!inputs[1])
-	{
-		data->exit_value = 0;
-		return (data->exit_value);
-	}
-	data->exit_value = check_format(data, inputs);
-	ft_printf("exit code resulted in: %d\n", data->exit_value);
+	data->exit_value = 255;
+	ft_putstr_fd("bananashell: exit: ", 2);
+	ft_putstr_fd(input, 2);
+	ft_putendl_fd(": numeric argument required", 2);
 	return (data->exit_value);
 }
