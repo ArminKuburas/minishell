@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:34:10 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/12 15:43:01 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/12 15:46:03 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int	add_new_env_var(t_shelldata *data, char *input, int i, int flag)
 	}
 	else
 	{
-		new_env->env_var = new_env->env_var_name;
+		new_env->env_var = ft_strdup(new_env->env_var_name);
 		new_env->env_var_value = NULL;
 	}
 	return (add_new_env_var_2(data, new_env));
