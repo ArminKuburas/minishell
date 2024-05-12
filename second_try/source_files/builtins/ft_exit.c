@@ -6,13 +6,11 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 08:58:03 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/12 12:52:11 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/12 12:54:00 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
-
-
 
 int	ft_exit(t_shelldata *data, char **inputs)
 {
