@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:34:10 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/09 10:52:10 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/12 15:43:01 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	add_new_env_var(t_shelldata *data, char *input, int i, int flag)
 {
 	t_env_list	*new_env;
 
-	while (input[i] != '=')
+	while (input[i] != '=' && input[i] != '\0')
 		i++;
 	new_env = ft_calloc(1, sizeof(t_env_list));
 	if (!new_env)
@@ -108,6 +108,11 @@ int	add_new_env_var(t_shelldata *data, char *input, int i, int flag)
 		new_env->env_var = ft_strdup(input);
 		if (new_env->env_var == NULL)
 			return (NO_MEMORY);
+	}
+	else
+	{
+		new_env->env_var = new_env->env_var_name;
+		new_env->env_var_value = NULL;
 	}
 	return (add_new_env_var_2(data, new_env));
 }

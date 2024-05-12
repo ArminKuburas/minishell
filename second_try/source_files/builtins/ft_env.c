@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:33:57 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/12 14:28:05 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/12 15:36:10 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,24 @@
 
 /* my_env goes through the env list and prints out the variables
    if they are proper key/value pairs*/
+
+
 int	ft_env(t_shelldata *data)
 {
-	t_env_list	*current_node;
-	t_env_list	*head;
-	char		*qm;
+	t_env_list		*temp;
+	char			*qm;
+	char			*eq;
 
 	qm = "?";
-	head = data->env_list;
-	current_node = data->env_list;
-	if (!data->env_list)
+	eq = "=";
+	temp = data->env_list;
+	if (!temp)
 		return (FAILURE);
-	while (current_node)
+	while (temp)
 	{
-		if (ft_strcmp(current_node->env_var_name, qm))
-			ft_printf("%s \n", current_node->env_var);
-		current_node = current_node->next;
+		if (ft_strchr(temp->env_var, '=') && temp->env_var_name[0] != '?')
+			ft_printf("%s \n", temp->env_var);
+		temp = temp->next;
 	}
-	data->env_list = head;
 	return (SUCCESS);
 }
