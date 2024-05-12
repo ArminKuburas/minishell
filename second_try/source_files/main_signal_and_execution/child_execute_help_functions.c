@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child_execute_help_functions.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:10:45 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/10 15:23:49 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:24:34 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	use_builtin(t_child_data *child_data, int fd, t_shelldata *data)
 	else if (ft_strcmp(child_data->command, "unset") == 0)
 		return (ft_unset(data, child_data->command_inputs));
 	else if (ft_strcmp(child_data->command, "env") == 0)
-		return (my_env(data));
+		return (ft_env(data));
 	else if (ft_strcmp(child_data->command, "exit") == 0)
 		return (ft_exit(data, child_data->command_inputs));
 	return (FAILURE);
