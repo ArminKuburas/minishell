@@ -6,17 +6,28 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:04:17 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/09 13:52:44 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 07:32:09 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
+/**
+ * @file setup_helpers.c
+ * @brief Helper functions for the setup.
+*/
+
+/**
+ * @brief Frees child data and closes fds.
+ * @param data The child data to be freed and closed.
+ * @return void
+*/
+
 void	free_child_data(t_child_data *data)
 {
-	if (data->fd_in != 0)
+	if (data->fd_in != 0 && data->fd_in != -1)
 		close(data->fd_in);
-	if (data->fd_out != 0)
+	if (data->fd_out != 0 && data->fd_out != -1)
 		close(data->fd_out);
 	if (data->command != NULL)
 		free(data->command);
@@ -27,6 +38,14 @@ void	free_child_data(t_child_data *data)
 	if (data->p_fd_out[1] != 0)
 		close(data->p_fd_out[1]);
 }
+
+/**
+ * @brief Prints error message for command.
+ * @param error The error code.
+ * @param temp The current input list node.
+ * @param child The child data to be used.
+ * @return void
+*/
 
 static void	print_helper(int error, t_input_list *temp, t_child_data *child)
 {
@@ -45,6 +64,14 @@ static void	print_helper(int error, t_input_list *temp, t_child_data *child)
 		child->exit_value = 126;
 	}
 }
+
+/**
+ * @brief Prints error message for command.
+ * @param error The error code.
+ * @param data The data to be used.
+ * @param amount The amount of processes.
+ * @return void
+*/
 
 void	command_error_message(int error, t_shelldata *data, int amount)
 {
@@ -68,6 +95,13 @@ void	command_error_message(int error, t_shelldata *data, int amount)
 		print_helper(error, temp, &data->child_data[amount]);
 }
 
+/**
+ * @brief helper for create command arguments
+ * @param child The child data to be used.
+ * @param start The start of the input list.
+ * @return void
+*/
+
 static void	cca_helper(t_child_data *child, t_input_list *start)
 {
 	t_input_list	*temp;
@@ -85,6 +119,13 @@ static void	cca_helper(t_child_data *child, t_input_list *start)
 		temp = temp->next;
 	}
 }
+
+/**
+ * @brief Creates the command arguments.
+ * @param child The child data to be used.
+ * @param start The start of the input list.
+ * @return Returns SUCCESS if everything went well, otherwise FAILURE.
+*/
 
 int	create_command_arguments(t_child_data *child, t_input_list *start)
 {

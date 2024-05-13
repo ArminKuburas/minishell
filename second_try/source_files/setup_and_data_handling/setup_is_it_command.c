@@ -6,11 +6,25 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 09:54:36 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/09 14:03:24 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 07:02:14 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
+
+/**
+ * @file setup_is_it_command.c
+ * @brief Functions for checking if the command is a builtin or a command.
+ * @details This file contains functions for checking if the command is a builtin or a command.
+*/
+
+/**
+ * @brief Creates a path for the command.
+ * @param path_variable The path variable to be used.
+ * @param input The input to be used.
+ * @param error The error code.
+ * @return Returns the path for the command.
+*/
 
 char	*create_path(char *path_variable, char *input, int *error)
 {
@@ -39,6 +53,15 @@ char	*create_path(char *path_variable, char *input, int *error)
 	return (temp2);
 }
 
+/**
+ * @brief Finds the path for the command.
+ * @param path_variables The path variables to be used.
+ * @param data The data to be used.
+ * @param index The index of the child data.
+ * @param input The input to be used.
+ * @return Returns the error code.
+*/
+
 int	find_path(char **path_variables, t_shelldata *data, int index, char *input)
 {
 	int		i;
@@ -63,6 +86,14 @@ int	find_path(char **path_variables, t_shelldata *data, int index, char *input)
 	return (NOT_FOUND);
 }
 
+/**
+ * @brief Checks if the input is a directory.
+ * @param input The input to be checked.
+ * @param data The data to be used.
+ * @param index The index of the child data.
+ * @return Returns the error code.
+*/
+
 int	check_if_directory(char *input, t_shelldata *data, int index)
 {
 	int	temp_fd;
@@ -79,6 +110,14 @@ int	check_if_directory(char *input, t_shelldata *data, int index)
 	}
 	return (SUCCESS);
 }
+
+/**
+ * @brief Checks if the given path is a command.
+ * @param input The input to be checked.
+ * @param data The data to be used.
+ * @param index The index of the child data.
+ * @return Returns the error code.
+*/
 
 int	check_if_given_path(char *input, t_shelldata *data, int index)
 {
@@ -101,6 +140,14 @@ int	check_if_given_path(char *input, t_shelldata *data, int index)
 	}
 	return (NOT_FOUND);
 }
+
+/**
+ * @brief Checks if the input is a command.
+ * @param input The input to be checked.
+ * @param data The data to be used.
+ * @param index The index of the child data.
+ * @return Returns the error code.
+*/
 
 int	is_it_command(char *input, t_shelldata *data, int index)
 {

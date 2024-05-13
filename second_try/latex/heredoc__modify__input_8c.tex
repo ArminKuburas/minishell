@@ -1,0 +1,200 @@
+\hypertarget{heredoc__modify__input_8c}{}\doxysection{source\+\_\+files/setup\+\_\+and\+\_\+data\+\_\+handling/heredoc\+\_\+modify\+\_\+input.c File Reference}
+\label{heredoc__modify__input_8c}\index{source\_files/setup\_and\_data\_handling/heredoc\_modify\_input.c@{source\_files/setup\_and\_data\_handling/heredoc\_modify\_input.c}}
+
+
+Functions for modifying input for heredoc.  
+
+
+{\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
+Include dependency graph for heredoc\+\_\+modify\+\_\+input.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{heredoc__modify__input_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{heredoc__modify__input_8c_afffe589d0ae127274200bcbf5764532d}{found\+\_\+dollar\+\_\+sign}} (char $\ast$input, t\+\_\+env\+\_\+list $\ast$env\+\_\+list, int $\ast$original\+\_\+i)
+\begin{DoxyCompactList}\small\item\em Finds the length of the environment variable value. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{heredoc__modify__input_8c_ab4e68b25a13ba691c692f21f395795c5}{modified\+\_\+length}} (char $\ast$input, t\+\_\+env\+\_\+list $\ast$env\+\_\+list)
+\begin{DoxyCompactList}\small\item\em Finds the length of the modified input. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{heredoc__modify__input_8c_a6a0900b4f1513d3344fd4159c7ec566d}{check\+\_\+if\+\_\+name\+\_\+match}} (char $\ast$input, char $\ast$new\+\_\+input, t\+\_\+env\+\_\+list $\ast$temp)
+\begin{DoxyCompactList}\small\item\em Checks if the name matches the environment variable name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{heredoc__modify__input_8c_a4c22255e4cd96e7c7c7293a8e45384aa}{set\+\_\+up\+\_\+new\+\_\+input}} (char $\ast$input, char $\ast$new\+\_\+input, t\+\_\+env\+\_\+list $\ast$env\+\_\+list)
+\begin{DoxyCompactList}\small\item\em Sets up the new input. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{heredoc__modify__input_8c_abdab84d93656b480ef2604acdf1be99e}{modify\+\_\+input}} (char $\ast$input, t\+\_\+env\+\_\+list $\ast$env\+\_\+list)
+\begin{DoxyCompactList}\small\item\em Modifies the input for heredoc. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Functions for modifying input for heredoc. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{heredoc__modify__input_8c_a6a0900b4f1513d3344fd4159c7ec566d}\label{heredoc__modify__input_8c_a6a0900b4f1513d3344fd4159c7ec566d}} 
+\index{heredoc\_modify\_input.c@{heredoc\_modify\_input.c}!check\_if\_name\_match@{check\_if\_name\_match}}
+\index{check\_if\_name\_match@{check\_if\_name\_match}!heredoc\_modify\_input.c@{heredoc\_modify\_input.c}}
+\doxysubsubsection{\texorpdfstring{check\_if\_name\_match()}{check\_if\_name\_match()}}
+{\footnotesize\ttfamily int check\+\_\+if\+\_\+name\+\_\+match (\begin{DoxyParamCaption}\item[{char $\ast$}]{input,  }\item[{char $\ast$}]{new\+\_\+input,  }\item[{t\+\_\+env\+\_\+list $\ast$}]{temp }\end{DoxyParamCaption})}
+
+
+
+Checks if the name matches the environment variable name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The input to be used. \\
+\hline
+{\em temp} & The temporary environment list to be used. \\
+\hline
+{\em i} & The index of the input. \\
+\hline
+{\em j} & The index of the new input. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+YES if the name matches, otherwise NO. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{heredoc__modify__input_8c_a6a0900b4f1513d3344fd4159c7ec566d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{heredoc__modify__input_8c_afffe589d0ae127274200bcbf5764532d}\label{heredoc__modify__input_8c_afffe589d0ae127274200bcbf5764532d}} 
+\index{heredoc\_modify\_input.c@{heredoc\_modify\_input.c}!found\_dollar\_sign@{found\_dollar\_sign}}
+\index{found\_dollar\_sign@{found\_dollar\_sign}!heredoc\_modify\_input.c@{heredoc\_modify\_input.c}}
+\doxysubsubsection{\texorpdfstring{found\_dollar\_sign()}{found\_dollar\_sign()}}
+{\footnotesize\ttfamily int found\+\_\+dollar\+\_\+sign (\begin{DoxyParamCaption}\item[{char $\ast$}]{input,  }\item[{t\+\_\+env\+\_\+list $\ast$}]{env\+\_\+list,  }\item[{int $\ast$}]{original\+\_\+i }\end{DoxyParamCaption})}
+
+
+
+Finds the length of the environment variable value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The input to be used. \\
+\hline
+{\em env\+\_\+list} & The environment list to be used. \\
+\hline
+{\em original\+\_\+i} & The original index of the input. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The length of the environment variable value. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{heredoc__modify__input_8c_afffe589d0ae127274200bcbf5764532d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{heredoc__modify__input_8c_ab4e68b25a13ba691c692f21f395795c5}\label{heredoc__modify__input_8c_ab4e68b25a13ba691c692f21f395795c5}} 
+\index{heredoc\_modify\_input.c@{heredoc\_modify\_input.c}!modified\_length@{modified\_length}}
+\index{modified\_length@{modified\_length}!heredoc\_modify\_input.c@{heredoc\_modify\_input.c}}
+\doxysubsubsection{\texorpdfstring{modified\_length()}{modified\_length()}}
+{\footnotesize\ttfamily int modified\+\_\+length (\begin{DoxyParamCaption}\item[{char $\ast$}]{input,  }\item[{t\+\_\+env\+\_\+list $\ast$}]{env\+\_\+list }\end{DoxyParamCaption})}
+
+
+
+Finds the length of the modified input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The input to be used. \\
+\hline
+{\em env\+\_\+list} & The environment list to be used. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The length of the modified input. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=314pt]{heredoc__modify__input_8c_ab4e68b25a13ba691c692f21f395795c5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{heredoc__modify__input_8c_ab4e68b25a13ba691c692f21f395795c5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{heredoc__modify__input_8c_abdab84d93656b480ef2604acdf1be99e}\label{heredoc__modify__input_8c_abdab84d93656b480ef2604acdf1be99e}} 
+\index{heredoc\_modify\_input.c@{heredoc\_modify\_input.c}!modify\_input@{modify\_input}}
+\index{modify\_input@{modify\_input}!heredoc\_modify\_input.c@{heredoc\_modify\_input.c}}
+\doxysubsubsection{\texorpdfstring{modify\_input()}{modify\_input()}}
+{\footnotesize\ttfamily char$\ast$ modify\+\_\+input (\begin{DoxyParamCaption}\item[{char $\ast$}]{input,  }\item[{t\+\_\+env\+\_\+list $\ast$}]{env\+\_\+list }\end{DoxyParamCaption})}
+
+
+
+Modifies the input for heredoc. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The input to be used. \\
+\hline
+{\em env\+\_\+list} & The environment list to be used. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The modified input. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{heredoc__modify__input_8c_abdab84d93656b480ef2604acdf1be99e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=300pt]{heredoc__modify__input_8c_abdab84d93656b480ef2604acdf1be99e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{heredoc__modify__input_8c_a4c22255e4cd96e7c7c7293a8e45384aa}\label{heredoc__modify__input_8c_a4c22255e4cd96e7c7c7293a8e45384aa}} 
+\index{heredoc\_modify\_input.c@{heredoc\_modify\_input.c}!set\_up\_new\_input@{set\_up\_new\_input}}
+\index{set\_up\_new\_input@{set\_up\_new\_input}!heredoc\_modify\_input.c@{heredoc\_modify\_input.c}}
+\doxysubsubsection{\texorpdfstring{set\_up\_new\_input()}{set\_up\_new\_input()}}
+{\footnotesize\ttfamily void set\+\_\+up\+\_\+new\+\_\+input (\begin{DoxyParamCaption}\item[{char $\ast$}]{input,  }\item[{char $\ast$}]{new\+\_\+input,  }\item[{t\+\_\+env\+\_\+list $\ast$}]{env\+\_\+list }\end{DoxyParamCaption})}
+
+
+
+Sets up the new input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The input to be used. \\
+\hline
+{\em new\+\_\+input} & The new input to be used. \\
+\hline
+{\em env\+\_\+list} & The environment list to be used. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{heredoc__modify__input_8c_a4c22255e4cd96e7c7c7293a8e45384aa_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{heredoc__modify__input_8c_a4c22255e4cd96e7c7c7293a8e45384aa_icgraph}
+\end{center}
+\end{figure}

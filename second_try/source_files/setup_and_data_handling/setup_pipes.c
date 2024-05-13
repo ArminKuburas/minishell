@@ -6,11 +6,23 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 11:14:29 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 14:19:49 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 07:04:31 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
+
+/**
+ * @file setup_pipes.c
+ * @brief Functions for setting up pipes.
+*/
+
+/**
+ * @brief Sets up the input pipe.
+ * @param data The data to be used.
+ * @param i The index of the child data.
+ * @return Returns the error code.
+*/
 
 static int	setup_input_pipe(t_shelldata *data, int i)
 {
@@ -19,12 +31,26 @@ static int	setup_input_pipe(t_shelldata *data, int i)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Sets up the output pipe.
+ * @param data The data to be used.
+ * @param i The index of the child data.
+ * @return Returns the error code.
+*/
+
 int	setup_output_pipe(t_shelldata *data, int i)
 {
 	if (pipe(data->child_data[i].p_fd_out) == -1)
 		return (NO_PIPE);
 	return (SUCCESS);
 }
+
+/**
+ * @brief Sets up the pipes.
+ * @param data The data to be used.
+ * @param amount The amount of pipes.
+ * @return Returns the error code.
+*/
 
 int	setup_pipes(t_shelldata *data, int amount)
 {

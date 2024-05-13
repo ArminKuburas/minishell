@@ -6,17 +6,25 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:58:25 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 14:18:44 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 06:35:37 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
-/*
-This is a simple function. It finds all the pipes
-and checks if there is input before and after the pipe
-If not then it prints out a syntax error.
+/**
+ * @file check_for_errors.c
+ * @brief Functions for checking for errors.
+ * @details This file contains functions for checking for errors.
 */
+
+
+/**
+ * @brief Checks for syntax errors in the pipe input.
+ * @param data The data to be used.
+ * @return Returns SUCCESS if everything went well, otherwise FAILURE.
+*/
+
 int	check_pipes(t_shelldata *data)
 {
 	t_input_list	*temp;

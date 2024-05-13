@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+         #
+#    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
 #    Updated: 2024/05/12 14:30:19 by tvalimak         ###   ########.fr        #
@@ -68,6 +68,8 @@ SRCS =	$(MAINDIR)/main.c \
 		$(SETUPDIR)/setup_command_helpers.c \
 		$(SETUPDIR)/setup_redirect_helpers.c \
 		$(SETUPDIR)/setup_heredoc.c \
+		$(SETUPDIR)/heredoc_modify_input.c \
+		$(MAINDIR)/fail_functions.c \
 
 OBJS = $(SRCS:.c=.o)
 all: $(NAME)

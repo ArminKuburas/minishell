@@ -1,0 +1,57 @@
+\hypertarget{setup__commands_8c}{}\doxysection{source\+\_\+files/setup\+\_\+and\+\_\+data\+\_\+handling/setup\+\_\+commands.c File Reference}
+\label{setup__commands_8c}\index{source\_files/setup\_and\_data\_handling/setup\_commands.c@{source\_files/setup\_and\_data\_handling/setup\_commands.c}}
+
+
+Functions for setting up commands.  
+
+
+{\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
+Include dependency graph for setup\+\_\+commands.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{setup__commands_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{setup__commands_8c_a3ac8353f98166eac03a847b826203bf1}{setup\+\_\+command}} (t\+\_\+shelldata $\ast$data, int index)
+\begin{DoxyCompactList}\small\item\em sets up the command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Functions for setting up commands. 
+
+This file contains functions for setting up commands. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{setup__commands_8c_a3ac8353f98166eac03a847b826203bf1}\label{setup__commands_8c_a3ac8353f98166eac03a847b826203bf1}} 
+\index{setup\_commands.c@{setup\_commands.c}!setup\_command@{setup\_command}}
+\index{setup\_command@{setup\_command}!setup\_commands.c@{setup\_commands.c}}
+\doxysubsubsection{\texorpdfstring{setup\_command()}{setup\_command()}}
+{\footnotesize\ttfamily int setup\+\_\+command (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data,  }\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+sets up the command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & The command to be checked. \\
+\hline
+{\em data} & The data to be used. \\
+\hline
+{\em index} & The index of the child data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns SUCCESS if the command exists, otherwise NOT\+\_\+\+FOUND. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{setup__commands_8c_a3ac8353f98166eac03a847b826203bf1_icgraph}
+\end{center}
+\end{figure}

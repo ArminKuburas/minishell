@@ -6,11 +6,22 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:58:42 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/09 16:31:24 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 06:50:18 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
+
+/**
+ * @file set_up_child_data.c
+ * @brief Functions for setting up child data.
+*/
+
+/**
+ * @brief Counts the amount of processes in the input list.
+ * @param start The start of the input list.
+ * @return Returns the amount of processes.
+*/
 
 int	count_processes(t_input_list *start)
 {
@@ -27,6 +38,13 @@ int	count_processes(t_input_list *start)
 	}
 	return (amount);
 }
+
+/**
+ * @brief Sets up the command inputs
+ * @param data The data to be used.
+ * @param i The index of the child data.
+ * @return void
+*/
 
 void	setup_command_inputs(t_shelldata *data, int i)
 {
@@ -50,6 +68,13 @@ void	setup_command_inputs(t_shelldata *data, int i)
 	error = create_command_arguments(&data->child_data[i], temp);
 	data->child_data[i].exit_value = error;
 }
+
+/**
+ * @brief creates the child data
+ * @param data The data to be used.
+ * @param amount The amount of processes.
+ * @return Returns SUCCESS if everything went well, otherwise FAILURE.
+*/
 
 int	create_child_data(t_shelldata *data, int amount)
 {
@@ -76,6 +101,12 @@ int	create_child_data(t_shelldata *data, int amount)
 	}
 	return (SUCCESS);
 }
+
+/**
+ * @brief Sets up the child data.
+ * @param data The data to be used.
+ * @return Returns SUCCESS if everything went well, otherwise FAILURE.
+*/
 
 int	set_up_child_data(t_shelldata *data)
 {

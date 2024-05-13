@@ -6,11 +6,25 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 09:35:02 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 14:19:49 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 06:53:13 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
+
+/**
+ * @file setup_commands.c
+ * @brief Functions for setting up commands.
+ * @details This file contains functions for setting up commands.
+*/
+
+/**
+ * @brief Checks if the command is a builtin.
+ * @param builtin The builtin to be checked.
+ * @param command The command to be checked.
+ * @return Returns 0 if the command is a builtin, otherwise -1.
+*/
+
 
 static int	check_command(const char *builtin, char *command)
 {
@@ -20,6 +34,14 @@ static int	check_command(const char *builtin, char *command)
 		return (0);
 	return (-1);
 }
+
+/**
+ * @brief Checks if the command is a builtin.
+ * @param command The command to be checked.
+ * @param data The data to be used.
+ * @param index The index of the child data.
+ * @return Returns SUCCESS if the command is a builtin, otherwise NOT_FOUND.
+*/
 
 static int	is_it_builtin(char *command, t_shelldata *data, int index)
 {
@@ -48,6 +70,14 @@ static int	is_it_builtin(char *command, t_shelldata *data, int index)
 	}
 	return (NOT_FOUND);
 }
+
+/**
+ * @brief sets up the command.
+ * @param command The command to be checked.
+ * @param data The data to be used.
+ * @param index The index of the child data.
+ * @return Returns SUCCESS if the command exists, otherwise NOT_FOUND.
+*/
 
 /*This function first tries to see if a command exists
 If one does exist it tries to check if its perhaps a builtin

@@ -1,0 +1,62 @@
+\hypertarget{child__data__helpers_8c}{}\doxysection{source\+\_\+files/setup\+\_\+and\+\_\+data\+\_\+handling/child\+\_\+data\+\_\+helpers.c File Reference}
+\label{child__data__helpers_8c}\index{source\_files/setup\_and\_data\_handling/child\_data\_helpers.c@{source\_files/setup\_and\_data\_handling/child\_data\_helpers.c}}
+
+
+Functions for handling child data.  
+
+
+{\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
+Include dependency graph for child\+\_\+data\+\_\+helpers.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{child__data__helpers_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{child__data__helpers_8c_ae2187e7b131815ab1d252a7622d9cb26}{child\+\_\+failed}} (t\+\_\+shelldata $\ast$data, int error)
+\begin{DoxyCompactList}\small\item\em child failed. Frees all child data and exits. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Functions for handling child data. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{child__data__helpers_8c_ae2187e7b131815ab1d252a7622d9cb26}\label{child__data__helpers_8c_ae2187e7b131815ab1d252a7622d9cb26}} 
+\index{child\_data\_helpers.c@{child\_data\_helpers.c}!child\_failed@{child\_failed}}
+\index{child\_failed@{child\_failed}!child\_data\_helpers.c@{child\_data\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{child\_failed()}{child\_failed()}}
+{\footnotesize\ttfamily void child\+\_\+failed (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data,  }\item[{int}]{error }\end{DoxyParamCaption})}
+
+
+
+child failed. Frees all child data and exits. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em child\+\_\+data} & The child data to be used. \\
+\hline
+{\em error} & The error code. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=281pt]{child__data__helpers_8c_ae2187e7b131815ab1d252a7622d9cb26_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{child__data__helpers_8c_ae2187e7b131815ab1d252a7622d9cb26_icgraph}
+\end{center}
+\end{figure}

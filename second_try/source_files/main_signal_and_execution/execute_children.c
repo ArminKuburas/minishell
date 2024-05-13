@@ -6,11 +6,24 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 02:36:27 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/10 15:21:01 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 06:31:36 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
+
+/**
+ * @file execute_children.c
+ * @brief Functions for executing child processes.
+ * @details This file contains functions for executing child processes.
+*/
+
+
+/**
+ * @brief Checks the file descriptors for the child process.
+ * @param child_data The child data to be used.
+ * @return Returns SUCCESS if everything went well, otherwise NO_DUP.
+*/
 
 int	check_fds(t_child_data *child_data)
 {
@@ -31,6 +44,12 @@ int	check_fds(t_child_data *child_data)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Closes the file descriptors for the child process.
+ * @param child_data The child data to be used.
+ * @return void
+*/
+
 void	close_my_fds(t_child_data *child_data)
 {
 	if (child_data->fd_in != 0)
@@ -46,6 +65,13 @@ void	close_my_fds(t_child_data *child_data)
 	if (child_data->p_fd_in[1] != 0)
 		close(child_data->p_fd_in[1]);
 }
+
+/**
+ * @brief Closes the file descriptors for the other child processes.
+ * @param data The data to be used.
+ * @param j The index of the current child data.
+ * @param i The index of the current child data that should not be cleaned.
+*/
 
 void	close_other_fds(t_shelldata *data, int j, int i)
 {
@@ -68,6 +94,14 @@ void	close_other_fds(t_shelldata *data, int j, int i)
 			close(data->child_data[j].p_fd_in[1]);
 	}
 }
+
+/**
+ * @brief Handles the child process.
+ * @param data The data to be used.
+ * @param child_data The child data to be used.
+ * @param i The index of the current child data.
+ * @return void
+*/
 
 void	child_handler(t_shelldata *data, t_child_data *child_data, int i)
 {
@@ -94,6 +128,14 @@ void	child_handler(t_shelldata *data, t_child_data *child_data, int i)
 		exit(NO_EXECVE);
 	}
 }
+
+/**
+ * @brief Executes the child process.
+ * @param data The data to be used.
+ * @param child_data The child data to be used.
+ * @param i The index of the current child data.
+ * @return Returns SUCCESS if everything went well, otherwise FAILURE.
+*/
 
 int	execute_child(t_shelldata *data, t_child_data *child_data, int i)
 {
