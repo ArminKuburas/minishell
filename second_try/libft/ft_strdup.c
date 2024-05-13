@@ -6,12 +6,22 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:40:19 by akuburas          #+#    #+#             */
-/*   Updated: 2024/01/16 17:04:15 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 21:25:55 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @file ft_strdup.c
+ * @brief this file contains the ft_strdup function.
+*/
+
+/**
+ * @brief Duplicates a string.
+ * @param s The string to be duplicated.
+ * @return Returns a pointer to the new string or returns NULL.
+*/
 char	*ft_strdup(const char *s)
 {
 	size_t	len;
