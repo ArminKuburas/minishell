@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:10:45 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 07:22:11 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:55:23 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,15 @@ void	wait_for_children(t_shelldata *data)
 		{
 			ft_putendl_fd("", STDOUT_FILENO);
 			already_printed = YES;
+			data->child_data[i].exit_value = 130;
 		}
+		else if (data->child_data[i].exit_value == 3 && already_printed == NO)
+		{
+			ft_putendl_fd("Quit: 3", STDOUT_FILENO);
+			already_printed = YES;
+			data->child_data[i].exit_value = 131;
+		}
+		//printf("This is the exit value: %d\n", data->child_data[i].exit_value);
 		free_child_data(&data->child_data[i]);
 		data->exit_value = data->child_data[i].exit_value;
 		i++;
@@ -59,6 +67,7 @@ int	use_builtin(t_child_data *child_data, int fd, t_shelldata *data)
 {
 	if (fd == 0)
 		fd = STDOUT_FILENO;
+	printf ("this is fd %d\n", fd);
 	if (ft_strcmp(child_data->command, "echo") == 0)
 		return (ft_echo(child_data, fd));
 	else if (ft_strcmp(child_data->command, "cd") == 0)

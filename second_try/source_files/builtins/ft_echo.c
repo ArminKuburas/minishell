@@ -6,25 +6,25 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:31:08 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 14:18:00 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:57:44 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
-static void	free_with_newline(char **temp)
+static void	free_with_newline(char **temp, int fd)
 {
 	int	i;
 
 	i = 1;
 	while (temp[i])
 	{
-		ft_putstr(temp[i]);
+		ft_putstr_fd(temp[i], fd);
 		if (temp[i + 1])
-			ft_putstr(" ");
+			ft_putstr_fd(" ", fd);
 		i++;
 	}
-	ft_putstr("\n");
+	ft_putstr_fd("\n", fd);
 }
 
 void	print_no_newline(t_child_data *data, int fd, int i)
@@ -57,6 +57,6 @@ int	ft_echo(t_child_data *data, int fd)
 	if (ft_strcmp(data->command_inputs[i], "-n") == 0)
 		print_no_newline(data, fd, i);
 	else
-		free_with_newline(data->command_inputs);
+		free_with_newline(data->command_inputs, fd);
 	return (SUCCESS);
 }

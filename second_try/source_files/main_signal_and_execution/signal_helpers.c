@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:07:25 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/13 06:19:40 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:54:06 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,21 @@
  * @return void
 */
 
+// void	baby_sigquit(int sig)
+// 	{
+// 	if (sig == SIGQUIT)
+// 	{
+// 		//write(1, "Quit: 3", 8);
+// 		ft_putstr_fd("Quit: 3", STDOUT_FILENO);
+// 	}
+// 	ft_putstr_fd("\n", STDOUT_FILENO);
+// 	}
+
 void	child_signals(void)
 {
 	caret_switch(1);
 	signal(SIGINT, child_sigint_handler);
-	signal(SIGQUIT, SIG_IGN);
+	signal(SIGQUIT, SIG_DFL);
 }
 
 /**

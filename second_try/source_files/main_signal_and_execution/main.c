@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 06:48:19 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:54:12 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
  * @param argc The argument count.
  * @param argv The argument vector.
  * @return Returns SUCCESS if everything went well, otherwise FAILURE.
-*/
+*/	
 int	check_argc_argv(int argc, char **argv)
 {
 	if (argc > 1)
