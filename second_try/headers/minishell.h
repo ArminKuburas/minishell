@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/10 13:40:19 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:27:27 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@
 /*for the tcgetattr and tcsetattr functions*/
 # include <termios.h>
 
-# define RED	"\x1b[31m"
-# define GREEN	"\x1b[32m"
-# define YELLOW	"\x1b[33m"
-# define RESET	"\x1b[0m"
-
+# define RED	"\001\x1b[31m\002"
+# define GREEN	"\001\x1b[32m\002"
+# define YELLOW	"\001\x1b[33m\002"
+# define RESET	"\001\x1b[0m\002"
+# define BANANA_EMOJI "\001\xF0\x9F\x8D\x8C\002"
 typedef enum e_state
 {
 	DEFAULT,
@@ -291,6 +291,7 @@ void		try_access(char *path, int *error);
 int			create_variables(char ***path_variables, t_env_list *env_list);
 void		ambiguous_redirect(t_shelldata *data, int i, t_input_list *input);
 void		handle_heredoc(t_shelldata *data, int i, t_input_list *input);
+char		*modify_input(char *input, t_env_list *env_list);
 
 //execute_children functions
 int			execute_commands(t_shelldata *data);
@@ -325,6 +326,15 @@ int			initial_env_creation(char **env, t_shelldata *data);
 int			initial_setup(t_shelldata *data, int argc, char **argv, char **env);
 int			check_argc_argv(int argc, char **argv); //might need to be moved to main_helpers
 void		child_handling(t_shelldata *data);
+
+//Testers
+void	*fake_ft_calloc(void);
+int		fake_open(void);
+int		fake_fork(void);
+int		fake_dup2(void);
+
+
+
 
 int			check_shell_level_value(char *env_var_value);
 

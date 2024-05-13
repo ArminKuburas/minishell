@@ -6,11 +6,24 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:04:51 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/09 14:15:15 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 07:05:29 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
+
+/**
+ * @file setup_redirect_helpers.c
+ * @brief Helper functions for setting up redirections.
+*/
+
+/**
+ * @brief handles ambigious redirect
+ * @param data The data to be used.
+ * @param i The index of the child data.
+ * @param input The input to be used.
+ * @return void
+*/
 
 void	ambiguous_redirect(t_shelldata *data, int i, t_input_list *input)
 {

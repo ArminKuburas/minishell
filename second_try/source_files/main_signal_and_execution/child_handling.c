@@ -6,11 +6,23 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 23:52:53 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/09 10:53:17 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 06:29:04 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
+
+/**
+ * @file child_handling.c
+ * @brief Functions for handling child processes.
+ * @details This file contains functions for handling child processes.
+*/
+
+/**
+ * @brief Handles the case where fork fails.
+ * @param data The data to be used.
+ * @return void
+*/
 
 void	fork_failed(t_shelldata *data)
 {
@@ -30,6 +42,12 @@ void	fork_failed(t_shelldata *data)
 	rl_clear_history();
 	exit(1);
 }
+
+/**
+ * @brief Executes the commands in the child processes.
+ * @param data The data to be used.
+ * @return Returns SUCCESS if everything went well, otherwise FAILURE.
+*/
 
 int	execute_commands(t_shelldata *data)
 {
@@ -53,6 +71,12 @@ int	execute_commands(t_shelldata *data)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Handles the case where there is only one builtin command.
+ * @param data The data to be used.
+ * @return Returns the exit value of the builtin command.
+*/
+
 int	one_builtin(t_shelldata *data)
 {
 	data->exit_value = use_builtin(&data->child_data[0],
@@ -61,6 +85,12 @@ int	one_builtin(t_shelldata *data)
 	free(data->child_data);
 	return (data->exit_value);
 }
+
+/**
+ * @brief Pre-checks before executing the child processes.
+ * @param data The data to be used.
+ * @return Returns the exit value of the child processes.
+*/
 
 int	child_pre_check(t_shelldata *data)
 {
@@ -74,6 +104,12 @@ int	child_pre_check(t_shelldata *data)
 	}
 	return (execute_commands(data));
 }
+
+/**
+ * @brief Handles the child processes.
+ * @param data The data to be used.
+ * @return void
+*/
 
 void	child_handling(t_shelldata *data)
 {

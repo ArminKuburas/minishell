@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 08:58:03 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/10 14:57:50 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/10 20:27:01 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,8 @@ int exit_handler(t_shelldata *data, char **inputs)
 
 int	check_format(char **inputs)
 {
-	int	i;
 	int	exit_value;
 
-	i = 0;
 	exit_value = 0;
 	if (!inputs[1])
 		exit_value = 0;
@@ -101,11 +99,9 @@ int	check_format(char **inputs)
 
 int	ft_exit(t_shelldata *data, char **inputs)
 {
-	int		i;
 	int		exit_value;
 
 	(void)data;
-	i = 0;
 	exit_value = check_format(inputs);
 	/*
 	if (!inputs[1])

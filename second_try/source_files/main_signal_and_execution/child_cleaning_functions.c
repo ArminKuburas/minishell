@@ -6,11 +6,25 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:59:04 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/09 10:59:13 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 06:24:31 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
+
+/**
+ * @file child_cleaning_functions.c
+ * @brief Functions for cleaning up child processes.
+ * @details This file contains functions for cleaning up child processes.
+*/
+
+
+/**
+ * @brief frees command and command inputs and closes other file descriptors.
+ * @param data The data to be used.
+ * @param i The index of the current child data that should not be cleaned.
+ * @return void
+*/
 
 void	clean_other_children(t_shelldata *data, int i)
 {
@@ -31,6 +45,13 @@ void	clean_other_children(t_shelldata *data, int i)
 	}
 }
 
+/**
+ * @brief frees whatever remains if execve fails
+ * @param data The data to be used.
+ * @param child_data The child data to be used.
+ * @return void
+*/
+
 void	execve_failed_cleanup(t_shelldata *data, t_child_data *child_data)
 {
 	free(child_data->command);
@@ -46,6 +67,13 @@ void	execve_failed_cleanup(t_shelldata *data, t_child_data *child_data)
 	free(data->child_data);
 	clear_input(data->input_list, SUCCESS);
 }
+
+/**
+ * @brief frees everything
+ * @param data The data to be used.
+ * @param exit_value The exit value.
+ * @return void
+*/
 
 void	clean_everything_up(t_shelldata *data, int exit_value)
 {

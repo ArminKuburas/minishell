@@ -6,11 +6,23 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:48:55 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/09 13:49:03 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 06:51:14 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
+
+/**
+ * @file setup_command_helpers.c
+ * @brief Helper functions for setting up commands.
+ */
+
+/**
+ * @brief Creates variables for the path.
+ * @param path_variables The path variables.
+ * @param env_list The environment list.
+ * @return Returns the error code.
+ */
 
 int	create_variables(char ***path_variables, t_env_list *env_list)
 {
@@ -31,6 +43,11 @@ int	create_variables(char ***path_variables, t_env_list *env_list)
 	return (NOT_FOUND);
 }
 
+/**
+ * @brief Tries to access the path.
+ * @param path The path to be accessed.
+ * @param error The error code.
+ */
 void	try_access(char *path, int *error)
 {
 	if (access(path, F_OK) == 0)
