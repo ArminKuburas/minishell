@@ -1,0 +1,102 @@
+\hypertarget{ft__echo_8c}{}\doxysection{source\+\_\+files/builtins/ft\+\_\+echo.c File Reference}
+\label{ft__echo_8c}\index{source\_files/builtins/ft\_echo.c@{source\_files/builtins/ft\_echo.c}}
+
+
+Built-\/in echo function.  
+
+
+{\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
+Include dependency graph for ft\+\_\+echo.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ft__echo_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{ft__echo_8c_ad5b5c9740b9412fe4bc2a8fd0abb659a}{print\+\_\+no\+\_\+newline}} (\mbox{\hyperlink{structs__child__data}{t\+\_\+child\+\_\+data}} $\ast$data, int fd, int i)
+\begin{DoxyCompactList}\small\item\em Prints the echo command without a newline. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ft__echo_8c_a114b739ffae797400b0279ef321f585c}{ft\+\_\+echo}} (\mbox{\hyperlink{structs__child__data}{t\+\_\+child\+\_\+data}} $\ast$data, int fd)
+\begin{DoxyCompactList}\small\item\em The echo built-\/in function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Built-\/in echo function. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ft__echo_8c_a114b739ffae797400b0279ef321f585c}\label{ft__echo_8c_a114b739ffae797400b0279ef321f585c}} 
+\index{ft\_echo.c@{ft\_echo.c}!ft\_echo@{ft\_echo}}
+\index{ft\_echo@{ft\_echo}!ft\_echo.c@{ft\_echo.c}}
+\doxysubsubsection{\texorpdfstring{ft\_echo()}{ft\_echo()}}
+{\footnotesize\ttfamily int ft\+\_\+echo (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__child__data}{t\+\_\+child\+\_\+data}} $\ast$}]{data,  }\item[{int}]{fd }\end{DoxyParamCaption})}
+
+
+
+The echo built-\/in function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The struct containing shell data. \\
+\hline
+{\em fd} & The file descriptor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 on success. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ft__echo_8c_a114b739ffae797400b0279ef321f585c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ft__echo_8c_a114b739ffae797400b0279ef321f585c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{ft__echo_8c_ad5b5c9740b9412fe4bc2a8fd0abb659a}\label{ft__echo_8c_ad5b5c9740b9412fe4bc2a8fd0abb659a}} 
+\index{ft\_echo.c@{ft\_echo.c}!print\_no\_newline@{print\_no\_newline}}
+\index{print\_no\_newline@{print\_no\_newline}!ft\_echo.c@{ft\_echo.c}}
+\doxysubsubsection{\texorpdfstring{print\_no\_newline()}{print\_no\_newline()}}
+{\footnotesize\ttfamily void print\+\_\+no\+\_\+newline (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__child__data}{t\+\_\+child\+\_\+data}} $\ast$}]{data,  }\item[{int}]{fd,  }\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+Prints the echo command without a newline. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The struct containing shell data. \\
+\hline
+{\em fd} & The file descriptor. \\
+\hline
+{\em i} & The index of the command inputs. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ft__echo_8c_ad5b5c9740b9412fe4bc2a8fd0abb659a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ft__echo_8c_ad5b5c9740b9412fe4bc2a8fd0abb659a_icgraph}
+\end{center}
+\end{figure}
