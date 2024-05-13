@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_helpers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 09:33:40 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 17:47:08 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:25:12 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	initial_env_creation(char **env, t_shelldata *data)
 {
 	int	error;
 
-
+	printf("initial_env_creation\n");
 	int i = 0;
 	while (env[i])
 	{
@@ -111,6 +111,7 @@ int	initial_env_creation(char **env, t_shelldata *data)
 		i++;
 	}
 	error = duplicate_env(env, data);
+	printf("initial_env_creation 2\n");
 	if (error != SUCCESS)
 		return (FAILURE);
 	error = update_shell_level(data);
