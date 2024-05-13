@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:43:48 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/10 15:17:39 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:27:08 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,21 @@ void	sigint_handler(int sig)
 	rl_redisplay();
 }
 
-void	child_sigint_handler(int sig)
+/*void	child_sigint_handler(int sig)
 {
 	(void)sig;
 	write(1, "\n", 1);
-}
+}*/
 
-void	parent_sigint(int sig)
+void	parent_sigquit(int sig)
 {
-	if (sig == SIGINT)
+	if (sig == SIGQUIT)
 	{
-		write(1, "\n", 1);
-		exit(1);
+		//write(1, "Quit: 3", 8);
+		ft_putstr_fd("Quit: 3", STDOUT_FILENO);
+		//exit(0);
 	}
+	ft_putstr_fd("\n", STDOUT_FILENO);
 }
 
 void	heredoc_handler(int sig)

@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/12 15:21:01 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:11:47 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,8 +171,8 @@ typedef struct s_shelldata
 	t_child_data	*child_data;
 	int				command_amount;
 	char			**env_variables;
-	char			*pwd; // subject for change
-	char			*old_pwd; // subject for change
+	char			*pwd;
+	char			*old_pwd;
 	char			*input;
 	int				exit_value;
 }		t_shelldata;
@@ -252,6 +252,7 @@ void		caret_switch(int on);
 void		signals_off(void);
 void		child_signals(void);
 void		child_sigint_handler(int sig);
+void		parent_sigquit(int sig);
 
 //built_in functions
 int			ft_cd(t_shelldata *data, char **inputs);

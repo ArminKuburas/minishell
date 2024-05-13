@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_helpers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 09:33:40 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/09 10:36:03 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:11:13 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

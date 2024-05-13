@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:07:25 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/09 11:12:12 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:25:42 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 void	child_signals(void)
 {
 	caret_switch(1);
-	signal(SIGINT, child_sigint_handler);
-	signal(SIGQUIT, SIG_IGN);
+	//signal(SIGINT, child_sigint_handler);
+	//signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, parent_sigquit);
+	signal(SIGQUIT, parent_sigquit);
 }
 
 void	heredoc_signals(void)
@@ -28,6 +30,7 @@ void	heredoc_signals(void)
 void	standby_signals(void)
 {
 	caret_switch(1);
+	//signal(SIGQUIT, parent_sigquit);
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, SIG_IGN);
 }

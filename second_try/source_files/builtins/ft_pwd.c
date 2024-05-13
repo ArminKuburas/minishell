@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:08:59 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/10 12:39:08 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:19:00 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ void	update_env_pwd(t_shelldata *data)
 			free(temp->env_var_value);
 			temp->env_var_value = ft_strdup(data->pwd);
 			if (!temp->env_var_value)
-				ft_putendl_fd("Fail in strdup, inside pwd", 2); // replace with proper error handling
+				ft_putendl_fd("Fail in strdup, inside pwd", 2);
 		}
 		if (ft_strcmp(temp->env_var_name, "OLDPWD") == 0)
 		{
 			free(temp->env_var_value);
 			temp->env_var_value = ft_strdup(data->old_pwd);
 			if (!temp->env_var_value)
-				ft_putendl_fd("Fail in strdup, inside pwd", 2); // replace with proper error handling
+				ft_putendl_fd("Fail in strdup, inside pwd", 2);
 		}
 		temp = temp->next;
 	}
@@ -67,7 +67,7 @@ int	refresh_pwd(t_shelldata *data)
 		data->old_pwd = ft_strdup(data->pwd);
 		if (!data->old_pwd)
 		{
-			ft_putendl_fd("Fail in strdup, inside pwd", 2); // replace with proper error handling
+			ft_putendl_fd("Fail in strdup, inside pwd", 2);
 			return (FAILURE);
 		}
 	}
@@ -76,7 +76,7 @@ int	refresh_pwd(t_shelldata *data)
 	data->pwd = getcwd(NULL, 0);
 	if (!data->pwd)
 	{
-		ft_putendl_fd("Fail in getcwd, inside pwd", 2); // replace with proper error handling
+		ft_putendl_fd("Fail in getcwd, inside pwd", 2);
 		return (FAILURE);
 	}
 	update_env_pwd(data);
