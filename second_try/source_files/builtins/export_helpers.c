@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:34:10 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/12 15:46:03 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/13 12:30:54 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,15 @@ int	replace_env_var(t_shelldata *data, char *input, int i, int flag)
 	return (SUCCESS);
 }
 
-static int	add_new_env_var_2(t_shelldata *data, t_env_list *new_env)
+static int	add_new_env_var_2(t_shelldata *data, t_env_list *new_env, int flag)
 {
 	t_env_list	*temp_env;
 
+	if (flag == 1)
+	{
+		new_env->env_var = ft_strdup(new_env->env_var_name);
+		new_env->env_var_value = NULL;
+	}
 	new_env->next = NULL;
 	temp_env = data->env_list;
 	while (temp_env->next)
@@ -110,9 +115,6 @@ int	add_new_env_var(t_shelldata *data, char *input, int i, int flag)
 			return (NO_MEMORY);
 	}
 	else
-	{
-		new_env->env_var = ft_strdup(new_env->env_var_name);
-		new_env->env_var_value = NULL;
-	}
-	return (add_new_env_var_2(data, new_env));
+		return (add_new_env_var_2(data, new_env, 1));
+	return (add_new_env_var_2(data, new_env, 0));
 }

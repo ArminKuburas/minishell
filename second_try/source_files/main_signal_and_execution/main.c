@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/09 13:22:56 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 13:43:05 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,6 @@
 #include <readline/history.h>
 #include <readline/readline.h>
 #include <termios.h>
-
-/*when in heredoc and CTR+C the ^C will not display
-when in bash and you have inputted cat for example,
-then you CTRL+C the ^C will display
-without prompt.
-When terminal is opened for the first time and you do CTRL+C in bash, 
-the ^C is shown for once,
-need to figure out why.
-CTRL + \ = SIGQUIT*/
 
 int	check_argc_argv(int argc, char **argv)
 {
