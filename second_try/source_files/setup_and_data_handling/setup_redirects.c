@@ -6,11 +6,24 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:08:59 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/10 11:34:41 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 07:06:31 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
+
+/**
+ * @file setup_redirects.c
+ * @brief Functions for setting up redirections.
+ */
+
+/**
+ * @brief Redirects input from a file.
+ * @param data The data to be used.
+ * @param i The index of the child data.
+ * @param input The input to be used.
+ * @return void
+ */
 
 /*  this function attempts to redirect input from a file
 It first confirms if it can access and open the given input_file.
@@ -44,6 +57,14 @@ static void	redirect_input(t_shelldata *data, int i, t_input_list *input)
 	}
 }
 
+/**
+ * @brief Redirects output to a file.
+ * @param data The data to be used.
+ * @param i The index of the child data.
+ * @param input The input to be used.
+ * @return void
+ */
+
 static void	redirect_output(t_shelldata *data, int i, t_input_list *input)
 {
 	if (data->child_data[i].exit_value != 0)
@@ -74,6 +95,14 @@ static void	redirect_output(t_shelldata *data, int i, t_input_list *input)
 	}
 }
 
+/**
+ * @brief Redirects append to a file.
+ * @param data The data to be used.
+ * @param i The index of the child data.
+ * @param input The input to be used.
+ * @return void
+ */
+
 static void	redirect_append(t_shelldata *data, int i, t_input_list *input)
 {
 	if (data->child_data[i].exit_value != 0)
@@ -102,6 +131,13 @@ static void	redirect_append(t_shelldata *data, int i, t_input_list *input)
 		data->child_data[i].exit_value = 1;
 	}
 }
+
+/**
+ * @brief Sets up redirections.
+ * @param data The data to be used.
+ * @param index The index of the child data.
+ * @return void
+ */
 
 void	setup_redirects(t_shelldata *data, int index)
 {

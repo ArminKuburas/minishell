@@ -1,0 +1,113 @@
+\hypertarget{setup__helpers_8c}{}\doxysection{source\+\_\+files/setup\+\_\+and\+\_\+data\+\_\+handling/setup\+\_\+helpers.c File Reference}
+\label{setup__helpers_8c}\index{source\_files/setup\_and\_data\_handling/setup\_helpers.c@{source\_files/setup\_and\_data\_handling/setup\_helpers.c}}
+
+
+Helper functions for the setup.  
+
+
+{\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
+Include dependency graph for setup\+\_\+helpers.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{setup__helpers_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{setup__helpers_8c_af7aacd965663866bf4ff1cf6c8c5325b}{free\+\_\+child\+\_\+data}} (t\+\_\+child\+\_\+data $\ast$data)
+\begin{DoxyCompactList}\small\item\em Frees child data and closes fds. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{setup__helpers_8c_a2db78c3a6b9695cd90dd95c15e9458a4}{command\+\_\+error\+\_\+message}} (int error, t\+\_\+shelldata $\ast$data, int amount)
+\begin{DoxyCompactList}\small\item\em Prints error message for command. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{setup__helpers_8c_a5d277a730d7478da03e75a54afa96a69}{create\+\_\+command\+\_\+arguments}} (t\+\_\+child\+\_\+data $\ast$child, t\+\_\+input\+\_\+list $\ast$start)
+\begin{DoxyCompactList}\small\item\em Creates the command arguments. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Helper functions for the setup. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{setup__helpers_8c_a2db78c3a6b9695cd90dd95c15e9458a4}\label{setup__helpers_8c_a2db78c3a6b9695cd90dd95c15e9458a4}} 
+\index{setup\_helpers.c@{setup\_helpers.c}!command\_error\_message@{command\_error\_message}}
+\index{command\_error\_message@{command\_error\_message}!setup\_helpers.c@{setup\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{command\_error\_message()}{command\_error\_message()}}
+{\footnotesize\ttfamily void command\+\_\+error\+\_\+message (\begin{DoxyParamCaption}\item[{int}]{error,  }\item[{t\+\_\+shelldata $\ast$}]{data,  }\item[{int}]{amount }\end{DoxyParamCaption})}
+
+
+
+Prints error message for command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & The error code. \\
+\hline
+{\em data} & The data to be used. \\
+\hline
+{\em amount} & The amount of processes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{setup__helpers_8c_a2db78c3a6b9695cd90dd95c15e9458a4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{setup__helpers_8c_a5d277a730d7478da03e75a54afa96a69}\label{setup__helpers_8c_a5d277a730d7478da03e75a54afa96a69}} 
+\index{setup\_helpers.c@{setup\_helpers.c}!create\_command\_arguments@{create\_command\_arguments}}
+\index{create\_command\_arguments@{create\_command\_arguments}!setup\_helpers.c@{setup\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{create\_command\_arguments()}{create\_command\_arguments()}}
+{\footnotesize\ttfamily int create\+\_\+command\+\_\+arguments (\begin{DoxyParamCaption}\item[{t\+\_\+child\+\_\+data $\ast$}]{child,  }\item[{t\+\_\+input\+\_\+list $\ast$}]{start }\end{DoxyParamCaption})}
+
+
+
+Creates the command arguments. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em child} & The child data to be used. \\
+\hline
+{\em start} & The start of the input list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns SUCCESS if everything went well, otherwise FAILURE. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{setup__helpers_8c_a5d277a730d7478da03e75a54afa96a69_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{setup__helpers_8c_af7aacd965663866bf4ff1cf6c8c5325b}\label{setup__helpers_8c_af7aacd965663866bf4ff1cf6c8c5325b}} 
+\index{setup\_helpers.c@{setup\_helpers.c}!free\_child\_data@{free\_child\_data}}
+\index{free\_child\_data@{free\_child\_data}!setup\_helpers.c@{setup\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{free\_child\_data()}{free\_child\_data()}}
+{\footnotesize\ttfamily void free\+\_\+child\+\_\+data (\begin{DoxyParamCaption}\item[{t\+\_\+child\+\_\+data $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Frees child data and closes fds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The child data to be freed and closed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{setup__helpers_8c_af7aacd965663866bf4ff1cf6c8c5325b_icgraph}
+\end{center}
+\end{figure}

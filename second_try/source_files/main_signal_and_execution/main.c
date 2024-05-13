@@ -6,19 +6,16 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 06:13:31 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 06:48:19 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
-#include <readline/history.h>
-#include <readline/readline.h>
-#include <termios.h>
 
 /**
  * @file main.c
  * @brief Main file for the minishell program.
- * @details This file contains the main function and the main loop for the minishell program.
+ * @details This file contains the main function and the main loop.
 */
 
 

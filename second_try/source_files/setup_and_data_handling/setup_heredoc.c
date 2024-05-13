@@ -6,11 +6,23 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:04:01 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/11 22:11:53 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 06:58:54 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
+
+/**
+ * @file setup_heredoc.c
+ * @brief Functions for setting up heredoc.
+*/
+
+/**
+ * @brief Modifies the input line.
+ * @param input_line The input line to be modified.
+ * @param env_list The environment list.
+ * @return Returns the modified input line.
+*/
 
 void	modification_loop(char *break_line, t_shelldata *data, int fd)
 {
@@ -39,6 +51,12 @@ void	modification_loop(char *break_line, t_shelldata *data, int fd)
 	}
 }
 
+/**
+ * @brief Cleans the input line.
+ * @param input The input line to be cleaned.
+ * @return Returns the cleaned input line.
+*/
+
 char	*heredoc_cleaner(char *input)
 {
 	char	*cleaned_input;
@@ -66,6 +84,13 @@ char	*heredoc_cleaner(char *input)
 	return (cleaned_input);
 }
 
+/**
+ * @brief Handles the unmodified input line.
+ * @param break_line The break line.
+ * @param fd The file descriptor.
+ * @return void
+*/
+
 void	unmodified_loop(char *break_line, int fd)
 {
 	char	*input_line;
@@ -84,6 +109,14 @@ void	unmodified_loop(char *break_line, int fd)
 		free(input_line);
 	}
 }
+
+/**
+ * @brief Writes the input line.
+ * @param fd The file descriptor.
+ * @param input The input line.
+ * @param data The data to be used.
+ * @return void
+*/
 
 static void	write_loop(int fd, t_input_list *input, t_shelldata *data)
 {
@@ -107,6 +140,14 @@ static void	write_loop(int fd, t_input_list *input, t_shelldata *data)
 	else
 		unmodified_loop(break_line, fd);
 }
+
+/**
+ * @brief Handles the heredoc.
+ * @param data The data to be used.
+ * @param i The index of the child data.
+ * @param input The input list.
+ * @return void
+*/
 
 void	handle_heredoc(t_shelldata *data, int i, t_input_list *input)
 {

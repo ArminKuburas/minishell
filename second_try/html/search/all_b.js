@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['wait_5ffor_5fchildren_43',['wait_for_children',['../child__execute__help__functions_8c.html#aa06d57039fe209477bdf706194cf172d',1,'child_execute_help_functions.c']]]
+  ['repoint_5fshell_5fenv_73',['repoint_shell_env',['../env__helper__functions_8c.html#af0e98563ac16a4c6e5495cc9bcc8b2c1',1,'env_helper_functions.c']]]
 ];

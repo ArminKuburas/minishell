@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['main_2ec_48',['main.c',['../main_8c.html',1,'']]],
-  ['main_5fhelpers_2ec_49',['main_helpers.c',['../main__helpers_8c.html',1,'']]]
+  ['heredoc_5fmodify_5finput_2ec_114',['heredoc_modify_input.c',['../heredoc__modify__input_8c.html',1,'']]]
 ];

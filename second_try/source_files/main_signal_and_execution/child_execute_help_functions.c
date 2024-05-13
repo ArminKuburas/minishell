@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:10:45 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 06:27:22 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 07:22:11 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	wait_for_children(t_shelldata *data)
 			ft_putendl_fd("", STDOUT_FILENO);
 			already_printed = YES;
 		}
+		free_child_data(&data->child_data[i]);
 		data->exit_value = data->child_data[i].exit_value;
 		i++;
 	}

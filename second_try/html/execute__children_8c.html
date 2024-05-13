@@ -199,12 +199,15 @@ Here is the call graph for this function:</div>
 <area shape="rect" title="Handles the child process." alt="" coords="5,157,115,184"/>
 <area shape="rect" href="child__execute__help__functions_8c.html#aafa71df2ea8e559b3dd6cbd3fbf08f99" title="Checks if the child has pipes and sets them up." alt="" coords="178,5,318,32"/>
 <area shape="rect" href="execute__children_8c.html#ab5e9ef3eab61cb760018178b59ff2f57" title="Checks the file descriptors for the child process." alt="" coords="205,56,291,83"/>
-<area shape="rect" href="child__cleaning__functions_8c.html#a088f7020dd0519cc3e3a8b51bb0087c7" title="frees everything" alt="" coords="169,107,327,133"/>
-<area shape="rect" href="child__cleaning__functions_8c.html#a2e89a48c8c825ee3c9bd3d48ba240989" title="frees command and command inputs and closes other file descriptors." alt="" coords="169,157,327,184"/>
-<area shape="rect" href="execute__children_8c.html#a7d6c88043863ebd553a3c91760233fb8" title="Closes the file descriptors for the child process." alt="" coords="193,208,303,235"/>
-<area shape="rect" href="child__cleaning__functions_8c.html#a593c59c46858b8054a1eebb2239633d4" title="frees whatever remains if execve fails" alt="" coords="163,259,333,285"/>
+<area shape="rect" href="child__cleaning__functions_8c.html#a088f7020dd0519cc3e3a8b51bb0087c7" title="frees everything" alt="" coords="169,157,327,184"/>
+<area shape="rect" href="child__cleaning__functions_8c.html#a2e89a48c8c825ee3c9bd3d48ba240989" title="frees command and command inputs and closes other file descriptors." alt="" coords="169,208,327,235"/>
+<area shape="rect" href="execute__children_8c.html#a7d6c88043863ebd553a3c91760233fb8" title="Closes the file descriptors for the child process." alt="" coords="193,259,303,285"/>
+<area shape="rect" href="child__cleaning__functions_8c.html#a593c59c46858b8054a1eebb2239633d4" title="frees whatever remains if execve fails" alt="" coords="163,107,333,133"/>
 <area shape="rect" href="child__execute__help__functions_8c.html#a7dbe5500b6a7cc836eade1fd154207cf" title="Checks if the command is a builtin command and executes it." alt="" coords="201,309,295,336"/>
-<area shape="rect" href="execute__children_8c.html#ad178e7b9c4b020b05316f181c4ce4fdb" title="Closes the file descriptors for the other child processes." alt="" coords="381,157,505,184"/>
+<area shape="rect" href="create__env__list_8c.html#a3cf4d0ebc83800c09acbc0e365f1ad4d" title="Clears the environment list." alt="" coords="387,81,499,108"/>
+<area shape="rect" href="input__list__functions_8c.html#a6c36cedfe14b7b99ad25fbc86357d833" title="Clears the input list." alt="" coords="396,132,491,159"/>
+<area shape="rect" href="setup__helpers_8c.html#af7aacd965663866bf4ff1cf6c8c5325b" title="Frees child data and closes fds." alt="" coords="382,183,505,209"/>
+<area shape="rect" href="execute__children_8c.html#ad178e7b9c4b020b05316f181c4ce4fdb" title="Closes the file descriptors for the other child processes." alt="" coords="381,233,505,260"/>
 </map>
 </div>
 <div class="dynheader">
@@ -373,17 +376,20 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="execute__children_8c_ae06cf4295b9422cb92e2ae497fcbc646_cgraph.png" border="0" usemap="#aexecute__children_8c_ae06cf4295b9422cb92e2ae497fcbc646_cgraph" alt=""/></div>
 <map name="aexecute__children_8c_ae06cf4295b9422cb92e2ae497fcbc646_cgraph" id="aexecute__children_8c_ae06cf4295b9422cb92e2ae497fcbc646_cgraph">
-<area shape="rect" title="Executes the child process." alt="" coords="5,183,116,209"/>
-<area shape="rect" href="execute__children_8c.html#ab9cd040807a08f0b0d8d1d8cbd5eb518" title="Handles the child process." alt="" coords="164,157,273,184"/>
-<area shape="rect" href="child__handling_8c.html#a1cce97ce31deb0eec684a1dcd172a0d2" title="Handles the case where fork fails." alt="" coords="173,208,265,235"/>
-<area shape="rect" href="child__execute__help__functions_8c.html#aafa71df2ea8e559b3dd6cbd3fbf08f99" title="Checks if the child has pipes and sets them up." alt="" coords="337,5,477,32"/>
-<area shape="rect" href="execute__children_8c.html#ab5e9ef3eab61cb760018178b59ff2f57" title="Checks the file descriptors for the child process." alt="" coords="363,56,450,83"/>
-<area shape="rect" href="child__cleaning__functions_8c.html#a088f7020dd0519cc3e3a8b51bb0087c7" title="frees everything" alt="" coords="328,107,485,133"/>
-<area shape="rect" href="child__cleaning__functions_8c.html#a2e89a48c8c825ee3c9bd3d48ba240989" title="frees command and command inputs and closes other file descriptors." alt="" coords="328,157,485,184"/>
-<area shape="rect" href="execute__children_8c.html#a7d6c88043863ebd553a3c91760233fb8" title="Closes the file descriptors for the child process." alt="" coords="351,208,462,235"/>
+<area shape="rect" title="Executes the child process." alt="" coords="5,259,116,285"/>
+<area shape="rect" href="execute__children_8c.html#ab9cd040807a08f0b0d8d1d8cbd5eb518" title="Handles the child process." alt="" coords="164,183,273,209"/>
+<area shape="rect" href="child__handling_8c.html#a1cce97ce31deb0eec684a1dcd172a0d2" title="Handles the case where fork fails." alt="" coords="361,360,453,387"/>
+<area shape="rect" href="child__execute__help__functions_8c.html#aafa71df2ea8e559b3dd6cbd3fbf08f99" title="Checks if the child has pipes and sets them up." alt="" coords="337,157,477,184"/>
+<area shape="rect" href="execute__children_8c.html#ab5e9ef3eab61cb760018178b59ff2f57" title="Checks the file descriptors for the child process." alt="" coords="363,208,450,235"/>
+<area shape="rect" href="child__cleaning__functions_8c.html#a088f7020dd0519cc3e3a8b51bb0087c7" title="frees everything" alt="" coords="328,309,485,336"/>
+<area shape="rect" href="child__cleaning__functions_8c.html#a2e89a48c8c825ee3c9bd3d48ba240989" title="frees command and command inputs and closes other file descriptors." alt="" coords="328,56,485,83"/>
+<area shape="rect" href="execute__children_8c.html#a7d6c88043863ebd553a3c91760233fb8" title="Closes the file descriptors for the child process." alt="" coords="351,5,462,32"/>
 <area shape="rect" href="child__cleaning__functions_8c.html#a593c59c46858b8054a1eebb2239633d4" title="frees whatever remains if execve fails" alt="" coords="321,259,492,285"/>
-<area shape="rect" href="child__execute__help__functions_8c.html#a7dbe5500b6a7cc836eade1fd154207cf" title="Checks if the command is a builtin command and executes it." alt="" coords="360,309,453,336"/>
-<area shape="rect" href="execute__children_8c.html#ad178e7b9c4b020b05316f181c4ce4fdb" title="Closes the file descriptors for the other child processes." alt="" coords="540,157,664,184"/>
+<area shape="rect" href="child__execute__help__functions_8c.html#a7dbe5500b6a7cc836eade1fd154207cf" title="Checks if the command is a builtin command and executes it." alt="" coords="360,107,453,133"/>
+<area shape="rect" href="create__env__list_8c.html#a3cf4d0ebc83800c09acbc0e365f1ad4d" title="Clears the environment list." alt="" coords="546,259,658,285"/>
+<area shape="rect" href="input__list__functions_8c.html#a6c36cedfe14b7b99ad25fbc86357d833" title="Clears the input list." alt="" coords="555,309,649,336"/>
+<area shape="rect" href="setup__helpers_8c.html#af7aacd965663866bf4ff1cf6c8c5325b" title="Frees child data and closes fds." alt="" coords="541,360,663,387"/>
+<area shape="rect" href="execute__children_8c.html#ad178e7b9c4b020b05316f181c4ce4fdb" title="Closes the file descriptors for the other child processes." alt="" coords="540,56,664,83"/>
 </map>
 </div>
 <div class="dynheader">

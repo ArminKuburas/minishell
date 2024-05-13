@@ -6,11 +6,23 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 05:59:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/06 14:19:49 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 07:07:09 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
+
+/**
+ * @file type_assigner.c
+ * @brief Functions for assigning types to the input list.
+*/
+
+/**
+ * @brief Assigns the type of the input list.
+ * @param temp The input list to be used.
+ * @param command_flag The flag for the command.
+ * @return void
+*/
 
 static void	assign_command_or_pipe(t_input_list *temp, int *command_flag)
 {
@@ -34,6 +46,12 @@ static void	assign_command_or_pipe(t_input_list *temp, int *command_flag)
 	}
 }
 
+/**
+ * @brief Checks if the input is a potential split.
+ * @param temp The input list to be used.
+ * @return void
+*/
+
 void	potential_split(t_input_list *temp)
 {
 	int	i;
@@ -51,6 +69,12 @@ void	potential_split(t_input_list *temp)
 	}
 }
 
+/**
+ * @brief Assigns the type of the input list.
+ * @param input_list The input list to be used.
+ * @return void
+*/
+
 void	try_append_or_heredoc(t_input_list *temp)
 {
 	if (ft_strcmp(temp->input, ">>") == 0)
@@ -66,6 +90,12 @@ void	try_append_or_heredoc(t_input_list *temp)
 		potential_split(temp);
 	}
 }
+
+/**
+ * @brief Assigns the type of the input list.
+ * @param input_list The input list to be used.
+ * @return void
+*/
 
 void	input_type_assigner(t_input_list *input_list)
 {

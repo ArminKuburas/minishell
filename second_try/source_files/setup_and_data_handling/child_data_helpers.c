@@ -6,11 +6,23 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 10:47:30 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/08 10:58:39 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 06:36:50 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
+
+/**
+ * @file child_data_helpers.c
+ * @brief Functions for handling child data.
+*/
+
+/**
+ * @brief child failed. Frees all child data and exits.
+ * @param child_data The child data to be used.
+ * @param error The error code.
+ * @return void
+*/
 
 void	child_failed(t_shelldata *data, int error)
 {

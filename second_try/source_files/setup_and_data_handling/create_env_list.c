@@ -6,12 +6,23 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 21:29:51 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/09 13:23:29 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 06:38:08 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
+/**
+ * @file create_env_list.c
+ * @brief Functions for creating and handling the environment list.
+*/
+
+
+/**
+ * @brief Creates a 2D array of the environment variables.
+ * @param data The data to be used.
+ * @return Returns SUCCESS if everything went well, otherwise NO_MEMORY.
+*/
 int	create_2d_env(t_shelldata *data)
 {
 	int			i;
@@ -41,6 +52,12 @@ int	create_2d_env(t_shelldata *data)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Clears the environment list.
+ * @param env_list The environment list to be cleared.
+ * @param error The error code.
+ * @return Returns the error code.
+*/
 int	clear_env_list(t_env_list *env_list, int error)
 {
 	t_env_list	*temp;
@@ -66,6 +83,11 @@ int	clear_env_list(t_env_list *env_list, int error)
 	return (error);
 }
 
+/**
+ * @brief Simplifies the environment data.
+ * @param env_list The environment list to be simplified.
+ * @return Returns SUCCESS if everything went well, otherwise NO_MEMORY.
+*/
 int	simplify_env_data(t_env_list *env_list)
 {
 	int	i;
@@ -83,6 +105,13 @@ int	simplify_env_data(t_env_list *env_list)
 	return (SUCCESS);
 }
 
+
+/**
+ * @brief Creates a new environment variable.
+ * @param env The environment variable to be created.
+ * @param env_list The environment list to be used.
+ * @return Returns SUCCESS if everything went well, otherwise NO_MEMORY.
+*/
 int	create_env(char *env, t_env_list *env_list)
 {
 	t_env_list	*new;
@@ -109,6 +138,13 @@ int	create_env(char *env, t_env_list *env_list)
 	}
 	return (SUCCESS);
 }
+
+/**
+ * @brief Duplicates the environment variables.
+ * @param env The environment variables to be duplicated.
+ * @param data The data to be used.
+ * @return Returns SUCCESS if everything went well, otherwise NO_MEMORY.
+*/
 
 int	duplicate_env(char **env, t_shelldata *data)
 {

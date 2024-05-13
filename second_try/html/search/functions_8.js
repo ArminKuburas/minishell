@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['parent_5fsigint_81',['parent_sigint',['../signal_8c.html#ab79d7c6340e0046d7d1904bdc7919a56',1,'signal.c']]]
+  ['new_5fenv_5fnode_187',['new_env_node',['../main__helpers_8c.html#acdbc95e4dcb528608ecd924136e90cef',1,'main_helpers.c']]]
 ];
