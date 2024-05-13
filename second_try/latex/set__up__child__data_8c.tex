@@ -6,23 +6,24 @@ Functions for setting up child data.
 
 
 {\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
-Include dependency graph for set\+\_\+up\+\_\+child\+\_\+data.\+c\+:\nopagebreak
+Include dependency graph for set\+\_\+up\+\_\+child\+\_\+data.\+c\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=212pt]{set__up__child__data_8c__incl}
+\includegraphics[width=350pt]{set__up__child__data_8c__incl}
 \end{center}
 \end{figure}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{set__up__child__data_8c_a8ec81fb68337d8c3e1fada447ace17ee}{count\+\_\+processes}} (t\+\_\+input\+\_\+list $\ast$start)
+int \mbox{\hyperlink{set__up__child__data_8c_a8ec81fb68337d8c3e1fada447ace17ee}{count\+\_\+processes}} (\mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$start)
 \begin{DoxyCompactList}\small\item\em Counts the amount of processes in the input list. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{set__up__child__data_8c_ae70b71771a87bcb56a41de4956340aeb}{setup\+\_\+command\+\_\+inputs}} (t\+\_\+shelldata $\ast$data, int i)
+void \mbox{\hyperlink{set__up__child__data_8c_ae70b71771a87bcb56a41de4956340aeb}{setup\+\_\+command\+\_\+inputs}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, int i)
 \begin{DoxyCompactList}\small\item\em Sets up the command inputs. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{set__up__child__data_8c_aa1e0d1647c23fb96bd83ddb4cae0a622}{create\+\_\+child\+\_\+data}} (t\+\_\+shelldata $\ast$data, int amount)
+int \mbox{\hyperlink{set__up__child__data_8c_aa1e0d1647c23fb96bd83ddb4cae0a622}{create\+\_\+child\+\_\+data}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, int amount)
 \begin{DoxyCompactList}\small\item\em creates the child data \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{set__up__child__data_8c_a4e3c58f93ab937de52ac407c4fc32d4d}{set\+\_\+up\+\_\+child\+\_\+data}} (t\+\_\+shelldata $\ast$data)
+int \mbox{\hyperlink{set__up__child__data_8c_a4e3c58f93ab937de52ac407c4fc32d4d}{set\+\_\+up\+\_\+child\+\_\+data}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
 \begin{DoxyCompactList}\small\item\em Sets up the child data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -36,7 +37,7 @@ Functions for setting up child data.
 \index{set\_up\_child\_data.c@{set\_up\_child\_data.c}!count\_processes@{count\_processes}}
 \index{count\_processes@{count\_processes}!set\_up\_child\_data.c@{set\_up\_child\_data.c}}
 \doxysubsubsection{\texorpdfstring{count\_processes()}{count\_processes()}}
-{\footnotesize\ttfamily int count\+\_\+processes (\begin{DoxyParamCaption}\item[{t\+\_\+input\+\_\+list $\ast$}]{start }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int count\+\_\+processes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$}]{start }\end{DoxyParamCaption})}
 
 
 
@@ -61,7 +62,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{set\_up\_child\_data.c@{set\_up\_child\_data.c}!create\_child\_data@{create\_child\_data}}
 \index{create\_child\_data@{create\_child\_data}!set\_up\_child\_data.c@{set\_up\_child\_data.c}}
 \doxysubsubsection{\texorpdfstring{create\_child\_data()}{create\_child\_data()}}
-{\footnotesize\ttfamily int create\+\_\+child\+\_\+data (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data,  }\item[{int}]{amount }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int create\+\_\+child\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{int}]{amount }\end{DoxyParamCaption})}
 
 
 
@@ -77,7 +78,8 @@ creates the child data
 \begin{DoxyReturn}{Returns}
 Returns SUCCESS if everything went well, otherwise FAILURE. 
 \end{DoxyReturn}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -95,7 +97,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{set\_up\_child\_data.c@{set\_up\_child\_data.c}!set\_up\_child\_data@{set\_up\_child\_data}}
 \index{set\_up\_child\_data@{set\_up\_child\_data}!set\_up\_child\_data.c@{set\_up\_child\_data.c}}
 \doxysubsubsection{\texorpdfstring{set\_up\_child\_data()}{set\_up\_child\_data()}}
-{\footnotesize\ttfamily int set\+\_\+up\+\_\+child\+\_\+data (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int set\+\_\+up\+\_\+child\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data }\end{DoxyParamCaption})}
 
 
 
@@ -109,7 +111,8 @@ Sets up the child data.
 \begin{DoxyReturn}{Returns}
 Returns SUCCESS if everything went well, otherwise FAILURE. 
 \end{DoxyReturn}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -127,7 +130,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{set\_up\_child\_data.c@{set\_up\_child\_data.c}!setup\_command\_inputs@{setup\_command\_inputs}}
 \index{setup\_command\_inputs@{setup\_command\_inputs}!set\_up\_child\_data.c@{set\_up\_child\_data.c}}
 \doxysubsubsection{\texorpdfstring{setup\_command\_inputs()}{setup\_command\_inputs()}}
-{\footnotesize\ttfamily void setup\+\_\+command\+\_\+inputs (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data,  }\item[{int}]{i }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void setup\+\_\+command\+\_\+inputs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{int}]{i }\end{DoxyParamCaption})}
 
 
 
@@ -143,7 +146,8 @@ Sets up the command inputs.
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

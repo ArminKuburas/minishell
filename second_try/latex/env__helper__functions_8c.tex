@@ -6,11 +6,12 @@ Helper functions for handling environment variables.
 
 
 {\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
-Include dependency graph for env\+\_\+helper\+\_\+functions.\+c\+:\nopagebreak
+Include dependency graph for env\+\_\+helper\+\_\+functions.\+c\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=215pt]{env__helper__functions_8c__incl}
+\includegraphics[width=350pt]{env__helper__functions_8c__incl}
 \end{center}
 \end{figure}
 \doxysubsection*{Functions}
@@ -18,11 +19,11 @@ Include dependency graph for env\+\_\+helper\+\_\+functions.\+c\+:\nopagebreak
 \item 
 int \mbox{\hyperlink{env__helper__functions_8c_a3552eab25a95971f1a4cb445b454e507}{check\+\_\+shell\+\_\+level\+\_\+value}} (char $\ast$env\+\_\+var\+\_\+value)
 \begin{DoxyCompactList}\small\item\em Checks if the shell level value is valid. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{env__helper__functions_8c_a6644854f08aa8bfb4a1e05e6b958ad0a}{set\+\_\+new\+\_\+node\+\_\+data}} (t\+\_\+env\+\_\+list $\ast$node, char $\ast$new\+\_\+value)
+int \mbox{\hyperlink{env__helper__functions_8c_a6644854f08aa8bfb4a1e05e6b958ad0a}{set\+\_\+new\+\_\+node\+\_\+data}} (\mbox{\hyperlink{structs__env__list}{t\+\_\+env\+\_\+list}} $\ast$node, char $\ast$new\+\_\+value)
 \begin{DoxyCompactList}\small\item\em Sets the new data for the node. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{env__helper__functions_8c_af0e98563ac16a4c6e5495cc9bcc8b2c1}{repoint\+\_\+shell\+\_\+env}} (t\+\_\+shelldata $\ast$data)
+void \mbox{\hyperlink{env__helper__functions_8c_af0e98563ac16a4c6e5495cc9bcc8b2c1}{repoint\+\_\+shell\+\_\+env}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
 \begin{DoxyCompactList}\small\item\em Repoints the shell environment variables. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{env__helper__functions_8c_a851650212a3a4e6170246595b3dd5a7c}{update\+\_\+shell\+\_\+level}} (t\+\_\+shelldata $\ast$data)
+int \mbox{\hyperlink{env__helper__functions_8c_a851650212a3a4e6170246595b3dd5a7c}{update\+\_\+shell\+\_\+level}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
 \begin{DoxyCompactList}\small\item\em Updates the shell level. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -61,7 +62,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{env\_helper\_functions.c@{env\_helper\_functions.c}!repoint\_shell\_env@{repoint\_shell\_env}}
 \index{repoint\_shell\_env@{repoint\_shell\_env}!env\_helper\_functions.c@{env\_helper\_functions.c}}
 \doxysubsubsection{\texorpdfstring{repoint\_shell\_env()}{repoint\_shell\_env()}}
-{\footnotesize\ttfamily void repoint\+\_\+shell\+\_\+env (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void repoint\+\_\+shell\+\_\+env (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data }\end{DoxyParamCaption})}
 
 
 
@@ -86,7 +87,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{env\_helper\_functions.c@{env\_helper\_functions.c}!set\_new\_node\_data@{set\_new\_node\_data}}
 \index{set\_new\_node\_data@{set\_new\_node\_data}!env\_helper\_functions.c@{env\_helper\_functions.c}}
 \doxysubsubsection{\texorpdfstring{set\_new\_node\_data()}{set\_new\_node\_data()}}
-{\footnotesize\ttfamily int set\+\_\+new\+\_\+node\+\_\+data (\begin{DoxyParamCaption}\item[{t\+\_\+env\+\_\+list $\ast$}]{node,  }\item[{char $\ast$}]{new\+\_\+value }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int set\+\_\+new\+\_\+node\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__env__list}{t\+\_\+env\+\_\+list}} $\ast$}]{node,  }\item[{char $\ast$}]{new\+\_\+value }\end{DoxyParamCaption})}
 
 
 
@@ -99,6 +100,14 @@ Sets the new data for the node.
 {\em new\+\_\+value} & The new value for the node. \\
 \hline
 \end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{env__helper__functions_8c_a6644854f08aa8bfb4a1e05e6b958ad0a_cgraph}
+\end{center}
+\end{figure}
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -110,7 +119,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{env\_helper\_functions.c@{env\_helper\_functions.c}!update\_shell\_level@{update\_shell\_level}}
 \index{update\_shell\_level@{update\_shell\_level}!env\_helper\_functions.c@{env\_helper\_functions.c}}
 \doxysubsubsection{\texorpdfstring{update\_shell\_level()}{update\_shell\_level()}}
-{\footnotesize\ttfamily int update\+\_\+shell\+\_\+level (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int update\+\_\+shell\+\_\+level (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data }\end{DoxyParamCaption})}
 
 
 
@@ -124,7 +133,8 @@ Updates the shell level.
 \begin{DoxyReturn}{Returns}
 Returns SUCCESS if everything went well, otherwise FAILURE. 
 \end{DoxyReturn}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

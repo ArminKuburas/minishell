@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['wait_5ffor_5fchildren_211',['wait_for_children',['../child__execute__help__functions_8c.html#aa06d57039fe209477bdf706194cf172d',1,'child_execute_help_functions.c']]]
+  ['unmodified_5floop_348',['unmodified_loop',['../setup__heredoc_8c.html#af03f4c335ad69725c37318e4ab88f60d',1,'setup_heredoc.c']]],
+  ['update_5fshell_5flevel_349',['update_shell_level',['../env__helper__functions_8c.html#a851650212a3a4e6170246595b3dd5a7c',1,'env_helper_functions.c']]],
+  ['use_5fbuiltin_350',['use_builtin',['../child__execute__help__functions_8c.html#a7dbe5500b6a7cc836eade1fd154207cf',1,'child_execute_help_functions.c']]]
 ];

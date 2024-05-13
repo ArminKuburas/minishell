@@ -6,11 +6,12 @@ Main file for the minishell program.
 
 
 {\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
-Include dependency graph for main.\+c\+:\nopagebreak
+Include dependency graph for main.\+c\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=217pt]{main_8c__incl}
+\includegraphics[width=350pt]{main_8c__incl}
 \end{center}
 \end{figure}
 \doxysubsection*{Functions}
@@ -18,11 +19,11 @@ Include dependency graph for main.\+c\+:\nopagebreak
 \item 
 int \mbox{\hyperlink{main_8c_ae571382d485d4e036ac59472cac69d11}{check\+\_\+argc\+\_\+argv}} (int argc, char $\ast$$\ast$argv)
 \begin{DoxyCompactList}\small\item\em Quickly checks the argc and argv. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{main_8c_a29991ea7d778bdefcf80d4bf43df0fe2}{end\+\_\+of\+\_\+file\+\_\+reached}} (t\+\_\+shelldata $\ast$data)
+void \mbox{\hyperlink{main_8c_a29991ea7d778bdefcf80d4bf43df0fe2}{end\+\_\+of\+\_\+file\+\_\+reached}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
 \begin{DoxyCompactList}\small\item\em cleans up everything before reaching the end of file. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{main_8c_a66190e959e6b76c1b752f88bc37b5b7b}{set\+\_\+up\+\_\+data}} (t\+\_\+shelldata $\ast$data)
+int \mbox{\hyperlink{main_8c_a66190e959e6b76c1b752f88bc37b5b7b}{set\+\_\+up\+\_\+data}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
 \begin{DoxyCompactList}\small\item\em Sets up the data for the minishell. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{main_8c_aab600a6b2f1c4762d527e599326605d0}{main\+\_\+loop}} (t\+\_\+shelldata $\ast$data)
+void \mbox{\hyperlink{main_8c_aab600a6b2f1c4762d527e599326605d0}{main\+\_\+loop}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
 \begin{DoxyCompactList}\small\item\em The main loop for the minishell program. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{main_8c_a7b26396c9888d66d997b0007e8ff1e60}{main}} (int argc, char $\ast$$\ast$argv, char $\ast$$\ast$env)
 \begin{DoxyCompactList}\small\item\em The main function for the minishell program. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -54,6 +55,14 @@ Quickly checks the argc and argv.
 \begin{DoxyReturn}{Returns}
 Returns SUCCESS if everything went well, otherwise FAILURE. 
 \end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c_ae571382d485d4e036ac59472cac69d11_cgraph}
+\end{center}
+\end{figure}
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -65,7 +74,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{main.c@{main.c}!end\_of\_file\_reached@{end\_of\_file\_reached}}
 \index{end\_of\_file\_reached@{end\_of\_file\_reached}!main.c@{main.c}}
 \doxysubsubsection{\texorpdfstring{end\_of\_file\_reached()}{end\_of\_file\_reached()}}
-{\footnotesize\ttfamily void end\+\_\+of\+\_\+file\+\_\+reached (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void end\+\_\+of\+\_\+file\+\_\+reached (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data }\end{DoxyParamCaption})}
 
 
 
@@ -79,11 +88,12 @@ cleans up everything before reaching the end of file.
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=314pt]{main_8c_a29991ea7d778bdefcf80d4bf43df0fe2_cgraph}
+\includegraphics[width=350pt]{main_8c_a29991ea7d778bdefcf80d4bf43df0fe2_cgraph}
 \end{center}
 \end{figure}
 Here is the caller graph for this function\+:\nopagebreak
@@ -115,7 +125,8 @@ The main function for the minishell program.
 \begin{DoxyReturn}{Returns}
 Returns 0 if everything went well, otherwise 1. 
 \end{DoxyReturn}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -126,7 +137,7 @@ Here is the call graph for this function\+:\nopagebreak
 \index{main.c@{main.c}!main\_loop@{main\_loop}}
 \index{main\_loop@{main\_loop}!main.c@{main.c}}
 \doxysubsubsection{\texorpdfstring{main\_loop()}{main\_loop()}}
-{\footnotesize\ttfamily void main\+\_\+loop (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void main\+\_\+loop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data }\end{DoxyParamCaption})}
 
 
 
@@ -140,7 +151,8 @@ The main loop for the minishell program.
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -158,7 +170,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{main.c@{main.c}!set\_up\_data@{set\_up\_data}}
 \index{set\_up\_data@{set\_up\_data}!main.c@{main.c}}
 \doxysubsubsection{\texorpdfstring{set\_up\_data()}{set\_up\_data()}}
-{\footnotesize\ttfamily int set\+\_\+up\+\_\+data (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int set\+\_\+up\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data }\end{DoxyParamCaption})}
 
 
 
@@ -172,7 +184,8 @@ Sets up the data for the minishell.
 \begin{DoxyReturn}{Returns}
 Returns SUCCESS if everything went well, otherwise FAILURE. 
 \end{DoxyReturn}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

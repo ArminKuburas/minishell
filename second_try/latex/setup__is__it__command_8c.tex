@@ -6,11 +6,12 @@ Functions for checking if the command is a builtin or a command.
 
 
 {\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
-Include dependency graph for setup\+\_\+is\+\_\+it\+\_\+command.\+c\+:\nopagebreak
+Include dependency graph for setup\+\_\+is\+\_\+it\+\_\+command.\+c\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=224pt]{setup__is__it__command_8c__incl}
+\includegraphics[width=350pt]{setup__is__it__command_8c__incl}
 \end{center}
 \end{figure}
 \doxysubsection*{Functions}
@@ -18,13 +19,13 @@ Include dependency graph for setup\+\_\+is\+\_\+it\+\_\+command.\+c\+:\nopagebre
 \item 
 char $\ast$ \mbox{\hyperlink{setup__is__it__command_8c_a6ae5cf4f5086aeaacf74ec6975a6f9ba}{create\+\_\+path}} (char $\ast$path\+\_\+variable, char $\ast$input, int $\ast$error)
 \begin{DoxyCompactList}\small\item\em Creates a path for the command. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{setup__is__it__command_8c_a686340d43d7cf1846ab445a86df9e98b}{find\+\_\+path}} (char $\ast$$\ast$path\+\_\+variables, t\+\_\+shelldata $\ast$data, int index, char $\ast$input)
+int \mbox{\hyperlink{setup__is__it__command_8c_a686340d43d7cf1846ab445a86df9e98b}{find\+\_\+path}} (char $\ast$$\ast$path\+\_\+variables, \mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, int index, char $\ast$input)
 \begin{DoxyCompactList}\small\item\em Finds the path for the command. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{setup__is__it__command_8c_a6723a12493ed287efcc54ebb3da67e44}{check\+\_\+if\+\_\+directory}} (char $\ast$input, t\+\_\+shelldata $\ast$data, int index)
+int \mbox{\hyperlink{setup__is__it__command_8c_a6723a12493ed287efcc54ebb3da67e44}{check\+\_\+if\+\_\+directory}} (char $\ast$input, \mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, int index)
 \begin{DoxyCompactList}\small\item\em Checks if the input is a directory. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{setup__is__it__command_8c_a0045562b216e673fdcee5dadc3d717b0}{check\+\_\+if\+\_\+given\+\_\+path}} (char $\ast$input, t\+\_\+shelldata $\ast$data, int index)
+int \mbox{\hyperlink{setup__is__it__command_8c_a0045562b216e673fdcee5dadc3d717b0}{check\+\_\+if\+\_\+given\+\_\+path}} (char $\ast$input, \mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, int index)
 \begin{DoxyCompactList}\small\item\em Checks if the given path is a command. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{setup__is__it__command_8c_aa095cd5a7c47d7bf8a63b8cf3a3c17a8}{is\+\_\+it\+\_\+command}} (char $\ast$input, t\+\_\+shelldata $\ast$data, int index)
+int \mbox{\hyperlink{setup__is__it__command_8c_aa095cd5a7c47d7bf8a63b8cf3a3c17a8}{is\+\_\+it\+\_\+command}} (char $\ast$input, \mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, int index)
 \begin{DoxyCompactList}\small\item\em Checks if the input is a command. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -38,7 +39,7 @@ This file contains functions for checking if the command is a builtin or a comma
 \index{setup\_is\_it\_command.c@{setup\_is\_it\_command.c}!check\_if\_directory@{check\_if\_directory}}
 \index{check\_if\_directory@{check\_if\_directory}!setup\_is\_it\_command.c@{setup\_is\_it\_command.c}}
 \doxysubsubsection{\texorpdfstring{check\_if\_directory()}{check\_if\_directory()}}
-{\footnotesize\ttfamily int check\+\_\+if\+\_\+directory (\begin{DoxyParamCaption}\item[{char $\ast$}]{input,  }\item[{t\+\_\+shelldata $\ast$}]{data,  }\item[{int}]{index }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int check\+\_\+if\+\_\+directory (\begin{DoxyParamCaption}\item[{char $\ast$}]{input,  }\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{int}]{index }\end{DoxyParamCaption})}
 
 
 
@@ -56,6 +57,14 @@ Checks if the input is a directory.
 \begin{DoxyReturn}{Returns}
 Returns the error code. 
 \end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{setup__is__it__command_8c_a6723a12493ed287efcc54ebb3da67e44_cgraph}
+\end{center}
+\end{figure}
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -67,7 +76,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{setup\_is\_it\_command.c@{setup\_is\_it\_command.c}!check\_if\_given\_path@{check\_if\_given\_path}}
 \index{check\_if\_given\_path@{check\_if\_given\_path}!setup\_is\_it\_command.c@{setup\_is\_it\_command.c}}
 \doxysubsubsection{\texorpdfstring{check\_if\_given\_path()}{check\_if\_given\_path()}}
-{\footnotesize\ttfamily int check\+\_\+if\+\_\+given\+\_\+path (\begin{DoxyParamCaption}\item[{char $\ast$}]{input,  }\item[{t\+\_\+shelldata $\ast$}]{data,  }\item[{int}]{index }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int check\+\_\+if\+\_\+given\+\_\+path (\begin{DoxyParamCaption}\item[{char $\ast$}]{input,  }\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{int}]{index }\end{DoxyParamCaption})}
 
 
 
@@ -85,11 +94,12 @@ Checks if the given path is a command.
 \begin{DoxyReturn}{Returns}
 Returns the error code. 
 \end{DoxyReturn}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=338pt]{setup__is__it__command_8c_a0045562b216e673fdcee5dadc3d717b0_cgraph}
+\includegraphics[width=350pt]{setup__is__it__command_8c_a0045562b216e673fdcee5dadc3d717b0_cgraph}
 \end{center}
 \end{figure}
 Here is the caller graph for this function\+:\nopagebreak
@@ -121,11 +131,12 @@ Creates a path for the command.
 \begin{DoxyReturn}{Returns}
 Returns the path for the command. 
 \end{DoxyReturn}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=258pt]{setup__is__it__command_8c_a6ae5cf4f5086aeaacf74ec6975a6f9ba_cgraph}
+\includegraphics[width=350pt]{setup__is__it__command_8c_a6ae5cf4f5086aeaacf74ec6975a6f9ba_cgraph}
 \end{center}
 \end{figure}
 Here is the caller graph for this function\+:\nopagebreak
@@ -139,7 +150,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{setup\_is\_it\_command.c@{setup\_is\_it\_command.c}!find\_path@{find\_path}}
 \index{find\_path@{find\_path}!setup\_is\_it\_command.c@{setup\_is\_it\_command.c}}
 \doxysubsubsection{\texorpdfstring{find\_path()}{find\_path()}}
-{\footnotesize\ttfamily int find\+\_\+path (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{path\+\_\+variables,  }\item[{t\+\_\+shelldata $\ast$}]{data,  }\item[{int}]{index,  }\item[{char $\ast$}]{input }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int find\+\_\+path (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{path\+\_\+variables,  }\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{int}]{index,  }\item[{char $\ast$}]{input }\end{DoxyParamCaption})}
 
 
 
@@ -159,7 +170,8 @@ Finds the path for the command.
 \begin{DoxyReturn}{Returns}
 Returns the error code. 
 \end{DoxyReturn}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -177,7 +189,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{setup\_is\_it\_command.c@{setup\_is\_it\_command.c}!is\_it\_command@{is\_it\_command}}
 \index{is\_it\_command@{is\_it\_command}!setup\_is\_it\_command.c@{setup\_is\_it\_command.c}}
 \doxysubsubsection{\texorpdfstring{is\_it\_command()}{is\_it\_command()}}
-{\footnotesize\ttfamily int is\+\_\+it\+\_\+command (\begin{DoxyParamCaption}\item[{char $\ast$}]{input,  }\item[{t\+\_\+shelldata $\ast$}]{data,  }\item[{int}]{index }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int is\+\_\+it\+\_\+command (\begin{DoxyParamCaption}\item[{char $\ast$}]{input,  }\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{int}]{index }\end{DoxyParamCaption})}
 
 
 
@@ -195,7 +207,8 @@ Checks if the input is a command.
 \begin{DoxyReturn}{Returns}
 Returns the error code. 
 \end{DoxyReturn}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

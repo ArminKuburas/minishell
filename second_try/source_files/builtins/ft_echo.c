@@ -6,12 +6,22 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:31:08 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 18:57:44 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/14 02:24:56 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
+/**
+ * @file ft_echo.c
+ * @brief Built-in echo function.
+*/
+
+/**
+ * @brief Prints the echo command with a newline.
+ * @param temp The command inputs.
+ * @param fd The file descriptor.
+*/
 static void	free_with_newline(char **temp, int fd)
 {
 	int	i;
@@ -27,6 +37,12 @@ static void	free_with_newline(char **temp, int fd)
 	ft_putstr_fd("\n", fd);
 }
 
+/**
+ * @brief Prints the echo command without a newline.
+ * @param data The struct containing shell data.
+ * @param fd The file descriptor.
+ * @param i The index of the command inputs.
+*/
 void	print_no_newline(t_child_data *data, int fd, int i)
 {
 	while (ft_strcmp(data->command_inputs[i], "-n") == 0)
@@ -44,6 +60,12 @@ void	print_no_newline(t_child_data *data, int fd, int i)
 	}
 }
 
+/**
+ * @brief The echo built-in function.
+ * @param data The struct containing shell data.
+ * @param fd The file descriptor.
+ * @return int 0 on success.
+*/
 int	ft_echo(t_child_data *data, int fd)
 {
 	int	i;

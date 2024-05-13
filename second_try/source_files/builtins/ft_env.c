@@ -3,18 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:33:57 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/13 12:59:48 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/14 02:25:15 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
+/**
+ * @file ft_env.c
+ * @brief Built-in env function.
+ */
+
 /* my_env goes through the env list and prints out the variables
    if they are proper key/value pairs*/
 
+/**
+ * @brief Prints the env variables.
+ * @param data The struct containing shell data.
+ * @return Returns 0 if successful, 1 if not.
+ */
 int	ft_env(t_shelldata *data)
 {
 	t_env_list		*temp;

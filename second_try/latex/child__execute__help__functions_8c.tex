@@ -6,21 +6,22 @@ Helper functions for child execution.
 
 
 {\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
-Include dependency graph for child\+\_\+execute\+\_\+help\+\_\+functions.\+c\+:\nopagebreak
+Include dependency graph for child\+\_\+execute\+\_\+help\+\_\+functions.\+c\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=242pt]{child__execute__help__functions_8c__incl}
+\includegraphics[width=350pt]{child__execute__help__functions_8c__incl}
 \end{center}
 \end{figure}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{child__execute__help__functions_8c_aa06d57039fe209477bdf706194cf172d}{wait\+\_\+for\+\_\+children}} (t\+\_\+shelldata $\ast$data)
+void \mbox{\hyperlink{child__execute__help__functions_8c_aa06d57039fe209477bdf706194cf172d}{wait\+\_\+for\+\_\+children}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
 \begin{DoxyCompactList}\small\item\em Waits for all children to finish. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{child__execute__help__functions_8c_a7dbe5500b6a7cc836eade1fd154207cf}{use\+\_\+builtin}} (t\+\_\+child\+\_\+data $\ast$child\+\_\+data, int fd, t\+\_\+shelldata $\ast$data)
+int \mbox{\hyperlink{child__execute__help__functions_8c_a7dbe5500b6a7cc836eade1fd154207cf}{use\+\_\+builtin}} (\mbox{\hyperlink{structs__child__data}{t\+\_\+child\+\_\+data}} $\ast$child\+\_\+data, int fd, \mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
 \begin{DoxyCompactList}\small\item\em Checks if the command is a builtin command and executes it. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{child__execute__help__functions_8c_aafa71df2ea8e559b3dd6cbd3fbf08f99}{check\+\_\+child\+\_\+pipes}} (t\+\_\+child\+\_\+data $\ast$child\+\_\+data)
+int \mbox{\hyperlink{child__execute__help__functions_8c_aafa71df2ea8e559b3dd6cbd3fbf08f99}{check\+\_\+child\+\_\+pipes}} (\mbox{\hyperlink{structs__child__data}{t\+\_\+child\+\_\+data}} $\ast$child\+\_\+data)
 \begin{DoxyCompactList}\small\item\em Checks if the child has pipes and sets them up. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -34,7 +35,7 @@ Helper functions for child execution.
 \index{child\_execute\_help\_functions.c@{child\_execute\_help\_functions.c}!check\_child\_pipes@{check\_child\_pipes}}
 \index{check\_child\_pipes@{check\_child\_pipes}!child\_execute\_help\_functions.c@{child\_execute\_help\_functions.c}}
 \doxysubsubsection{\texorpdfstring{check\_child\_pipes()}{check\_child\_pipes()}}
-{\footnotesize\ttfamily int check\+\_\+child\+\_\+pipes (\begin{DoxyParamCaption}\item[{t\+\_\+child\+\_\+data $\ast$}]{child\+\_\+data }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int check\+\_\+child\+\_\+pipes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__child__data}{t\+\_\+child\+\_\+data}} $\ast$}]{child\+\_\+data }\end{DoxyParamCaption})}
 
 
 
@@ -59,7 +60,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{child\_execute\_help\_functions.c@{child\_execute\_help\_functions.c}!use\_builtin@{use\_builtin}}
 \index{use\_builtin@{use\_builtin}!child\_execute\_help\_functions.c@{child\_execute\_help\_functions.c}}
 \doxysubsubsection{\texorpdfstring{use\_builtin()}{use\_builtin()}}
-{\footnotesize\ttfamily int use\+\_\+builtin (\begin{DoxyParamCaption}\item[{t\+\_\+child\+\_\+data $\ast$}]{child\+\_\+data,  }\item[{int}]{fd,  }\item[{t\+\_\+shelldata $\ast$}]{data }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int use\+\_\+builtin (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__child__data}{t\+\_\+child\+\_\+data}} $\ast$}]{child\+\_\+data,  }\item[{int}]{fd,  }\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data }\end{DoxyParamCaption})}
 
 
 
@@ -77,6 +78,14 @@ Checks if the command is a builtin command and executes it.
 \begin{DoxyReturn}{Returns}
 Returns SUCCESS if the command is a builtin command. 
 \end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=248pt]{child__execute__help__functions_8c_a7dbe5500b6a7cc836eade1fd154207cf_cgraph}
+\end{center}
+\end{figure}
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -88,7 +97,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{child\_execute\_help\_functions.c@{child\_execute\_help\_functions.c}!wait\_for\_children@{wait\_for\_children}}
 \index{wait\_for\_children@{wait\_for\_children}!child\_execute\_help\_functions.c@{child\_execute\_help\_functions.c}}
 \doxysubsubsection{\texorpdfstring{wait\_for\_children()}{wait\_for\_children()}}
-{\footnotesize\ttfamily void wait\+\_\+for\+\_\+children (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void wait\+\_\+for\+\_\+children (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data }\end{DoxyParamCaption})}
 
 
 
@@ -102,6 +111,14 @@ Waits for all children to finish.
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{child__execute__help__functions_8c_aa06d57039fe209477bdf706194cf172d_cgraph}
+\end{center}
+\end{figure}
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}

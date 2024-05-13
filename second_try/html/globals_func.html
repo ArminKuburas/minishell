@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: File Members</title>
+<title>minishell: File Members</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">minishell
    </div>
   </td>
  </tr>
@@ -92,14 +92,17 @@ $(function() {
 <li>check_if_given_path()
 : <a class="el" href="setup__is__it__command_8c.html#a0045562b216e673fdcee5dadc3d717b0">setup_is_it_command.c</a>
 </li>
-<li>check_if_name_match()
-: <a class="el" href="heredoc__modify__input_8c.html#a6a0900b4f1513d3344fd4159c7ec566d">heredoc_modify_input.c</a>
+<li>check_if_split_needed()
+: <a class="el" href="potential__split__functions_8c.html#a2a02a17c3b832284eb9d078245bfd22b">potential_split_functions.c</a>
 </li>
 <li>check_pipes()
 : <a class="el" href="check__for__errors_8c.html#a6c7ecea0e2f7178c036c8cbab0b955ea">check_for_errors.c</a>
 </li>
 <li>check_shell_level_value()
 : <a class="el" href="env__helper__functions_8c.html#a3552eab25a95971f1a4cb445b454e507">env_helper_functions.c</a>
+</li>
+<li>check_string()
+: <a class="el" href="potential__split__functions_8c.html#ad6f4595041429d70d357dd2bf88dbd22">potential_split_functions.c</a>
 </li>
 <li>child_failed()
 : <a class="el" href="child__data__helpers_8c.html#ae2187e7b131815ab1d252a7622d9cb26">child_data_helpers.c</a>
@@ -125,6 +128,12 @@ $(function() {
 <li>clean_other_children()
 : <a class="el" href="child__cleaning__functions_8c.html#a2e89a48c8c825ee3c9bd3d48ba240989">child_cleaning_functions.c</a>
 </li>
+<li>clean_up_split()
+: <a class="el" href="split__cleaner_8c.html#a762a7c1184e4bf8f16eb7bf4e42c5533">split_cleaner.c</a>
+</li>
+<li>cleaner_quote_found()
+: <a class="el" href="cleaner__length__functions_8c.html#acefce54741f6ad9fc871c308ce05a90a">cleaner_length_functions.c</a>
+</li>
 <li>clear_env_list()
 : <a class="el" href="create__env__list_8c.html#a3cf4d0ebc83800c09acbc0e365f1ad4d">create_env_list.c</a>
 </li>
@@ -140,8 +149,17 @@ $(function() {
 <li>command_error_message()
 : <a class="el" href="setup__helpers_8c.html#a2db78c3a6b9695cd90dd95c15e9458a4">setup_helpers.c</a>
 </li>
+<li>copy_dollar()
+: <a class="el" href="split__cleaner__dollar__functions_8c.html#a0fee569a7295d13308999f4d1b1ad539">split_cleaner_dollar_functions.c</a>
+</li>
+<li>copy_find_env()
+: <a class="el" href="split__cleaner__dollar__functions_8c.html#a4078fd380c7bf1de453c499f5cd152c6">split_cleaner_dollar_functions.c</a>
+</li>
 <li>count_processes()
 : <a class="el" href="set__up__child__data_8c.html#a8ec81fb68337d8c3e1fada447ace17ee">set_up_child_data.c</a>
+</li>
+<li>count_words()
+: <a class="el" href="mini__split__counter_8c.html#ac403245e2e074527874a8f525a9abc8c">mini_split_counter.c</a>
 </li>
 <li>create_2d_env()
 : <a class="el" href="create__env__list_8c.html#a32d7006486d88497bac2c78563dd061b">create_env_list.c</a>
@@ -161,6 +179,9 @@ $(function() {
 <li>create_input()
 : <a class="el" href="input__list__functions_8c.html#a1e2af7fbba4200d292eb5655be8e3361">input_list_functions.c</a>
 </li>
+<li>create_new_string()
+: <a class="el" href="split__cleaner_8c.html#a363702ca6589c0a5398139c733e99745">split_cleaner.c</a>
+</li>
 <li>create_path()
 : <a class="el" href="setup__is__it__command_8c.html#a6ae5cf4f5086aeaacf74ec6975a6f9ba">setup_is_it_command.c</a>
 </li>
@@ -177,12 +198,18 @@ $(function() {
 <li>duplicate_env()
 : <a class="el" href="create__env__list_8c.html#abe023773605ec7daa33316945538953a">create_env_list.c</a>
 </li>
+<li>duplicate_input()
+: <a class="el" href="new__mini__split__helpers_8c.html#a27e4391c269c28e6c5df341104dc8693">new_mini_split_helpers.c</a>
+</li>
 </ul>
 
 
 <h3><a id="index_e"></a>- e -</h3><ul>
 <li>end_of_file_reached()
 : <a class="el" href="main_8c.html#a29991ea7d778bdefcf80d4bf43df0fe2">main.c</a>
+</li>
+<li>env_str_cmpr()
+: <a class="el" href="cleaner__length__functions_8c.html#a0460151d82298bb244a75bb9a581b0ff">cleaner_length_functions.c</a>
 </li>
 <li>execute_child()
 : <a class="el" href="execute__children_8c.html#ae06cf4295b9422cb92e2ae497fcbc646">execute_children.c</a>
@@ -203,16 +230,67 @@ $(function() {
 <li>fork_failed()
 : <a class="el" href="child__handling_8c.html#a1cce97ce31deb0eec684a1dcd172a0d2">child_handling.c</a>
 </li>
+<li>found_dollar()
+: <a class="el" href="cleaner__length__functions_8c.html#ae193fc3072d69532976149d7b508b3c7">cleaner_length_functions.c</a>
+</li>
 <li>found_dollar_sign()
 : <a class="el" href="heredoc__modify__input_8c.html#afffe589d0ae127274200bcbf5764532d">heredoc_modify_input.c</a>
 </li>
 <li>free_child_data()
 : <a class="el" href="setup__helpers_8c.html#af7aacd965663866bf4ff1cf6c8c5325b">setup_helpers.c</a>
 </li>
+<li>ft_atoi()
+: <a class="el" href="ft__atoi_8c.html#afad2ec371b4188602da9a94db687cb16">ft_atoi.c</a>
+</li>
+<li>ft_bzero()
+: <a class="el" href="ft__bzero_8c.html#a5937ab0d08e31d0e3e4a16ec71e293a1">ft_bzero.c</a>
+</li>
+<li>ft_calloc()
+: <a class="el" href="ft__calloc_8c.html#a6747f1fa402c0eb1dde5b99d3cdc900f">ft_calloc.c</a>
+</li>
+<li>ft_free_substrings()
+: <a class="el" href="ft__free__substrings_8c.html#a7d68dbbc77da832b16975da0954404fd">ft_free_substrings.c</a>
+</li>
+<li>ft_memset()
+: <a class="el" href="ft__memset_8c.html#ac340ddbfddbbf2c8de3c36f0f28c336d">ft_memset.c</a>
+</li>
+<li>ft_putendl_fd()
+: <a class="el" href="ft__putendl__fd_8c.html#aeb112152acfc553d58d61a5df38afcde">ft_putendl_fd.c</a>
+</li>
+<li>ft_putnbr_fd()
+: <a class="el" href="ft__putnbr__fd_8c.html#a63cc0aec12256d125d3f85e472280972">ft_putnbr_fd.c</a>
+</li>
+<li>ft_putstr_fd()
+: <a class="el" href="ft__putstr__fd_8c.html#acefce9ac519f8f8b7d3fde33dbafe469">ft_putstr_fd.c</a>
+</li>
+<li>ft_strcmp()
+: <a class="el" href="ft__strcmp_8c.html#abd118f33a5a0fe00b6cbbfb0eeae25a5">ft_strcmp.c</a>
+</li>
+<li>ft_strdup()
+: <a class="el" href="ft__strdup_8c.html#aeab425f44e9a04e54160d60d3c9e870c">ft_strdup.c</a>
+</li>
+<li>ft_strjoin()
+: <a class="el" href="ft__strjoin_8c.html#a5c1c26f8be9bc527cfe69a3555124795">ft_strjoin.c</a>
+</li>
+<li>ft_strlcpy()
+: <a class="el" href="ft__strlcpy_8c.html#a12f759eb9793cf306fede66d0b7de0fc">ft_strlcpy.c</a>
+</li>
+<li>ft_strlen()
+: <a class="el" href="ft__strlen_8c.html#abbb8c6c4ed85d892e7f1509f65f5768a">ft_strlen.c</a>
+</li>
+<li>ft_strncmp()
+: <a class="el" href="ft__strncmp_8c.html#a9d2fe792187aa4ed08e5864fb2c4d6dc">ft_strncmp.c</a>
+</li>
+<li>ft_strndup()
+: <a class="el" href="ft__strndup_8c.html#a54a0c1ca4382d4a3b72b42c27e43bf88">ft_strndup.c</a>
+</li>
 </ul>
 
 
 <h3><a id="index_h"></a>- h -</h3><ul>
+<li>handle_dollar_sign()
+: <a class="el" href="split__cleaner_8c.html#ae9ea93ff94bbc8cec1107c88a764ae52">split_cleaner.c</a>
+</li>
 <li>handle_heredoc()
 : <a class="el" href="setup__heredoc_8c.html#a5e7f8317c8df22032488ad6cba7b39bc">setup_heredoc.c</a>
 </li>
@@ -247,6 +325,13 @@ $(function() {
 </ul>
 
 
+<h3><a id="index_l"></a>- l -</h3><ul>
+<li>length_find_env()
+: <a class="el" href="cleaner__length__functions_8c.html#a504ebb00cbf1d8435f64dc57ba0759a4">cleaner_length_functions.c</a>
+</li>
+</ul>
+
+
 <h3><a id="index_m"></a>- m -</h3><ul>
 <li>main()
 : <a class="el" href="main_8c.html#a7b26396c9888d66d997b0007e8ff1e60">main.c</a>
@@ -270,6 +355,18 @@ $(function() {
 <li>new_env_node()
 : <a class="el" href="main__helpers_8c.html#acdbc95e4dcb528608ecd924136e90cef">main_helpers.c</a>
 </li>
+<li>new_input_dollar()
+: <a class="el" href="heredoc__modify__input_8c.html#a2d4aaa83b1924ec13d731f723fb315e6">heredoc_modify_input.c</a>
+</li>
+<li>new_length()
+: <a class="el" href="cleaner__length__functions_8c.html#aa795b2b0d5e179434845d0f64e072b9a">cleaner_length_functions.c</a>
+</li>
+<li>new_mini_split()
+: <a class="el" href="new__mini__split_8c.html#aa5b78ae21859cb25fd5bb8dcf7c3b20e">new_mini_split.c</a>
+</li>
+<li>new_str_quote_found()
+: <a class="el" href="split__cleaner_8c.html#af3e5db4bf7ac705327743d903e95b53c">split_cleaner.c</a>
+</li>
 </ul>
 
 
@@ -284,8 +381,17 @@ $(function() {
 <li>parent_sigint()
 : <a class="el" href="signal_8c.html#ab79d7c6340e0046d7d1904bdc7919a56">signal.c</a>
 </li>
+<li>parser_quote_found()
+: <a class="el" href="mini__split__counter_8c.html#a103d31080fad67538651d0eb1748733a">mini_split_counter.c</a>
+</li>
+<li>potential_find_env()
+: <a class="el" href="potential__split__functions_8c.html#ad5891e757ccb7b02151f17d1db3902e7">potential_split_functions.c</a>
+</li>
 <li>potential_split()
 : <a class="el" href="type__assigner_8c.html#afd7c7f2fbf5b542c80feb2ac77797abd">type_assigner.c</a>
+</li>
+<li>potential_split_create()
+: <a class="el" href="potential__split__functions_8c.html#ad58c94a999bb4a29108f6afd7ff662b4">potential_split_functions.c</a>
 </li>
 </ul>
 
@@ -309,6 +415,9 @@ $(function() {
 </li>
 <li>set_up_new_input()
 : <a class="el" href="heredoc__modify__input_8c.html#a4c22255e4cd96e7c7c7293a8e45384aa">heredoc_modify_input.c</a>
+</li>
+<li>set_up_string_data()
+: <a class="el" href="split__cleaner__helper__funcs_8c.html#af365087f1c6175b5a14a4841ae9a6ff7">split_cleaner_helper_funcs.c</a>
 </li>
 <li>setup_command()
 : <a class="el" href="setup__commands_8c.html#a3ac8353f98166eac03a847b826203bf1">setup_commands.c</a>
@@ -334,6 +443,15 @@ $(function() {
 <li>simplify_env_data()
 : <a class="el" href="create__env__list_8c.html#a52f2b3895ca6d12552bc854f03b1a923">create_env_list.c</a>
 </li>
+<li>split_cleaner()
+: <a class="el" href="split__cleaner_8c.html#a006e50b9946e83aa02118cf343c13009">split_cleaner.c</a>
+</li>
+<li>split_env()
+: <a class="el" href="potential__split__helpers_8c.html#a703a4f673f8b5bf5a1aeeb0137cbd796">potential_split_helpers.c</a>
+</li>
+<li>split_memory_failed()
+: <a class="el" href="new__mini__split__helpers_8c.html#a51a10afc6cf0a1563d30f265d17f1a3e">new_mini_split_helpers.c</a>
+</li>
 <li>standby_signals()
 : <a class="el" href="signal__helpers_8c.html#ad83a40684c104721e7b02467cdfcbff0">signal_helpers.c</a>
 </li>
@@ -349,6 +467,9 @@ $(function() {
 </li>
 <li>try_append_or_heredoc()
 : <a class="el" href="type__assigner_8c.html#acc18ecbacd9f85eaba479893037c52e3">type_assigner.c</a>
+</li>
+<li>try_to_find_env()
+: <a class="el" href="split__cleaner__dollar__functions_8c.html#abf8150a6a390d74feeed993c34a895f7">split_cleaner_dollar_functions.c</a>
 </li>
 </ul>
 

@@ -1,0 +1,193 @@
+\hypertarget{split__cleaner_8c}{}\doxysection{source\+\_\+files/split\+\_\+and\+\_\+cleaner/split\+\_\+cleaner.c File Reference}
+\label{split__cleaner_8c}\index{source\_files/split\_and\_cleaner/split\_cleaner.c@{source\_files/split\_and\_cleaner/split\_cleaner.c}}
+
+
+Functions for splitting and cleaning the input.  
+
+
+{\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
+Include dependency graph for split\+\_\+cleaner.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{split__cleaner_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{split__cleaner_8c_af3e5db4bf7ac705327743d903e95b53c}{new\+\_\+str\+\_\+quote\+\_\+found}} (\mbox{\hyperlink{structs__new__string__data}{t\+\_\+new\+\_\+string\+\_\+data}} $\ast$data, char $\ast$temp)
+\begin{DoxyCompactList}\small\item\em handles the case where it finds a quote \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{split__cleaner_8c_ae9ea93ff94bbc8cec1107c88a764ae52}{handle\+\_\+dollar\+\_\+sign}} (\mbox{\hyperlink{structs__new__string__data}{t\+\_\+new\+\_\+string\+\_\+data}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em handles the case where it finds a dollar sign \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{split__cleaner_8c_a363702ca6589c0a5398139c733e99745}{create\+\_\+new\+\_\+string}} (\mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$temp, \mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$shell\+\_\+data, char $\ast$n\+\_\+str)
+\begin{DoxyCompactList}\small\item\em creates a new string \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{split__cleaner_8c_a762a7c1184e4bf8f16eb7bf4e42c5533}{clean\+\_\+up\+\_\+split}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, \mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$temp, size\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em handles the case where the memory allocation failed \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{split__cleaner_8c_a006e50b9946e83aa02118cf343c13009}{split\+\_\+cleaner}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em cleans the newly split input \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Functions for splitting and cleaning the input. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{split__cleaner_8c_a762a7c1184e4bf8f16eb7bf4e42c5533}\label{split__cleaner_8c_a762a7c1184e4bf8f16eb7bf4e42c5533}} 
+\index{split\_cleaner.c@{split\_cleaner.c}!clean\_up\_split@{clean\_up\_split}}
+\index{clean\_up\_split@{clean\_up\_split}!split\_cleaner.c@{split\_cleaner.c}}
+\doxysubsubsection{\texorpdfstring{clean\_up\_split()}{clean\_up\_split()}}
+{\footnotesize\ttfamily void clean\+\_\+up\+\_\+split (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{\mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$}]{temp,  }\item[{size\+\_\+t}]{length }\end{DoxyParamCaption})}
+
+
+
+handles the case where the memory allocation failed 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & the shell data \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{split__cleaner_8c_a762a7c1184e4bf8f16eb7bf4e42c5533_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{split__cleaner_8c_a762a7c1184e4bf8f16eb7bf4e42c5533_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{split__cleaner_8c_a363702ca6589c0a5398139c733e99745}\label{split__cleaner_8c_a363702ca6589c0a5398139c733e99745}} 
+\index{split\_cleaner.c@{split\_cleaner.c}!create\_new\_string@{create\_new\_string}}
+\index{create\_new\_string@{create\_new\_string}!split\_cleaner.c@{split\_cleaner.c}}
+\doxysubsubsection{\texorpdfstring{create\_new\_string()}{create\_new\_string()}}
+{\footnotesize\ttfamily int create\+\_\+new\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$}]{temp,  }\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{shell\+\_\+data,  }\item[{char $\ast$}]{n\+\_\+str }\end{DoxyParamCaption})}
+
+
+
+creates a new string 
+
+
+\begin{DoxyParams}{Parameters}
+{\em temp} & the input list \\
+\hline
+{\em shell\+\_\+data} & the shell data \\
+\hline
+{\em n\+\_\+str} & the new string \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{split__cleaner_8c_a363702ca6589c0a5398139c733e99745_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{split__cleaner_8c_a363702ca6589c0a5398139c733e99745_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{split__cleaner_8c_ae9ea93ff94bbc8cec1107c88a764ae52}\label{split__cleaner_8c_ae9ea93ff94bbc8cec1107c88a764ae52}} 
+\index{split\_cleaner.c@{split\_cleaner.c}!handle\_dollar\_sign@{handle\_dollar\_sign}}
+\index{handle\_dollar\_sign@{handle\_dollar\_sign}!split\_cleaner.c@{split\_cleaner.c}}
+\doxysubsubsection{\texorpdfstring{handle\_dollar\_sign()}{handle\_dollar\_sign()}}
+{\footnotesize\ttfamily void handle\+\_\+dollar\+\_\+sign (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__new__string__data}{t\+\_\+new\+\_\+string\+\_\+data}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+handles the case where it finds a dollar sign 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & the data struct \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{split__cleaner_8c_ae9ea93ff94bbc8cec1107c88a764ae52_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{split__cleaner_8c_ae9ea93ff94bbc8cec1107c88a764ae52_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{split__cleaner_8c_af3e5db4bf7ac705327743d903e95b53c}\label{split__cleaner_8c_af3e5db4bf7ac705327743d903e95b53c}} 
+\index{split\_cleaner.c@{split\_cleaner.c}!new\_str\_quote\_found@{new\_str\_quote\_found}}
+\index{new\_str\_quote\_found@{new\_str\_quote\_found}!split\_cleaner.c@{split\_cleaner.c}}
+\doxysubsubsection{\texorpdfstring{new\_str\_quote\_found()}{new\_str\_quote\_found()}}
+{\footnotesize\ttfamily void new\+\_\+str\+\_\+quote\+\_\+found (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__new__string__data}{t\+\_\+new\+\_\+string\+\_\+data}} $\ast$}]{data,  }\item[{char $\ast$}]{temp }\end{DoxyParamCaption})}
+
+
+
+handles the case where it finds a quote 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & the data struct \\
+\hline
+{\em temp} & the current character \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{split__cleaner_8c_af3e5db4bf7ac705327743d903e95b53c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{split__cleaner_8c_a006e50b9946e83aa02118cf343c13009}\label{split__cleaner_8c_a006e50b9946e83aa02118cf343c13009}} 
+\index{split\_cleaner.c@{split\_cleaner.c}!split\_cleaner@{split\_cleaner}}
+\index{split\_cleaner@{split\_cleaner}!split\_cleaner.c@{split\_cleaner.c}}
+\doxysubsubsection{\texorpdfstring{split\_cleaner()}{split\_cleaner()}}
+{\footnotesize\ttfamily int split\+\_\+cleaner (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+cleans the newly split input 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & the shell data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{split__cleaner_8c_a006e50b9946e83aa02118cf343c13009_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{split__cleaner_8c_a006e50b9946e83aa02118cf343c13009_icgraph}
+\end{center}
+\end{figure}

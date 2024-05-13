@@ -3,15 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   error_msgs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 12:41:38 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/12 13:36:39 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/14 02:21:36 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
+/**
+ * @file error_msgs.c
+ * @brief Functions for printing error messages.
+*/
+
+/**
+ * @brief Prints error message for a failed malloc.
+ * @param data The struct containing shell data.
+ * @param input The input that caused the error.
+*/
 void	num_fail(t_shelldata *data, char *input)
 {
 	data->exit_value = 255;

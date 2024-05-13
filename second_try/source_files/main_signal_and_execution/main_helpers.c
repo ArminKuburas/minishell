@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 09:33:40 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 19:25:12 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 22:14:15 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
  * @param env_value The value of the environment variable.
  * @return Returns SUCCESS if everything went well, otherwise NO_MEMORY.
 */
-
 int	new_env_node(t_env_list *old_node, char *env_name, char *env_value)
 {
 	t_env_list	*new_node;
@@ -53,7 +52,6 @@ int	new_env_node(t_env_list *old_node, char *env_name, char *env_value)
  * @param temp The temporary node to be connected to the new node.
  * @return Returns SUCCESS if everything went well, otherwise NO_MEMORY.
 */
-
 int	create_question_node(t_shelldata *data, t_env_list *temp)
 {
 	char	*env_var_name;
@@ -69,7 +67,6 @@ int	create_question_node(t_shelldata *data, t_env_list *temp)
  * @param data The data to be used.
  * @return Returns SUCCESS if everything went well, otherwise NO_MEMORY.
 */
-
 int	create_exit_value_env(t_shelldata *data)
 {
 	t_env_list	*temp;
@@ -98,7 +95,6 @@ int	create_exit_value_env(t_shelldata *data)
  * @param data The data to be used.
  * @return Returns SUCCESS if everything went well, otherwise FAILURE.
 */
-
 int	initial_env_creation(char **env, t_shelldata *data)
 {
 	int	error;
@@ -137,7 +133,6 @@ int	initial_env_creation(char **env, t_shelldata *data)
  * @param env The environment variables.
  * @return Returns SUCCESS if everything went well, otherwise FAILURE.
 */
-
 int	initial_setup(t_shelldata *data, int argc, char **argv, char **env)
 {
 	if (check_argc_argv(argc, argv) == FAILURE)
