@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 09:33:40 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 06:16:07 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:47:08 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,13 @@ int	initial_env_creation(char **env, t_shelldata *data)
 {
 	int	error;
 
+
+	int i = 0;
+	while (env[i])
+	{
+		printf ("env[%d] = %s\n", i, env[i]);
+		i++;
+	}
 	error = duplicate_env(env, data);
 	if (error != SUCCESS)
 		return (FAILURE);
