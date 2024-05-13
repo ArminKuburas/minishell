@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:48:55 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 06:51:14 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:29:04 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
  * @param env_list The environment list.
  * @return Returns the error code.
  */
-
 int	create_variables(char ***path_variables, t_env_list *env_list)
 {
 	t_env_list	*temp;

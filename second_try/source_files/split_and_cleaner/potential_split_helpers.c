@@ -3,17 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   potential_split_helpers.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 06:19:36 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/07 11:53:19 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:41:49 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
-/*This function just establishes the new data.
-Given parameters are the old link, the new link and the input*/
+/**
+ * @file potential_split_helpers.c
+ * @brief Helper functions for splitting the input.
+*/
+
+/**
+ * @brief Sets up the new link.
+ * @param o_link The old link.
+ * @param n_link The new link.
+ * @param input The input string.
+ * @return void
+*/
 static void	set_up_link(t_input_list *o_link, t_input_list *n_link, char *input)
 {
 	n_link->next = o_link->next;
@@ -24,6 +34,12 @@ static void	set_up_link(t_input_list *o_link, t_input_list *n_link, char *input)
 	n_link->type = COMMAND_ARGUMENT;
 }
 
+/**
+ * @brief Initializes the first link.
+ * @param data The data to be used.
+ * @param strings The strings to be split.
+ * @return void
+*/
 static void	initialize_first_link(t_new_string_data *data, char **strings)
 {
 	int	j;
@@ -46,6 +62,12 @@ static void	initialize_first_link(t_new_string_data *data, char **strings)
 	free(strings[0]);
 }
 
+/**
+ * @brief Creates the middle links.
+ * @param data The data to be used.
+ * @param strings The strings to be split.
+ * @return void
+*/
 static void	create_middle_links(t_new_string_data *data, char **strings)
 {
 	t_input_list	*new_link;
@@ -67,6 +89,12 @@ static void	create_middle_links(t_new_string_data *data, char **strings)
 	}
 }
 
+/**
+ * @brief Finishes the last link.
+ * @param data The data to be used.
+ * @param strings The strings to be split.
+ * @return void
+*/
 static void	finish_last_link(t_new_string_data *data, char **strings)
 {
 	int				j;
@@ -94,6 +122,12 @@ static void	finish_last_link(t_new_string_data *data, char **strings)
 	}
 }
 
+/**
+ * @brief Splits the environment variable.
+ * @param data The data to be used.
+ * @param temp_env The temporary environment variable.
+ * @return void
+*/
 void	split_env(t_new_string_data *data, t_env_list	*temp_env)
 {
 	char			**strings;

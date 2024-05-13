@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:04:51 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 07:05:29 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:33:01 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
  * @param input The input to be used.
  * @return void
 */
-
 void	ambiguous_redirect(t_shelldata *data, int i, t_input_list *input)
 {
 	ft_putstr_fd("minishell: ", 2);

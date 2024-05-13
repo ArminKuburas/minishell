@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:04:01 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 06:58:54 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:29:42 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
  * @param env_list The environment list.
  * @return Returns the modified input line.
 */
-
 void	modification_loop(char *break_line, t_shelldata *data, int fd)
 {
 	char	*input_line;
@@ -56,7 +55,6 @@ void	modification_loop(char *break_line, t_shelldata *data, int fd)
  * @param input The input line to be cleaned.
  * @return Returns the cleaned input line.
 */
-
 char	*heredoc_cleaner(char *input)
 {
 	char	*cleaned_input;
@@ -90,7 +88,6 @@ char	*heredoc_cleaner(char *input)
  * @param fd The file descriptor.
  * @return void
 */
-
 void	unmodified_loop(char *break_line, int fd)
 {
 	char	*input_line;
@@ -117,7 +114,6 @@ void	unmodified_loop(char *break_line, int fd)
  * @param data The data to be used.
  * @return void
 */
-
 static void	write_loop(int fd, t_input_list *input, t_shelldata *data)
 {
 	char	*break_line;
@@ -148,7 +144,6 @@ static void	write_loop(int fd, t_input_list *input, t_shelldata *data)
  * @param input The input list.
  * @return void
 */
-
 void	handle_heredoc(t_shelldata *data, int i, t_input_list *input)
 {
 	int		pipe_fd[2];

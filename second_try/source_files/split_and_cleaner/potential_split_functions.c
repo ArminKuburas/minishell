@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   potential_split_functions.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 07:34:43 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/07 11:53:00 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:40:32 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
+
+/**
+ * @file potential_split_functions.c
+ * @brief Functions for handling potential splits.
+ */
 
 /*This function checks to see if the given $string ends with a $ character
  that is followed by nothing.
@@ -19,6 +24,12 @@
  If in the shell you call it like this: > $TEMP$
  it views it as one long string: Hello World$
  The space included in the string.*/
+
+/**
+ * @brief Checks if the string is a potential split.
+ * @param data The data to be used.
+ * @return Returns 1 if the string is a potential split, 0 if not.
+ */
 bool	check_string(t_new_string_data *data)
 {
 	int	start;
@@ -42,6 +53,12 @@ bool	check_string(t_new_string_data *data)
 	return (1);
 }
 
+
+/**
+ * @brief Checks if the given string needs to be split.
+ * @param temp_env The environment variable to be checked.
+ * @return Returns YES if the string needs to be split, NO if not.
+ */
 int	check_if_split_needed(t_env_list *temp_env)
 {
 	int	i;
@@ -56,6 +73,13 @@ int	check_if_split_needed(t_env_list *temp_env)
 	return (NO);
 }
 
+
+/**
+ * @brief Finds the environment variable.
+ * @param data The data to be used.
+ * @param split_check The check if the string needs to be split.
+ * @return Returns the environment variable.
+ */
 t_env_list	*potential_find_env(t_new_string_data *data, bool *split_check)
 {
 	int			start;
@@ -81,6 +105,10 @@ t_env_list	*potential_find_env(t_new_string_data *data, bool *split_check)
 	return (NULL);
 }
 
+/**
+ * @brief Creates the new nodes needed.
+ * @param data The data to be used.
+ */
 void	potential_split_create(t_new_string_data *data)
 {
 	t_env_list	*temp_env;

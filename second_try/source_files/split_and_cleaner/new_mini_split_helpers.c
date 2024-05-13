@@ -3,15 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   new_mini_split_helpers.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 04:14:46 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/07 11:52:34 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:34:04 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
+/**
+ * @file new_mini_split_helpers.c
+ * @brief Helper functions for the mini_split function.
+*/
+
+
+/**
+ * @brief Finds the closing quote.
+ * @param quote The quote to be found.
+ * @param c The character to be checked.
+ * @return void
+*/
 static void	quote_found(char *quote, char c)
 {
 	if (*quote == '\0')
@@ -20,6 +32,11 @@ static void	quote_found(char *quote, char c)
 		*quote = '\0';
 }
 
+/**
+ * @brief Splits the memory if the allocation fails.
+ * @param data The data to be used.
+ * @return void
+*/
 void	split_memory_failed(t_shelldata *data)
 {
 	ft_putstr_fd("bananashell: Memory allocation failed\n", 2);
@@ -30,6 +47,13 @@ void	split_memory_failed(t_shelldata *data)
 	exit(1);
 }
 
+/**
+ * @brief Creates a new input node.
+ * @param input The input to be used.
+ * @param j The index to be used.
+ * @param input_list The input list to be used.
+ * @return Returns SUCCESS if everything went well, otherwise FAILURE.
+*/
 int	duplicate_input(char *input, t_shelldata *data, int *i)
 {
 	int		j;

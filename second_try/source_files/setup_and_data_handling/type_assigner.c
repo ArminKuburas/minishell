@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 05:59:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 07:07:09 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:33:28 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
  * @param command_flag The flag for the command.
  * @return void
 */
-
 static void	assign_command_or_pipe(t_input_list *temp, int *command_flag)
 {
 
@@ -51,7 +50,6 @@ static void	assign_command_or_pipe(t_input_list *temp, int *command_flag)
  * @param temp The input list to be used.
  * @return void
 */
-
 void	potential_split(t_input_list *temp)
 {
 	int	i;
@@ -74,7 +72,6 @@ void	potential_split(t_input_list *temp)
  * @param input_list The input list to be used.
  * @return void
 */
-
 void	try_append_or_heredoc(t_input_list *temp)
 {
 	if (ft_strcmp(temp->input, ">>") == 0)
@@ -96,7 +93,6 @@ void	try_append_or_heredoc(t_input_list *temp)
  * @param input_list The input list to be used.
  * @return void
 */
-
 void	input_type_assigner(t_input_list *input_list)
 {
 	t_input_list	*temp;

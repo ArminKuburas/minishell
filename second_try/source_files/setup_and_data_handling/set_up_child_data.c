@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:58:42 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 06:50:18 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:29:02 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
  * @param start The start of the input list.
  * @return Returns the amount of processes.
 */
-
 int	count_processes(t_input_list *start)
 {
 	t_input_list	*temp;
@@ -45,7 +44,6 @@ int	count_processes(t_input_list *start)
  * @param i The index of the child data.
  * @return void
 */
-
 void	setup_command_inputs(t_shelldata *data, int i)
 {
 	int				j;
@@ -75,7 +73,6 @@ void	setup_command_inputs(t_shelldata *data, int i)
  * @param amount The amount of processes.
  * @return Returns SUCCESS if everything went well, otherwise FAILURE.
 */
-
 int	create_child_data(t_shelldata *data, int amount)
 {
 	int	i;
@@ -107,7 +104,6 @@ int	create_child_data(t_shelldata *data, int amount)
  * @param data The data to be used.
  * @return Returns SUCCESS if everything went well, otherwise FAILURE.
 */
-
 int	set_up_child_data(t_shelldata *data)
 {
 	int	processes;

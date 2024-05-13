@@ -3,15 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   split_cleaner_helper_funcs.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 09:18:26 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/07 11:54:25 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:43:41 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
+/**
+ * @file split_cleaner_helper_funcs.c
+ * @brief Helper functions for split and cleaner.
+*/
+
+/**
+ * @brief sets up the unique string data
+ * @param data the unique string data
+ * @param temp the input list
+ * @param shell_data the shell data
+ * @param new_string the new string
+*/
 void	set_up_string_data(t_new_string_data *data, t_input_list *temp,
 	t_shelldata *shell_data, char *new_string)
 {

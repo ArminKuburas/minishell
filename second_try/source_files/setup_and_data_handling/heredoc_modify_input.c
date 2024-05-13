@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 22:03:54 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 17:34:17 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:28:45 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
  * @param original_i The original index of the input.
  * @return The length of the environment variable value.
 */
-
 int	found_dollar_sign(char *input, t_env_list *env_list, int *original_i)
 {
 	int			i;
@@ -55,7 +54,6 @@ int	found_dollar_sign(char *input, t_env_list *env_list, int *original_i)
  * @param env_list The environment list to be used.
  * @return The length of the modified input.
 */
-
 int	modified_length(char *input, t_env_list *env_list)
 {
 	int		i;
@@ -86,7 +84,6 @@ int	modified_length(char *input, t_env_list *env_list)
  * @param j The index of the new input.
  * @return The length of the environment variable name.
 */
-
 int	new_input_dollar(char *input, char *new_input, t_env_list *env_list, int *j)
 {
 	int			i;
@@ -122,7 +119,6 @@ int	new_input_dollar(char *input, char *new_input, t_env_list *env_list, int *j)
  * @param new_input The new input to be used.
  * @param env_list The environment list to be used.
 */
-
 void	set_up_new_input(char *input, char *new_input, t_env_list *env_list)
 {
 	int			i;
@@ -145,7 +141,6 @@ void	set_up_new_input(char *input, char *new_input, t_env_list *env_list)
  * @param env_list The environment list to be used.
  * @return The modified input.
 */
-
 char	*modify_input(char *input, t_env_list *env_list)
 {
 	char	*new_input;

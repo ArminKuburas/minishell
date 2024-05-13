@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 15:24:02 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 06:47:31 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:28:53 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
  * @param new_node The new node to be added.
  * @return void
 */
-
 void	add_input_list(t_input_list *input_list, t_input_list *new_node)
 {
 	t_input_list	*temp;
@@ -42,7 +41,6 @@ void	add_input_list(t_input_list *input_list, t_input_list *new_node)
  * @param error The error code.
  * @return Returns the error code.
 */
-
 int	clear_input(t_input_list *input_list, int error)
 {
 	t_input_list	*temp;
@@ -71,7 +69,6 @@ int	clear_input(t_input_list *input_list, int error)
  * @param input_list The input list to be used.
  * @return Returns SUCCESS if everything went well, otherwise NO_MEMORY.
 */
-
 int	create_input(char *input, int len, t_input_list *input_list)
 {
 	t_input_list	*new_node;
@@ -100,7 +97,6 @@ int	create_input(char *input, int len, t_input_list *input_list)
  * @param input_list The input list to be used.
  * @return The length of the last input.
 */
-
 int	strlen_last_input(t_input_list *input_list)
 {
 	t_input_list	*temp;

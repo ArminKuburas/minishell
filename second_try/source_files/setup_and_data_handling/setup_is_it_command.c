@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 09:54:36 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 07:02:14 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:29:53 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
  * @param error The error code.
  * @return Returns the path for the command.
 */
-
 char	*create_path(char *path_variable, char *input, int *error)
 {
 	char	*temp;
@@ -61,7 +60,6 @@ char	*create_path(char *path_variable, char *input, int *error)
  * @param input The input to be used.
  * @return Returns the error code.
 */
-
 int	find_path(char **path_variables, t_shelldata *data, int index, char *input)
 {
 	int		i;
@@ -93,7 +91,6 @@ int	find_path(char **path_variables, t_shelldata *data, int index, char *input)
  * @param index The index of the child data.
  * @return Returns the error code.
 */
-
 int	check_if_directory(char *input, t_shelldata *data, int index)
 {
 	int	temp_fd;
@@ -118,7 +115,6 @@ int	check_if_directory(char *input, t_shelldata *data, int index)
  * @param index The index of the child data.
  * @return Returns the error code.
 */
-
 int	check_if_given_path(char *input, t_shelldata *data, int index)
 {
 	if (ft_strchr("./", input[0]) != NULL)
@@ -148,7 +144,6 @@ int	check_if_given_path(char *input, t_shelldata *data, int index)
  * @param index The index of the child data.
  * @return Returns the error code.
 */
-
 int	is_it_command(char *input, t_shelldata *data, int index)
 {
 	char	**path_variables;

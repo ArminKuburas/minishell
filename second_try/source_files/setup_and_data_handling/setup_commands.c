@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 09:35:02 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 06:53:13 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:29:17 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@
  * @param command The command to be checked.
  * @return Returns 0 if the command is a builtin, otherwise -1.
 */
-
-
 static int	check_command(const char *builtin, char *command)
 {
 	if (ft_strlen(builtin) != ft_strlen(command))
@@ -42,7 +40,6 @@ static int	check_command(const char *builtin, char *command)
  * @param index The index of the child data.
  * @return Returns SUCCESS if the command is a builtin, otherwise NOT_FOUND.
 */
-
 static int	is_it_builtin(char *command, t_shelldata *data, int index)
 {
 	const char	builtins[7][20] = {
@@ -78,12 +75,6 @@ static int	is_it_builtin(char *command, t_shelldata *data, int index)
  * @param index The index of the child data.
  * @return Returns SUCCESS if the command exists, otherwise NOT_FOUND.
 */
-
-/*This function first tries to see if a command exists
-If one does exist it tries to check if its perhaps a builtin
-If it isn't we will then try to find it. First we try as is
-Since it might have the path already there. Otherwise we try
-To use the PATH env variable. We handle errors as needed.*/
 int	setup_command(t_shelldata *data, int index)
 {
 	t_input_list	*temp;

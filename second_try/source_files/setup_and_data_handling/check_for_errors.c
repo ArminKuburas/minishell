@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:58:25 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 06:35:37 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:28:01 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
  * @param data The data to be used.
  * @return Returns SUCCESS if everything went well, otherwise FAILURE.
 */
-
 int	check_pipes(t_shelldata *data)
 {
 	t_input_list	*temp;

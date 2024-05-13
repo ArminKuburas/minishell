@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 21:29:51 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 19:38:06 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:28:19 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,6 @@ int	create_env(char *env, t_env_list *env_list)
  * @param data The data to be used.
  * @return Returns SUCCESS if everything went well, otherwise NO_MEMORY.
 */
-
 int	duplicate_env(char **env, t_shelldata *data)
 {
 	int			i;
