@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_env_list.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 21:29:51 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 06:38:08 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:38:06 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,11 @@ int	duplicate_env(char **env, t_shelldata *data)
 	temp = data->env_list;
 	while (env[i] != NULL)
 	{
+		if (ft_strchr(env[i], '=') == NULL)
+		{
+			i++;
+			continue ;
+		}
 		if (create_env(env[i], temp) != SUCCESS)
 			return (clear_env_list(data->env_list, NO_MEMORY));
 		if (temp->next != NULL)
