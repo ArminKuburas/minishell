@@ -6,11 +6,22 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:10:45 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/10 15:23:49 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 06:27:22 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
+
+/**
+ * @file child_execute_help_functions.c
+ * @brief Helper functions for child execution.
+*/
+
+/**
+ * @brief Waits for all children to finish.
+ * @param data The data to be used.
+ * @return void
+*/
 
 void	wait_for_children(t_shelldata *data)
 {
@@ -35,6 +46,14 @@ void	wait_for_children(t_shelldata *data)
 	}
 }
 
+/**
+ * @brief Checks if the command is a builtin command and executes it.
+ * @param child_data The child data to be used.
+ * @param fd The file descriptor to be used.
+ * @param data The data to be used.
+ * @return Returns SUCCESS if the command is a builtin command.
+*/
+
 int	use_builtin(t_child_data *child_data, int fd, t_shelldata *data)
 {
 	if (fd == 0)
@@ -55,6 +74,12 @@ int	use_builtin(t_child_data *child_data, int fd, t_shelldata *data)
 		return (ft_exit(data, child_data->command_inputs));
 	return (FAILURE);
 }
+
+/**
+ * @brief Checks if the child has pipes and sets them up.
+ * @param child_data The child data to be used.
+ * @return Returns SUCCESS if everything went well, otherwise NO_DUP.
+*/
 
 int	check_child_pipes(t_child_data *child_data)
 {

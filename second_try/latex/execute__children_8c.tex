@@ -1,0 +1,192 @@
+\hypertarget{execute__children_8c}{}\doxysection{source\+\_\+files/main\+\_\+signal\+\_\+and\+\_\+execution/execute\+\_\+children.c File Reference}
+\label{execute__children_8c}\index{source\_files/main\_signal\_and\_execution/execute\_children.c@{source\_files/main\_signal\_and\_execution/execute\_children.c}}
+
+
+Functions for executing child processes.  
+
+
+{\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
+Include dependency graph for execute\+\_\+children.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{execute__children_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{execute__children_8c_ab5e9ef3eab61cb760018178b59ff2f57}{check\+\_\+fds}} (t\+\_\+child\+\_\+data $\ast$child\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Checks the file descriptors for the child process. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{execute__children_8c_a7d6c88043863ebd553a3c91760233fb8}{close\+\_\+my\+\_\+fds}} (t\+\_\+child\+\_\+data $\ast$child\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Closes the file descriptors for the child process. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{execute__children_8c_ad178e7b9c4b020b05316f181c4ce4fdb}{close\+\_\+other\+\_\+fds}} (t\+\_\+shelldata $\ast$data, int j, int i)
+\begin{DoxyCompactList}\small\item\em Closes the file descriptors for the other child processes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{execute__children_8c_ab9cd040807a08f0b0d8d1d8cbd5eb518}{child\+\_\+handler}} (t\+\_\+shelldata $\ast$data, t\+\_\+child\+\_\+data $\ast$child\+\_\+data, int i)
+\begin{DoxyCompactList}\small\item\em Handles the child process. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{execute__children_8c_ae06cf4295b9422cb92e2ae497fcbc646}{execute\+\_\+child}} (t\+\_\+shelldata $\ast$data, t\+\_\+child\+\_\+data $\ast$child\+\_\+data, int i)
+\begin{DoxyCompactList}\small\item\em Executes the child process. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Functions for executing child processes. 
+
+This file contains functions for executing child processes. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{execute__children_8c_ab5e9ef3eab61cb760018178b59ff2f57}\label{execute__children_8c_ab5e9ef3eab61cb760018178b59ff2f57}} 
+\index{execute\_children.c@{execute\_children.c}!check\_fds@{check\_fds}}
+\index{check\_fds@{check\_fds}!execute\_children.c@{execute\_children.c}}
+\doxysubsubsection{\texorpdfstring{check\_fds()}{check\_fds()}}
+{\footnotesize\ttfamily int check\+\_\+fds (\begin{DoxyParamCaption}\item[{t\+\_\+child\+\_\+data $\ast$}]{child\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Checks the file descriptors for the child process. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em child\+\_\+data} & The child data to be used. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns SUCCESS if everything went well, otherwise NO\+\_\+\+DUP. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{execute__children_8c_ab5e9ef3eab61cb760018178b59ff2f57_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{execute__children_8c_ab9cd040807a08f0b0d8d1d8cbd5eb518}\label{execute__children_8c_ab9cd040807a08f0b0d8d1d8cbd5eb518}} 
+\index{execute\_children.c@{execute\_children.c}!child\_handler@{child\_handler}}
+\index{child\_handler@{child\_handler}!execute\_children.c@{execute\_children.c}}
+\doxysubsubsection{\texorpdfstring{child\_handler()}{child\_handler()}}
+{\footnotesize\ttfamily void child\+\_\+handler (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data,  }\item[{t\+\_\+child\+\_\+data $\ast$}]{child\+\_\+data,  }\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+Handles the child process. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to be used. \\
+\hline
+{\em child\+\_\+data} & The child data to be used. \\
+\hline
+{\em i} & The index of the current child data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{execute__children_8c_ab9cd040807a08f0b0d8d1d8cbd5eb518_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{execute__children_8c_ab9cd040807a08f0b0d8d1d8cbd5eb518_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{execute__children_8c_a7d6c88043863ebd553a3c91760233fb8}\label{execute__children_8c_a7d6c88043863ebd553a3c91760233fb8}} 
+\index{execute\_children.c@{execute\_children.c}!close\_my\_fds@{close\_my\_fds}}
+\index{close\_my\_fds@{close\_my\_fds}!execute\_children.c@{execute\_children.c}}
+\doxysubsubsection{\texorpdfstring{close\_my\_fds()}{close\_my\_fds()}}
+{\footnotesize\ttfamily void close\+\_\+my\+\_\+fds (\begin{DoxyParamCaption}\item[{t\+\_\+child\+\_\+data $\ast$}]{child\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Closes the file descriptors for the child process. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em child\+\_\+data} & The child data to be used. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{execute__children_8c_a7d6c88043863ebd553a3c91760233fb8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{execute__children_8c_ad178e7b9c4b020b05316f181c4ce4fdb}\label{execute__children_8c_ad178e7b9c4b020b05316f181c4ce4fdb}} 
+\index{execute\_children.c@{execute\_children.c}!close\_other\_fds@{close\_other\_fds}}
+\index{close\_other\_fds@{close\_other\_fds}!execute\_children.c@{execute\_children.c}}
+\doxysubsubsection{\texorpdfstring{close\_other\_fds()}{close\_other\_fds()}}
+{\footnotesize\ttfamily void close\+\_\+other\+\_\+fds (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data,  }\item[{int}]{j,  }\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+Closes the file descriptors for the other child processes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to be used. \\
+\hline
+{\em j} & The index of the current child data. \\
+\hline
+{\em i} & The index of the current child data that should not be cleaned. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{execute__children_8c_ad178e7b9c4b020b05316f181c4ce4fdb_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{execute__children_8c_ae06cf4295b9422cb92e2ae497fcbc646}\label{execute__children_8c_ae06cf4295b9422cb92e2ae497fcbc646}} 
+\index{execute\_children.c@{execute\_children.c}!execute\_child@{execute\_child}}
+\index{execute\_child@{execute\_child}!execute\_children.c@{execute\_children.c}}
+\doxysubsubsection{\texorpdfstring{execute\_child()}{execute\_child()}}
+{\footnotesize\ttfamily int execute\+\_\+child (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data,  }\item[{t\+\_\+child\+\_\+data $\ast$}]{child\+\_\+data,  }\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+Executes the child process. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to be used. \\
+\hline
+{\em child\+\_\+data} & The child data to be used. \\
+\hline
+{\em i} & The index of the current child data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns SUCCESS if everything went well, otherwise FAILURE. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{execute__children_8c_ae06cf4295b9422cb92e2ae497fcbc646_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{execute__children_8c_ae06cf4295b9422cb92e2ae497fcbc646_icgraph}
+\end{center}
+\end{figure}

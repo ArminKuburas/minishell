@@ -1,0 +1,206 @@
+\hypertarget{main__helpers_8c}{}\doxysection{source\+\_\+files/main\+\_\+signal\+\_\+and\+\_\+execution/main\+\_\+helpers.c File Reference}
+\label{main__helpers_8c}\index{source\_files/main\_signal\_and\_execution/main\_helpers.c@{source\_files/main\_signal\_and\_execution/main\_helpers.c}}
+
+
+Helper functions for the main file.  
+
+
+{\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
+Include dependency graph for main\+\_\+helpers.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{main__helpers_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main__helpers_8c_acdbc95e4dcb528608ecd924136e90cef}{new\+\_\+env\+\_\+node}} (t\+\_\+env\+\_\+list $\ast$old\+\_\+node, char $\ast$env\+\_\+name, char $\ast$env\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Creates a new node in the env list. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main__helpers_8c_a079775e373ff14fcbcdb14d0082c6aed}{create\+\_\+question\+\_\+node}} (t\+\_\+shelldata $\ast$data, t\+\_\+env\+\_\+list $\ast$temp)
+\begin{DoxyCompactList}\small\item\em Creates a new node for the exit value. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main__helpers_8c_ab7892ec618ab9797cd28259b337ed317}{create\+\_\+exit\+\_\+value\+\_\+env}} (t\+\_\+shelldata $\ast$data)
+\begin{DoxyCompactList}\small\item\em Creates the exit value environment variable. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main__helpers_8c_a9efb2f2ce1933cb4e85248233417b6fe}{initial\+\_\+env\+\_\+creation}} (char $\ast$$\ast$env, t\+\_\+shelldata $\ast$data)
+\begin{DoxyCompactList}\small\item\em Duplicates the environment variables. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main__helpers_8c_aa76fbce90eb6fc39105f95955e816630}{initial\+\_\+setup}} (t\+\_\+shelldata $\ast$data, int argc, char $\ast$$\ast$argv, char $\ast$$\ast$env)
+\begin{DoxyCompactList}\small\item\em Sets up the initial data for the minishell. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Helper functions for the main file. 
+
+This file contains helper functions for the main file. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main__helpers_8c_ab7892ec618ab9797cd28259b337ed317}\label{main__helpers_8c_ab7892ec618ab9797cd28259b337ed317}} 
+\index{main\_helpers.c@{main\_helpers.c}!create\_exit\_value\_env@{create\_exit\_value\_env}}
+\index{create\_exit\_value\_env@{create\_exit\_value\_env}!main\_helpers.c@{main\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{create\_exit\_value\_env()}{create\_exit\_value\_env()}}
+{\footnotesize\ttfamily int create\+\_\+exit\+\_\+value\+\_\+env (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Creates the exit value environment variable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to be used. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns SUCCESS if everything went well, otherwise NO\+\_\+\+MEMORY. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main__helpers_8c_ab7892ec618ab9797cd28259b337ed317_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main__helpers_8c_ab7892ec618ab9797cd28259b337ed317_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{main__helpers_8c_a079775e373ff14fcbcdb14d0082c6aed}\label{main__helpers_8c_a079775e373ff14fcbcdb14d0082c6aed}} 
+\index{main\_helpers.c@{main\_helpers.c}!create\_question\_node@{create\_question\_node}}
+\index{create\_question\_node@{create\_question\_node}!main\_helpers.c@{main\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{create\_question\_node()}{create\_question\_node()}}
+{\footnotesize\ttfamily int create\+\_\+question\+\_\+node (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data,  }\item[{t\+\_\+env\+\_\+list $\ast$}]{temp }\end{DoxyParamCaption})}
+
+
+
+Creates a new node for the exit value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to be used. \\
+\hline
+{\em temp} & The temporary node to be connected to the new node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns SUCCESS if everything went well, otherwise NO\+\_\+\+MEMORY. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{main__helpers_8c_a079775e373ff14fcbcdb14d0082c6aed_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main__helpers_8c_a079775e373ff14fcbcdb14d0082c6aed_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{main__helpers_8c_a9efb2f2ce1933cb4e85248233417b6fe}\label{main__helpers_8c_a9efb2f2ce1933cb4e85248233417b6fe}} 
+\index{main\_helpers.c@{main\_helpers.c}!initial\_env\_creation@{initial\_env\_creation}}
+\index{initial\_env\_creation@{initial\_env\_creation}!main\_helpers.c@{main\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{initial\_env\_creation()}{initial\_env\_creation()}}
+{\footnotesize\ttfamily int initial\+\_\+env\+\_\+creation (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{env,  }\item[{t\+\_\+shelldata $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Duplicates the environment variables. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em env} & The environment variables to be duplicated. \\
+\hline
+{\em data} & The data to be used. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns SUCCESS if everything went well, otherwise FAILURE. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main__helpers_8c_a9efb2f2ce1933cb4e85248233417b6fe_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main__helpers_8c_a9efb2f2ce1933cb4e85248233417b6fe_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{main__helpers_8c_aa76fbce90eb6fc39105f95955e816630}\label{main__helpers_8c_aa76fbce90eb6fc39105f95955e816630}} 
+\index{main\_helpers.c@{main\_helpers.c}!initial\_setup@{initial\_setup}}
+\index{initial\_setup@{initial\_setup}!main\_helpers.c@{main\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{initial\_setup()}{initial\_setup()}}
+{\footnotesize\ttfamily int initial\+\_\+setup (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data,  }\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv,  }\item[{char $\ast$$\ast$}]{env }\end{DoxyParamCaption})}
+
+
+
+Sets up the initial data for the minishell. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to be set up. \\
+\hline
+{\em argc} & The argument count. \\
+\hline
+{\em argv} & The argument vector. \\
+\hline
+{\em env} & The environment variables. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns SUCCESS if everything went well, otherwise FAILURE. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main__helpers_8c_aa76fbce90eb6fc39105f95955e816630_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=234pt]{main__helpers_8c_aa76fbce90eb6fc39105f95955e816630_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{main__helpers_8c_acdbc95e4dcb528608ecd924136e90cef}\label{main__helpers_8c_acdbc95e4dcb528608ecd924136e90cef}} 
+\index{main\_helpers.c@{main\_helpers.c}!new\_env\_node@{new\_env\_node}}
+\index{new\_env\_node@{new\_env\_node}!main\_helpers.c@{main\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{new\_env\_node()}{new\_env\_node()}}
+{\footnotesize\ttfamily int new\+\_\+env\+\_\+node (\begin{DoxyParamCaption}\item[{t\+\_\+env\+\_\+list $\ast$}]{old\+\_\+node,  }\item[{char $\ast$}]{env\+\_\+name,  }\item[{char $\ast$}]{env\+\_\+value }\end{DoxyParamCaption})}
+
+
+
+Creates a new node in the env list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em old\+\_\+node} & The node to be connected to the new node. \\
+\hline
+{\em env\+\_\+name} & The name of the environment variable. \\
+\hline
+{\em env\+\_\+value} & The value of the environment variable. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns SUCCESS if everything went well, otherwise NO\+\_\+\+MEMORY. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main__helpers_8c_acdbc95e4dcb528608ecd924136e90cef_icgraph}
+\end{center}
+\end{figure}

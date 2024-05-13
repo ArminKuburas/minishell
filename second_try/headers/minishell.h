@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/11 10:58:00 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/12 19:14:44 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -291,6 +291,7 @@ void		try_access(char *path, int *error);
 int			create_variables(char ***path_variables, t_env_list *env_list);
 void		ambiguous_redirect(t_shelldata *data, int i, t_input_list *input);
 void		handle_heredoc(t_shelldata *data, int i, t_input_list *input);
+char		*modify_input(char *input, t_env_list *env_list);
 
 //execute_children functions
 int			execute_commands(t_shelldata *data);
@@ -325,6 +326,15 @@ int			initial_env_creation(char **env, t_shelldata *data);
 int			initial_setup(t_shelldata *data, int argc, char **argv, char **env);
 int			check_argc_argv(int argc, char **argv); //might need to be moved to main_helpers
 void		child_handling(t_shelldata *data);
+
+//Testers
+void	*fake_ft_calloc(void);
+int		fake_open(void);
+int		fake_fork(void);
+int		fake_dup2(void);
+
+
+
 
 int			check_shell_level_value(char *env_var_value);
 

@@ -1,0 +1,115 @@
+\hypertarget{child__execute__help__functions_8c}{}\doxysection{source\+\_\+files/main\+\_\+signal\+\_\+and\+\_\+execution/child\+\_\+execute\+\_\+help\+\_\+functions.c File Reference}
+\label{child__execute__help__functions_8c}\index{source\_files/main\_signal\_and\_execution/child\_execute\_help\_functions.c@{source\_files/main\_signal\_and\_execution/child\_execute\_help\_functions.c}}
+
+
+Helper functions for child execution.  
+
+
+{\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
+Include dependency graph for child\+\_\+execute\+\_\+help\+\_\+functions.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{child__execute__help__functions_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{child__execute__help__functions_8c_aa06d57039fe209477bdf706194cf172d}{wait\+\_\+for\+\_\+children}} (t\+\_\+shelldata $\ast$data)
+\begin{DoxyCompactList}\small\item\em Waits for all children to finish. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{child__execute__help__functions_8c_a7dbe5500b6a7cc836eade1fd154207cf}{use\+\_\+builtin}} (t\+\_\+child\+\_\+data $\ast$child\+\_\+data, int fd, t\+\_\+shelldata $\ast$data)
+\begin{DoxyCompactList}\small\item\em Checks if the command is a builtin command and executes it. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{child__execute__help__functions_8c_aafa71df2ea8e559b3dd6cbd3fbf08f99}{check\+\_\+child\+\_\+pipes}} (t\+\_\+child\+\_\+data $\ast$child\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Checks if the child has pipes and sets them up. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Helper functions for child execution. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{child__execute__help__functions_8c_aafa71df2ea8e559b3dd6cbd3fbf08f99}\label{child__execute__help__functions_8c_aafa71df2ea8e559b3dd6cbd3fbf08f99}} 
+\index{child\_execute\_help\_functions.c@{child\_execute\_help\_functions.c}!check\_child\_pipes@{check\_child\_pipes}}
+\index{check\_child\_pipes@{check\_child\_pipes}!child\_execute\_help\_functions.c@{child\_execute\_help\_functions.c}}
+\doxysubsubsection{\texorpdfstring{check\_child\_pipes()}{check\_child\_pipes()}}
+{\footnotesize\ttfamily int check\+\_\+child\+\_\+pipes (\begin{DoxyParamCaption}\item[{t\+\_\+child\+\_\+data $\ast$}]{child\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Checks if the child has pipes and sets them up. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em child\+\_\+data} & The child data to be used. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns SUCCESS if everything went well, otherwise NO\+\_\+\+DUP. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{child__execute__help__functions_8c_aafa71df2ea8e559b3dd6cbd3fbf08f99_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{child__execute__help__functions_8c_a7dbe5500b6a7cc836eade1fd154207cf}\label{child__execute__help__functions_8c_a7dbe5500b6a7cc836eade1fd154207cf}} 
+\index{child\_execute\_help\_functions.c@{child\_execute\_help\_functions.c}!use\_builtin@{use\_builtin}}
+\index{use\_builtin@{use\_builtin}!child\_execute\_help\_functions.c@{child\_execute\_help\_functions.c}}
+\doxysubsubsection{\texorpdfstring{use\_builtin()}{use\_builtin()}}
+{\footnotesize\ttfamily int use\+\_\+builtin (\begin{DoxyParamCaption}\item[{t\+\_\+child\+\_\+data $\ast$}]{child\+\_\+data,  }\item[{int}]{fd,  }\item[{t\+\_\+shelldata $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Checks if the command is a builtin command and executes it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em child\+\_\+data} & The child data to be used. \\
+\hline
+{\em fd} & The file descriptor to be used. \\
+\hline
+{\em data} & The data to be used. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns SUCCESS if the command is a builtin command. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{child__execute__help__functions_8c_a7dbe5500b6a7cc836eade1fd154207cf_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{child__execute__help__functions_8c_aa06d57039fe209477bdf706194cf172d}\label{child__execute__help__functions_8c_aa06d57039fe209477bdf706194cf172d}} 
+\index{child\_execute\_help\_functions.c@{child\_execute\_help\_functions.c}!wait\_for\_children@{wait\_for\_children}}
+\index{wait\_for\_children@{wait\_for\_children}!child\_execute\_help\_functions.c@{child\_execute\_help\_functions.c}}
+\doxysubsubsection{\texorpdfstring{wait\_for\_children()}{wait\_for\_children()}}
+{\footnotesize\ttfamily void wait\+\_\+for\+\_\+children (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Waits for all children to finish. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to be used. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{child__execute__help__functions_8c_aa06d57039fe209477bdf706194cf172d_icgraph}
+\end{center}
+\end{figure}

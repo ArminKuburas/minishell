@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/11 10:58:30 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 06:13:31 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,20 @@
 #include <readline/readline.h>
 #include <termios.h>
 
-/*when in heredoc and CTR+C the ^C will not display
-when in bash and you have inputted cat for example,
-then you CTRL+C the ^C will display
-without prompt.
-When terminal is opened for the first time and you do CTRL+C in bash, 
-the ^C is shown for once,
-need to figure out why.
-CTRL + \ = SIGQUIT*/
+/**
+ * @file main.c
+ * @brief Main file for the minishell program.
+ * @details This file contains the main function and the main loop for the minishell program.
+*/
 
+
+
+/**
+ * @brief Quickly checks the argc and argv.
+ * @param argc The argument count.
+ * @param argv The argument vector.
+ * @return Returns SUCCESS if everything went well, otherwise FAILURE.
+*/
 int	check_argc_argv(int argc, char **argv)
 {
 	if (argc > 1)
@@ -44,6 +49,12 @@ int	check_argc_argv(int argc, char **argv)
 	return (SUCCESS);
 }
 
+/**
+ * @brief cleans up everything before reaching the end of file.
+ * @param data The data to be cleaned up.
+ * @return void
+*/
+
 void	end_of_file_reached(t_shelldata *data)
 {
 	ft_putendl_fd("exit", STDOUT_FILENO);
@@ -51,8 +62,16 @@ void	end_of_file_reached(t_shelldata *data)
 	free(data->pwd);
 	free(data->env_variables);
 	rl_clear_history();
+	if (data->exit_value != 0)
+		exit (1);
 	exit(0);
 }
+
+/**
+ * @brief Sets up the data for the minishell.
+ * @param data The data to be set up.
+ * @return Returns SUCCESS if everything went well, otherwise FAILURE.
+*/
 
 int	set_up_data(t_shelldata *data)
 {
@@ -69,6 +88,12 @@ int	set_up_data(t_shelldata *data)
 	set_up_child_data(data);
 	return (SUCCESS);
 }
+
+/**
+ * @brief The main loop for the minishell program.
+ * @param data The data for the minishell.
+ * @return void
+*/
 
 void	main_loop(t_shelldata *data)
 {
@@ -90,6 +115,14 @@ void	main_loop(t_shelldata *data)
 		clear_input(data->input_list, SUCCESS);
 	}
 }
+
+/**
+ * @brief The main function for the minishell program.
+ * @param argc The argument count.
+ * @param argv The argument vector.
+ * @param env The environment variables.
+ * @return Returns 0 if everything went well, otherwise 1.
+*/
 
 int	main(int argc, char **argv, char **env)
 {

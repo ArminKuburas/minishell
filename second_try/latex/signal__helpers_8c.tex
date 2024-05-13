@@ -1,0 +1,183 @@
+\hypertarget{signal__helpers_8c}{}\doxysection{source\+\_\+files/main\+\_\+signal\+\_\+and\+\_\+execution/signal\+\_\+helpers.c File Reference}
+\label{signal__helpers_8c}\index{source\_files/main\_signal\_and\_execution/signal\_helpers.c@{source\_files/main\_signal\_and\_execution/signal\_helpers.c}}
+
+
+Helper functions for the signal handling.  
+
+
+{\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
+Include dependency graph for signal\+\_\+helpers.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{signal__helpers_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{signal__helpers_8c_a80ac4d4581449220650a6bb80ce77421}{child\+\_\+signals}} (void)
+\begin{DoxyCompactList}\small\item\em sets up child signals \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{signal__helpers_8c_a4ad5beadb2050e3256b87666986ef304}{heredoc\+\_\+signals}} (void)
+\begin{DoxyCompactList}\small\item\em sets up heredoc signals \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{signal__helpers_8c_ad83a40684c104721e7b02467cdfcbff0}{standby\+\_\+signals}} (void)
+\begin{DoxyCompactList}\small\item\em sets up standby signals \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{signal__helpers_8c_ab01c68d927f06b746e93dd18db48c04d}{handler\+\_\+signals}} (void)
+\begin{DoxyCompactList}\small\item\em sets up signals for the main shell \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{signal__helpers_8c_a1923ca3bc1b9249a713f87aba54d198f}{signals\+\_\+off}} (void)
+\begin{DoxyCompactList}\small\item\em turns off signals \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Helper functions for the signal handling. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{signal__helpers_8c_a80ac4d4581449220650a6bb80ce77421}\label{signal__helpers_8c_a80ac4d4581449220650a6bb80ce77421}} 
+\index{signal\_helpers.c@{signal\_helpers.c}!child\_signals@{child\_signals}}
+\index{child\_signals@{child\_signals}!signal\_helpers.c@{signal\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{child\_signals()}{child\_signals()}}
+{\footnotesize\ttfamily void child\+\_\+signals (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+sets up child signals 
+
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=310pt]{signal__helpers_8c_a80ac4d4581449220650a6bb80ce77421_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{signal__helpers_8c_a80ac4d4581449220650a6bb80ce77421_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{signal__helpers_8c_ab01c68d927f06b746e93dd18db48c04d}\label{signal__helpers_8c_ab01c68d927f06b746e93dd18db48c04d}} 
+\index{signal\_helpers.c@{signal\_helpers.c}!handler\_signals@{handler\_signals}}
+\index{handler\_signals@{handler\_signals}!signal\_helpers.c@{signal\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{handler\_signals()}{handler\_signals()}}
+{\footnotesize\ttfamily void handler\+\_\+signals (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+sets up signals for the main shell 
+
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=295pt]{signal__helpers_8c_ab01c68d927f06b746e93dd18db48c04d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{signal__helpers_8c_ab01c68d927f06b746e93dd18db48c04d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{signal__helpers_8c_a4ad5beadb2050e3256b87666986ef304}\label{signal__helpers_8c_a4ad5beadb2050e3256b87666986ef304}} 
+\index{signal\_helpers.c@{signal\_helpers.c}!heredoc\_signals@{heredoc\_signals}}
+\index{heredoc\_signals@{heredoc\_signals}!signal\_helpers.c@{signal\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{heredoc\_signals()}{heredoc\_signals()}}
+{\footnotesize\ttfamily void heredoc\+\_\+signals (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+sets up heredoc signals 
+
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=309pt]{signal__helpers_8c_a4ad5beadb2050e3256b87666986ef304_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{signal__helpers_8c_a1923ca3bc1b9249a713f87aba54d198f}\label{signal__helpers_8c_a1923ca3bc1b9249a713f87aba54d198f}} 
+\index{signal\_helpers.c@{signal\_helpers.c}!signals\_off@{signals\_off}}
+\index{signals\_off@{signals\_off}!signal\_helpers.c@{signal\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{signals\_off()}{signals\_off()}}
+{\footnotesize\ttfamily void signals\+\_\+off (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+turns off signals 
+
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{signal__helpers_8c_ad83a40684c104721e7b02467cdfcbff0}\label{signal__helpers_8c_ad83a40684c104721e7b02467cdfcbff0}} 
+\index{signal\_helpers.c@{signal\_helpers.c}!standby\_signals@{standby\_signals}}
+\index{standby\_signals@{standby\_signals}!signal\_helpers.c@{signal\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{standby\_signals()}{standby\_signals()}}
+{\footnotesize\ttfamily void standby\+\_\+signals (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+sets up standby signals 
+
+
+\begin{DoxyParams}{Parameters}
+{\em void} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=289pt]{signal__helpers_8c_ad83a40684c104721e7b02467cdfcbff0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{signal__helpers_8c_ad83a40684c104721e7b02467cdfcbff0_icgraph}
+\end{center}
+\end{figure}

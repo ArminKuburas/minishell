@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   signal_helpers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:07:25 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/09 11:12:12 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/13 06:19:40 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
+
+/**
+ * @file signal_helpers.c
+ * @brief Helper functions for the signal handling.
+*/
+
+/**
+ * @brief sets up child signals
+ * @param void
+ * @return void
+*/
 
 void	child_signals(void)
 {
@@ -19,11 +30,23 @@ void	child_signals(void)
 	signal(SIGQUIT, SIG_IGN);
 }
 
+/**
+ * @brief sets up heredoc signals
+ * @param void
+ * @return void
+*/
+
 void	heredoc_signals(void)
 {
 	signal(SIGINT, heredoc_handler);
 	signal(SIGQUIT, SIG_IGN);
 }
+
+/**
+ * @brief sets up standby signals
+ * @param void
+ * @return void
+*/
 
 void	standby_signals(void)
 {
@@ -32,12 +55,24 @@ void	standby_signals(void)
 	signal(SIGINT, SIG_IGN);
 }
 
+/**
+ * @brief sets up signals for the main shell
+ * @param void
+ * @return void
+*/
+
 void	handler_signals(void)
 {
 	caret_switch(0);
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, sigint_handler);
 }
+
+/**
+ * @brief turns off signals
+ * @param void
+ * @return void
+*/
 
 void	signals_off(void)
 {
