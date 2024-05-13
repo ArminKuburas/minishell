@@ -61,6 +61,7 @@ void	heredoc_signals(void)
 void	standby_signals(void)
 {
 	caret_switch(1);
+	//signal(SIGQUIT, parent_sigquit);
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, SIG_IGN);
 }

@@ -41,8 +41,11 @@
 /*For the waitpid function*/
 # include <sys/wait.h>
 
-/*for the tcgetattr and tcsetattr functions*/
+/*For the tcgetattr and tcsetattr functions*/
 # include <termios.h>
+
+/*For the overflow checks*/
+# include <limits.h>
 
 # define RED	"\001\x1b[31m\002"
 # define GREEN	"\001\x1b[32m\002"
@@ -168,8 +171,8 @@ typedef struct s_shelldata
 	t_child_data	*child_data;
 	int				command_amount;
 	char			**env_variables;
-	char			*pwd; // subject for change
-	char			*old_pwd; // subject for change
+	char			*pwd;
+	char			*old_pwd;
 	char			*input;
 	int				exit_value;
 }		t_shelldata;
@@ -199,8 +202,6 @@ typedef struct s_split_data
 	t_input_list	*node_one;
 }	t_split_data;
 //readline functions
-
-//typedef void	(*t_handler)(int);
 
 int			rl_clear_history(void);
 void		rl_replace_line(char *str, int num);
@@ -243,7 +244,6 @@ int			duplicate_input(char *input, t_shelldata *data, int *i);
 //signal handler
 void		sigint_handler(int sig);
 void		heredoc_handler(int sig);
-//void		signal_handler(int signal, t_handler handler);
 void		parent_signals(void);
 void		heredoc_signals(void);
 void		standby_signals(void);
@@ -252,26 +252,29 @@ void		caret_switch(int on);
 void		signals_off(void);
 void		child_signals(void);
 void		child_sigint_handler(int sig);
+void		parent_sigquit(int sig);
 
 //built_in functions
-void		my_echo(t_input_list *temp);
 int			ft_cd(t_shelldata *data, char **inputs);
+int			ft_env(t_shelldata *data);
+int			ft_export(t_shelldata *data, char **inputs, int fd);
+int			ft_exit(t_shelldata *data, char **inputs);
+int			ft_unset(t_shelldata *data, char **inputs);
+int			ft_echo(t_child_data *data, int fd);
+int			ft_pwd(char *pwd, int fd);
+int			child_pre_check(t_shelldata *data);
+char		*ret_env(t_shelldata *data, char *var);
 void		update_env_pwd(t_shelldata *data);
 int			refresh_pwd(t_shelldata *data);
 void		refresh_old_pwd(t_shelldata *data);
-int			ft_export(t_shelldata *data, char **inputs, int fd);
 int			replace_env_var(t_shelldata *data, char *input, int i, int flag);
 int			add_new_env_var(t_shelldata *data, char *input, int i, int flag);
 void		export_sorted_list(t_env_list *env_list);
 void		export_no_commands(t_shelldata *data, int fd);
 void		swap_env_vars(t_env_list *temp, t_env_list *temp2);
-void		my_unset(t_shelldata *data, t_input_list *temp);
-int			ft_exit(t_shelldata *data, char **inputs);
-int			ft_unset(t_shelldata *data, char **inputs);
+void		check_format(t_shelldata *data, char **inputs);
+void		clean_exit(t_shelldata *data, int flag);
 int			is_unset_var_name_valid(char *input);
-
-//execute functions
-int			my_env(t_shelldata *data);
 
 //heredoc
 void		heredoc(t_shelldata data, t_input_list *temp);
@@ -306,12 +309,6 @@ void		child_handler(t_shelldata *data, t_child_data *child_data, int i);
 void		fork_failed(t_shelldata *data);
 void		close_other_fds(t_shelldata *data, int j, int i);
 
-//armin version of builtins
-int			ft_echo(t_child_data *data, int fd);
-int			child_pre_check(t_shelldata *data);
-int			ft_pwd(char *pwd, int fd);
-char		*ret_env(t_shelldata *data, char *var);
-
 //executioner
 int			execute_built_ins(t_shelldata *data, t_input_list *temp);
 //error functions
@@ -333,9 +330,9 @@ int		fake_open(void);
 int		fake_fork(void);
 int		fake_dup2(void);
 
-
-
-
 int			check_shell_level_value(char *env_var_value);
+
+//error messages
+void		num_fail(t_shelldata *data, char *input);
 
 #endif

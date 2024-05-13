@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   create_env_list.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 21:29:51 by akuburas          #+#    #+#             */
 /*   Updated: 2024/05/13 06:38:08 by akuburas         ###   ########.fr       */
@@ -93,7 +93,7 @@ int	simplify_env_data(t_env_list *env_list)
 	int	i;
 
 	i = 0;
-	while (env_list->env_var[i] != '=')
+	while (env_list->env_var[i] != '=' || env_list->env_var[i] == '\0')
 		i++;
 	env_list->env_var_name = ft_substr(env_list->env_var, 0, i);
 	if (env_list->env_var_name == NULL)

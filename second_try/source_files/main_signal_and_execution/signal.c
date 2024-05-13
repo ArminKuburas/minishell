@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:43:48 by tvalimak          #+#    #+#             */
 /*   Updated: 2024/05/13 06:21:30 by akuburas         ###   ########.fr       */
@@ -42,7 +42,7 @@ void	child_sigint_handler(int sig)
 {
 	(void)sig;
 	write(1, "\n", 1);
-}
+}*/
 
 /**
  * @brief parent signal handler for SIGINT
@@ -52,11 +52,13 @@ void	child_sigint_handler(int sig)
 
 void	parent_sigint(int sig)
 {
-	if (sig == SIGINT)
+	if (sig == SIGQUIT)
 	{
-		write(1, "\n", 1);
-		exit(1);
+		//write(1, "Quit: 3", 8);
+		ft_putstr_fd("Quit: 3", STDOUT_FILENO);
+		//exit(0);
 	}
+	ft_putstr_fd("\n", STDOUT_FILENO);
 }
 
 /**
