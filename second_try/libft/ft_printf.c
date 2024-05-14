@@ -6,12 +6,23 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 11:19:11 by akuburas          #+#    #+#             */
-/*   Updated: 2024/01/16 11:33:10 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/14 05:29:15 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @file ft_printf.c
+ * @brief custom Printf function.
+*/
+
+/**
+ * @brief Prints the different formats.
+ * @param args The arguments.
+ * @param format The format.
+ * @return Returns the length of the printed format.
+*/
 static int	my_formats(va_list *args, const char format)
 {
 	int	length;
@@ -41,6 +52,14 @@ static int	my_formats(va_list *args, const char format)
 	return (0);
 }
 
+/**
+ * @brief Checks if the format is valid.
+ * @param str The string to be checked.
+ * @param args The arguments.
+ * @param print_length The length of the printed string.
+ * @param i The index of the string.
+ * @return Returns 0 if successful, -1 if not.
+*/
 static int	check(const char *str, va_list *args, int *print_length, int *i)
 {
 	int	result;
@@ -68,6 +87,12 @@ static int	check(const char *str, va_list *args, int *print_length, int *i)
 	return (0);
 }
 
+/**
+ * @brief Custom printf function.
+ * @param str The string to be printed.
+ * @param ... The variadric arguments.
+ * @return Returns the length of the printed string.
+*/
 int	ft_printf(const char *str, ...)
 {
 	va_list	args;

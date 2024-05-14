@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:33:57 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/14 02:25:15 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/14 05:27:00 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,8 @@ int	ft_env(t_shelldata *data)
 {
 	t_env_list		*temp;
 	char			*qm;
-	char			*eq;
 
 	qm = "?";
-	eq = "=";
 	temp = data->env_list;
 	if (!temp)
 	{

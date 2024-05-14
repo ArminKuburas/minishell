@@ -6,17 +6,36 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 08:58:03 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/12 14:11:22 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/14 05:43:27 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
+
+void	exit_cleaner(t_shelldata *data)
+{
+	int	i;
+
+	free(data->input);
+	free(data->env_variables);
+	clear_input(data->input_list, SUCCESS);
+	free(data->pwd);
+	clear_env_list(data->env_list, SUCCESS);
+	i = 0;
+	while (i < data->command_amount)
+	{
+		free_child_data(&data->child_data[i]);
+		i++;
+	}
+	free(data->child_data);
+}
 
 void	clean_exit(t_shelldata *data, int flag)
 {
 	if (flag)
 		ft_putendl_fd("exit", 2);
 	handler_signals();
+	exit_cleaner(data);
 	exit(data->exit_value);
 }
 
