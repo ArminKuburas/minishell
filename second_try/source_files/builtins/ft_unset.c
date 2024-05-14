@@ -3,15 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:05:58 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/09 10:58:22 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/14 10:40:45 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
+/**
+ * @file ft_unset.c
+ * @brief Built-in command unset.
+*/
+
+/**
+ * @brief Checks if the unset environment variable exists.
+ * @param data The struct containing shell data.
+ * @param input The input string.
+ * @return Returns YES if the environment variable exists, otherwise NO.
+*/
 static int	check_if_unset_env_exists(t_shelldata *data, char *input)
 {
 	t_env_list	*temp2;
@@ -27,6 +38,12 @@ static int	check_if_unset_env_exists(t_shelldata *data, char *input)
 	return (NO);
 }
 
+/**
+ * @brief checks if its the first node in the list.
+ * @param data The struct containing shell data.
+ * @param specifier The specifier to be checked.
+ * @return Returns YES if the first node is found, otherwise NO.
+*/
 int	check_if_first_node(t_shelldata *data, char *specifier)
 {
 	t_env_list	*next;
@@ -44,6 +61,12 @@ int	check_if_first_node(t_shelldata *data, char *specifier)
 	return (NO);
 }
 
+/**
+ * @brief Removes the environment variable from the list.
+ * @param data The struct containing shell data.
+ * @param specifier The specifier to be removed.
+ * @return void
+*/
 void	remove_from_env_list(t_shelldata *data, char *specifier)
 {
 	t_env_list	*temp;
@@ -68,6 +91,12 @@ void	remove_from_env_list(t_shelldata *data, char *specifier)
 	}
 }
 
+/**
+ * @brief executes the unset commands.
+ * @param data The struct containing shell data.
+ * @param input The input string.
+ * @return Returns SUCCESS if the command was executed successfully.
+*/
 static int	execute_unset_commands(t_shelldata *data, char *input)
 {
 	if (check_if_unset_env_exists(data, input) == YES)
@@ -79,6 +108,12 @@ static int	execute_unset_commands(t_shelldata *data, char *input)
 		return (SUCCESS);
 }
 
+/**
+ * @brief The unset command.
+ * @param data The struct containing shell data.
+ * @param inputs The given commands.
+ * @return Returns SUCCESS if the command was executed successfully.
+*/
 int	ft_unset(t_shelldata *data, char **inputs)
 {
 	int	i;

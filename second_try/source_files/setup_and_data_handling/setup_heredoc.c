@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:04:01 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 20:29:42 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/14 10:33:52 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ static void	write_loop(int fd, t_input_list *input, t_shelldata *data)
 		modification_loop(break_line, data, fd);
 	else
 		unmodified_loop(break_line, fd);
+	free(break_line);
 }
 
 /**

@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:43:48 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/13 19:20:23 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/14 10:26:10 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	caret_switch(int on)
 {
 	struct termios	term;
 
+	term = (struct termios){0};
 	tcgetattr(STDIN_FILENO, &term);
 	if (!on)
 		term.c_lflag &= ~ECHOCTL;
