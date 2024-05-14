@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 09:54:36 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 20:29:53 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:00:03 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 /**
  * @file setup_is_it_command.c
  * @brief Functions for checking if the command is a builtin or a command.
- * @details This file contains functions for checking if the command is a builtin or a command.
 */
 
 /**

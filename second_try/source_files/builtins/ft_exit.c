@@ -6,12 +6,21 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 08:58:03 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/14 05:43:27 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:01:41 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
+/**
+ * @file ft_exit.c
+ * @brief Functions for builtin exit command.
+*/
+
+/**
+ * @brief cleans all allocated data before exiting the program.
+ * @param data main struct for the program.
+*/
 void	exit_cleaner(t_shelldata *data)
 {
 	int	i;
@@ -30,6 +39,11 @@ void	exit_cleaner(t_shelldata *data)
 	free(data->child_data);
 }
 
+/**
+ * @brief fully exits the program with teh given exit value.
+ * @param data main struct for the program.
+ * @param flag if 1, prints exit message.
+*/
 void	clean_exit(t_shelldata *data, int flag)
 {
 	if (flag)
@@ -39,6 +53,11 @@ void	clean_exit(t_shelldata *data, int flag)
 	exit(data->exit_value);
 }
 
+/**
+ * @brief checks if the given input is a valid exit command.
+ * @param data main struct for the program.
+ * @param inputs array of strings from the input.
+*/
 int	ft_exit(t_shelldata *data, char **inputs)
 {
 	if (!inputs[1])

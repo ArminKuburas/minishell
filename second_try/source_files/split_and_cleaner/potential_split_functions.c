@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 07:34:43 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 20:40:32 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:34:33 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,6 @@
  * @file potential_split_functions.c
  * @brief Functions for handling potential splits.
  */
-
-/*This function checks to see if the given $string ends with a $ character
- that is followed by nothing.
- The reason this is important is because it prevents a split from happening
- example: $TEMP="Hello World"
- If in the shell you call it like this: > $TEMP$
- it views it as one long string: Hello World$
- The space included in the string.*/
 
 /**
  * @brief Checks if the string is a potential split.
@@ -53,7 +45,6 @@ bool	check_string(t_new_string_data *data)
 	return (1);
 }
 
-
 /**
  * @brief Checks if the given string needs to be split.
  * @param temp_env The environment variable to be checked.
@@ -72,7 +63,6 @@ int	check_if_split_needed(t_env_list *temp_env)
 	}
 	return (NO);
 }
-
 
 /**
  * @brief Finds the environment variable.

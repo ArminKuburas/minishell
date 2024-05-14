@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child_execute_help_functions.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:10:45 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 18:55:23 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:37:54 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,34 @@
 */
 
 /**
+ * @brief Checks the exit value of the child process.
+ * @param child_data The child data to be used.
+ * @param already_printed If the exit value has already been printed.
+ * @return void
+*/
+void	check_exit_value(t_child_data *child_data, int already_printed)
+{
+	if (child_data->exit_value == 2 && already_printed == NO)
+	{
+		ft_putendl_fd("", STDOUT_FILENO);
+		already_printed = YES;
+		child_data->exit_value = 130;
+	}
+	else if (child_data->exit_value == 3 && already_printed == NO)
+	{
+		ft_putendl_fd("Quit: 3", STDOUT_FILENO);
+		already_printed = YES;
+		child_data->exit_value = 131;
+	}
+	if (child_data->exit_value > 255)
+		child_data->exit_value = child_data->exit_value / 256;
+}
+
+/**
  * @brief Waits for all children to finish.
  * @param data The data to be used.
  * @return void
 */
-
 void	wait_for_children(t_shelldata *data)
 {
 	int	i;
@@ -36,19 +59,7 @@ void	wait_for_children(t_shelldata *data)
 			&& data->child_data[i].exit_value == 0)
 			waitpid(data->child_data[i].pid,
 				&data->child_data[i].exit_value, 0);
-		if (data->child_data[i].exit_value == 2 && already_printed == NO)
-		{
-			ft_putendl_fd("", STDOUT_FILENO);
-			already_printed = YES;
-			data->child_data[i].exit_value = 130;
-		}
-		else if (data->child_data[i].exit_value == 3 && already_printed == NO)
-		{
-			ft_putendl_fd("Quit: 3", STDOUT_FILENO);
-			already_printed = YES;
-			data->child_data[i].exit_value = 131;
-		}
-		//printf("This is the exit value: %d\n", data->child_data[i].exit_value);
+		check_exit_value(&data->child_data[i], already_printed);
 		free_child_data(&data->child_data[i]);
 		data->exit_value = data->child_data[i].exit_value;
 		i++;
@@ -62,7 +73,6 @@ void	wait_for_children(t_shelldata *data)
  * @param data The data to be used.
  * @return Returns SUCCESS if the command is a builtin command.
 */
-
 int	use_builtin(t_child_data *child_data, int fd, t_shelldata *data)
 {
 	if (fd == 0)
@@ -90,7 +100,6 @@ int	use_builtin(t_child_data *child_data, int fd, t_shelldata *data)
  * @param child_data The child data to be used.
  * @return Returns SUCCESS if everything went well, otherwise NO_DUP.
 */
-
 int	check_child_pipes(t_child_data *child_data)
 {
 	if (child_data->p_fd_out[1] != 0)

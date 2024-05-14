@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:43:48 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/14 10:26:10 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:28:39 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
  * @param sig The signal number.
  * @return void
 */
-
 void	sigint_handler(int sig)
 {
 	(void)sig;
@@ -37,7 +36,6 @@ void	sigint_handler(int sig)
  * @param sig The signal number.
  * @return void
 */
-
 void	child_sigint_handler(int sig)
 {
 	(void)sig;
@@ -49,15 +47,10 @@ void	child_sigint_handler(int sig)
  * @param sig The signal number.
  * @return void
 */
-
 void	parent_sigint(int sig)
 {
 	if (sig == SIGQUIT)
-	{
-		//write(1, "Quit: 3", 8);
 		ft_putstr_fd("Quit: 3", STDOUT_FILENO);
-		//exit(0);
-	}
 	ft_putstr_fd("\n", STDOUT_FILENO);
 }
 
@@ -66,7 +59,6 @@ void	parent_sigint(int sig)
  * @param sig The signal number.
  * @return void
 */
-
 void	heredoc_handler(int sig)
 {
 	(void)sig;
@@ -79,7 +71,6 @@ void	heredoc_handler(int sig)
  * @param on 1 to turn on, 0 to turn off.
  * @return void
 */
-
 void	caret_switch(int on)
 {
 	struct termios	term;

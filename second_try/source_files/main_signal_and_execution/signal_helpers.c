@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:07:25 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/13 18:54:06 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:29:05 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,6 @@
  * @param void
  * @return void
 */
-
-// void	baby_sigquit(int sig)
-// 	{
-// 	if (sig == SIGQUIT)
-// 	{
-// 		//write(1, "Quit: 3", 8);
-// 		ft_putstr_fd("Quit: 3", STDOUT_FILENO);
-// 	}
-// 	ft_putstr_fd("\n", STDOUT_FILENO);
-// 	}
-
 void	child_signals(void)
 {
 	caret_switch(1);
@@ -45,7 +34,6 @@ void	child_signals(void)
  * @param void
  * @return void
 */
-
 void	heredoc_signals(void)
 {
 	signal(SIGINT, heredoc_handler);
@@ -57,11 +45,9 @@ void	heredoc_signals(void)
  * @param void
  * @return void
 */
-
 void	standby_signals(void)
 {
 	caret_switch(1);
-	//signal(SIGQUIT, parent_sigquit);
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, SIG_IGN);
 }
@@ -71,7 +57,6 @@ void	standby_signals(void)
  * @param void
  * @return void
 */
-
 void	handler_signals(void)
 {
 	caret_switch(0);
@@ -84,7 +69,6 @@ void	handler_signals(void)
  * @param void
  * @return void
 */
-
 void	signals_off(void)
 {
 	signal(SIGINT, SIG_IGN);

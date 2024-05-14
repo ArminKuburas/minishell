@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 23:52:53 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 06:29:04 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:14:24 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@
  * @param data The data to be used.
  * @return void
 */
-
-void	fork_failed(t_shelldata *data)
+void	fork_failed(t_shelldata *data, int amount)
 {
 	int	i;
 
@@ -34,12 +33,18 @@ void	fork_failed(t_shelldata *data)
 		free_child_data(&data->child_data[i]);
 		i++;
 	}
-	free(data->child_data);
 	clear_input(data->input_list, FAILURE);
 	clear_env_list(data->env_list, FAILURE);
 	free(data->env_variables);
 	free(data->input);
 	rl_clear_history();
+	i = 0;
+	while (i < amount)
+	{
+		waitpid(data->child_data[i].pid, &data->child_data[i].exit_value, 0);
+		i++;
+	}
+	free(data->child_data);
 	exit(1);
 }
 
@@ -48,7 +53,6 @@ void	fork_failed(t_shelldata *data)
  * @param data The data to be used.
  * @return Returns SUCCESS if everything went well, otherwise FAILURE.
 */
-
 int	execute_commands(t_shelldata *data)
 {
 	int				i;
@@ -76,7 +80,6 @@ int	execute_commands(t_shelldata *data)
  * @param data The data to be used.
  * @return Returns the exit value of the builtin command.
 */
-
 int	one_builtin(t_shelldata *data)
 {
 	data->exit_value = use_builtin(&data->child_data[0],
@@ -91,7 +94,6 @@ int	one_builtin(t_shelldata *data)
  * @param data The data to be used.
  * @return Returns the exit value of the child processes.
 */
-
 int	child_pre_check(t_shelldata *data)
 {
 	if (data->command_amount == 1)
@@ -110,7 +112,6 @@ int	child_pre_check(t_shelldata *data)
  * @param data The data to be used.
  * @return void
 */
-
 void	child_handling(t_shelldata *data)
 {
 	child_pre_check(data);

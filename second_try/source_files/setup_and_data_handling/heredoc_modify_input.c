@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 22:03:54 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 20:28:45 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:56:04 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,14 +105,12 @@ int	new_input_dollar(char *input, char *new_input, t_env_list *env_list, int *j)
 		temp = temp->next;
 	}
 	if (ft_strchr(" \t\n$", input[i]) != NULL)
-	{
-		new_input[(*j)++] = '$';
-		return (1);
-	}
+		return (no_env_found(new_input, j));
 	while (input[i] != '\0' && ft_strchr(" \t\n$", input[i]) == NULL)
 		i++;
 	return (i + 1);
 }
+
 /**
  * @brief Sets up the new input.
  * @param input The input to be used.

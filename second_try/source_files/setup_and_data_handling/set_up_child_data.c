@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:58:42 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 20:29:02 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:59:22 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int	create_child_data(t_shelldata *data, int amount)
 int	set_up_child_data(t_shelldata *data)
 {
 	int	processes;
-	// technically still not done with handling exit cases here. go into create child data and validate things one by one
+
 	processes = count_processes(data->input_list);
 	data->command_amount = processes;
 	data->child_data

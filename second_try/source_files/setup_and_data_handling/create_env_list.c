@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 21:29:51 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 20:28:19 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:47:43 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
  * @file create_env_list.c
  * @brief Functions for creating and handling the environment list.
 */
-
 
 /**
  * @brief Creates a 2D array of the environment variables.
@@ -105,7 +104,6 @@ int	simplify_env_data(t_env_list *env_list)
 	return (SUCCESS);
 }
 
-
 /**
  * @brief Creates a new environment variable.
  * @param env The environment variable to be created.
@@ -163,12 +161,12 @@ int	duplicate_env(char **env, t_shelldata *data)
 			continue ;
 		}
 		if (create_env(env[i], temp) != SUCCESS)
-			return (clear_env_list(data->env_list, NO_MEMORY));
+			return (clear_env_list(data->env_list, FAILURE));
 		if (temp->next != NULL)
 			temp = temp->next;
 		i++;
 	}
 	if (create_2d_env(data) != SUCCESS)
-		return (clear_env_list(data->env_list, NO_MEMORY));
+		return (clear_env_list(data->env_list, FAILURE));
 	return (SUCCESS);
 }

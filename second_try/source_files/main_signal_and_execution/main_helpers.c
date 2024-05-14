@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 09:33:40 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 22:14:15 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:47:23 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,17 +99,12 @@ int	initial_env_creation(char **env, t_shelldata *data)
 {
 	int	error;
 
-	printf("initial_env_creation\n");
-	int i = 0;
-	while (env[i])
-	{
-		printf ("env[%d] = %s\n", i, env[i]);
-		i++;
-	}
 	error = duplicate_env(env, data);
-	printf("initial_env_creation 2\n");
 	if (error != SUCCESS)
+	{
+		ft_putendl_fd("error: memory allocation failed", 2);
 		return (FAILURE);
+	}
 	error = update_shell_level(data);
 	if (error != SUCCESS)
 	{
@@ -137,9 +132,8 @@ int	initial_setup(t_shelldata *data, int argc, char **argv, char **env)
 {
 	if (check_argc_argv(argc, argv) == FAILURE)
 		return (FAILURE);
-	if (env)
-		if (initial_env_creation(env, data) == FAILURE)
-			return (FAILURE);
+	if (env && initial_env_creation(env, data) == FAILURE)
+		return (FAILURE);
 	data->pwd = getcwd(NULL, 0);
 	if (!data->pwd)
 	{

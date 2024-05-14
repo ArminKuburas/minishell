@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 04:14:46 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 20:34:04 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:34:16 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
  * @file new_mini_split_helpers.c
  * @brief Helper functions for the mini_split function.
 */
-
 
 /**
  * @brief Finds the closing quote.

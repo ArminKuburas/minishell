@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 19:06:55 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 20:33:41 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:33:45 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
  * @file cleaner_length_functions.c
  * @brief Functions for finding the length of the cleaned input.
 */
-
 
 /**
  * @brief Compares the environment variable name to the string.

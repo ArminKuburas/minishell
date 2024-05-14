@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:58:25 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 20:28:01 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:47:23 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
  * @brief Functions for checking for errors.
  * @details This file contains functions for checking for errors.
 */
-
 
 /**
  * @brief Checks for syntax errors in the pipe input.
