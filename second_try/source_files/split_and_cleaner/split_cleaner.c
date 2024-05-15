@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:56:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/15 07:23:29 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:23:28 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	new_str_quote_found(t_new_string_data *data, char *temp)
  */
 void	handle_dollar_sign(t_new_string_data *data)
 {
-	printf("Inside handle_dollar_sign\n");
 	if (data->quote == 'a')
 		potential_split_create(data);
 	else
@@ -59,10 +58,8 @@ int	create_new_string(t_input_list *temp, t_shelldata *shell_data, char *n_str)
 	t_new_string_data	data;
 
 	set_up_string_data(&data, temp, shell_data, n_str);
-	printf("inside create_new_string\n");
 	while (data.temp->input[data.j] != '\0')
 	{
-		printf("Inside while loop\n");
 		if (ft_strchr("'\"", data.temp->input[data.j]) != NULL)
 			new_str_quote_found(&data, &data.temp->input[data.j]);
 		else if (data.temp->input[data.j] != '$' || data.quote == '\'')
@@ -72,15 +69,11 @@ int	create_new_string(t_input_list *temp, t_shelldata *shell_data, char *n_str)
 		}
 		else
 			handle_dollar_sign(&data);
-		printf("Data.j: %d\n", data.j);
 		if (data.temp->input[data.j] != '\0')
 			data.j++;
 	}
 	if (data.temp->word_split != WORD_SPLIT)
 		data.temp->old_input = temp->input;
-	if (data.new_string[0] == '\0')
-		printf("New string is empty\n");
-	printf("New string: %s\n", data.new_string);
 	data.temp->input = data.new_string;
 	return (SUCCESS);
 }
@@ -109,12 +102,10 @@ int	split_cleaner(t_shelldata *data)
 	size_t			length;
 	t_input_list	*temp;
 
-	printf("Inside split_cleaner\n");
 	temp = data->input_list;
 	while (temp != NULL)
 	{
 		length = new_length(temp, data->env_list);
-		printf("Length: %zu\n", length);
 		if (temp->needs_cleaning != 0)
 			clean_up_split(data, temp, length);
 		temp = temp->next;

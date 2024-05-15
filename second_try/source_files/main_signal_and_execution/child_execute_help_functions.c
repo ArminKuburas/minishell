@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:10:45 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/15 06:32:26 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:13:30 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	use_builtin(t_child_data *child_data, int fd, t_shelldata *data)
 	else if (ft_strcmp(child_data->command, "unset") == 0)
 		return (ft_unset(data, child_data->command_inputs));
 	else if (ft_strcmp(child_data->command, "env") == 0)
-		return (ft_env(data));
+		return (ft_env(data, fd));
 	else if (ft_strcmp(child_data->command, "exit") == 0)
 		return (ft_exit(data, child_data->command_inputs));
 	return (FAILURE);

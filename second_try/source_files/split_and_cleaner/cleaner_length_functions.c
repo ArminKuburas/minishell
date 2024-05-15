@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 19:06:55 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/15 07:06:30 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:22:54 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,11 @@ int	length_find_env(t_env_list *env, char *str, int len)
 			temp = temp->next;
 			continue ;
 		}
-		printf("Inside length_find_env\n");
-		printf("len: %d\n", len);
-		printf("str: %s\n", str);
-		printf("temp->env_var_name: %s\n", temp->env_var_name);
 		if (env_str_cmpr(temp->env_var_name, str, len) == 0)
 			return (ft_strlen(temp->env_var_value));
 		if (temp != NULL)
 			temp = temp->next;
 	}
-	printf("No env found\n");
 	return (0);
 }
 
@@ -82,7 +77,6 @@ int	found_dollar(t_input_list *temp, int *i, char quote, t_env_list *env)
 	int	start;
 
 	length = 0;
-	printf("Inside found_dollar\n");
 	if (quote == '\'')
 		return (1);
 	if (ft_strchr(" \t$'\"", temp->input[(*i) + 1]) == NULL)

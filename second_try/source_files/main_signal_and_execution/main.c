@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/15 06:32:03 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:22:14 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,13 +103,6 @@ void	main_loop(t_shelldata *data)
 			continue ;
 		}
 		child_handling(data);
-		t_env_list *temp = data->env_list;
-		while (temp)
-		{
-			if (ft_strcmp(temp->env_var_name, "PWD") == 0)
-				ft_printf("PWD found. Value: %s\n", temp->env_var_value);
-			temp = temp->next;
-		}
 		add_history(data->input);
 		free(data->input);
 		data->input = NULL;

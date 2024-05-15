@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:31:08 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/15 06:30:36 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:08:15 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ int	ft_echo(t_child_data *data, int fd)
 		ft_putstr_fd("\n", fd);
 		return (SUCCESS);
 	}
-	ft_printf("command_inputs[1]: %s\n", data->command_inputs[1]);
 	if (custom_n_check(data->command_inputs[i]) == YES)
 		print_no_newline(data, fd, i);
 	else

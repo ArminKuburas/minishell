@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:33:57 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/14 05:27:00 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:14:21 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
  * @param data The struct containing shell data.
  * @return Returns 0 if successful, 1 if not.
  */
-int	ft_env(t_shelldata *data)
+int	ft_env(t_shelldata *data, int fd)
 {
 	t_env_list		*temp;
 	char			*qm;
@@ -34,7 +34,9 @@ int	ft_env(t_shelldata *data)
 	temp = data->env_list;
 	if (!temp)
 	{
-		ft_printf("bananashell: env: %s not found\n", qm);
+		ft_putstr_fd("bananashell: env: ", STDERR_FILENO);
+		ft_putstr_fd(qm, STDERR_FILENO);
+		ft_putstr_fd(" not found\n", STDERR_FILENO);
 		return (FAILURE);
 	}
 	while (temp)
@@ -42,9 +44,9 @@ int	ft_env(t_shelldata *data)
 		if (temp->env_var_value != NULL && temp->env_var_name[0] != '?')
 		{
 			if (ft_strchr(temp->env_var, '=') != NULL)
-				ft_printf("%s \n", temp->env_var);
+				ft_putendl_fd(temp->env_var, fd);
 			else
-				ft_printf("%s= \n", temp->env_var);
+				ft_putendl_fd(temp->env_var, fd);
 		}
 		temp = temp->next;
 	}
