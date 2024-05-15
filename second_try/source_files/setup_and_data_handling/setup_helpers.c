@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:04:17 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 20:29:31 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/15 06:58:40 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,12 @@ static void	cca_helper(t_child_data *child, t_input_list *start)
 	{
 		if (temp->type == COMMAND_ARGUMENT)
 		{
+			if (temp->input == NULL)
+				printf("temp->input is NULL\n");
+			else if (temp->input[0] == '\0')
+				printf("temp->input is empty\n");
+			else
+				printf("temp->input is neither empty or NULL: %s\n", temp->input);
 			child->command_inputs[i] = temp->input;
 			i++;
 		}
@@ -135,12 +141,15 @@ int	create_command_arguments(t_child_data *child, t_input_list *start)
 			i++;
 		temp = temp->next;
 	}
+	printf("inside create_command_arguments\n");
+	printf("i: %d\n", i);
 	child->command_inputs = ft_calloc(i + 2, sizeof(char *));
 	if (child->command_inputs == NULL)
-		return (FAILURE);
+		return (NO_MEMORY);
 	child->command_inputs[0] = child->command;
 	if (i == 0)
 		return (SUCCESS);
+	printf("before cca_helper\n");
 	cca_helper(child, start);
 	return (SUCCESS);
 }

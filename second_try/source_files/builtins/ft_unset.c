@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 14:05:58 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/14 10:40:45 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/15 05:11:45 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,5 +132,19 @@ int	ft_unset(t_shelldata *data, char **inputs)
 		i++;
 	}
 	create_2d_env(data);
+	i = 0;
+	t_env_list *temp = data->env_list;
+	while (temp)
+	{
+		ft_printf("env_list[%d]: name %s\n", i, temp->env_var_name);
+		ft_printf("env_list[%d]: value %s\n", i, temp->env_var_value);
+		ft_printf("env_list[%d]: var %s\n", i, temp->env_var);
+		temp = temp->next;
+		i++;
+	}
+	{
+		/* code */
+	}
+	
 	return (return_value);
 }

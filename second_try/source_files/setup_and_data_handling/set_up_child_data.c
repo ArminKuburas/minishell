@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:58:42 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/14 15:59:22 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/15 06:38:15 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	setup_command_inputs(t_shelldata *data, int i)
 		temp = temp->next;
 	}
 	error = create_command_arguments(&data->child_data[i], temp);
+	if (error == NO_MEMORY)
+		clean_everything_up(data, NO_MEMORY);
 	data->child_data[i].exit_value = error;
 }
 

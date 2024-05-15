@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 18:35:36 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 20:42:31 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/15 07:15:46 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_env_list	*try_to_find_env(t_env_list *env, char *str, int len)
 	t_env_list	*temp;
 
 	temp = env;
+	printf("Inside try_to_find_env\n");
 	while (temp != NULL)
 	{
 		if (ft_strlen(temp->env_var_name) != (size_t)len)
@@ -40,6 +41,7 @@ t_env_list	*try_to_find_env(t_env_list *env, char *str, int len)
 		if (temp != NULL)
 			temp = temp->next;
 	}
+	printf("Returning NULL\n");
 	return (NULL);
 }
 

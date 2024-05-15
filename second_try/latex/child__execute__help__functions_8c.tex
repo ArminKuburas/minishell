@@ -16,6 +16,8 @@ Include dependency graph for child\+\_\+execute\+\_\+help\+\_\+functions.\+c\+:\
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+void \mbox{\hyperlink{child__execute__help__functions_8c_a9c9d102dfb3feffe9c03d5405ebb9aa5}{check\+\_\+exit\+\_\+value}} (\mbox{\hyperlink{structs__child__data}{t\+\_\+child\+\_\+data}} $\ast$child\+\_\+data, int already\+\_\+printed)
+\begin{DoxyCompactList}\small\item\em Checks the exit value of the child process. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{child__execute__help__functions_8c_aa06d57039fe209477bdf706194cf172d}{wait\+\_\+for\+\_\+children}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
 \begin{DoxyCompactList}\small\item\em Waits for all children to finish. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{child__execute__help__functions_8c_a7dbe5500b6a7cc836eade1fd154207cf}{use\+\_\+builtin}} (\mbox{\hyperlink{structs__child__data}{t\+\_\+child\+\_\+data}} $\ast$child\+\_\+data, int fd, \mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
@@ -55,6 +57,42 @@ Here is the caller graph for this function\+:\nopagebreak
 \includegraphics[width=350pt]{child__execute__help__functions_8c_aafa71df2ea8e559b3dd6cbd3fbf08f99_icgraph}
 \end{center}
 \end{figure}
+\mbox{\Hypertarget{child__execute__help__functions_8c_a9c9d102dfb3feffe9c03d5405ebb9aa5}\label{child__execute__help__functions_8c_a9c9d102dfb3feffe9c03d5405ebb9aa5}} 
+\index{child\_execute\_help\_functions.c@{child\_execute\_help\_functions.c}!check\_exit\_value@{check\_exit\_value}}
+\index{check\_exit\_value@{check\_exit\_value}!child\_execute\_help\_functions.c@{child\_execute\_help\_functions.c}}
+\doxysubsubsection{\texorpdfstring{check\_exit\_value()}{check\_exit\_value()}}
+{\footnotesize\ttfamily void check\+\_\+exit\+\_\+value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__child__data}{t\+\_\+child\+\_\+data}} $\ast$}]{child\+\_\+data,  }\item[{int}]{already\+\_\+printed }\end{DoxyParamCaption})}
+
+
+
+Checks the exit value of the child process. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em child\+\_\+data} & The child data to be used. \\
+\hline
+{\em already\+\_\+printed} & If the exit value has already been printed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{child__execute__help__functions_8c_a9c9d102dfb3feffe9c03d5405ebb9aa5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{child__execute__help__functions_8c_a9c9d102dfb3feffe9c03d5405ebb9aa5_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{child__execute__help__functions_8c_a7dbe5500b6a7cc836eade1fd154207cf}\label{child__execute__help__functions_8c_a7dbe5500b6a7cc836eade1fd154207cf}} 
 \index{child\_execute\_help\_functions.c@{child\_execute\_help\_functions.c}!use\_builtin@{use\_builtin}}
 \index{use\_builtin@{use\_builtin}!child\_execute\_help\_functions.c@{child\_execute\_help\_functions.c}}
@@ -77,7 +115,8 @@ Checks if the command is a builtin command and executes it.
 \begin{DoxyReturn}{Returns}
 Returns SUCCESS if the command is a builtin command. 
 \end{DoxyReturn}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -109,7 +148,8 @@ Waits for all children to finish.
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

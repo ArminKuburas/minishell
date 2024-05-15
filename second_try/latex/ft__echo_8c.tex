@@ -16,6 +16,8 @@ Include dependency graph for ft\+\_\+echo.\+c\+:\nopagebreak
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+int \mbox{\hyperlink{ft__echo_8c_a6c0544df525a9776b1607aef345c2898}{custom\+\_\+n\+\_\+check}} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Checks if the echo command has a custom -\/n flag. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{ft__echo_8c_ad5b5c9740b9412fe4bc2a8fd0abb659a}{print\+\_\+no\+\_\+newline}} (\mbox{\hyperlink{structs__child__data}{t\+\_\+child\+\_\+data}} $\ast$data, int fd, int i)
 \begin{DoxyCompactList}\small\item\em Prints the echo command without a newline. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{ft__echo_8c_a114b739ffae797400b0279ef321f585c}{ft\+\_\+echo}} (\mbox{\hyperlink{structs__child__data}{t\+\_\+child\+\_\+data}} $\ast$data, int fd)
@@ -28,6 +30,32 @@ Built-\/in echo function.
 
 
 \doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ft__echo_8c_a6c0544df525a9776b1607aef345c2898}\label{ft__echo_8c_a6c0544df525a9776b1607aef345c2898}} 
+\index{ft\_echo.c@{ft\_echo.c}!custom\_n\_check@{custom\_n\_check}}
+\index{custom\_n\_check@{custom\_n\_check}!ft\_echo.c@{ft\_echo.c}}
+\doxysubsubsection{\texorpdfstring{custom\_n\_check()}{custom\_n\_check()}}
+{\footnotesize\ttfamily int custom\+\_\+n\+\_\+check (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+Checks if the echo command has a custom -\/n flag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The command inputs. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int YES if the flag is found, otherwise NO. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ft__echo_8c_a6c0544df525a9776b1607aef345c2898_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{ft__echo_8c_a114b739ffae797400b0279ef321f585c}\label{ft__echo_8c_a114b739ffae797400b0279ef321f585c}} 
 \index{ft\_echo.c@{ft\_echo.c}!ft\_echo@{ft\_echo}}
 \index{ft\_echo@{ft\_echo}!ft\_echo.c@{ft\_echo.c}}
@@ -48,7 +76,8 @@ The echo built-\/in function.
 \begin{DoxyReturn}{Returns}
 int 0 on success. 
 \end{DoxyReturn}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -81,7 +110,8 @@ Prints the echo command without a newline.
 {\em i} & The index of the command inputs. \\
 \hline
 \end{DoxyParams}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

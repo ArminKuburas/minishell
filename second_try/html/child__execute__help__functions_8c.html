@@ -100,6 +100,9 @@ Include dependency graph for child_execute_help_functions.c:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a9c9d102dfb3feffe9c03d5405ebb9aa5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="child__execute__help__functions_8c.html#a9c9d102dfb3feffe9c03d5405ebb9aa5">check_exit_value</a> (<a class="el" href="structs__child__data.html">t_child_data</a> *child_data, int already_printed)</td></tr>
+<tr class="memdesc:a9c9d102dfb3feffe9c03d5405ebb9aa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the exit value of the child process.  <a href="child__execute__help__functions_8c.html#a9c9d102dfb3feffe9c03d5405ebb9aa5">More...</a><br /></td></tr>
+<tr class="separator:a9c9d102dfb3feffe9c03d5405ebb9aa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa06d57039fe209477bdf706194cf172d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="child__execute__help__functions_8c.html#aa06d57039fe209477bdf706194cf172d">wait_for_children</a> (<a class="el" href="structs__shelldata.html">t_shelldata</a> *data)</td></tr>
 <tr class="memdesc:aa06d57039fe209477bdf706194cf172d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits for all children to finish.  <a href="child__execute__help__functions_8c.html#aa06d57039fe209477bdf706194cf172d">More...</a><br /></td></tr>
 <tr class="separator:aa06d57039fe209477bdf706194cf172d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,6 +148,68 @@ Here is the caller graph for this function:</div>
 <area shape="rect" title="Checks if the child has pipes and sets them up." alt="" coords="1101,5,1241,32"/>
 <area shape="rect" href="execute__children_8c.html#ab9cd040807a08f0b0d8d1d8cbd5eb518" title="Handles the child process." alt="" coords="944,5,1053,32"/>
 <area shape="rect" href="execute__children_8c.html#ae06cf4295b9422cb92e2ae497fcbc646" title="Executes the child process." alt="" coords="785,5,896,32"/>
+<area shape="rect" href="child__handling_8c.html#aa7a92b86ec7fefce7b54f07aa69cb004" title="Executes the commands in the child processes." alt="" coords="585,5,737,32"/>
+<area shape="rect" href="child__handling_8c.html#ae878892ea4154f7417a575546e88ae94" title="Pre&#45;checks before executing the child processes." alt="" coords="411,5,537,32"/>
+<area shape="rect" href="child__handling_8c.html#a89a3117c4bdfecb95ea1a13ac0bb79ad" title="Handles the child processes." alt="" coords="247,5,363,32"/>
+<area shape="rect" href="main_8c.html#aab600a6b2f1c4762d527e599326605d0" title="The main loop for the minishell program." alt="" coords="108,5,199,32"/>
+<area shape="rect" href="main_8c.html#a7b26396c9888d66d997b0007e8ff1e60" title="The main function for the minishell program." alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9c9d102dfb3feffe9c03d5405ebb9aa5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c9d102dfb3feffe9c03d5405ebb9aa5">&#9670;&nbsp;</a></span>check_exit_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void check_exit_value </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structs__child__data.html">t_child_data</a> *&#160;</td>
+          <td class="paramname"><em>child_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>already_printed</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks the exit value of the child process. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">child_data</td><td>The child data to be used. </td></tr>
+    <tr><td class="paramname">already_printed</td><td>If the exit value has already been printed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="child__execute__help__functions_8c_a9c9d102dfb3feffe9c03d5405ebb9aa5_cgraph.png" border="0" usemap="#achild__execute__help__functions_8c_a9c9d102dfb3feffe9c03d5405ebb9aa5_cgraph" alt=""/></div>
+<map name="achild__execute__help__functions_8c_a9c9d102dfb3feffe9c03d5405ebb9aa5_cgraph" id="achild__execute__help__functions_8c_a9c9d102dfb3feffe9c03d5405ebb9aa5_cgraph">
+<area shape="rect" title="Checks the exit value of the child process." alt="" coords="5,5,140,32"/>
+<area shape="rect" href="ft__putendl__fd_8c.html#aeb112152acfc553d58d61a5df38afcde" title="Outputs a string to a file descriptor followed by a newline." alt="" coords="188,5,295,32"/>
+<area shape="rect" href="ft__strlen_8c.html#abbb8c6c4ed85d892e7f1509f65f5768a" title="Finds the length of a string." alt="" coords="343,5,417,32"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="child__execute__help__functions_8c_a9c9d102dfb3feffe9c03d5405ebb9aa5_icgraph.png" border="0" usemap="#achild__execute__help__functions_8c_a9c9d102dfb3feffe9c03d5405ebb9aa5_icgraph" alt=""/></div>
+<map name="achild__execute__help__functions_8c_a9c9d102dfb3feffe9c03d5405ebb9aa5_icgraph" id="achild__execute__help__functions_8c_a9c9d102dfb3feffe9c03d5405ebb9aa5_icgraph">
+<area shape="rect" title="Checks the exit value of the child process." alt="" coords="968,5,1103,32"/>
+<area shape="rect" href="child__execute__help__functions_8c.html#aa06d57039fe209477bdf706194cf172d" title="Waits for all children to finish." alt="" coords="785,5,920,32"/>
 <area shape="rect" href="child__handling_8c.html#aa7a92b86ec7fefce7b54f07aa69cb004" title="Executes the commands in the child processes." alt="" coords="585,5,737,32"/>
 <area shape="rect" href="child__handling_8c.html#ae878892ea4154f7417a575546e88ae94" title="Pre&#45;checks before executing the child processes." alt="" coords="411,5,537,32"/>
 <area shape="rect" href="child__handling_8c.html#a89a3117c4bdfecb95ea1a13ac0bb79ad" title="Handles the child processes." alt="" coords="247,5,363,32"/>
@@ -202,12 +267,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="child__execute__help__functions_8c_a7dbe5500b6a7cc836eade1fd154207cf_cgraph.png" border="0" usemap="#achild__execute__help__functions_8c_a7dbe5500b6a7cc836eade1fd154207cf_cgraph" alt=""/></div>
 <map name="achild__execute__help__functions_8c_a7dbe5500b6a7cc836eade1fd154207cf_cgraph" id="achild__execute__help__functions_8c_a7dbe5500b6a7cc836eade1fd154207cf_cgraph">
-<area shape="rect" title="Checks if the command is a builtin command and executes it." alt="" coords="5,107,99,133"/>
-<area shape="rect" href="ft__echo_8c.html#a114b739ffae797400b0279ef321f585c" title="The echo built&#45;in function." alt="" coords="147,56,216,83"/>
-<area shape="rect" href="ft__strcmp_8c.html#abd118f33a5a0fe00b6cbbfb0eeae25a5" title="Compares two strings." alt="" coords="452,81,535,108"/>
-<area shape="rect" href="ft__putstr__fd_8c.html#acefce9ac519f8f8b7d3fde33dbafe469" title="Outputs a string to a file descriptor." alt="" coords="445,5,541,32"/>
-<area shape="rect" href="ft__echo_8c.html#ad5b5c9740b9412fe4bc2a8fd0abb659a" title="Prints the echo command without a newline." alt="" coords="264,31,397,57"/>
-<area shape="rect" href="ft__strlen_8c.html#abbb8c6c4ed85d892e7f1509f65f5768a" title="Finds the length of a string." alt="" coords="589,5,664,32"/>
+<area shape="rect" title="Checks if the command is a builtin command and executes it." alt="" coords="5,56,99,83"/>
+<area shape="rect" href="ft__echo_8c.html#a114b739ffae797400b0279ef321f585c" title="The echo built&#45;in function." alt="" coords="153,31,223,57"/>
+<area shape="rect" href="ft__strcmp_8c.html#abd118f33a5a0fe00b6cbbfb0eeae25a5" title="Compares two strings." alt="" coords="147,81,229,108"/>
+<area shape="rect" href="ft__echo_8c.html#a6c0544df525a9776b1607aef345c2898" title="Checks if the echo command has a custom &#45;n flag." alt="" coords="459,5,589,32"/>
+<area shape="rect" href="ft__putstr__fd_8c.html#acefce9ac519f8f8b7d3fde33dbafe469" title="Outputs a string to a file descriptor." alt="" coords="476,68,572,95"/>
+<area shape="rect" href="ft__echo_8c.html#ad5b5c9740b9412fe4bc2a8fd0abb659a" title="Prints the echo command without a newline." alt="" coords="277,31,411,57"/>
+<area shape="rect" href="ft__strlen_8c.html#abbb8c6c4ed85d892e7f1509f65f5768a" title="Finds the length of a string." alt="" coords="637,68,712,95"/>
 </map>
 </div>
 <div class="dynheader">
@@ -259,9 +325,10 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="child__execute__help__functions_8c_aa06d57039fe209477bdf706194cf172d_cgraph.png" border="0" usemap="#achild__execute__help__functions_8c_aa06d57039fe209477bdf706194cf172d_cgraph" alt=""/></div>
 <map name="achild__execute__help__functions_8c_aa06d57039fe209477bdf706194cf172d_cgraph" id="achild__execute__help__functions_8c_aa06d57039fe209477bdf706194cf172d_cgraph">
 <area shape="rect" title="Waits for all children to finish." alt="" coords="5,31,140,57"/>
-<area shape="rect" href="setup__helpers_8c.html#af7aacd965663866bf4ff1cf6c8c5325b" title="Frees child data and closes fds." alt="" coords="188,5,311,32"/>
-<area shape="rect" href="ft__putendl__fd_8c.html#aeb112152acfc553d58d61a5df38afcde" title="Outputs a string to a file descriptor followed by a newline." alt="" coords="196,56,303,83"/>
-<area shape="rect" href="ft__strlen_8c.html#abbb8c6c4ed85d892e7f1509f65f5768a" title="Finds the length of a string." alt="" coords="359,56,433,83"/>
+<area shape="rect" href="child__execute__help__functions_8c.html#a9c9d102dfb3feffe9c03d5405ebb9aa5" title="Checks the exit value of the child process." alt="" coords="188,5,323,32"/>
+<area shape="rect" href="setup__helpers_8c.html#af7aacd965663866bf4ff1cf6c8c5325b" title="Frees child data and closes fds." alt="" coords="194,56,317,83"/>
+<area shape="rect" href="ft__putendl__fd_8c.html#aeb112152acfc553d58d61a5df38afcde" title="Outputs a string to a file descriptor followed by a newline." alt="" coords="371,5,477,32"/>
+<area shape="rect" href="ft__strlen_8c.html#abbb8c6c4ed85d892e7f1509f65f5768a" title="Finds the length of a string." alt="" coords="525,5,600,32"/>
 </map>
 </div>
 <div class="dynheader">

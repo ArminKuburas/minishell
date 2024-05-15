@@ -103,6 +103,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ae2187e7b131815ab1d252a7622d9cb26"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="child__data__helpers_8c.html#ae2187e7b131815ab1d252a7622d9cb26">child_failed</a> (<a class="el" href="structs__shelldata.html">t_shelldata</a> *data, int error)</td></tr>
 <tr class="memdesc:ae2187e7b131815ab1d252a7622d9cb26"><td class="mdescLeft">&#160;</td><td class="mdescRight">child failed. Frees all child data and exits.  <a href="child__data__helpers_8c.html#ae2187e7b131815ab1d252a7622d9cb26">More...</a><br /></td></tr>
 <tr class="separator:ae2187e7b131815ab1d252a7622d9cb26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5aa674ac9a7fdcecc2429b2945461d6f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="child__data__helpers_8c.html#a5aa674ac9a7fdcecc2429b2945461d6f">no_env_found</a> (char *new_input, int *j)</td></tr>
+<tr class="memdesc:a5aa674ac9a7fdcecc2429b2945461d6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">handles a situation where no env variable is found.  <a href="child__data__helpers_8c.html#a5aa674ac9a7fdcecc2429b2945461d6f">More...</a><br /></td></tr>
+<tr class="separator:a5aa674ac9a7fdcecc2429b2945461d6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Functions for handling child data. </p>
@@ -168,6 +171,56 @@ Here is the caller graph for this function:</div>
 <area shape="rect" href="main_8c.html#a66190e959e6b76c1b752f88bc37b5b7b" title="Sets up the data for the minishell." alt="" coords="247,5,348,32"/>
 <area shape="rect" href="main_8c.html#aab600a6b2f1c4762d527e599326605d0" title="The main loop for the minishell program." alt="" coords="108,5,199,32"/>
 <area shape="rect" href="main_8c.html#a7b26396c9888d66d997b0007e8ff1e60" title="The main function for the minishell program." alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a5aa674ac9a7fdcecc2429b2945461d6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5aa674ac9a7fdcecc2429b2945461d6f">&#9670;&nbsp;</a></span>no_env_found()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int no_env_found </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>new_input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>j</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>handles a situation where no env variable is found. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_input</td><td>The new input to be used. </td></tr>
+    <tr><td class="paramname">j</td><td>The index of the new input. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns 1. </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="child__data__helpers_8c_a5aa674ac9a7fdcecc2429b2945461d6f_icgraph.png" border="0" usemap="#achild__data__helpers_8c_a5aa674ac9a7fdcecc2429b2945461d6f_icgraph" alt=""/></div>
+<map name="achild__data__helpers_8c_a5aa674ac9a7fdcecc2429b2945461d6f_icgraph" id="achild__data__helpers_8c_a5aa674ac9a7fdcecc2429b2945461d6f_icgraph">
+<area shape="rect" title="handles a situation where no env variable is found." alt="" coords="715,5,828,32"/>
+<area shape="rect" href="heredoc__modify__input_8c.html#a2d4aaa83b1924ec13d731f723fb315e6" title="sets up the new input dollar" alt="" coords="533,5,667,32"/>
+<area shape="rect" href="heredoc__modify__input_8c.html#a4c22255e4cd96e7c7c7293a8e45384aa" title="Sets up the new input." alt="" coords="347,5,485,32"/>
+<area shape="rect" href="heredoc__modify__input_8c.html#abdab84d93656b480ef2604acdf1be99e" title="Modifies the input for heredoc." alt="" coords="192,5,299,32"/>
+<area shape="rect" href="setup__heredoc_8c.html#aa3a5d99e8a9a48c683912519fb6c108f" title="Modifies the input line." alt="" coords="5,5,144,32"/>
 </map>
 </div>
 

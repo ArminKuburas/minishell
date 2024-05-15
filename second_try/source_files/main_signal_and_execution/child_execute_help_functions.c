@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:10:45 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/14 16:37:54 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/15 06:32:26 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int	use_builtin(t_child_data *child_data, int fd, t_shelldata *data)
 {
 	if (fd == 0)
 		fd = STDOUT_FILENO;
-	printf ("this is fd %d\n", fd);
 	if (ft_strcmp(child_data->command, "echo") == 0)
 		return (ft_echo(child_data, fd));
 	else if (ft_strcmp(child_data->command, "cd") == 0)

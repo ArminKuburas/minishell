@@ -100,6 +100,9 @@ Include dependency graph for ft_echo.c:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a6c0544df525a9776b1607aef345c2898"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ft__echo_8c.html#a6c0544df525a9776b1607aef345c2898">custom_n_check</a> (char *str)</td></tr>
+<tr class="memdesc:a6c0544df525a9776b1607aef345c2898"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the echo command has a custom -n flag.  <a href="ft__echo_8c.html#a6c0544df525a9776b1607aef345c2898">More...</a><br /></td></tr>
+<tr class="separator:a6c0544df525a9776b1607aef345c2898"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5b5c9740b9412fe4bc2a8fd0abb659a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ft__echo_8c.html#ad5b5c9740b9412fe4bc2a8fd0abb659a">print_no_newline</a> (<a class="el" href="structs__child__data.html">t_child_data</a> *data, int fd, int i)</td></tr>
 <tr class="memdesc:ad5b5c9740b9412fe4bc2a8fd0abb659a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the echo command without a newline.  <a href="ft__echo_8c.html#ad5b5c9740b9412fe4bc2a8fd0abb659a">More...</a><br /></td></tr>
 <tr class="separator:ad5b5c9740b9412fe4bc2a8fd0abb659a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -110,6 +113,52 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Built-in echo function. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a6c0544df525a9776b1607aef345c2898"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c0544df525a9776b1607aef345c2898">&#9670;&nbsp;</a></span>custom_n_check()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int custom_n_check </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the echo command has a custom -n flag. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The command inputs. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int YES if the flag is found, otherwise NO. </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="ft__echo_8c_a6c0544df525a9776b1607aef345c2898_icgraph.png" border="0" usemap="#aft__echo_8c_a6c0544df525a9776b1607aef345c2898_icgraph" alt=""/></div>
+<map name="aft__echo_8c_a6c0544df525a9776b1607aef345c2898_icgraph" id="aft__echo_8c_a6c0544df525a9776b1607aef345c2898_icgraph">
+<area shape="rect" title="Checks if the echo command has a custom &#45;n flag." alt="" coords="1541,31,1672,57"/>
+<area shape="rect" href="ft__echo_8c.html#a114b739ffae797400b0279ef321f585c" title="The echo built&#45;in function." alt="" coords="1243,31,1312,57"/>
+<area shape="rect" href="ft__echo_8c.html#ad5b5c9740b9412fe4bc2a8fd0abb659a" title="Prints the echo command without a newline." alt="" coords="1360,56,1493,83"/>
+<area shape="rect" href="child__execute__help__functions_8c.html#a7dbe5500b6a7cc836eade1fd154207cf" title="Checks if the command is a builtin command and executes it." alt="" coords="1101,31,1195,57"/>
+<area shape="rect" href="execute__children_8c.html#ab9cd040807a08f0b0d8d1d8cbd5eb518" title="Handles the child process." alt="" coords="944,5,1053,32"/>
+<area shape="rect" href="child__handling_8c.html#a9e21a75a120b1628177daf65a0f81c96" title="Handles the case where there is only one builtin command." alt="" coords="793,56,888,83"/>
+<area shape="rect" href="execute__children_8c.html#ae06cf4295b9422cb92e2ae497fcbc646" title="Executes the child process." alt="" coords="785,5,896,32"/>
+<area shape="rect" href="child__handling_8c.html#aa7a92b86ec7fefce7b54f07aa69cb004" title="Executes the commands in the child processes." alt="" coords="585,5,737,32"/>
+<area shape="rect" href="child__handling_8c.html#ae878892ea4154f7417a575546e88ae94" title="Pre&#45;checks before executing the child processes." alt="" coords="411,31,537,57"/>
+<area shape="rect" href="child__handling_8c.html#a89a3117c4bdfecb95ea1a13ac0bb79ad" title="Handles the child processes." alt="" coords="247,31,363,57"/>
+<area shape="rect" href="main_8c.html#aab600a6b2f1c4762d527e599326605d0" title="The main loop for the minishell program." alt="" coords="108,31,199,57"/>
+<area shape="rect" href="main_8c.html#a7b26396c9888d66d997b0007e8ff1e60" title="The main function for the minishell program." alt="" coords="5,31,60,57"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a114b739ffae797400b0279ef321f585c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a114b739ffae797400b0279ef321f585c">&#9670;&nbsp;</a></span>ft_echo()</h2>
 
@@ -151,10 +200,10 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="ft__echo_8c_a114b739ffae797400b0279ef321f585c_cgraph.png" border="0" usemap="#aft__echo_8c_a114b739ffae797400b0279ef321f585c_cgraph" alt=""/></div>
 <map name="aft__echo_8c_a114b739ffae797400b0279ef321f585c_cgraph" id="aft__echo_8c_a114b739ffae797400b0279ef321f585c_cgraph">
 <area shape="rect" title="The echo built&#45;in function." alt="" coords="5,31,75,57"/>
-<area shape="rect" href="ft__putstr__fd_8c.html#acefce9ac519f8f8b7d3fde33dbafe469" title="Outputs a string to a file descriptor." alt="" coords="304,5,400,32"/>
-<area shape="rect" href="ft__strcmp_8c.html#abd118f33a5a0fe00b6cbbfb0eeae25a5" title="Compares two strings." alt="" coords="311,68,393,95"/>
+<area shape="rect" href="ft__echo_8c.html#a6c0544df525a9776b1607aef345c2898" title="Checks if the echo command has a custom &#45;n flag." alt="" coords="304,5,435,32"/>
+<area shape="rect" href="ft__putstr__fd_8c.html#acefce9ac519f8f8b7d3fde33dbafe469" title="Outputs a string to a file descriptor." alt="" coords="321,68,417,95"/>
 <area shape="rect" href="ft__echo_8c.html#ad5b5c9740b9412fe4bc2a8fd0abb659a" title="Prints the echo command without a newline." alt="" coords="123,31,256,57"/>
-<area shape="rect" href="ft__strlen_8c.html#abbb8c6c4ed85d892e7f1509f65f5768a" title="Finds the length of a string." alt="" coords="448,5,523,32"/>
+<area shape="rect" href="ft__strlen_8c.html#abbb8c6c4ed85d892e7f1509f65f5768a" title="Finds the length of a string." alt="" coords="483,68,557,95"/>
 </map>
 </div>
 <div class="dynheader">
@@ -224,9 +273,9 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="ft__echo_8c_ad5b5c9740b9412fe4bc2a8fd0abb659a_cgraph.png" border="0" usemap="#aft__echo_8c_ad5b5c9740b9412fe4bc2a8fd0abb659a_cgraph" alt=""/></div>
 <map name="aft__echo_8c_ad5b5c9740b9412fe4bc2a8fd0abb659a_cgraph" id="aft__echo_8c_ad5b5c9740b9412fe4bc2a8fd0abb659a_cgraph">
 <area shape="rect" title="Prints the echo command without a newline." alt="" coords="5,31,139,57"/>
-<area shape="rect" href="ft__putstr__fd_8c.html#acefce9ac519f8f8b7d3fde33dbafe469" title="Outputs a string to a file descriptor." alt="" coords="187,5,283,32"/>
-<area shape="rect" href="ft__strcmp_8c.html#abd118f33a5a0fe00b6cbbfb0eeae25a5" title="Compares two strings." alt="" coords="193,56,276,83"/>
-<area shape="rect" href="ft__strlen_8c.html#abbb8c6c4ed85d892e7f1509f65f5768a" title="Finds the length of a string." alt="" coords="331,5,405,32"/>
+<area shape="rect" href="ft__echo_8c.html#a6c0544df525a9776b1607aef345c2898" title="Checks if the echo command has a custom &#45;n flag." alt="" coords="187,5,317,32"/>
+<area shape="rect" href="ft__putstr__fd_8c.html#acefce9ac519f8f8b7d3fde33dbafe469" title="Outputs a string to a file descriptor." alt="" coords="204,56,300,83"/>
+<area shape="rect" href="ft__strlen_8c.html#abbb8c6c4ed85d892e7f1509f65f5768a" title="Finds the length of a string." alt="" coords="365,56,440,83"/>
 </map>
 </div>
 <div class="dynheader">

@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 07:34:43 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/14 16:34:33 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/15 07:15:19 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ t_env_list	*potential_find_env(t_new_string_data *data, bool *split_check)
 	int			start;
 	t_env_list	*temp_env;
 
+	printf("Inside potential_find_env\n");
 	if (ft_strchr(" \t$'\"", data->temp->input[data->j + 1]) == NULL)
 	{
 		data->j++;
@@ -104,6 +105,7 @@ void	potential_split_create(t_new_string_data *data)
 	t_env_list	*temp_env;
 	bool		split_check;
 
+	printf("Inside potential_split_create\n");
 	if (check_string(data) == 1)
 		return ;
 	split_check = 0;
