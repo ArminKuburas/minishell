@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 23:52:53 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/14 15:14:24 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:01:32 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	child_handling(t_shelldata *data)
 	if (create_exit_value_env(data) != SUCCESS)
 	{
 		ft_putstr_fd("Error: ", STDERR_FILENO);
-		ft_putendl_fd("Malloc failed", STDERR_FILENO);
+		ft_putendl_fd("memory allocation failed", STDERR_FILENO);
 		clear_input(data->input_list, FAILURE);
 		clear_env_list(data->env_list, FAILURE);
 		free(data->env_variables);
