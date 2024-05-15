@@ -6,12 +6,23 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 09:15:30 by akuburas          #+#    #+#             */
-/*   Updated: 2023/11/03 15:05:49 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/15 10:53:40 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @file ft_split.c
+ * @brief this file contains the ft_split function.
+ */
+
+/**
+ * @brief Counts the number of substrings in a string.
+ * @param str The string to be counted.
+ * @param c The delimiter character.
+ * @return The number of substrings.
+ */
 static int	count_substrings(const char *str, char c)
 {
 	int	count;
@@ -33,13 +44,20 @@ static int	count_substrings(const char *str, char c)
 	return (count);
 }
 
+/**
+ * @brief Creates a substring from a string.
+ * @param str The string to be copied.
+ * @param start The starting index.
+ * @param finish The ending index.
+ * @return The new substring.
+ */
 static char	*substring_create(const char *str, int start, int finish)
 {
 	char	*substr;
 	int		i;
 
 	i = 0;
-	substr = (char *)malloc((finish - start + 1) * sizeof(char));
+	substr = ft_calloc(finish - start + 1, sizeof(char));
 	if (!substr)
 		return (NULL);
 	while (start < finish)
@@ -48,6 +66,11 @@ static char	*substring_create(const char *str, int start, int finish)
 	return (substr);
 }
 
+/**
+ * @brief Frees the result array.
+ * @param result The result array.
+ * @param j The index.
+ */
 static void	free_result_array(char **result, int j)
 {
 	while (j >= 0)
@@ -60,6 +83,14 @@ static void	free_result_array(char **result, int j)
 	result = NULL;
 }
 
+/**
+ * @brief Splits the string into substrings.
+ * @param s The string to be split.
+ * @param c The delimiter character.
+ * @param result The result array.
+ * @param count The number of substrings.
+ * @return 1 if the split fails, 0 if it succeeds.
+ */
 static int	split_string(char const *s, char c, char **result, int count)
 {
 	size_t	i;
@@ -89,6 +120,12 @@ static int	split_string(char const *s, char c, char **result, int count)
 	return (0);
 }
 
+/**
+ * @brief Splits a string into substrings using a delimiter.
+ * @param s The string to be split.
+ * @param c The delimiter character.
+ * @return The result array.
+ */
 char	**ft_split(char const *s, char c)
 {
 	int		count;
@@ -98,7 +135,7 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	count = count_substrings(s, c);
-	result = (char **)malloc((count + 1) * sizeof(char *));
+	result = (char **)ft_calloc(count + 1, sizeof(char *));
 	if (!result)
 		return (NULL);
 	split_check = split_string(s, c, result, count);
