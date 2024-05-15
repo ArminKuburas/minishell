@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:34:10 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/14 02:24:11 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:03:59 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
  * @file export_helpers.c
  * @brief Helper functions for the export builtin.
 */
-
 
 /**
  * @brief Swaps the values of two env variables.
@@ -96,7 +95,6 @@ int	replace_env_var(t_shelldata *data, char *input, int i, int flag)
 	}
 	return (SUCCESS);
 }
-
 
 /**
  * @brief Adds a new env variable to the env list.

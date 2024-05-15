@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:04:17 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/15 12:22:44 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:58:24 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	print_helper(int error, t_input_list *temp, t_child_data *child)
 	{
 		ft_putstr_fd("minishell: ", 2);
 		ft_putstr_fd(temp->input, 2);
-		ft_putstr_fd(": No such file or directory\n", 2);
+		ft_putstr_fd(": command not found\n", 2);
 		child->exit_value = 127;
 	}
 	else if (error == EXECUTION_FORBIDDEN)
