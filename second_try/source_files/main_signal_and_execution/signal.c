@@ -6,11 +6,13 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:43:48 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/14 15:28:39 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:52:57 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
+
+int	g_exit_value = 0;
 
 /**
  * @file signal.c
@@ -25,6 +27,7 @@
 void	sigint_handler(int sig)
 {
 	(void)sig;
+	g_exit_value = 1;
 	write(1, "\n", 1);
 	rl_on_new_line();
 	rl_replace_line("", 0);

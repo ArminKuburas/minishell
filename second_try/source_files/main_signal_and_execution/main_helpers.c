@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 09:33:40 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/14 13:47:23 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:52:54 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,11 @@ int	create_exit_value_env(t_shelldata *data)
 		if (ft_strcmp(temp->env_var_name, "?") == 0)
 		{
 			free (temp->env_var_value);
+			if (g_exit_value != 0)
+			{
+				data->exit_value = g_exit_value;
+				g_exit_value = 0;
+			}
 			temp->env_var_value = ft_itoa(data->exit_value);
 			if (!temp->env_var_value)
 				return (NO_MEMORY);

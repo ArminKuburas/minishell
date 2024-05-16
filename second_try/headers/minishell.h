@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/15 12:35:28 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/16 13:37:12 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,15 @@
 /*For the overflow checks*/
 # include <limits.h>
 
+/*Global variable*/
+extern int	g_exit_value;
+
 # define RED	"\001\x1b[31m\002"
 # define GREEN	"\001\x1b[32m\002"
 # define YELLOW	"\001\x1b[33m\002"
 # define RESET	"\001\x1b[0m\002"
 # define BANANA_EMOJI "\001\xF0\x9F\x8D\x8C\002"
+
 typedef enum e_state
 {
 	DEFAULT,
@@ -297,7 +301,6 @@ void		handle_heredoc(t_shelldata *data, int i, t_input_list *input);
 char		*modify_input(char *input, t_env_list *env_list);
 int			no_env_found(char *new_input, int *j);
 void		handle_output_error(t_shelldata *data, int i, t_input_list *input);
-
 
 //execute_children functions
 int			execute_commands(t_shelldata *data);

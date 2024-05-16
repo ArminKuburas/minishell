@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:04:01 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/14 10:33:52 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:15:11 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,12 +151,6 @@ void	handle_heredoc(t_shelldata *data, int i, t_input_list *input)
 
 	if (data->child_data[i].exit_value != 0)
 		return ;
-	if (input->word_split == WORD_SPLIT
-		|| ((ft_strcmp(input->input, "") == 0 && input->old_input[0] == '$')))
-	{
-		ambiguous_redirect(data, i, input);
-		return ;
-	}
 	if (pipe(pipe_fd) == -1)
 		child_failed(data, NO_PIPE);
 	data->child_data[i].fd_in = pipe_fd[0];

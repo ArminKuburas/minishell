@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:33:57 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/15 12:14:21 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:27:34 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,28 @@
  * @brief Built-in env function.
  */
 
-/* my_env goes through the env list and prints out the variables
-   if they are proper key/value pairs*/
+/**
+ * @brief Loops through the env variables and prints them.
+ * @param temp The environment list.
+ * @param fd The file descriptor.
+*/
+static void	env_loop(t_env_list *temp, int fd)
+{
+	while (temp)
+	{
+		if (temp->env_var_value != NULL && temp->env_var_name[0] != '?')
+		{
+			if (ft_strchr(temp->env_var, '=') == NULL)
+			{
+				ft_putstr_fd(temp->env_var, fd);
+				ft_putendl_fd("=", fd);
+			}
+			else
+				ft_putendl_fd(temp->env_var, fd);
+		}
+		temp = temp->next;
+	}
+}
 
 /**
  * @brief Prints the env variables.
@@ -39,16 +59,6 @@ int	ft_env(t_shelldata *data, int fd)
 		ft_putstr_fd(" not found\n", STDERR_FILENO);
 		return (FAILURE);
 	}
-	while (temp)
-	{
-		if (temp->env_var_value != NULL && temp->env_var_name[0] != '?')
-		{
-			if (ft_strchr(temp->env_var, '=') != NULL)
-				ft_putendl_fd(temp->env_var, fd);
-			else
-				ft_putendl_fd(temp->env_var, fd);
-		}
-		temp = temp->next;
-	}
+	env_loop(temp, fd);
 	return (SUCCESS);
 }
