@@ -3,13 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 15:03:34 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/10 23:31:51 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/13 21:32:38 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file ft_atoi.c
+ * @brief this file contains the ft_atoi function.
+*/
+
+/**
+ * @brief Parses the digits from the string.
+ * @param str The string to be parsed.
+ * @param sign The sign of the number.
+ * @return Returns the parsed number.
+*/
 static long	parse_digits(const char *str, int sign)
 {
 	long	result;
@@ -30,6 +41,11 @@ static long	parse_digits(const char *str, int sign)
 	return (result);
 }
 
+/**
+ * @brief Converts the initial portion of the string pointed to by str to int.
+ * @param str The string to be converted.
+ * @return Returns the converted int value.
+*/
 int	ft_atoi(const char *str)
 {
 	long	result;

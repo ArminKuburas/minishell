@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: source_files/setup_and_data_handling/setup_is_it_command.c File Reference</title>
+<title>minishell: source_files/setup_and_data_handling/setup_is_it_command.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">minishell
    </div>
   </td>
  </tr>
@@ -80,8 +80,21 @@ Include dependency graph for setup_is_it_command.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="setup__is__it__command_8c__incl.png" border="0" usemap="#asource__files_2setup__and__data__handling_2setup__is__it__command_8c" alt=""/></div>
 <map name="asource__files_2setup__and__data__handling_2setup__is__it__command_8c" id="asource__files_2setup__and__data__handling_2setup__is__it__command_8c">
-<area shape="rect" title="Functions for checking if the command is a builtin or a command." alt="" coords="5,5,197,61"/>
-<area shape="rect" title=" " alt="" coords="14,109,189,136"/>
+<area shape="rect" title="Functions for checking if the command is a builtin or a command." alt="" coords="553,5,745,61"/>
+<area shape="rect" href="minishell_8h_source.html" title=" " alt="" coords="561,109,736,136"/>
+<area shape="rect" title=" " alt="" coords="5,184,73,211"/>
+<area shape="rect" title=" " alt="" coords="97,184,232,211"/>
+<area shape="rect" title=" " alt="" coords="257,184,401,211"/>
+<area shape="rect" title=" " alt="" coords="390,259,465,285"/>
+<area shape="rect" title=" " alt="" coords="588,259,659,285"/>
+<area shape="rect" title=" " alt="" coords="652,184,715,211"/>
+<area shape="rect" title=" " alt="" coords="739,184,812,211"/>
+<area shape="rect" href="libft_8h_source.html" title=" " alt="" coords="476,184,576,211"/>
+<area shape="rect" title=" " alt="" coords="837,184,919,211"/>
+<area shape="rect" title=" " alt="" coords="943,184,1031,211"/>
+<area shape="rect" title=" " alt="" coords="1056,184,1140,211"/>
+<area shape="rect" title=" " alt="" coords="1164,184,1235,211"/>
+<area shape="rect" title=" " alt="" coords="489,259,563,285"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -90,22 +103,21 @@ Functions</h2></td></tr>
 <tr class="memitem:a6ae5cf4f5086aeaacf74ec6975a6f9ba"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setup__is__it__command_8c.html#a6ae5cf4f5086aeaacf74ec6975a6f9ba">create_path</a> (char *path_variable, char *input, int *error)</td></tr>
 <tr class="memdesc:a6ae5cf4f5086aeaacf74ec6975a6f9ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a path for the command.  <a href="setup__is__it__command_8c.html#a6ae5cf4f5086aeaacf74ec6975a6f9ba">More...</a><br /></td></tr>
 <tr class="separator:a6ae5cf4f5086aeaacf74ec6975a6f9ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a686340d43d7cf1846ab445a86df9e98b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setup__is__it__command_8c.html#a686340d43d7cf1846ab445a86df9e98b">find_path</a> (char **path_variables, t_shelldata *data, int index, char *input)</td></tr>
+<tr class="memitem:a686340d43d7cf1846ab445a86df9e98b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setup__is__it__command_8c.html#a686340d43d7cf1846ab445a86df9e98b">find_path</a> (char **path_variables, <a class="el" href="structs__shelldata.html">t_shelldata</a> *data, int index, char *input)</td></tr>
 <tr class="memdesc:a686340d43d7cf1846ab445a86df9e98b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the path for the command.  <a href="setup__is__it__command_8c.html#a686340d43d7cf1846ab445a86df9e98b">More...</a><br /></td></tr>
 <tr class="separator:a686340d43d7cf1846ab445a86df9e98b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6723a12493ed287efcc54ebb3da67e44"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setup__is__it__command_8c.html#a6723a12493ed287efcc54ebb3da67e44">check_if_directory</a> (char *input, t_shelldata *data, int index)</td></tr>
+<tr class="memitem:a6723a12493ed287efcc54ebb3da67e44"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setup__is__it__command_8c.html#a6723a12493ed287efcc54ebb3da67e44">check_if_directory</a> (char *input, <a class="el" href="structs__shelldata.html">t_shelldata</a> *data, int index)</td></tr>
 <tr class="memdesc:a6723a12493ed287efcc54ebb3da67e44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the input is a directory.  <a href="setup__is__it__command_8c.html#a6723a12493ed287efcc54ebb3da67e44">More...</a><br /></td></tr>
 <tr class="separator:a6723a12493ed287efcc54ebb3da67e44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0045562b216e673fdcee5dadc3d717b0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setup__is__it__command_8c.html#a0045562b216e673fdcee5dadc3d717b0">check_if_given_path</a> (char *input, t_shelldata *data, int index)</td></tr>
+<tr class="memitem:a0045562b216e673fdcee5dadc3d717b0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setup__is__it__command_8c.html#a0045562b216e673fdcee5dadc3d717b0">check_if_given_path</a> (char *input, <a class="el" href="structs__shelldata.html">t_shelldata</a> *data, int index)</td></tr>
 <tr class="memdesc:a0045562b216e673fdcee5dadc3d717b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the given path is a command.  <a href="setup__is__it__command_8c.html#a0045562b216e673fdcee5dadc3d717b0">More...</a><br /></td></tr>
 <tr class="separator:a0045562b216e673fdcee5dadc3d717b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa095cd5a7c47d7bf8a63b8cf3a3c17a8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setup__is__it__command_8c.html#aa095cd5a7c47d7bf8a63b8cf3a3c17a8">is_it_command</a> (char *input, t_shelldata *data, int index)</td></tr>
+<tr class="memitem:aa095cd5a7c47d7bf8a63b8cf3a3c17a8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setup__is__it__command_8c.html#aa095cd5a7c47d7bf8a63b8cf3a3c17a8">is_it_command</a> (char *input, <a class="el" href="structs__shelldata.html">t_shelldata</a> *data, int index)</td></tr>
 <tr class="memdesc:aa095cd5a7c47d7bf8a63b8cf3a3c17a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the input is a command.  <a href="setup__is__it__command_8c.html#aa095cd5a7c47d7bf8a63b8cf3a3c17a8">More...</a><br /></td></tr>
 <tr class="separator:aa095cd5a7c47d7bf8a63b8cf3a3c17a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Functions for checking if the command is a builtin or a command. </p>
-<p>This file contains functions for checking if the command is a builtin or a command. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="a6723a12493ed287efcc54ebb3da67e44"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6723a12493ed287efcc54ebb3da67e44">&#9670;&nbsp;</a></span>check_if_directory()</h2>
@@ -122,7 +134,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_shelldata *&#160;</td>
+          <td class="paramtype"><a class="el" href="structs__shelldata.html">t_shelldata</a> *&#160;</td>
           <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
@@ -149,6 +161,16 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the error code. </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="setup__is__it__command_8c_a6723a12493ed287efcc54ebb3da67e44_cgraph.png" border="0" usemap="#asetup__is__it__command_8c_a6723a12493ed287efcc54ebb3da67e44_cgraph" alt=""/></div>
+<map name="asetup__is__it__command_8c_a6723a12493ed287efcc54ebb3da67e44_cgraph" id="asetup__is__it__command_8c_a6723a12493ed287efcc54ebb3da67e44_cgraph">
+<area shape="rect" title="Checks if the input is a directory." alt="" coords="5,5,147,32"/>
+<area shape="rect" href="ft__putstr__fd_8c.html#acefce9ac519f8f8b7d3fde33dbafe469" title="Outputs a string to a file descriptor." alt="" coords="195,5,291,32"/>
+<area shape="rect" href="ft__strlen_8c.html#abbb8c6c4ed85d892e7f1509f65f5768a" title="Finds the length of a string." alt="" coords="339,5,413,32"/>
+</map>
+</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -177,7 +199,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_shelldata *&#160;</td>
+          <td class="paramtype"><a class="el" href="structs__shelldata.html">t_shelldata</a> *&#160;</td>
           <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
@@ -209,8 +231,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="setup__is__it__command_8c_a0045562b216e673fdcee5dadc3d717b0_cgraph.png" border="0" usemap="#asetup__is__it__command_8c_a0045562b216e673fdcee5dadc3d717b0_cgraph" alt=""/></div>
 <map name="asetup__is__it__command_8c_a0045562b216e673fdcee5dadc3d717b0_cgraph" id="asetup__is__it__command_8c_a0045562b216e673fdcee5dadc3d717b0_cgraph">
-<area shape="rect" title="Checks if the given path is a command." alt="" coords="5,5,160,32"/>
+<area shape="rect" title="Checks if the given path is a command." alt="" coords="5,31,160,57"/>
 <area shape="rect" href="setup__is__it__command_8c.html#a6723a12493ed287efcc54ebb3da67e44" title="Checks if the input is a directory." alt="" coords="208,5,349,32"/>
+<area shape="rect" href="ft__strdup_8c.html#aeab425f44e9a04e54160d60d3c9e870c" title="Duplicates a string." alt="" coords="239,56,318,83"/>
+<area shape="rect" href="ft__putstr__fd_8c.html#acefce9ac519f8f8b7d3fde33dbafe469" title="Outputs a string to a file descriptor." alt="" coords="397,5,493,32"/>
+<area shape="rect" href="ft__strlen_8c.html#abbb8c6c4ed85d892e7f1509f65f5768a" title="Finds the length of a string." alt="" coords="550,31,625,57"/>
+<area shape="rect" href="ft__calloc_8c.html#a6747f1fa402c0eb1dde5b99d3cdc900f" title="Allocates memory for an pointer array and sets each element to zero." alt="" coords="407,107,483,133"/>
+<area shape="rect" href="ft__memset_8c.html#ac340ddbfddbbf2c8de3c36f0f28c336d" title="Writes len bytes of value c to the string b." alt="" coords="541,107,633,133"/>
 </map>
 </div>
 <div class="dynheader">
@@ -272,8 +299,13 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="setup__is__it__command_8c_a6ae5cf4f5086aeaacf74ec6975a6f9ba_cgraph.png" border="0" usemap="#asetup__is__it__command_8c_a6ae5cf4f5086aeaacf74ec6975a6f9ba_cgraph" alt=""/></div>
 <map name="asetup__is__it__command_8c_a6ae5cf4f5086aeaacf74ec6975a6f9ba_cgraph" id="asetup__is__it__command_8c_a6ae5cf4f5086aeaacf74ec6975a6f9ba_cgraph">
-<area shape="rect" title="Creates a path for the command." alt="" coords="5,5,104,32"/>
-<area shape="rect" href="setup__command__helpers_8c.html#af4f80e02e0e1b7cc3d4a25addaf25ddd" title="Tries to access the path." alt="" coords="152,5,243,32"/>
+<area shape="rect" title="Creates a path for the command." alt="" coords="5,56,104,83"/>
+<area shape="rect" href="ft__strjoin_8c.html#a5c1c26f8be9bc527cfe69a3555124795" title="Joins two strings together." alt="" coords="158,31,237,57"/>
+<area shape="rect" href="setup__command__helpers_8c.html#af4f80e02e0e1b7cc3d4a25addaf25ddd" title="Tries to access the path." alt="" coords="152,81,243,108"/>
+<area shape="rect" href="ft__calloc_8c.html#a6747f1fa402c0eb1dde5b99d3cdc900f" title="Allocates memory for an pointer array and sets each element to zero." alt="" coords="417,5,493,32"/>
+<area shape="rect" href="ft__strdup_8c.html#aeab425f44e9a04e54160d60d3c9e870c" title="Duplicates a string." alt="" coords="291,31,369,57"/>
+<area shape="rect" href="ft__strlen_8c.html#abbb8c6c4ed85d892e7f1509f65f5768a" title="Finds the length of a string." alt="" coords="418,68,493,95"/>
+<area shape="rect" href="ft__memset_8c.html#ac340ddbfddbbf2c8de3c36f0f28c336d" title="Writes len bytes of value c to the string b." alt="" coords="541,5,633,32"/>
 </map>
 </div>
 <div class="dynheader">
@@ -304,7 +336,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_shelldata *&#160;</td>
+          <td class="paramtype"><a class="el" href="structs__shelldata.html">t_shelldata</a> *&#160;</td>
           <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
@@ -343,9 +375,14 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="setup__is__it__command_8c_a686340d43d7cf1846ab445a86df9e98b_cgraph.png" border="0" usemap="#asetup__is__it__command_8c_a686340d43d7cf1846ab445a86df9e98b_cgraph" alt=""/></div>
 <map name="asetup__is__it__command_8c_a686340d43d7cf1846ab445a86df9e98b_cgraph" id="asetup__is__it__command_8c_a686340d43d7cf1846ab445a86df9e98b_cgraph">
-<area shape="rect" title="Finds the path for the command." alt="" coords="5,5,88,32"/>
-<area shape="rect" href="setup__is__it__command_8c.html#a6ae5cf4f5086aeaacf74ec6975a6f9ba" title="Creates a path for the command." alt="" coords="136,5,235,32"/>
-<area shape="rect" href="setup__command__helpers_8c.html#af4f80e02e0e1b7cc3d4a25addaf25ddd" title="Tries to access the path." alt="" coords="283,5,373,32"/>
+<area shape="rect" title="Finds the path for the command." alt="" coords="5,56,88,83"/>
+<area shape="rect" href="setup__is__it__command_8c.html#a6ae5cf4f5086aeaacf74ec6975a6f9ba" title="Creates a path for the command." alt="" coords="136,56,235,83"/>
+<area shape="rect" href="ft__strjoin_8c.html#a5c1c26f8be9bc527cfe69a3555124795" title="Joins two strings together." alt="" coords="289,31,367,57"/>
+<area shape="rect" href="setup__command__helpers_8c.html#af4f80e02e0e1b7cc3d4a25addaf25ddd" title="Tries to access the path." alt="" coords="283,81,373,108"/>
+<area shape="rect" href="ft__calloc_8c.html#a6747f1fa402c0eb1dde5b99d3cdc900f" title="Allocates memory for an pointer array and sets each element to zero." alt="" coords="548,5,624,32"/>
+<area shape="rect" href="ft__strdup_8c.html#aeab425f44e9a04e54160d60d3c9e870c" title="Duplicates a string." alt="" coords="421,31,500,57"/>
+<area shape="rect" href="ft__strlen_8c.html#abbb8c6c4ed85d892e7f1509f65f5768a" title="Finds the length of a string." alt="" coords="549,68,623,95"/>
+<area shape="rect" href="ft__memset_8c.html#ac340ddbfddbbf2c8de3c36f0f28c336d" title="Writes len bytes of value c to the string b." alt="" coords="672,5,764,32"/>
 </map>
 </div>
 <div class="dynheader">
@@ -375,7 +412,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_shelldata *&#160;</td>
+          <td class="paramtype"><a class="el" href="structs__shelldata.html">t_shelldata</a> *&#160;</td>
           <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
@@ -407,13 +444,22 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="setup__is__it__command_8c_aa095cd5a7c47d7bf8a63b8cf3a3c17a8_cgraph.png" border="0" usemap="#asetup__is__it__command_8c_aa095cd5a7c47d7bf8a63b8cf3a3c17a8_cgraph" alt=""/></div>
 <map name="asetup__is__it__command_8c_aa095cd5a7c47d7bf8a63b8cf3a3c17a8_cgraph" id="asetup__is__it__command_8c_aa095cd5a7c47d7bf8a63b8cf3a3c17a8_cgraph">
-<area shape="rect" title="Checks if the input is a command." alt="" coords="5,56,127,83"/>
-<area shape="rect" href="setup__is__it__command_8c.html#a0045562b216e673fdcee5dadc3d717b0" title="Checks if the given path is a command." alt="" coords="175,5,329,32"/>
-<area shape="rect" href="setup__command__helpers_8c.html#a09993cefc37d0d467d84ceac015ff0da" title="Creates variables for the path." alt="" coords="187,56,317,83"/>
-<area shape="rect" href="setup__is__it__command_8c.html#a686340d43d7cf1846ab445a86df9e98b" title="Finds the path for the command." alt="" coords="211,107,293,133"/>
-<area shape="rect" href="setup__is__it__command_8c.html#a6723a12493ed287efcc54ebb3da67e44" title="Checks if the input is a directory." alt="" coords="377,5,519,32"/>
-<area shape="rect" href="setup__is__it__command_8c.html#a6ae5cf4f5086aeaacf74ec6975a6f9ba" title="Creates a path for the command." alt="" coords="399,107,497,133"/>
-<area shape="rect" href="setup__command__helpers_8c.html#af4f80e02e0e1b7cc3d4a25addaf25ddd" title="Tries to access the path." alt="" coords="567,107,657,133"/>
+<area shape="rect" title="Checks if the input is a command." alt="" coords="5,132,127,159"/>
+<area shape="rect" href="setup__is__it__command_8c.html#a0045562b216e673fdcee5dadc3d717b0" title="Checks if the given path is a command." alt="" coords="361,56,516,83"/>
+<area shape="rect" href="setup__command__helpers_8c.html#a09993cefc37d0d467d84ceac015ff0da" title="Creates variables for the path." alt="" coords="179,157,309,184"/>
+<area shape="rect" href="setup__is__it__command_8c.html#a686340d43d7cf1846ab445a86df9e98b" title="Finds the path for the command." alt="" coords="203,107,285,133"/>
+<area shape="rect" href="ft__free__substrings_8c.html#a7d68dbbc77da832b16975da0954404fd" title="Frees the substrings of a string array." alt="" coords="175,208,313,235"/>
+<area shape="rect" href="setup__is__it__command_8c.html#a6723a12493ed287efcc54ebb3da67e44" title="Checks if the input is a directory." alt="" coords="564,5,705,32"/>
+<area shape="rect" href="ft__strdup_8c.html#aeab425f44e9a04e54160d60d3c9e870c" title="Duplicates a string." alt="" coords="762,56,841,83"/>
+<area shape="rect" href="ft__putstr__fd_8c.html#acefce9ac519f8f8b7d3fde33dbafe469" title="Outputs a string to a file descriptor." alt="" coords="753,5,849,32"/>
+<area shape="rect" href="ft__strlen_8c.html#abbb8c6c4ed85d892e7f1509f65f5768a" title="Finds the length of a string." alt="" coords="898,56,973,83"/>
+<area shape="rect" href="ft__calloc_8c.html#a6747f1fa402c0eb1dde5b99d3cdc900f" title="Allocates memory for an pointer array and sets each element to zero." alt="" coords="897,132,973,159"/>
+<area shape="rect" href="ft__memset_8c.html#ac340ddbfddbbf2c8de3c36f0f28c336d" title="Writes len bytes of value c to the string b." alt="" coords="1021,132,1113,159"/>
+<area shape="rect" href="ft__split_8c.html#a1b7b6087722961261b63eebafc2e2ed2" title="Splits a string into substrings using a delimiter." alt="" coords="405,157,472,184"/>
+<area shape="rect" href="ft__strcmp_8c.html#abd118f33a5a0fe00b6cbbfb0eeae25a5" title="Compares two strings." alt="" coords="397,208,480,235"/>
+<area shape="rect" href="setup__is__it__command_8c.html#a6ae5cf4f5086aeaacf74ec6975a6f9ba" title="Creates a path for the command." alt="" coords="389,107,488,133"/>
+<area shape="rect" href="ft__strjoin_8c.html#a5c1c26f8be9bc527cfe69a3555124795" title="Joins two strings together." alt="" coords="595,107,674,133"/>
+<area shape="rect" href="setup__command__helpers_8c.html#af4f80e02e0e1b7cc3d4a25addaf25ddd" title="Tries to access the path." alt="" coords="589,157,680,184"/>
 </map>
 </div>
 

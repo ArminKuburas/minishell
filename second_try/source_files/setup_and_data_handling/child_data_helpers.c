@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 10:47:30 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 06:36:50 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:58:22 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
  * @param error The error code.
  * @return void
 */
-
 void	child_failed(t_shelldata *data, int error)
 {
 	int	i;
@@ -44,4 +43,16 @@ void	child_failed(t_shelldata *data, int error)
 	free(data->env_variables);
 	rl_clear_history();
 	exit(1);
+}
+
+/**
+ * @brief handles a situation where no env variable is found.
+ * @param new_input The new input to be used.
+ * @param j The index of the new input.
+ * @return Returns 1.
+*/
+int	no_env_found(char *new_input, int *j)
+{
+	new_input[(*j)++] = '$';
+	return (1);
 }

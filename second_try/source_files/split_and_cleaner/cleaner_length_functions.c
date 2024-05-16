@@ -3,15 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   cleaner_length_functions.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 19:06:55 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/07 11:51:20 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:53:05 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
+/**
+ * @file cleaner_length_functions.c
+ * @brief Functions for finding the length of the cleaned input.
+*/
+
+/**
+ * @brief Compares the environment variable name to the string.
+ * @param env The environment variable name.
+ * @param str The string to be compared.
+ * @param len The length of the string.
+*/
 int	env_str_cmpr(char *env, char *str, int len)
 {
 	int	i;
@@ -26,6 +37,12 @@ int	env_str_cmpr(char *env, char *str, int len)
 	return (0);
 }
 
+/**
+ * @brief Finds the length of the environment variable value.
+ * @param env The environment list.
+ * @param str The string to be compared.
+ * @param len The length of the string.
+*/
 int	length_find_env(t_env_list *env, char *str, int len)
 {
 	t_env_list	*temp;
@@ -46,6 +63,14 @@ int	length_find_env(t_env_list *env, char *str, int len)
 	return (0);
 }
 
+/**
+ * @brief handles the case of when you find a dollar character
+ * @param temp The input list.
+ * @param i The index of the input list.
+ * @param quote The quote character.
+ * @param env The environment list.
+ * @return The length of the environment variable value.
+*/
 int	found_dollar(t_input_list *temp, int *i, char quote, t_env_list *env)
 {
 	int	length;
@@ -72,6 +97,12 @@ int	found_dollar(t_input_list *temp, int *i, char quote, t_env_list *env)
 	return (1);
 }
 
+/**
+ * @brief Handles the case of when you find a quote character.
+ * @param input The input character.
+ * @param quote The quote character.
+ * @param temp The input list.
+*/
 int	cleaner_quote_found(char input, char *quote, t_input_list *temp)
 {
 	temp->needs_cleaning = 1;
@@ -84,6 +115,11 @@ int	cleaner_quote_found(char input, char *quote, t_input_list *temp)
 	return (0);
 }
 
+/**
+ * @brief Calculates the length of the to be cleaned input.
+ * @param temp The input list.
+ * @param env The environment list.
+*/
 int	new_length(t_input_list *temp, t_env_list *env)
 {
 	int		i;

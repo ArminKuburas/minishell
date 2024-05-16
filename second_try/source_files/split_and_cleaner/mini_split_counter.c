@@ -3,17 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   mini_split_counter.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:13:40 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/07 11:51:45 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:34:01 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
+/**
+ * @file mini_split_counter.c
+ * @brief Functions for counting words in the input.
+*/
+
 static int	space_found(t_split_data *data);
 
+/**
+ * @brief Checks if a quote is found and sets the quote variable.
+ * @param data The data to be used.
+ * @return Returns SUCCESS if everything went well, otherwise NO_QUOTE.
+*/
 int	parser_quote_found(t_split_data *data)
 {
 	if (data->quote == '\0')
@@ -37,6 +47,12 @@ int	parser_quote_found(t_split_data *data)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Checks if a special character is found.
+ * @param data The data to be used.
+ * @param check The check variable.
+ * @return Returns SUCCESS if everything went well, otherwise FAILURE.
+*/
 static int	special_char_found(t_split_data *data, int check)
 {
 	if (check == 1)
@@ -52,6 +68,11 @@ static int	special_char_found(t_split_data *data, int check)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Checks if a space is found.
+ * @param data The data to be used.
+ * @return Returns SUCCESS if everything went well, otherwise NO_QUOTE.
+*/
 static int	space_found(t_split_data *data)
 {
 	while (data->i < data->len && data->input[data->i] != ' ')
@@ -75,6 +96,11 @@ static int	space_found(t_split_data *data)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Counts the words in the input.
+ * @param data The data to be used.
+ * @return Returns SUCCESS if everything went well, otherwise NO_QUOTE.
+*/
 int	count_words(t_split_data	*data)
 {
 	while (data->i < data->len)

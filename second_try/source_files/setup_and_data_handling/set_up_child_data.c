@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:58:42 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 06:50:18 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/15 06:38:15 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
  * @param start The start of the input list.
  * @return Returns the amount of processes.
 */
-
 int	count_processes(t_input_list *start)
 {
 	t_input_list	*temp;
@@ -45,7 +44,6 @@ int	count_processes(t_input_list *start)
  * @param i The index of the child data.
  * @return void
 */
-
 void	setup_command_inputs(t_shelldata *data, int i)
 {
 	int				j;
@@ -66,6 +64,8 @@ void	setup_command_inputs(t_shelldata *data, int i)
 		temp = temp->next;
 	}
 	error = create_command_arguments(&data->child_data[i], temp);
+	if (error == NO_MEMORY)
+		clean_everything_up(data, NO_MEMORY);
 	data->child_data[i].exit_value = error;
 }
 
@@ -75,7 +75,6 @@ void	setup_command_inputs(t_shelldata *data, int i)
  * @param amount The amount of processes.
  * @return Returns SUCCESS if everything went well, otherwise FAILURE.
 */
-
 int	create_child_data(t_shelldata *data, int amount)
 {
 	int	i;
@@ -107,11 +106,10 @@ int	create_child_data(t_shelldata *data, int amount)
  * @param data The data to be used.
  * @return Returns SUCCESS if everything went well, otherwise FAILURE.
 */
-
 int	set_up_child_data(t_shelldata *data)
 {
 	int	processes;
-	// technically still not done with handling exit cases here. go into create child data and validate things one by one
+
 	processes = count_processes(data->input_list);
 	data->command_amount = processes;
 	data->child_data

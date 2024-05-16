@@ -1,28 +1,6 @@
 var searchData=
 [
-  ['set_5fnew_5fnode_5fdata_74',['set_new_node_data',['../env__helper__functions_8c.html#a6644854f08aa8bfb4a1e05e6b958ad0a',1,'env_helper_functions.c']]],
-  ['set_5fup_5fchild_5fdata_75',['set_up_child_data',['../set__up__child__data_8c.html#a4e3c58f93ab937de52ac407c4fc32d4d',1,'set_up_child_data.c']]],
-  ['set_5fup_5fchild_5fdata_2ec_76',['set_up_child_data.c',['../set__up__child__data_8c.html',1,'']]],
-  ['set_5fup_5fdata_77',['set_up_data',['../main_8c.html#a66190e959e6b76c1b752f88bc37b5b7b',1,'main.c']]],
-  ['set_5fup_5fnew_5finput_78',['set_up_new_input',['../heredoc__modify__input_8c.html#a4c22255e4cd96e7c7c7293a8e45384aa',1,'heredoc_modify_input.c']]],
-  ['setup_5fcommand_79',['setup_command',['../setup__commands_8c.html#a3ac8353f98166eac03a847b826203bf1',1,'setup_commands.c']]],
-  ['setup_5fcommand_5fhelpers_2ec_80',['setup_command_helpers.c',['../setup__command__helpers_8c.html',1,'']]],
-  ['setup_5fcommand_5finputs_81',['setup_command_inputs',['../set__up__child__data_8c.html#ae70b71771a87bcb56a41de4956340aeb',1,'set_up_child_data.c']]],
-  ['setup_5fcommands_2ec_82',['setup_commands.c',['../setup__commands_8c.html',1,'']]],
-  ['setup_5fhelpers_2ec_83',['setup_helpers.c',['../setup__helpers_8c.html',1,'']]],
-  ['setup_5fheredoc_2ec_84',['setup_heredoc.c',['../setup__heredoc_8c.html',1,'']]],
-  ['setup_5fis_5fit_5fcommand_2ec_85',['setup_is_it_command.c',['../setup__is__it__command_8c.html',1,'']]],
-  ['setup_5foutput_5fpipe_86',['setup_output_pipe',['../setup__pipes_8c.html#ada718fa2971925d5ba74cbd9333606d7',1,'setup_pipes.c']]],
-  ['setup_5fpipes_87',['setup_pipes',['../setup__pipes_8c.html#a92c690d21282d649f9a028e9e8fd2ef1',1,'setup_pipes.c']]],
-  ['setup_5fpipes_2ec_88',['setup_pipes.c',['../setup__pipes_8c.html',1,'']]],
-  ['setup_5fredirect_5fhelpers_2ec_89',['setup_redirect_helpers.c',['../setup__redirect__helpers_8c.html',1,'']]],
-  ['setup_5fredirects_90',['setup_redirects',['../setup__redirects_8c.html#a2c6d52995c3c18af4d3efb757a1f2420',1,'setup_redirects.c']]],
-  ['setup_5fredirects_2ec_91',['setup_redirects.c',['../setup__redirects_8c.html',1,'']]],
-  ['sigint_5fhandler_92',['sigint_handler',['../signal_8c.html#a258e3b580e688a0cf46e4258525aeaf1',1,'signal.c']]],
-  ['signal_2ec_93',['signal.c',['../signal_8c.html',1,'']]],
-  ['signal_5fhelpers_2ec_94',['signal_helpers.c',['../signal__helpers_8c.html',1,'']]],
-  ['signals_5foff_95',['signals_off',['../signal__helpers_8c.html#a1923ca3bc1b9249a713f87aba54d198f',1,'signal_helpers.c']]],
-  ['simplify_5fenv_5fdata_96',['simplify_env_data',['../create__env__list_8c.html#a52f2b3895ca6d12552bc854f03b1a923',1,'create_env_list.c']]],
-  ['standby_5fsignals_97',['standby_signals',['../signal__helpers_8c.html#ad83a40684c104721e7b02467cdfcbff0',1,'signal_helpers.c']]],
-  ['strlen_5flast_5finput_98',['strlen_last_input',['../input__list__functions_8c.html#a123eab4ac09ec6e40d4f4114ffbafd63',1,'input_list_functions.c']]]
+  ['remove_5ffrom_5fenv_5flist_167',['remove_from_env_list',['../ft__unset_8c.html#aef074058c63e62c635e7d4fe405bb9d4',1,'ft_unset.c']]],
+  ['replace_5fenv_5fvar_168',['replace_env_var',['../export__helpers_8c.html#a01730602946225b33a098eac07f25476',1,'export_helpers.c']]],
+  ['repoint_5fshell_5fenv_169',['repoint_shell_env',['../env__helper__functions_8c.html#af0e98563ac16a4c6e5495cc9bcc8b2c1',1,'env_helper_functions.c']]]
 ];

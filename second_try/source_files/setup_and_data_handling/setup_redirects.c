@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:08:59 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 07:06:31 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:30:42 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@
  * @param input The input to be used.
  * @return void
  */
-
-/*  this function attempts to redirect input from a file
-It first confirms if it can access and open the given input_file.
-It not it sets the correct exit_value (error value)*/
 static void	redirect_input(t_shelldata *data, int i, t_input_list *input)
 {
 	if (data->child_data[i].exit_value != 0)
@@ -64,7 +60,6 @@ static void	redirect_input(t_shelldata *data, int i, t_input_list *input)
  * @param input The input to be used.
  * @return void
  */
-
 static void	redirect_output(t_shelldata *data, int i, t_input_list *input)
 {
 	if (data->child_data[i].exit_value != 0)
@@ -80,12 +75,7 @@ static void	redirect_output(t_shelldata *data, int i, t_input_list *input)
 	data->child_data[i].fd_out
 		= open(input->input, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (data->child_data[i].fd_out == -1 && !access(input->input, F_OK))
-	{
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(input->input, 2);
-		ft_putstr_fd(": Permission denied\n", 2);
-		data->child_data[i].exit_value = 1;
-	}
+		handle_output_error(data, i, input);
 	else if (data->child_data[i].fd_out == -1 && access(input->input, F_OK))
 	{
 		ft_putstr_fd("minishell: ", 2);
@@ -102,7 +92,6 @@ static void	redirect_output(t_shelldata *data, int i, t_input_list *input)
  * @param input The input to be used.
  * @return void
  */
-
 static void	redirect_append(t_shelldata *data, int i, t_input_list *input)
 {
 	if (data->child_data[i].exit_value != 0)
@@ -115,14 +104,10 @@ static void	redirect_append(t_shelldata *data, int i, t_input_list *input)
 		ambiguous_redirect(data, i, input);
 		return ;
 	}
-	data->child_data[i].fd_out = open(input->input, O_WRONLY | O_CREAT | O_APPEND, 0644);
+	data->child_data[i].fd_out
+		= open(input->input, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (data->child_data[i].fd_out == -1 && !access(input->input, F_OK))
-	{
-		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(input->input, 2);
-		ft_putstr_fd(": Permission denied\n", 2);
-		data->child_data[i].exit_value = 1;
-	}
+		handle_output_error(data, i, input);
 	else if (data->child_data[i].fd_out == -1 && access(input->input, F_OK))
 	{
 		ft_putstr_fd("minishell: ", 2);
@@ -138,7 +123,6 @@ static void	redirect_append(t_shelldata *data, int i, t_input_list *input)
  * @param index The index of the child data.
  * @return void
  */
-
 void	setup_redirects(t_shelldata *data, int index)
 {
 	t_input_list	*temp;

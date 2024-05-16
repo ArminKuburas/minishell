@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 11:14:29 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 07:04:31 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:30:04 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
  * @param i The index of the child data.
  * @return Returns the error code.
 */
-
 static int	setup_input_pipe(t_shelldata *data, int i)
 {
 	data->child_data[i].p_fd_in[0] = data->child_data[i - 1].p_fd_out[0];
@@ -37,7 +36,6 @@ static int	setup_input_pipe(t_shelldata *data, int i)
  * @param i The index of the child data.
  * @return Returns the error code.
 */
-
 int	setup_output_pipe(t_shelldata *data, int i)
 {
 	if (pipe(data->child_data[i].p_fd_out) == -1)
@@ -51,7 +49,6 @@ int	setup_output_pipe(t_shelldata *data, int i)
  * @param amount The amount of pipes.
  * @return Returns the error code.
 */
-
 int	setup_pipes(t_shelldata *data, int amount)
 {
 	t_input_list	*temp;

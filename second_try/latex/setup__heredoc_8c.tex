@@ -10,19 +10,19 @@ Include dependency graph for setup\+\_\+heredoc.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=224pt]{setup__heredoc_8c__incl}
+\includegraphics[width=350pt]{setup__heredoc_8c__incl}
 \end{center}
 \end{figure}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{setup__heredoc_8c_aa3a5d99e8a9a48c683912519fb6c108f}{modification\+\_\+loop}} (char $\ast$break\+\_\+line, t\+\_\+shelldata $\ast$data, int fd)
+void \mbox{\hyperlink{setup__heredoc_8c_aa3a5d99e8a9a48c683912519fb6c108f}{modification\+\_\+loop}} (char $\ast$break\+\_\+line, \mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, int fd)
 \begin{DoxyCompactList}\small\item\em Modifies the input line. \end{DoxyCompactList}\item 
 char $\ast$ \mbox{\hyperlink{setup__heredoc_8c_a95f0b9d9bbce951e4a70b6796c093aaa}{heredoc\+\_\+cleaner}} (char $\ast$input)
 \begin{DoxyCompactList}\small\item\em Cleans the input line. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{setup__heredoc_8c_af03f4c335ad69725c37318e4ab88f60d}{unmodified\+\_\+loop}} (char $\ast$break\+\_\+line, int fd)
 \begin{DoxyCompactList}\small\item\em Handles the unmodified input line. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{setup__heredoc_8c_a5e7f8317c8df22032488ad6cba7b39bc}{handle\+\_\+heredoc}} (t\+\_\+shelldata $\ast$data, int i, t\+\_\+input\+\_\+list $\ast$input)
+void \mbox{\hyperlink{setup__heredoc_8c_a5e7f8317c8df22032488ad6cba7b39bc}{handle\+\_\+heredoc}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, int i, \mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$input)
 \begin{DoxyCompactList}\small\item\em Handles the heredoc. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -36,7 +36,7 @@ Functions for setting up heredoc.
 \index{setup\_heredoc.c@{setup\_heredoc.c}!handle\_heredoc@{handle\_heredoc}}
 \index{handle\_heredoc@{handle\_heredoc}!setup\_heredoc.c@{setup\_heredoc.c}}
 \doxysubsubsection{\texorpdfstring{handle\_heredoc()}{handle\_heredoc()}}
-{\footnotesize\ttfamily void handle\+\_\+heredoc (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data,  }\item[{int}]{i,  }\item[{t\+\_\+input\+\_\+list $\ast$}]{input }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void handle\+\_\+heredoc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{int}]{i,  }\item[{\mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$}]{input }\end{DoxyParamCaption})}
 
 
 
@@ -79,11 +79,18 @@ Cleans the input line.
 \begin{DoxyReturn}{Returns}
 Returns the cleaned input line. 
 \end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{setup__heredoc_8c_a95f0b9d9bbce951e4a70b6796c093aaa_cgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{setup__heredoc_8c_aa3a5d99e8a9a48c683912519fb6c108f}\label{setup__heredoc_8c_aa3a5d99e8a9a48c683912519fb6c108f}} 
 \index{setup\_heredoc.c@{setup\_heredoc.c}!modification\_loop@{modification\_loop}}
 \index{modification\_loop@{modification\_loop}!setup\_heredoc.c@{setup\_heredoc.c}}
 \doxysubsubsection{\texorpdfstring{modification\_loop()}{modification\_loop()}}
-{\footnotesize\ttfamily void modification\+\_\+loop (\begin{DoxyParamCaption}\item[{char $\ast$}]{break\+\_\+line,  }\item[{t\+\_\+shelldata $\ast$}]{data,  }\item[{int}]{fd }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void modification\+\_\+loop (\begin{DoxyParamCaption}\item[{char $\ast$}]{break\+\_\+line,  }\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{int}]{fd }\end{DoxyParamCaption})}
 
 
 
@@ -99,8 +106,7 @@ Modifies the input line.
 \begin{DoxyReturn}{Returns}
 Returns the modified input line. 
 \end{DoxyReturn}
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -127,3 +133,10 @@ Handles the unmodified input line.
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{setup__heredoc_8c_af03f4c335ad69725c37318e4ab88f60d_cgraph}
+\end{center}
+\end{figure}

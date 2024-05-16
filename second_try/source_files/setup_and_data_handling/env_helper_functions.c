@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 12:38:55 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 16:57:40 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:28:32 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
  * @param env_var_value The value of the environment variable.
  * @return Returns 1 if the value is valid, otherwise 0.
 */
-
 int	check_shell_level_value(char *env_var_value)
 {
 	int	i;
@@ -42,7 +41,6 @@ int	check_shell_level_value(char *env_var_value)
  * @param node The node to be updated.
  * @param new_value The new value for the node.
 */
-
 int	set_new_node_data(t_env_list *node, char *new_value)
 {
 	char	*new_string;
@@ -65,7 +63,6 @@ int	set_new_node_data(t_env_list *node, char *new_value)
  * @param data The data to be used.
  * @return void
 */
-
 void	repoint_shell_env(t_shelldata *data)
 {
 	int			i;
@@ -86,7 +83,6 @@ void	repoint_shell_env(t_shelldata *data)
  * @param data The data to be used.
  * @return Returns SUCCESS if everything went well, otherwise FAILURE.
 */
-
 int	update_shell_level(t_shelldata *data)
 {
 	t_env_list	*temp;

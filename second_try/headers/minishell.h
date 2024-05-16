@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 18:27:27 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/16 13:37:12 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,15 @@
 /*For the overflow checks*/
 # include <limits.h>
 
+/*Global variable*/
+extern int	g_exit_value;
+
 # define RED	"\001\x1b[31m\002"
 # define GREEN	"\001\x1b[32m\002"
 # define YELLOW	"\001\x1b[33m\002"
 # define RESET	"\001\x1b[0m\002"
 # define BANANA_EMOJI "\001\xF0\x9F\x8D\x8C\002"
+
 typedef enum e_state
 {
 	DEFAULT,
@@ -201,8 +205,8 @@ typedef struct s_split_data
 	char			*input;
 	t_input_list	*node_one;
 }	t_split_data;
-//readline functions
 
+//readline functions
 int			rl_clear_history(void);
 void		rl_replace_line(char *str, int num);
 
@@ -256,7 +260,7 @@ void		parent_sigquit(int sig);
 
 //built_in functions
 int			ft_cd(t_shelldata *data, char **inputs);
-int			ft_env(t_shelldata *data);
+int			ft_env(t_shelldata *data, int fd);
 int			ft_export(t_shelldata *data, char **inputs, int fd);
 int			ft_exit(t_shelldata *data, char **inputs);
 int			ft_unset(t_shelldata *data, char **inputs);
@@ -295,6 +299,8 @@ int			create_variables(char ***path_variables, t_env_list *env_list);
 void		ambiguous_redirect(t_shelldata *data, int i, t_input_list *input);
 void		handle_heredoc(t_shelldata *data, int i, t_input_list *input);
 char		*modify_input(char *input, t_env_list *env_list);
+int			no_env_found(char *new_input, int *j);
+void		handle_output_error(t_shelldata *data, int i, t_input_list *input);
 
 //execute_children functions
 int			execute_commands(t_shelldata *data);
@@ -306,7 +312,7 @@ int			use_builtin(t_child_data *child_data, int fd, t_shelldata *data);
 void		wait_for_children(t_shelldata *data);
 int			execute_child(t_shelldata *data, t_child_data *child_data, int i);
 void		child_handler(t_shelldata *data, t_child_data *child_data, int i);
-void		fork_failed(t_shelldata *data);
+void		fork_failed(t_shelldata *data, int amount);
 void		close_other_fds(t_shelldata *data, int j, int i);
 
 //executioner
@@ -321,11 +327,11 @@ int			create_question_node(t_shelldata *data, t_env_list *temp);
 int			create_exit_value_env(t_shelldata *data);
 int			initial_env_creation(char **env, t_shelldata *data);
 int			initial_setup(t_shelldata *data, int argc, char **argv, char **env);
-int			check_argc_argv(int argc, char **argv); //might need to be moved to main_helpers
+int			check_argc_argv(int argc, char **argv);
 void		child_handling(t_shelldata *data);
 
 //Testers
-void	*fake_ft_calloc(void);
+void	*fake_ft_calloc(int amount, int size);
 int		fake_open(void);
 int		fake_fork(void);
 int		fake_dup2(void);

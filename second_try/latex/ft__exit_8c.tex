@@ -1,0 +1,116 @@
+\hypertarget{ft__exit_8c}{}\doxysection{source\+\_\+files/builtins/ft\+\_\+exit.c File Reference}
+\label{ft__exit_8c}\index{source\_files/builtins/ft\_exit.c@{source\_files/builtins/ft\_exit.c}}
+
+
+Functions for builtin exit command.  
+
+
+{\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
+Include dependency graph for ft\+\_\+exit.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ft__exit_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{ft__exit_8c_ac89eb868782befe8de654b552d5e42b8}{exit\+\_\+cleaner}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em cleans all allocated data before exiting the program. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ft__exit_8c_af81a19e05fa3a5653e393d6b02e2eda7}{clean\+\_\+exit}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, int flag)
+\begin{DoxyCompactList}\small\item\em fully exits the program with teh given exit value. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ft__exit_8c_a72202eac95413e1ed7df5e22c60aaf74}{ft\+\_\+exit}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, char $\ast$$\ast$inputs)
+\begin{DoxyCompactList}\small\item\em checks if the given input is a valid exit command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Functions for builtin exit command. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ft__exit_8c_af81a19e05fa3a5653e393d6b02e2eda7}\label{ft__exit_8c_af81a19e05fa3a5653e393d6b02e2eda7}} 
+\index{ft\_exit.c@{ft\_exit.c}!clean\_exit@{clean\_exit}}
+\index{clean\_exit@{clean\_exit}!ft\_exit.c@{ft\_exit.c}}
+\doxysubsubsection{\texorpdfstring{clean\_exit()}{clean\_exit()}}
+{\footnotesize\ttfamily void clean\+\_\+exit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{int}]{flag }\end{DoxyParamCaption})}
+
+
+
+fully exits the program with teh given exit value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & main struct for the program. \\
+\hline
+{\em flag} & if 1, prints exit message. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ft__exit_8c_af81a19e05fa3a5653e393d6b02e2eda7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{ft__exit_8c_af81a19e05fa3a5653e393d6b02e2eda7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{ft__exit_8c_ac89eb868782befe8de654b552d5e42b8}\label{ft__exit_8c_ac89eb868782befe8de654b552d5e42b8}} 
+\index{ft\_exit.c@{ft\_exit.c}!exit\_cleaner@{exit\_cleaner}}
+\index{exit\_cleaner@{exit\_cleaner}!ft\_exit.c@{ft\_exit.c}}
+\doxysubsubsection{\texorpdfstring{exit\_cleaner()}{exit\_cleaner()}}
+{\footnotesize\ttfamily void exit\+\_\+cleaner (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+cleans all allocated data before exiting the program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & main struct for the program. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ft__exit_8c_ac89eb868782befe8de654b552d5e42b8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ft__exit_8c_ac89eb868782befe8de654b552d5e42b8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{ft__exit_8c_a72202eac95413e1ed7df5e22c60aaf74}\label{ft__exit_8c_a72202eac95413e1ed7df5e22c60aaf74}} 
+\index{ft\_exit.c@{ft\_exit.c}!ft\_exit@{ft\_exit}}
+\index{ft\_exit@{ft\_exit}!ft\_exit.c@{ft\_exit.c}}
+\doxysubsubsection{\texorpdfstring{ft\_exit()}{ft\_exit()}}
+{\footnotesize\ttfamily int ft\+\_\+exit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{char $\ast$$\ast$}]{inputs }\end{DoxyParamCaption})}
+
+
+
+checks if the given input is a valid exit command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & main struct for the program. \\
+\hline
+{\em inputs} & array of strings from the input. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ft__exit_8c_a72202eac95413e1ed7df5e22c60aaf74_cgraph}
+\end{center}
+\end{figure}

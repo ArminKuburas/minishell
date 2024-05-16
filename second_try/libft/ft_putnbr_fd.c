@@ -6,12 +6,22 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 09:09:58 by akuburas          #+#    #+#             */
-/*   Updated: 2023/10/31 10:33:21 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/13 21:25:07 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @file ft_putnbr_fd.c
+ * @brief this file contains the ft_putnbr_fd function.
+*/
+
+/**
+ * @brief Outputs an integer to a file descriptor.
+ * @param n The integer to be outputted.
+ * @param fd The file descriptor to be used.
+*/
 void	ft_putnbr_fd(int n, int fd)
 {
 	char	digit;

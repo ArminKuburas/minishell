@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:04:01 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 06:58:54 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:15:11 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
  * @param env_list The environment list.
  * @return Returns the modified input line.
 */
-
 void	modification_loop(char *break_line, t_shelldata *data, int fd)
 {
 	char	*input_line;
@@ -56,7 +55,6 @@ void	modification_loop(char *break_line, t_shelldata *data, int fd)
  * @param input The input line to be cleaned.
  * @return Returns the cleaned input line.
 */
-
 char	*heredoc_cleaner(char *input)
 {
 	char	*cleaned_input;
@@ -90,7 +88,6 @@ char	*heredoc_cleaner(char *input)
  * @param fd The file descriptor.
  * @return void
 */
-
 void	unmodified_loop(char *break_line, int fd)
 {
 	char	*input_line;
@@ -117,7 +114,6 @@ void	unmodified_loop(char *break_line, int fd)
  * @param data The data to be used.
  * @return void
 */
-
 static void	write_loop(int fd, t_input_list *input, t_shelldata *data)
 {
 	char	*break_line;
@@ -139,6 +135,7 @@ static void	write_loop(int fd, t_input_list *input, t_shelldata *data)
 		modification_loop(break_line, data, fd);
 	else
 		unmodified_loop(break_line, fd);
+	free(break_line);
 }
 
 /**
@@ -148,19 +145,12 @@ static void	write_loop(int fd, t_input_list *input, t_shelldata *data)
  * @param input The input list.
  * @return void
 */
-
 void	handle_heredoc(t_shelldata *data, int i, t_input_list *input)
 {
 	int		pipe_fd[2];
 
 	if (data->child_data[i].exit_value != 0)
 		return ;
-	if (input->word_split == WORD_SPLIT
-		|| ((ft_strcmp(input->input, "") == 0 && input->old_input[0] == '$')))
-	{
-		ambiguous_redirect(data, i, input);
-		return ;
-	}
 	if (pipe(pipe_fd) == -1)
 		child_failed(data, NO_PIPE);
 	data->child_data[i].fd_in = pipe_fd[0];

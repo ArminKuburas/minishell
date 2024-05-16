@@ -10,21 +10,21 @@ Include dependency graph for execute\+\_\+children.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=217pt]{execute__children_8c__incl}
+\includegraphics[width=350pt]{execute__children_8c__incl}
 \end{center}
 \end{figure}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{execute__children_8c_ab5e9ef3eab61cb760018178b59ff2f57}{check\+\_\+fds}} (t\+\_\+child\+\_\+data $\ast$child\+\_\+data)
+int \mbox{\hyperlink{execute__children_8c_ab5e9ef3eab61cb760018178b59ff2f57}{check\+\_\+fds}} (\mbox{\hyperlink{structs__child__data}{t\+\_\+child\+\_\+data}} $\ast$child\+\_\+data)
 \begin{DoxyCompactList}\small\item\em Checks the file descriptors for the child process. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{execute__children_8c_a7d6c88043863ebd553a3c91760233fb8}{close\+\_\+my\+\_\+fds}} (t\+\_\+child\+\_\+data $\ast$child\+\_\+data)
+void \mbox{\hyperlink{execute__children_8c_a7d6c88043863ebd553a3c91760233fb8}{close\+\_\+my\+\_\+fds}} (\mbox{\hyperlink{structs__child__data}{t\+\_\+child\+\_\+data}} $\ast$child\+\_\+data)
 \begin{DoxyCompactList}\small\item\em Closes the file descriptors for the child process. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{execute__children_8c_ad178e7b9c4b020b05316f181c4ce4fdb}{close\+\_\+other\+\_\+fds}} (t\+\_\+shelldata $\ast$data, int j, int i)
+void \mbox{\hyperlink{execute__children_8c_ad178e7b9c4b020b05316f181c4ce4fdb}{close\+\_\+other\+\_\+fds}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, int j, int i)
 \begin{DoxyCompactList}\small\item\em Closes the file descriptors for the other child processes. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{execute__children_8c_ab9cd040807a08f0b0d8d1d8cbd5eb518}{child\+\_\+handler}} (t\+\_\+shelldata $\ast$data, t\+\_\+child\+\_\+data $\ast$child\+\_\+data, int i)
+void \mbox{\hyperlink{execute__children_8c_ab9cd040807a08f0b0d8d1d8cbd5eb518}{child\+\_\+handler}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, \mbox{\hyperlink{structs__child__data}{t\+\_\+child\+\_\+data}} $\ast$child\+\_\+data, int i)
 \begin{DoxyCompactList}\small\item\em Handles the child process. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{execute__children_8c_ae06cf4295b9422cb92e2ae497fcbc646}{execute\+\_\+child}} (t\+\_\+shelldata $\ast$data, t\+\_\+child\+\_\+data $\ast$child\+\_\+data, int i)
+int \mbox{\hyperlink{execute__children_8c_ae06cf4295b9422cb92e2ae497fcbc646}{execute\+\_\+child}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, \mbox{\hyperlink{structs__child__data}{t\+\_\+child\+\_\+data}} $\ast$child\+\_\+data, int i)
 \begin{DoxyCompactList}\small\item\em Executes the child process. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -38,7 +38,7 @@ This file contains functions for executing child processes.
 \index{execute\_children.c@{execute\_children.c}!check\_fds@{check\_fds}}
 \index{check\_fds@{check\_fds}!execute\_children.c@{execute\_children.c}}
 \doxysubsubsection{\texorpdfstring{check\_fds()}{check\_fds()}}
-{\footnotesize\ttfamily int check\+\_\+fds (\begin{DoxyParamCaption}\item[{t\+\_\+child\+\_\+data $\ast$}]{child\+\_\+data }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int check\+\_\+fds (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__child__data}{t\+\_\+child\+\_\+data}} $\ast$}]{child\+\_\+data }\end{DoxyParamCaption})}
 
 
 
@@ -63,7 +63,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{execute\_children.c@{execute\_children.c}!child\_handler@{child\_handler}}
 \index{child\_handler@{child\_handler}!execute\_children.c@{execute\_children.c}}
 \doxysubsubsection{\texorpdfstring{child\_handler()}{child\_handler()}}
-{\footnotesize\ttfamily void child\+\_\+handler (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data,  }\item[{t\+\_\+child\+\_\+data $\ast$}]{child\+\_\+data,  }\item[{int}]{i }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void child\+\_\+handler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{\mbox{\hyperlink{structs__child__data}{t\+\_\+child\+\_\+data}} $\ast$}]{child\+\_\+data,  }\item[{int}]{i }\end{DoxyParamCaption})}
 
 
 
@@ -81,7 +81,8 @@ Handles the child process.
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -99,7 +100,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{execute\_children.c@{execute\_children.c}!close\_my\_fds@{close\_my\_fds}}
 \index{close\_my\_fds@{close\_my\_fds}!execute\_children.c@{execute\_children.c}}
 \doxysubsubsection{\texorpdfstring{close\_my\_fds()}{close\_my\_fds()}}
-{\footnotesize\ttfamily void close\+\_\+my\+\_\+fds (\begin{DoxyParamCaption}\item[{t\+\_\+child\+\_\+data $\ast$}]{child\+\_\+data }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void close\+\_\+my\+\_\+fds (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__child__data}{t\+\_\+child\+\_\+data}} $\ast$}]{child\+\_\+data }\end{DoxyParamCaption})}
 
 
 
@@ -124,7 +125,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{execute\_children.c@{execute\_children.c}!close\_other\_fds@{close\_other\_fds}}
 \index{close\_other\_fds@{close\_other\_fds}!execute\_children.c@{execute\_children.c}}
 \doxysubsubsection{\texorpdfstring{close\_other\_fds()}{close\_other\_fds()}}
-{\footnotesize\ttfamily void close\+\_\+other\+\_\+fds (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data,  }\item[{int}]{j,  }\item[{int}]{i }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void close\+\_\+other\+\_\+fds (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{int}]{j,  }\item[{int}]{i }\end{DoxyParamCaption})}
 
 
 
@@ -150,7 +151,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{execute\_children.c@{execute\_children.c}!execute\_child@{execute\_child}}
 \index{execute\_child@{execute\_child}!execute\_children.c@{execute\_children.c}}
 \doxysubsubsection{\texorpdfstring{execute\_child()}{execute\_child()}}
-{\footnotesize\ttfamily int execute\+\_\+child (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data,  }\item[{t\+\_\+child\+\_\+data $\ast$}]{child\+\_\+data,  }\item[{int}]{i }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int execute\+\_\+child (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{\mbox{\hyperlink{structs__child__data}{t\+\_\+child\+\_\+data}} $\ast$}]{child\+\_\+data,  }\item[{int}]{i }\end{DoxyParamCaption})}
 
 
 
@@ -168,7 +169,8 @@ Executes the child process.
 \begin{DoxyReturn}{Returns}
 Returns SUCCESS if everything went well, otherwise FAILURE. 
 \end{DoxyReturn}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:04:17 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 07:32:09 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:58:24 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
  * @param data The child data to be freed and closed.
  * @return void
 */
-
 void	free_child_data(t_child_data *data)
 {
 	if (data->fd_in != 0 && data->fd_in != -1)
@@ -46,14 +45,13 @@ void	free_child_data(t_child_data *data)
  * @param child The child data to be used.
  * @return void
 */
-
 static void	print_helper(int error, t_input_list *temp, t_child_data *child)
 {
 	if (error == NOT_FOUND)
 	{
 		ft_putstr_fd("minishell: ", 2);
 		ft_putstr_fd(temp->input, 2);
-		ft_putstr_fd(": No such file or directory\n", 2);
+		ft_putstr_fd(": command not found\n", 2);
 		child->exit_value = 127;
 	}
 	else if (error == EXECUTION_FORBIDDEN)
@@ -72,7 +70,6 @@ static void	print_helper(int error, t_input_list *temp, t_child_data *child)
  * @param amount The amount of processes.
  * @return void
 */
-
 void	command_error_message(int error, t_shelldata *data, int amount)
 {
 	t_input_list	*temp;
@@ -101,7 +98,6 @@ void	command_error_message(int error, t_shelldata *data, int amount)
  * @param start The start of the input list.
  * @return void
 */
-
 static void	cca_helper(t_child_data *child, t_input_list *start)
 {
 	t_input_list	*temp;
@@ -126,7 +122,6 @@ static void	cca_helper(t_child_data *child, t_input_list *start)
  * @param start The start of the input list.
  * @return Returns SUCCESS if everything went well, otherwise FAILURE.
 */
-
 int	create_command_arguments(t_child_data *child, t_input_list *start)
 {
 	t_input_list	*temp;
@@ -142,7 +137,7 @@ int	create_command_arguments(t_child_data *child, t_input_list *start)
 	}
 	child->command_inputs = ft_calloc(i + 2, sizeof(char *));
 	if (child->command_inputs == NULL)
-		return (FAILURE);
+		return (NO_MEMORY);
 	child->command_inputs[0] = child->command;
 	if (i == 0)
 		return (SUCCESS);

@@ -3,15 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   export_helpers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:34:10 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/13 12:30:54 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:03:59 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
+/**
+ * @file export_helpers.c
+ * @brief Helper functions for the export builtin.
+*/
+
+/**
+ * @brief Swaps the values of two env variables.
+ * @param temp The first env variable.
+ * @param temp2 The second env variable.
+*/
 void	swap_env_vars(t_env_list *temp, t_env_list *temp2)
 {
 	char			*temp_env;
@@ -27,6 +37,10 @@ void	swap_env_vars(t_env_list *temp, t_env_list *temp2)
 	temp2->env_var_value = temp_env;
 }
 
+/**
+ * @brief Sorts the env list alphabetically.
+ * @param env_list The list to be sorted.
+*/
 void	export_sorted_list(t_env_list *env_list)
 {
 	t_env_list		*temp;
@@ -46,7 +60,14 @@ void	export_sorted_list(t_env_list *env_list)
 	}
 }
 
-/*This function replaces the env var value if it already exists*/
+/**
+ * @brief Replaces the value of an existing env variable.
+ * @param data The struct containing shell data.
+ * @param input The input to be replaced.
+ * @param i The index of the input.
+ * @param flag The flag to determine if the value should be replaced.
+ * @return int 0 if successful, 1 if no memory.
+*/
 int	replace_env_var(t_shelldata *data, char *input, int i, int flag)
 {
 	t_env_list	*temp_env;
@@ -75,6 +96,14 @@ int	replace_env_var(t_shelldata *data, char *input, int i, int flag)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Adds a new env variable to the env list.
+ * @param data The struct containing shell data.
+ * @param input The input to be added.
+ * @param i The index of the input.
+ * @param flag The flag to determine if the value should be added.
+ * @return int 0 if successful, 1 if no memory.
+*/
 static int	add_new_env_var_2(t_shelldata *data, t_env_list *new_env, int flag)
 {
 	t_env_list	*temp_env;
@@ -92,6 +121,14 @@ static int	add_new_env_var_2(t_shelldata *data, t_env_list *new_env, int flag)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Adds a new env variable to the env list.
+ * @param data The struct containing shell data.
+ * @param input The input to be added.
+ * @param i The index of the input.
+ * @param flag The flag to determine if the value should be added.
+ * @return int 0 if successful, 1 if no memory.
+*/
 int	add_new_env_var(t_shelldata *data, char *input, int i, int flag)
 {
 	t_env_list	*new_env;

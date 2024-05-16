@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 02:36:27 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 06:31:36 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/14 15:24:16 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,11 @@
  * @details This file contains functions for executing child processes.
 */
 
-
 /**
  * @brief Checks the file descriptors for the child process.
  * @param child_data The child data to be used.
  * @return Returns SUCCESS if everything went well, otherwise NO_DUP.
 */
-
 int	check_fds(t_child_data *child_data)
 {
 	if (child_data->fd_in != 0)
@@ -49,7 +47,6 @@ int	check_fds(t_child_data *child_data)
  * @param child_data The child data to be used.
  * @return void
 */
-
 void	close_my_fds(t_child_data *child_data)
 {
 	if (child_data->fd_in != 0)
@@ -72,7 +69,6 @@ void	close_my_fds(t_child_data *child_data)
  * @param j The index of the current child data.
  * @param i The index of the current child data that should not be cleaned.
 */
-
 void	close_other_fds(t_shelldata *data, int j, int i)
 {
 	if (data->child_data[j].fd_in != 0)
@@ -102,7 +98,6 @@ void	close_other_fds(t_shelldata *data, int j, int i)
  * @param i The index of the current child data.
  * @return void
 */
-
 void	child_handler(t_shelldata *data, t_child_data *child_data, int i)
 {
 	if (check_child_pipes(child_data) != SUCCESS)
@@ -136,12 +131,11 @@ void	child_handler(t_shelldata *data, t_child_data *child_data, int i)
  * @param i The index of the current child data.
  * @return Returns SUCCESS if everything went well, otherwise FAILURE.
 */
-
 int	execute_child(t_shelldata *data, t_child_data *child_data, int i)
 {
 	child_data->pid = fork();
 	if (child_data->pid == -1)
-		fork_failed(data);
+		fork_failed(data, i);
 	if (child_data->pid == 0)
 	{
 		child_handler(data, child_data, i);

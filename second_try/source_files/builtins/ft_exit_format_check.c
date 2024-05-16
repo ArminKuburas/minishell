@@ -3,15 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit_format_check.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 12:47:25 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/12 13:40:14 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:07:22 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
+/**
+ * @file ft_exit_format_check.c
+ * @brief Functions for checking the format of the exit command.
+*/
+
+/**
+ * @brief prints error message if the input is not a number.
+ * @param data main struct for the program.
+ * @param input the input string.
+ */
 static int	is_it_numeric(t_shelldata *data, char *input)
 {
 	int	i;
@@ -36,6 +46,12 @@ static int	is_it_numeric(t_shelldata *data, char *input)
 	return (0);
 }
 
+/**
+ * @brief parses the given digits from the input string.
+ * @param str the input string.
+ * @param sign the sign of the number positive or negative.
+ * @return the parsed number.
+*/
 static long	ft_parse_digits(const char *str, int sign)
 {
 	long long	result;
@@ -56,6 +72,12 @@ static long	ft_parse_digits(const char *str, int sign)
 	return (result);
 }
 
+/**
+ * @brief converts the input string to a long long and sets the exit value.
+ * @param data main struct for the program.
+ * @param str the input string.
+ * @param input the input string.
+*/
 static void	ft_atol(t_shelldata *data, const char *str, char *input)
 {
 	long long	result;
@@ -82,6 +104,11 @@ static void	ft_atol(t_shelldata *data, const char *str, char *input)
 	data->exit_value = ((int)(result));
 }
 
+/**
+ * @brief checks the format of the exit command.
+ * @param data main struct for the program.
+ * @param inputs array of strings from the input.
+*/
 void	check_format(t_shelldata *data, char **inputs)
 {
 	if (is_it_numeric(data, inputs[1]) != 0)

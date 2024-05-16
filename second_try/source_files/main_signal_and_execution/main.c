@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 13:43:05 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:06:05 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
  * @brief Main file for the minishell program.
  * @details This file contains the main function and the main loop.
 */
-
-
 
 /**
  * @brief Quickly checks the argc and argv.
@@ -91,15 +89,15 @@ int	set_up_data(t_shelldata *data)
  * @param data The data for the minishell.
  * @return void
 */
-
 void	main_loop(t_shelldata *data)
 {
 	while (1)
 	{
 		handler_signals();
-		data->input = readline(YELLOW BANANA_EMOJI"bananashell-0.25:"RESET);
+		data->input = readline(YELLOW BANANA_EMOJI"bananashell-0.30:"RESET);
 		if (!data->input)
 			end_of_file_reached(data);
+		create_exit_value_env(data);
 		if (set_up_data(data) != SUCCESS)
 		{
 			free(data->input);
@@ -120,7 +118,6 @@ void	main_loop(t_shelldata *data)
  * @param env The environment variables.
  * @return Returns 0 if everything went well, otherwise 1.
 */
-
 int	main(int argc, char **argv, char **env)
 {
 	t_shelldata		data;

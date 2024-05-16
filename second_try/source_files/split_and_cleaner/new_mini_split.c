@@ -3,15 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   new_mini_split.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:41:10 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/07 11:52:05 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:35:36 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
+/**
+ * @file new_mini_split.c
+ * @brief Functions for splitting the input.
+*/
+
+/**
+ * @brief Duplicates the special characters.
+ * @param input The input to be used.
+ * @param data The data to be used.
+ * @param i The index of the input.
+ * @return Returns the error code.
+*/
 static int	dup_special_character(char *input, t_shelldata *data, int *i)
 {
 	if (ft_strchr("><", input[1]) != NULL && input[0] == input[1])
@@ -38,6 +50,11 @@ static int	dup_special_character(char *input, t_shelldata *data, int *i)
 	return (SUCCESS);
 }
 
+/**
+ * @brief the mini split loop. It splits the original input
+ * @param data The data to be used.
+ * @return Returns the error code.
+*/
 static int	mini_split_loop(t_shelldata *data)
 {
 	int		i;
@@ -63,6 +80,11 @@ static int	mini_split_loop(t_shelldata *data)
 	return (SUCCESS);
 }
 
+/**
+ * @brief The new mini split function. It splits the input.
+ * @param data The data to be used.
+ * @return Returns the error code.
+*/
 int	new_mini_split(t_shelldata *data)
 {
 	data->input_list = ft_calloc(1, sizeof(t_input_list));

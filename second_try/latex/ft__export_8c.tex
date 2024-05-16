@@ -1,0 +1,88 @@
+\hypertarget{ft__export_8c}{}\doxysection{source\+\_\+files/builtins/ft\+\_\+export.c File Reference}
+\label{ft__export_8c}\index{source\_files/builtins/ft\_export.c@{source\_files/builtins/ft\_export.c}}
+
+
+Built-\/in export function.  
+
+
+{\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
+Include dependency graph for ft\+\_\+export.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ft__export_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ft__export_8c_aeea70a8fd74c0ee6aca21b0e578b9159}{compare\+\_\+env\+\_\+var\+\_\+name}} (char $\ast$env\+\_\+var\+\_\+name, char $\ast$input, int i)
+\begin{DoxyCompactList}\small\item\em compares the env var name to the input \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ft__export_8c_acf07812766fff683daac0078e35223e6}{ft\+\_\+export}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, char $\ast$$\ast$inputs, int fd)
+\begin{DoxyCompactList}\small\item\em The export built-\/in function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Built-\/in export function. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ft__export_8c_aeea70a8fd74c0ee6aca21b0e578b9159}\label{ft__export_8c_aeea70a8fd74c0ee6aca21b0e578b9159}} 
+\index{ft\_export.c@{ft\_export.c}!compare\_env\_var\_name@{compare\_env\_var\_name}}
+\index{compare\_env\_var\_name@{compare\_env\_var\_name}!ft\_export.c@{ft\_export.c}}
+\doxysubsubsection{\texorpdfstring{compare\_env\_var\_name()}{compare\_env\_var\_name()}}
+{\footnotesize\ttfamily int compare\+\_\+env\+\_\+var\+\_\+name (\begin{DoxyParamCaption}\item[{char $\ast$}]{env\+\_\+var\+\_\+name,  }\item[{char $\ast$}]{input,  }\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+compares the env var name to the input 
+
+
+\begin{DoxyParams}{Parameters}
+{\em env\+\_\+var\+\_\+name} & The env var name. \\
+\hline
+{\em input} & The input to be compared. \\
+\hline
+{\em i} & The index of the input. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns yes or no answer. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=321pt]{ft__export_8c_aeea70a8fd74c0ee6aca21b0e578b9159_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{ft__export_8c_acf07812766fff683daac0078e35223e6}\label{ft__export_8c_acf07812766fff683daac0078e35223e6}} 
+\index{ft\_export.c@{ft\_export.c}!ft\_export@{ft\_export}}
+\index{ft\_export@{ft\_export}!ft\_export.c@{ft\_export.c}}
+\doxysubsubsection{\texorpdfstring{ft\_export()}{ft\_export()}}
+{\footnotesize\ttfamily int ft\+\_\+export (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{char $\ast$$\ast$}]{inputs,  }\item[{int}]{fd }\end{DoxyParamCaption})}
+
+
+
+The export built-\/in function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The struct containing shell data. \\
+\hline
+{\em inputs} & The inputs to be exported. \\
+\hline
+{\em fd} & The file descriptor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns 0 if successful, 1 if not. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ft__export_8c_acf07812766fff683daac0078e35223e6_cgraph}
+\end{center}
+\end{figure}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_unset_helpers.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:51:55 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/09 10:56:28 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:08:00 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,11 @@ void	export_no_commands(t_shelldata *data, int fd)
 		{
 			if (temp->env_var_value != NULL)
 			{
-				ft_printf("declare -x %s=\"%s\"\n", temp->env_var_name, \
-				temp->env_var_value);
+				ft_putstr_fd("declare -x ", fd);
+				ft_putstr_fd(temp->env_var_name, fd);
+				ft_putstr_fd("=\"", fd);
+				ft_putstr_fd(temp->env_var_value, fd);
+				ft_putstr_fd("\"\n", fd);
 			}
 			else
 			{
@@ -45,7 +48,6 @@ int	is_unset_var_name_valid(char *input)
 	i = 0;
 	if (input[i] != '_' && !ft_isalpha(input[i]))
 	{
-		ft_printf("1\n");
 		ft_putstr_fd("bananashell: unset: `", STDERR_FILENO);
 		ft_putstr_fd(input, STDERR_FILENO);
 		ft_putstr_fd("': not a valid identifier\n", STDERR_FILENO);
@@ -57,7 +59,6 @@ int	is_unset_var_name_valid(char *input)
 			i++;
 		else
 		{
-			ft_printf("2\n");
 			ft_putstr_fd("bananashell: unset: `", STDERR_FILENO);
 			ft_putstr_fd(input, STDERR_FILENO);
 			ft_putstr_fd("': not a valid identifier\n", STDERR_FILENO);

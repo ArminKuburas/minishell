@@ -3,15 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 12:38:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/18 12:44:34 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/13 21:29:28 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @file ft_strncmp.c
+ * @brief this file contains the ft_strncmp function.
+*/
+
+/**
+ * @brief Compares two strings.
+ * @param s1 The first string to be compared.
+ * @param s2 The second string to be compared.
+ * @param n The amount of characters to be compared.
+ * @return Returns the difference between the first differing characters.
+*/
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	unsigned char	u1;

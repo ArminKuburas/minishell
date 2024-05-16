@@ -10,14 +10,16 @@ Include dependency graph for setup\+\_\+redirect\+\_\+helpers.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=224pt]{setup__redirect__helpers_8c__incl}
+\includegraphics[width=350pt]{setup__redirect__helpers_8c__incl}
 \end{center}
 \end{figure}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{setup__redirect__helpers_8c_a4d49c1b9ad1e68adcd0cdcc11b76e62c}{ambiguous\+\_\+redirect}} (t\+\_\+shelldata $\ast$data, int i, t\+\_\+input\+\_\+list $\ast$input)
-\begin{DoxyCompactList}\small\item\em handles ambigious redirect \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \mbox{\hyperlink{setup__redirect__helpers_8c_a4d49c1b9ad1e68adcd0cdcc11b76e62c}{ambiguous\+\_\+redirect}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, int i, \mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$input)
+\begin{DoxyCompactList}\small\item\em handles ambigious redirect \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{setup__redirect__helpers_8c_a54cedd2b756c94a40bc146f89fc5e7fa}{handle\+\_\+output\+\_\+error}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, int i, \mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$input)
+\begin{DoxyCompactList}\small\item\em handles output error \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -30,7 +32,7 @@ Helper functions for setting up redirections.
 \index{setup\_redirect\_helpers.c@{setup\_redirect\_helpers.c}!ambiguous\_redirect@{ambiguous\_redirect}}
 \index{ambiguous\_redirect@{ambiguous\_redirect}!setup\_redirect\_helpers.c@{setup\_redirect\_helpers.c}}
 \doxysubsubsection{\texorpdfstring{ambiguous\_redirect()}{ambiguous\_redirect()}}
-{\footnotesize\ttfamily void ambiguous\+\_\+redirect (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data,  }\item[{int}]{i,  }\item[{t\+\_\+input\+\_\+list $\ast$}]{input }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void ambiguous\+\_\+redirect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{int}]{i,  }\item[{\mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$}]{input }\end{DoxyParamCaption})}
 
 
 
@@ -48,10 +50,46 @@ handles ambigious redirect
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{setup__redirect__helpers_8c_a4d49c1b9ad1e68adcd0cdcc11b76e62c_cgraph}
+\end{center}
+\end{figure}
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=323pt]{setup__redirect__helpers_8c_a4d49c1b9ad1e68adcd0cdcc11b76e62c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{setup__redirect__helpers_8c_a54cedd2b756c94a40bc146f89fc5e7fa}\label{setup__redirect__helpers_8c_a54cedd2b756c94a40bc146f89fc5e7fa}} 
+\index{setup\_redirect\_helpers.c@{setup\_redirect\_helpers.c}!handle\_output\_error@{handle\_output\_error}}
+\index{handle\_output\_error@{handle\_output\_error}!setup\_redirect\_helpers.c@{setup\_redirect\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{handle\_output\_error()}{handle\_output\_error()}}
+{\footnotesize\ttfamily void handle\+\_\+output\+\_\+error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{int}]{i,  }\item[{\mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$}]{input }\end{DoxyParamCaption})}
+
+
+
+handles output error 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to be used. \\
+\hline
+{\em i} & The index of the child data. \\
+\hline
+{\em input} & The input to be used. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{setup__redirect__helpers_8c_a54cedd2b756c94a40bc146f89fc5e7fa_cgraph}
 \end{center}
 \end{figure}

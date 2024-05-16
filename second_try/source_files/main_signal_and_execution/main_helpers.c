@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 09:33:40 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 19:25:12 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:52:54 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
  * @param env_value The value of the environment variable.
  * @return Returns SUCCESS if everything went well, otherwise NO_MEMORY.
 */
-
 int	new_env_node(t_env_list *old_node, char *env_name, char *env_value)
 {
 	t_env_list	*new_node;
@@ -53,7 +52,6 @@ int	new_env_node(t_env_list *old_node, char *env_name, char *env_value)
  * @param temp The temporary node to be connected to the new node.
  * @return Returns SUCCESS if everything went well, otherwise NO_MEMORY.
 */
-
 int	create_question_node(t_shelldata *data, t_env_list *temp)
 {
 	char	*env_var_name;
@@ -69,7 +67,6 @@ int	create_question_node(t_shelldata *data, t_env_list *temp)
  * @param data The data to be used.
  * @return Returns SUCCESS if everything went well, otherwise NO_MEMORY.
 */
-
 int	create_exit_value_env(t_shelldata *data)
 {
 	t_env_list	*temp;
@@ -80,6 +77,11 @@ int	create_exit_value_env(t_shelldata *data)
 		if (ft_strcmp(temp->env_var_name, "?") == 0)
 		{
 			free (temp->env_var_value);
+			if (g_exit_value != 0)
+			{
+				data->exit_value = g_exit_value;
+				g_exit_value = 0;
+			}
 			temp->env_var_value = ft_itoa(data->exit_value);
 			if (!temp->env_var_value)
 				return (NO_MEMORY);
@@ -98,22 +100,16 @@ int	create_exit_value_env(t_shelldata *data)
  * @param data The data to be used.
  * @return Returns SUCCESS if everything went well, otherwise FAILURE.
 */
-
 int	initial_env_creation(char **env, t_shelldata *data)
 {
 	int	error;
 
-	printf("initial_env_creation\n");
-	int i = 0;
-	while (env[i])
-	{
-		printf ("env[%d] = %s\n", i, env[i]);
-		i++;
-	}
 	error = duplicate_env(env, data);
-	printf("initial_env_creation 2\n");
 	if (error != SUCCESS)
+	{
+		ft_putendl_fd("error: memory allocation failed", 2);
 		return (FAILURE);
+	}
 	error = update_shell_level(data);
 	if (error != SUCCESS)
 	{
@@ -137,14 +133,12 @@ int	initial_env_creation(char **env, t_shelldata *data)
  * @param env The environment variables.
  * @return Returns SUCCESS if everything went well, otherwise FAILURE.
 */
-
 int	initial_setup(t_shelldata *data, int argc, char **argv, char **env)
 {
 	if (check_argc_argv(argc, argv) == FAILURE)
 		return (FAILURE);
-	if (env)
-		if (initial_env_creation(env, data) == FAILURE)
-			return (FAILURE);
+	if (env && initial_env_creation(env, data) == FAILURE)
+		return (FAILURE);
 	data->pwd = getcwd(NULL, 0);
 	if (!data->pwd)
 	{

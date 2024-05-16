@@ -6,12 +6,24 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:01:58 by akuburas          #+#    #+#             */
-/*   Updated: 2023/11/01 13:11:05 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/15 10:54:47 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @file ft_substr.c
+ * @brief this file contains the ft_substr function.
+ */
+
+/**
+ * @brief Creates a substring from a string.
+ * @param s The string to be copied.
+ * @param start The starting index.
+ * @param len The length of the substring.
+ * @return The new substring.
+ */
 char	*ft_substr( char const *s, unsigned int start, size_t len)
 {
 	size_t	s_len;
@@ -24,7 +36,7 @@ char	*ft_substr( char const *s, unsigned int start, size_t len)
 		return (ft_strdup(""));
 	if (start + len > s_len)
 		len = s_len - start;
-	substr = (char *)malloc(len + 1);
+	substr = ft_calloc(len + 1, sizeof(char));
 	if (!substr)
 		return (NULL);
 	ft_memcpy(substr, s + start, len);

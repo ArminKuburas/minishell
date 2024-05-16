@@ -10,21 +10,21 @@ Include dependency graph for child\+\_\+handling.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=254pt]{child__handling_8c__incl}
+\includegraphics[width=350pt]{child__handling_8c__incl}
 \end{center}
 \end{figure}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{child__handling_8c_a1cce97ce31deb0eec684a1dcd172a0d2}{fork\+\_\+failed}} (t\+\_\+shelldata $\ast$data)
+void \mbox{\hyperlink{child__handling_8c_ad9627a9438c35bad70f0debf460c20c2}{fork\+\_\+failed}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, int amount)
 \begin{DoxyCompactList}\small\item\em Handles the case where fork fails. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{child__handling_8c_aa7a92b86ec7fefce7b54f07aa69cb004}{execute\+\_\+commands}} (t\+\_\+shelldata $\ast$data)
+int \mbox{\hyperlink{child__handling_8c_aa7a92b86ec7fefce7b54f07aa69cb004}{execute\+\_\+commands}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
 \begin{DoxyCompactList}\small\item\em Executes the commands in the child processes. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{child__handling_8c_a9e21a75a120b1628177daf65a0f81c96}{one\+\_\+builtin}} (t\+\_\+shelldata $\ast$data)
+int \mbox{\hyperlink{child__handling_8c_a9e21a75a120b1628177daf65a0f81c96}{one\+\_\+builtin}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
 \begin{DoxyCompactList}\small\item\em Handles the case where there is only one builtin command. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{child__handling_8c_ae878892ea4154f7417a575546e88ae94}{child\+\_\+pre\+\_\+check}} (t\+\_\+shelldata $\ast$data)
+int \mbox{\hyperlink{child__handling_8c_ae878892ea4154f7417a575546e88ae94}{child\+\_\+pre\+\_\+check}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
 \begin{DoxyCompactList}\small\item\em Pre-\/checks before executing the child processes. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{child__handling_8c_a89a3117c4bdfecb95ea1a13ac0bb79ad}{child\+\_\+handling}} (t\+\_\+shelldata $\ast$data)
+void \mbox{\hyperlink{child__handling_8c_a89a3117c4bdfecb95ea1a13ac0bb79ad}{child\+\_\+handling}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
 \begin{DoxyCompactList}\small\item\em Handles the child processes. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -38,7 +38,7 @@ This file contains functions for handling child processes.
 \index{child\_handling.c@{child\_handling.c}!child\_handling@{child\_handling}}
 \index{child\_handling@{child\_handling}!child\_handling.c@{child\_handling.c}}
 \doxysubsubsection{\texorpdfstring{child\_handling()}{child\_handling()}}
-{\footnotesize\ttfamily void child\+\_\+handling (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void child\+\_\+handling (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data }\end{DoxyParamCaption})}
 
 
 
@@ -52,7 +52,8 @@ Handles the child processes.
 \begin{DoxyReturn}{Returns}
 void 
 \end{DoxyReturn}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -70,7 +71,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{child\_handling.c@{child\_handling.c}!child\_pre\_check@{child\_pre\_check}}
 \index{child\_pre\_check@{child\_pre\_check}!child\_handling.c@{child\_handling.c}}
 \doxysubsubsection{\texorpdfstring{child\_pre\_check()}{child\_pre\_check()}}
-{\footnotesize\ttfamily int child\+\_\+pre\+\_\+check (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int child\+\_\+pre\+\_\+check (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data }\end{DoxyParamCaption})}
 
 
 
@@ -84,7 +85,8 @@ Pre-\/checks before executing the child processes.
 \begin{DoxyReturn}{Returns}
 Returns the exit value of the child processes. 
 \end{DoxyReturn}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -102,7 +104,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{child\_handling.c@{child\_handling.c}!execute\_commands@{execute\_commands}}
 \index{execute\_commands@{execute\_commands}!child\_handling.c@{child\_handling.c}}
 \doxysubsubsection{\texorpdfstring{execute\_commands()}{execute\_commands()}}
-{\footnotesize\ttfamily int execute\+\_\+commands (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int execute\+\_\+commands (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data }\end{DoxyParamCaption})}
 
 
 
@@ -116,7 +118,8 @@ Executes the commands in the child processes.
 \begin{DoxyReturn}{Returns}
 Returns SUCCESS if everything went well, otherwise FAILURE. 
 \end{DoxyReturn}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -130,11 +133,11 @@ Here is the caller graph for this function\+:\nopagebreak
 \includegraphics[width=350pt]{child__handling_8c_aa7a92b86ec7fefce7b54f07aa69cb004_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{child__handling_8c_a1cce97ce31deb0eec684a1dcd172a0d2}\label{child__handling_8c_a1cce97ce31deb0eec684a1dcd172a0d2}} 
+\mbox{\Hypertarget{child__handling_8c_ad9627a9438c35bad70f0debf460c20c2}\label{child__handling_8c_ad9627a9438c35bad70f0debf460c20c2}} 
 \index{child\_handling.c@{child\_handling.c}!fork\_failed@{fork\_failed}}
 \index{fork\_failed@{fork\_failed}!child\_handling.c@{child\_handling.c}}
 \doxysubsubsection{\texorpdfstring{fork\_failed()}{fork\_failed()}}
-{\footnotesize\ttfamily void fork\+\_\+failed (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void fork\+\_\+failed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{int}]{amount }\end{DoxyParamCaption})}
 
 
 
@@ -152,21 +155,21 @@ Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=277pt]{child__handling_8c_a1cce97ce31deb0eec684a1dcd172a0d2_cgraph}
+\includegraphics[width=350pt]{child__handling_8c_ad9627a9438c35bad70f0debf460c20c2_cgraph}
 \end{center}
 \end{figure}
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{child__handling_8c_a1cce97ce31deb0eec684a1dcd172a0d2_icgraph}
+\includegraphics[width=350pt]{child__handling_8c_ad9627a9438c35bad70f0debf460c20c2_icgraph}
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{child__handling_8c_a9e21a75a120b1628177daf65a0f81c96}\label{child__handling_8c_a9e21a75a120b1628177daf65a0f81c96}} 
 \index{child\_handling.c@{child\_handling.c}!one\_builtin@{one\_builtin}}
 \index{one\_builtin@{one\_builtin}!child\_handling.c@{child\_handling.c}}
 \doxysubsubsection{\texorpdfstring{one\_builtin()}{one\_builtin()}}
-{\footnotesize\ttfamily int one\+\_\+builtin (\begin{DoxyParamCaption}\item[{t\+\_\+shelldata $\ast$}]{data }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int one\+\_\+builtin (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data }\end{DoxyParamCaption})}
 
 
 
@@ -180,11 +183,12 @@ Handles the case where there is only one builtin command.
 \begin{DoxyReturn}{Returns}
 Returns the exit value of the builtin command. 
 \end{DoxyReturn}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=279pt]{child__handling_8c_a9e21a75a120b1628177daf65a0f81c96_cgraph}
+\includegraphics[width=350pt]{child__handling_8c_a9e21a75a120b1628177daf65a0f81c96_cgraph}
 \end{center}
 \end{figure}
 Here is the caller graph for this function\+:\nopagebreak

@@ -6,12 +6,22 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 14:22:07 by akuburas          #+#    #+#             */
-/*   Updated: 2023/10/30 16:29:45 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/15 10:50:19 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @file ft_itoa.c
+ * @brief Converts an integer to a string.
+*/
+
+/**
+ * @brief Counts the number of digits in an integer.
+ * @param n The integer to be counted.
+ * @return The number of digits.
+*/
 static int	count_digits(int n)
 {
 	int	count;
@@ -27,6 +37,11 @@ static int	count_digits(int n)
 	return (count);
 }
 
+/**
+ * @brief Converts an integer to a string.
+ * @param n The integer to be converted.
+ * @return The string representation of the integer.
+*/
 static void	convert_integer(long num, char *str, int i)
 {
 	while (i-- > 0)
@@ -36,6 +51,11 @@ static void	convert_integer(long num, char *str, int i)
 	}
 }
 
+/**
+ * @brief Converts an integer to a string.
+ * @param n The integer to be converted.
+ * @return The string representation of the integer.
+*/
 char	*ft_itoa(int n)
 {
 	int		negative;
@@ -53,7 +73,7 @@ char	*ft_itoa(int n)
 	}
 	digits = count_digits(n);
 	i = digits + negative;
-	str = (char *)malloc(sizeof(char) * (i + 1));
+	str = (char *)ft_calloc(i + 1, sizeof(char));
 	if (!str)
 		return (NULL);
 	str[i] = '\0';

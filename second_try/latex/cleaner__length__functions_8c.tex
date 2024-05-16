@@ -1,0 +1,190 @@
+\hypertarget{cleaner__length__functions_8c}{}\doxysection{source\+\_\+files/split\+\_\+and\+\_\+cleaner/cleaner\+\_\+length\+\_\+functions.c File Reference}
+\label{cleaner__length__functions_8c}\index{source\_files/split\_and\_cleaner/cleaner\_length\_functions.c@{source\_files/split\_and\_cleaner/cleaner\_length\_functions.c}}
+
+
+Functions for finding the length of the cleaned input.  
+
+
+{\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
+Include dependency graph for cleaner\+\_\+length\+\_\+functions.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cleaner__length__functions_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{cleaner__length__functions_8c_a0460151d82298bb244a75bb9a581b0ff}{env\+\_\+str\+\_\+cmpr}} (char $\ast$env, char $\ast$str, int len)
+\begin{DoxyCompactList}\small\item\em Compares the environment variable name to the string. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{cleaner__length__functions_8c_a504ebb00cbf1d8435f64dc57ba0759a4}{length\+\_\+find\+\_\+env}} (\mbox{\hyperlink{structs__env__list}{t\+\_\+env\+\_\+list}} $\ast$env, char $\ast$str, int len)
+\begin{DoxyCompactList}\small\item\em Finds the length of the environment variable value. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{cleaner__length__functions_8c_ae193fc3072d69532976149d7b508b3c7}{found\+\_\+dollar}} (\mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$temp, int $\ast$i, char quote, \mbox{\hyperlink{structs__env__list}{t\+\_\+env\+\_\+list}} $\ast$env)
+\begin{DoxyCompactList}\small\item\em handles the case of when you find a dollar character \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{cleaner__length__functions_8c_acefce54741f6ad9fc871c308ce05a90a}{cleaner\+\_\+quote\+\_\+found}} (char input, char $\ast$quote, \mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$temp)
+\begin{DoxyCompactList}\small\item\em Handles the case of when you find a quote character. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{cleaner__length__functions_8c_aa795b2b0d5e179434845d0f64e072b9a}{new\+\_\+length}} (\mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$temp, \mbox{\hyperlink{structs__env__list}{t\+\_\+env\+\_\+list}} $\ast$env)
+\begin{DoxyCompactList}\small\item\em Calculates the length of the to be cleaned input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Functions for finding the length of the cleaned input. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{cleaner__length__functions_8c_acefce54741f6ad9fc871c308ce05a90a}\label{cleaner__length__functions_8c_acefce54741f6ad9fc871c308ce05a90a}} 
+\index{cleaner\_length\_functions.c@{cleaner\_length\_functions.c}!cleaner\_quote\_found@{cleaner\_quote\_found}}
+\index{cleaner\_quote\_found@{cleaner\_quote\_found}!cleaner\_length\_functions.c@{cleaner\_length\_functions.c}}
+\doxysubsubsection{\texorpdfstring{cleaner\_quote\_found()}{cleaner\_quote\_found()}}
+{\footnotesize\ttfamily int cleaner\+\_\+quote\+\_\+found (\begin{DoxyParamCaption}\item[{char}]{input,  }\item[{char $\ast$}]{quote,  }\item[{\mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$}]{temp }\end{DoxyParamCaption})}
+
+
+
+Handles the case of when you find a quote character. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The input character. \\
+\hline
+{\em quote} & The quote character. \\
+\hline
+{\em temp} & The input list. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cleaner__length__functions_8c_acefce54741f6ad9fc871c308ce05a90a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{cleaner__length__functions_8c_a0460151d82298bb244a75bb9a581b0ff}\label{cleaner__length__functions_8c_a0460151d82298bb244a75bb9a581b0ff}} 
+\index{cleaner\_length\_functions.c@{cleaner\_length\_functions.c}!env\_str\_cmpr@{env\_str\_cmpr}}
+\index{env\_str\_cmpr@{env\_str\_cmpr}!cleaner\_length\_functions.c@{cleaner\_length\_functions.c}}
+\doxysubsubsection{\texorpdfstring{env\_str\_cmpr()}{env\_str\_cmpr()}}
+{\footnotesize\ttfamily int env\+\_\+str\+\_\+cmpr (\begin{DoxyParamCaption}\item[{char $\ast$}]{env,  }\item[{char $\ast$}]{str,  }\item[{int}]{len }\end{DoxyParamCaption})}
+
+
+
+Compares the environment variable name to the string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em env} & The environment variable name. \\
+\hline
+{\em str} & The string to be compared. \\
+\hline
+{\em len} & The length of the string. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cleaner__length__functions_8c_a0460151d82298bb244a75bb9a581b0ff_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{cleaner__length__functions_8c_ae193fc3072d69532976149d7b508b3c7}\label{cleaner__length__functions_8c_ae193fc3072d69532976149d7b508b3c7}} 
+\index{cleaner\_length\_functions.c@{cleaner\_length\_functions.c}!found\_dollar@{found\_dollar}}
+\index{found\_dollar@{found\_dollar}!cleaner\_length\_functions.c@{cleaner\_length\_functions.c}}
+\doxysubsubsection{\texorpdfstring{found\_dollar()}{found\_dollar()}}
+{\footnotesize\ttfamily int found\+\_\+dollar (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$}]{temp,  }\item[{int $\ast$}]{i,  }\item[{char}]{quote,  }\item[{\mbox{\hyperlink{structs__env__list}{t\+\_\+env\+\_\+list}} $\ast$}]{env }\end{DoxyParamCaption})}
+
+
+
+handles the case of when you find a dollar character 
+
+
+\begin{DoxyParams}{Parameters}
+{\em temp} & The input list. \\
+\hline
+{\em i} & The index of the input list. \\
+\hline
+{\em quote} & The quote character. \\
+\hline
+{\em env} & The environment list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The length of the environment variable value. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cleaner__length__functions_8c_ae193fc3072d69532976149d7b508b3c7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cleaner__length__functions_8c_ae193fc3072d69532976149d7b508b3c7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{cleaner__length__functions_8c_a504ebb00cbf1d8435f64dc57ba0759a4}\label{cleaner__length__functions_8c_a504ebb00cbf1d8435f64dc57ba0759a4}} 
+\index{cleaner\_length\_functions.c@{cleaner\_length\_functions.c}!length\_find\_env@{length\_find\_env}}
+\index{length\_find\_env@{length\_find\_env}!cleaner\_length\_functions.c@{cleaner\_length\_functions.c}}
+\doxysubsubsection{\texorpdfstring{length\_find\_env()}{length\_find\_env()}}
+{\footnotesize\ttfamily int length\+\_\+find\+\_\+env (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__env__list}{t\+\_\+env\+\_\+list}} $\ast$}]{env,  }\item[{char $\ast$}]{str,  }\item[{int}]{len }\end{DoxyParamCaption})}
+
+
+
+Finds the length of the environment variable value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em env} & The environment list. \\
+\hline
+{\em str} & The string to be compared. \\
+\hline
+{\em len} & The length of the string. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=293pt]{cleaner__length__functions_8c_a504ebb00cbf1d8435f64dc57ba0759a4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cleaner__length__functions_8c_a504ebb00cbf1d8435f64dc57ba0759a4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{cleaner__length__functions_8c_aa795b2b0d5e179434845d0f64e072b9a}\label{cleaner__length__functions_8c_aa795b2b0d5e179434845d0f64e072b9a}} 
+\index{cleaner\_length\_functions.c@{cleaner\_length\_functions.c}!new\_length@{new\_length}}
+\index{new\_length@{new\_length}!cleaner\_length\_functions.c@{cleaner\_length\_functions.c}}
+\doxysubsubsection{\texorpdfstring{new\_length()}{new\_length()}}
+{\footnotesize\ttfamily int new\+\_\+length (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$}]{temp,  }\item[{\mbox{\hyperlink{structs__env__list}{t\+\_\+env\+\_\+list}} $\ast$}]{env }\end{DoxyParamCaption})}
+
+
+
+Calculates the length of the to be cleaned input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em temp} & The input list. \\
+\hline
+{\em env} & The environment list. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cleaner__length__functions_8c_aa795b2b0d5e179434845d0f64e072b9a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cleaner__length__functions_8c_aa795b2b0d5e179434845d0f64e072b9a_icgraph}
+\end{center}
+\end{figure}

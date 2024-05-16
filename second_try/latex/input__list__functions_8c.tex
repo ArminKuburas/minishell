@@ -10,19 +10,19 @@ Include dependency graph for input\+\_\+list\+\_\+functions.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=222pt]{input__list__functions_8c__incl}
+\includegraphics[width=350pt]{input__list__functions_8c__incl}
 \end{center}
 \end{figure}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{input__list__functions_8c_a0d3af5556c3484b47aa21b43defff71f}{add\+\_\+input\+\_\+list}} (t\+\_\+input\+\_\+list $\ast$input\+\_\+list, t\+\_\+input\+\_\+list $\ast$new\+\_\+node)
+void \mbox{\hyperlink{input__list__functions_8c_a0d3af5556c3484b47aa21b43defff71f}{add\+\_\+input\+\_\+list}} (\mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$input\+\_\+list, \mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$new\+\_\+node)
 \begin{DoxyCompactList}\small\item\em Adds a new node to the input list. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{input__list__functions_8c_a6c36cedfe14b7b99ad25fbc86357d833}{clear\+\_\+input}} (t\+\_\+input\+\_\+list $\ast$input\+\_\+list, int error)
+int \mbox{\hyperlink{input__list__functions_8c_a6c36cedfe14b7b99ad25fbc86357d833}{clear\+\_\+input}} (\mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$input\+\_\+list, int error)
 \begin{DoxyCompactList}\small\item\em Clears the input list. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{input__list__functions_8c_a1e2af7fbba4200d292eb5655be8e3361}{create\+\_\+input}} (char $\ast$input, int len, t\+\_\+input\+\_\+list $\ast$input\+\_\+list)
+int \mbox{\hyperlink{input__list__functions_8c_a1e2af7fbba4200d292eb5655be8e3361}{create\+\_\+input}} (char $\ast$input, int len, \mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$input\+\_\+list)
 \begin{DoxyCompactList}\small\item\em Creates a new input node. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{input__list__functions_8c_a123eab4ac09ec6e40d4f4114ffbafd63}{strlen\+\_\+last\+\_\+input}} (t\+\_\+input\+\_\+list $\ast$input\+\_\+list)
+int \mbox{\hyperlink{input__list__functions_8c_a123eab4ac09ec6e40d4f4114ffbafd63}{strlen\+\_\+last\+\_\+input}} (\mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$input\+\_\+list)
 \begin{DoxyCompactList}\small\item\em Calculates the length of the last input. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -36,7 +36,7 @@ Functions for handling input list.
 \index{input\_list\_functions.c@{input\_list\_functions.c}!add\_input\_list@{add\_input\_list}}
 \index{add\_input\_list@{add\_input\_list}!input\_list\_functions.c@{input\_list\_functions.c}}
 \doxysubsubsection{\texorpdfstring{add\_input\_list()}{add\_input\_list()}}
-{\footnotesize\ttfamily void add\+\_\+input\+\_\+list (\begin{DoxyParamCaption}\item[{t\+\_\+input\+\_\+list $\ast$}]{input\+\_\+list,  }\item[{t\+\_\+input\+\_\+list $\ast$}]{new\+\_\+node }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void add\+\_\+input\+\_\+list (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$}]{input\+\_\+list,  }\item[{\mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$}]{new\+\_\+node }\end{DoxyParamCaption})}
 
 
 
@@ -63,7 +63,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{input\_list\_functions.c@{input\_list\_functions.c}!clear\_input@{clear\_input}}
 \index{clear\_input@{clear\_input}!input\_list\_functions.c@{input\_list\_functions.c}}
 \doxysubsubsection{\texorpdfstring{clear\_input()}{clear\_input()}}
-{\footnotesize\ttfamily int clear\+\_\+input (\begin{DoxyParamCaption}\item[{t\+\_\+input\+\_\+list $\ast$}]{input\+\_\+list,  }\item[{int}]{error }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int clear\+\_\+input (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$}]{input\+\_\+list,  }\item[{int}]{error }\end{DoxyParamCaption})}
 
 
 
@@ -79,7 +79,15 @@ Clears the input list.
 \begin{DoxyReturn}{Returns}
 Returns the error code. 
 \end{DoxyReturn}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{input__list__functions_8c_a6c36cedfe14b7b99ad25fbc86357d833_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -90,7 +98,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{input\_list\_functions.c@{input\_list\_functions.c}!create\_input@{create\_input}}
 \index{create\_input@{create\_input}!input\_list\_functions.c@{input\_list\_functions.c}}
 \doxysubsubsection{\texorpdfstring{create\_input()}{create\_input()}}
-{\footnotesize\ttfamily int create\+\_\+input (\begin{DoxyParamCaption}\item[{char $\ast$}]{input,  }\item[{int}]{len,  }\item[{t\+\_\+input\+\_\+list $\ast$}]{input\+\_\+list }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int create\+\_\+input (\begin{DoxyParamCaption}\item[{char $\ast$}]{input,  }\item[{int}]{len,  }\item[{\mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$}]{input\+\_\+list }\end{DoxyParamCaption})}
 
 
 
@@ -112,14 +120,14 @@ Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=278pt]{input__list__functions_8c_a1e2af7fbba4200d292eb5655be8e3361_cgraph}
+\includegraphics[width=350pt]{input__list__functions_8c_a1e2af7fbba4200d292eb5655be8e3361_cgraph}
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{input__list__functions_8c_a123eab4ac09ec6e40d4f4114ffbafd63}\label{input__list__functions_8c_a123eab4ac09ec6e40d4f4114ffbafd63}} 
 \index{input\_list\_functions.c@{input\_list\_functions.c}!strlen\_last\_input@{strlen\_last\_input}}
 \index{strlen\_last\_input@{strlen\_last\_input}!input\_list\_functions.c@{input\_list\_functions.c}}
 \doxysubsubsection{\texorpdfstring{strlen\_last\_input()}{strlen\_last\_input()}}
-{\footnotesize\ttfamily int strlen\+\_\+last\+\_\+input (\begin{DoxyParamCaption}\item[{t\+\_\+input\+\_\+list $\ast$}]{input\+\_\+list }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int strlen\+\_\+last\+\_\+input (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$}]{input\+\_\+list }\end{DoxyParamCaption})}
 
 
 
