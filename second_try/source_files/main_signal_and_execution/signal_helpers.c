@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:07:25 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/14 15:29:05 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:08:09 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	child_signals(void)
 */
 void	heredoc_signals(void)
 {
-	signal(SIGINT, heredoc_handler);
 	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, heredoc_handler);
 }
 
 /**

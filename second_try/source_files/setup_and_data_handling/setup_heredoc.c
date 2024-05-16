@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:04:01 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/16 15:15:11 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:14:19 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,4 +156,5 @@ void	handle_heredoc(t_shelldata *data, int i, t_input_list *input)
 	data->child_data[i].fd_in = pipe_fd[0];
 	write_loop(pipe_fd[1], input, data);
 	close(pipe_fd[1]);
+	handler_signals();
 }
