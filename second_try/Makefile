@@ -6,7 +6,7 @@
 #    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/05/12 14:30:19 by tvalimak         ###   ########.fr        #
+#    Updated: 2024/05/16 16:13:39 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ BUILTINDIR = $(SRCDIR)/builtins
 MAINDIR = $(SRCDIR)/main_signal_and_execution
 SETUPDIR = $(SRCDIR)/setup_and_data_handling
 SPLITDIR = $(SRCDIR)/split_and_cleaner
-
+OBJDIR = object_files
 
 MAKE = make bonus
 LIBFTDIR = libft
@@ -71,23 +71,30 @@ SRCS =	$(MAINDIR)/main.c \
 		$(SETUPDIR)/heredoc_modify_input.c \
 		$(MAINDIR)/fail_functions.c \
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+
 all: $(NAME)
+
 $(NAME): $(OBJS) $(LIBFT)
-		$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME) $(RLFLAGS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME) $(RLFLAGS)
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFTDIR)
 
-%.o: %.c
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
 	make fclean -C $(LIBFTDIR)
-	rm -rf $(OBJS)
+	rm -rf $(OBJDIR)
+
 fclean: clean
 	rm -rf $(NAME)
+
 re: fclean all
+
 debug: fclean $(OBJS) $(LIBFT)
-		$(CC) $(DEBUGFLAGS) $(OBJS) $(LIBFT) -o $(NAME) $(RLFLAGS)
+	$(CC) $(DEBUGFLAGS) $(OBJS) $(LIBFT) -o $(NAME) $(RLFLAGS)
 
 .PHONY: all clean fclean re valgrind debug
