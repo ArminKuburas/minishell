@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:43:48 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/16 14:52:57 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:13:10 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ void	parent_sigint(int sig)
 void	heredoc_handler(int sig)
 {
 	(void)sig;
-	write(1, "\n", 1);
-	exit(1);
+	g_exit_value = 1;
+	rl_replace_line("", 0);
 }
 
 /**
