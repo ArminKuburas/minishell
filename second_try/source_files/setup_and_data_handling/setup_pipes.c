@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 11:14:29 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/13 20:30:04 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:02:12 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,20 @@ int	setup_pipes(t_shelldata *data, int amount)
 	temp = data->input_list;
 	i = amount;
 	error = SUCCESS;
-	while (i > 0)
+	while (i > 0 && temp->next != NULL)
 	{
 		while (temp->type != PIPE)
 			temp = temp->next;
+		if (temp->next != NULL)
+			temp = temp->next;
 		i--;
 	}
-	if (temp->type == PIPE)
+	if (temp->prev && temp->prev->type == PIPE)
 		error = setup_input_pipe(data, amount);
 	temp = temp->next;
 	while (temp && temp->type != PIPE)
 		temp = temp->next;
-	if (error == SUCCESS && temp && temp->type == PIPE)
+	if (temp)
 		error = setup_output_pipe(data, amount);
 	return (error);
 }

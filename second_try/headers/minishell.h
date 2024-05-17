@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/16 16:37:31 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/17 14:27:50 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,10 @@ typedef struct s_split_data
 	char			*input;
 	t_input_list	*node_one;
 }	t_split_data;
+
+//get next line functions
+char		*get_next_line(int fd);
+
 
 //readline functions
 int			rl_clear_history(void);
