@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:43:48 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/17 14:13:01 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/18 09:33:32 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,10 @@ void	parent_sigint(int sig)
 void	heredoc_handler(int sig)
 {
 	(void)sig;
-	ft_putstr_fd("\n", STDOUT_FILENO);
+	printf("Inside heredoc handler\n");
+	if (sig == SIGINT)
+		g_exit_value = 1;
+	ft_putstr("\n");
 	close(STDIN_FILENO);
 }
 

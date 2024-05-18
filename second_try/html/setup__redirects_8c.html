@@ -100,6 +100,9 @@ Include dependency graph for setup_redirects.c:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:aa99d635f1d978b15303a1cadfa24f84f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setup__redirects_8c.html#aa99d635f1d978b15303a1cadfa24f84f">move_temp</a> (<a class="el" href="structs__input__list.html">t_input_list</a> **temp, int *i)</td></tr>
+<tr class="memdesc:aa99d635f1d978b15303a1cadfa24f84f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves the temp to the correct position.  <a href="setup__redirects_8c.html#aa99d635f1d978b15303a1cadfa24f84f">More...</a><br /></td></tr>
+<tr class="separator:aa99d635f1d978b15303a1cadfa24f84f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c6d52995c3c18af4d3efb757a1f2420"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setup__redirects_8c.html#a2c6d52995c3c18af4d3efb757a1f2420">setup_redirects</a> (<a class="el" href="structs__shelldata.html">t_shelldata</a> *data, int index)</td></tr>
 <tr class="memdesc:a2c6d52995c3c18af4d3efb757a1f2420"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up redirections.  <a href="setup__redirects_8c.html#a2c6d52995c3c18af4d3efb757a1f2420">More...</a><br /></td></tr>
 <tr class="separator:a2c6d52995c3c18af4d3efb757a1f2420"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -107,6 +110,58 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Functions for setting up redirections. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="aa99d635f1d978b15303a1cadfa24f84f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa99d635f1d978b15303a1cadfa24f84f">&#9670;&nbsp;</a></span>move_temp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void move_temp </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structs__input__list.html">t_input_list</a> **&#160;</td>
+          <td class="paramname"><em>temp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>i</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Moves the temp to the correct position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">temp</td><td>The temp to be moved. </td></tr>
+    <tr><td class="paramname">i</td><td>The index to be moved. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="setup__redirects_8c_aa99d635f1d978b15303a1cadfa24f84f_icgraph.png" border="0" usemap="#asetup__redirects_8c_aa99d635f1d978b15303a1cadfa24f84f_icgraph" alt=""/></div>
+<map name="asetup__redirects_8c_aa99d635f1d978b15303a1cadfa24f84f_icgraph" id="asetup__redirects_8c_aa99d635f1d978b15303a1cadfa24f84f_icgraph">
+<area shape="rect" title="Moves the temp to the correct position." alt="" coords="939,5,1039,32"/>
+<area shape="rect" href="setup__redirects_8c.html#a2c6d52995c3c18af4d3efb757a1f2420" title="Sets up redirections." alt="" coords="768,5,891,32"/>
+<area shape="rect" href="set__up__child__data_8c.html#aa1e0d1647c23fb96bd83ddb4cae0a622" title="creates the child data" alt="" coords="583,5,720,32"/>
+<area shape="rect" href="set__up__child__data_8c.html#a4e3c58f93ab937de52ac407c4fc32d4d" title="Sets up the child data." alt="" coords="396,5,535,32"/>
+<area shape="rect" href="main_8c.html#a66190e959e6b76c1b752f88bc37b5b7b" title="Sets up the data for the minishell." alt="" coords="247,5,348,32"/>
+<area shape="rect" href="main_8c.html#aab600a6b2f1c4762d527e599326605d0" title="The main loop for the minishell program." alt="" coords="108,5,199,32"/>
+<area shape="rect" href="main_8c.html#a7b26396c9888d66d997b0007e8ff1e60" title="The main function for the minishell program." alt="" coords="5,5,60,32"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a2c6d52995c3c18af4d3efb757a1f2420"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2c6d52995c3c18af4d3efb757a1f2420">&#9670;&nbsp;</a></span>setup_redirects()</h2>
 
@@ -142,6 +197,15 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="setup__redirects_8c_a2c6d52995c3c18af4d3efb757a1f2420_cgraph.png" border="0" usemap="#asetup__redirects_8c_a2c6d52995c3c18af4d3efb757a1f2420_cgraph" alt=""/></div>
+<map name="asetup__redirects_8c_a2c6d52995c3c18af4d3efb757a1f2420_cgraph" id="asetup__redirects_8c_a2c6d52995c3c18af4d3efb757a1f2420_cgraph">
+<area shape="rect" title="Sets up redirections." alt="" coords="5,5,128,32"/>
+<area shape="rect" href="setup__redirects_8c.html#aa99d635f1d978b15303a1cadfa24f84f" title="Moves the temp to the correct position." alt="" coords="176,5,276,32"/>
+</map>
+</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">

@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:58:42 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/15 06:38:15 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/18 09:25:45 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ int	create_child_data(t_shelldata *data, int amount)
 	while (i < amount)
 	{
 		setup_redirects(data, i);
+		if (g_exit_value != 0)
+			return (FAILURE);
 		if (data->child_data[i].exit_value == 0)
 		{
 			error = setup_command(data, i);
@@ -117,5 +119,17 @@ int	set_up_child_data(t_shelldata *data)
 	if (data->child_data == NULL)
 		split_memory_failed(data);
 	create_child_data(data, processes);
+	if (g_exit_value != 0)
+	{
+		free(data->input);
+		clear_input(data->input_list, HEREDOC_SIGNAL);
+		while (processes > 0)
+		{
+			free_child_data(&data->child_data[processes - 1]);
+			processes--;
+		}
+		free(data->child_data);
+		return (HEREDOC_SIGNAL);
+	}
 	return (SUCCESS);
 }

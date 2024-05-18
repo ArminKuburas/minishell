@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:16:57 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/17 14:30:47 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/18 09:38:39 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ char	*gnl_strjoin(char *s1, char *s2)
 
 	if (!s2)
 		return (NULL);
-	result = (char *)malloc((gnl_strlen(s1) + gnl_strlen(s2) + 1) * sizeof(char));
+	result = (char *)malloc((gnl_strlen(s1) + gnl_strlen(s2) + 1)
+			* sizeof(char));
 	if (!result)
 	{
 		free(s1);

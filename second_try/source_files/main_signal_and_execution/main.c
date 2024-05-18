@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/17 13:52:53 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/18 09:16:12 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	set_up_data(t_shelldata *data)
 	if (data->input == NULL)
 		return (FAILURE);
 	if (ft_strlen(data->input) == 0)
-		return (FAILURE);
+		return (SUCCESS);
 	if (new_mini_split(data) != SUCCESS)
 		return (FAILURE);
 	input_type_assigner(data->input_list);
@@ -94,7 +94,7 @@ void	main_loop(t_shelldata *data)
 	while (1)
 	{
 		handler_signals();
-		data->input = readline("bananashell-0.30:");
+		data->input = readline(YELLOW BANANA_EMOJI"bananashell-0.30: "RESET);
 		if (!data->input)
 			end_of_file_reached(data);
 		if (create_exit_value_env(data) != SUCCESS)
@@ -103,6 +103,11 @@ void	main_loop(t_shelldata *data)
 		{
 			free(data->input);
 			exit(1);
+		}
+		if (g_exit_value != 0)
+		{
+			g_exit_value = 0;
+			continue ;
 		}
 		child_handling(data);
 		add_history(data->input);

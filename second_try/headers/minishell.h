@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/17 14:27:50 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/18 09:00:44 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ enum e_exit_values
 {
 	SUCCESS = 0,
 	FAILURE = 1,
-	UNKNOWN = 2
+	UNKNOWN = 2,
+	HEREDOC_SIGNAL = 3
 };
 
 enum e_errors
@@ -210,10 +211,9 @@ typedef struct s_split_data
 //get next line functions
 char		*get_next_line(int fd);
 
-
 //readline functions
-int			rl_clear_history(void);
-void		rl_replace_line(char *str, int num);
+//int			rl_clear_history(void);
+//void		rl_replace_line(char *str, int num);
 
 //data_parser functions
 int			count_words(t_split_data *split_data);

@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:08:59 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/17 14:08:46 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/18 09:41:43 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,23 @@ static void	redirect_append(t_shelldata *data, int i, t_input_list *input)
 }
 
 /**
+ * @brief Moves the temp to the correct position.
+ * @param temp The temp to be moved.
+ * @param i The index to be moved.
+ * @return void
+ */
+void	move_temp(t_input_list **temp, int *i)
+{
+	while (*i > 0)
+	{
+		while ((*temp)->type != PIPE)
+			*temp = (*temp)->next;
+		*temp = (*temp)->next;
+		(*i)--;
+	}
+}
+
+/**
  * @brief Sets up redirections.
  * @param data The data to be used.
  * @param index The index of the child data.
@@ -131,22 +148,19 @@ void	setup_redirects(t_shelldata *data, int index)
 	temp = data->input_list;
 	i = index;
 	while (i > 0)
-	{
-		while (temp->type != PIPE)
-			temp = temp->next;
-		temp = temp->next;
-		i--;
-	}
+		move_temp(&temp, &i);
 	while (temp && temp->type != PIPE)
 	{
 		if (temp->type == REDIRECT_INPUT)
 			redirect_input(data, index, temp->next);
-		if (temp->type == REDIRECT_OUTPUT)
+		else if (temp->type == REDIRECT_OUTPUT)
 			redirect_output(data, index, temp->next);
-		if (temp->type == REDIRECT_APPEND)
+		else if (temp->type == REDIRECT_APPEND)
 			redirect_append(data, index, temp->next);
-		if (temp->type == REDIRECT_HEREDOC)
+		else if (temp->type == REDIRECT_HEREDOC)
 			handle_heredoc(data, index, temp->next);
+		if (g_exit_value == 1)
+			break ;
 		temp = temp->next;
 	}
 }

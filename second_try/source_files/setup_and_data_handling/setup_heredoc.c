@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:04:01 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/17 14:35:46 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/18 09:37:07 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ void	modification_loop(char *break_line, t_shelldata *data, int fd)
 		ft_putstr("> ");
 		input_line = get_next_line(STDIN_FILENO);
 		if (!input_line)
-		{
 			break ;
-		}
 		if (ft_strncmp(input_line, break_line, ft_strlen(input_line) - 1) == 0)
 		{
 			free(input_line);
@@ -97,7 +95,8 @@ void	unmodified_loop(char *break_line, int fd)
 
 	while (1)
 	{
-		input_line = readline("> ");
+		ft_putstr("> ");
+		input_line = get_next_line(STDIN_FILENO);
 		if (!input_line)
 			break ;
 		if (ft_strcmp(input_line, break_line) == 0)
@@ -163,5 +162,6 @@ void	handle_heredoc(t_shelldata *data, int i, t_input_list *input)
 	write_loop(pipe_fd[1], input, data);
 	close(pipe_fd[1]);
 	dup2(dup_fd, STDIN_FILENO);
+	handler_signals();
 	close(dup_fd);
 }
