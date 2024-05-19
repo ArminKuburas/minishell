@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:04:01 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/18 09:37:07 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/19 20:12:17 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,22 @@
 */
 void	modification_loop(char *break_line, t_shelldata *data, int fd)
 {
-	char	*input_line;
+	char	*input;
 	char	*modified_input;
 
 	while (1)
 	{
-		ft_putstr("> ");
-		input_line = get_next_line(STDIN_FILENO);
-		if (!input_line)
+		input = readline("> ");
+		if (!input)
 			break ;
-		if (ft_strncmp(input_line, break_line, ft_strlen(input_line) - 1) == 0)
+		if (ft_strlen(input) > 1
+			&& ft_strncmp(input, break_line, ft_strlen(input) - 1) == 0)
 		{
-			free(input_line);
+			free(input);
 			break ;
 		}
-		modified_input = modify_input(input_line, data->env_list);
-		free(input_line);
+		modified_input = modify_input(input, data->env_list);
+		free(input);
 		if (modified_input == NULL)
 		{
 			close(fd);
@@ -95,8 +95,7 @@ void	unmodified_loop(char *break_line, int fd)
 
 	while (1)
 	{
-		ft_putstr("> ");
-		input_line = get_next_line(STDIN_FILENO);
+		input_line = readline("> ");
 		if (!input_line)
 			break ;
 		if (ft_strcmp(input_line, break_line) == 0)

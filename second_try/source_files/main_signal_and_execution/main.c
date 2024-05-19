@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/18 09:16:12 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/19 19:55:29 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,12 @@ void	main_loop(t_shelldata *data)
 			end_of_file_reached(data);
 		if (create_exit_value_env(data) != SUCCESS)
 			exit(1);
+		if (ft_strlen(data->input) == 0)
+		{
+			free(data->input);
+			continue ;
+		}
+		add_history(data->input);
 		if (set_up_data(data) != SUCCESS)
 		{
 			free(data->input);
@@ -110,7 +116,6 @@ void	main_loop(t_shelldata *data)
 			continue ;
 		}
 		child_handling(data);
-		add_history(data->input);
 		free(data->input);
 		data->input = NULL;
 		clear_input(data->input_list, SUCCESS);
