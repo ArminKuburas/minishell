@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/19 19:55:29 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/20 12:28:23 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,26 @@ int	set_up_data(t_shelldata *data)
 }
 
 /**
+ * @brief Helper function for the main loop.
+ * @param data The data to be used.
+ * @return void
+*/
+void	loop_helper(t_shelldata *data)
+{
+	handler_signals();
+	data->input = readline("bananashell-0.32: ");
+	if (!data->input)
+		end_of_file_reached(data);
+	if (create_exit_value_env(data) != SUCCESS)
+	{
+		free(data->input);
+		rl_clear_history();
+		ft_putendl_fd("error: memory allocation failed", STDERR_FILENO);
+		exit(1);
+	}
+}
+
+/**
  * @brief The main loop for the minishell program.
  * @param data The data for the minishell.
  * @return void
@@ -93,12 +113,7 @@ void	main_loop(t_shelldata *data)
 {
 	while (1)
 	{
-		handler_signals();
-		data->input = readline(YELLOW BANANA_EMOJI"bananashell-0.30: "RESET);
-		if (!data->input)
-			end_of_file_reached(data);
-		if (create_exit_value_env(data) != SUCCESS)
-			exit(1);
+		loop_helper(data);
 		if (ft_strlen(data->input) == 0)
 		{
 			free(data->input);

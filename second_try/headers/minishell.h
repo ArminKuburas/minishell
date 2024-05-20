@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/18 09:00:44 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/20 12:18:04 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -334,12 +334,6 @@ int			initial_env_creation(char **env, t_shelldata *data);
 int			initial_setup(t_shelldata *data, int argc, char **argv, char **env);
 int			check_argc_argv(int argc, char **argv);
 void		child_handling(t_shelldata *data);
-
-//Testers
-void	*fake_ft_calloc(int amount, int size);
-int		fake_open(void);
-int		fake_fork(void);
-int		fake_dup2(void);
 
 int			check_shell_level_value(char *env_var_value);
 

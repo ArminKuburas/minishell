@@ -6,7 +6,7 @@
 #    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/05/20 09:56:29 by akuburas         ###   ########.fr        #
+#    Updated: 2024/05/20 12:16:35 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,6 @@ SRCS =	$(MAINDIR)/main.c \
 		$(SETUPDIR)/setup_redirect_helpers.c \
 		$(SETUPDIR)/setup_heredoc.c \
 		$(SETUPDIR)/heredoc_modify_input.c \
-		$(MAINDIR)/fail_functions.c \
 
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
