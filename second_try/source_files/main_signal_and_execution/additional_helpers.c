@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:18:43 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/20 12:30:31 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/20 14:12:33 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,30 @@
  * @file additional_helpers.c
  * @brief Additional helper functions for the main file.
 */
+
+void	signal_reset(void)
+{
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+}
+
+/**
+ * @brief cleans up everything before reaching the end of file.
+ * @param data The data to be cleaned up.
+ * @return void
+*/
+static void	end_of_file_reached(t_shelldata *data)
+{
+	ft_putendl_fd("exit", STDOUT_FILENO);
+	clear_env_list(data->env_list, SUCCESS);
+	free(data->pwd);
+	free(data->env_variables);
+	rl_clear_history();
+	signal_reset();
+	if (data->exit_value != 0)
+		exit (1);
+	exit(0);
+}
 
 /**
  * @brief Helper function for the main loop.
@@ -33,6 +57,7 @@ void	loop_helper(t_shelldata *data)
 		free(data->input);
 		rl_clear_history();
 		ft_putendl_fd("error: memory allocation failed", STDERR_FILENO);
+		signal_reset();
 		exit(1);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/20 12:30:01 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/20 14:10:33 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,24 +42,6 @@ int	check_argc_argv(int argc, char **argv)
 		return (FAILURE);
 	}
 	return (SUCCESS);
-}
-
-/**
- * @brief cleans up everything before reaching the end of file.
- * @param data The data to be cleaned up.
- * @return void
-*/
-
-void	end_of_file_reached(t_shelldata *data)
-{
-	ft_putendl_fd("exit", STDOUT_FILENO);
-	clear_env_list(data->env_list, SUCCESS);
-	free(data->pwd);
-	free(data->env_variables);
-	rl_clear_history();
-	if (data->exit_value != 0)
-		exit (1);
-	exit(0);
 }
 
 /**

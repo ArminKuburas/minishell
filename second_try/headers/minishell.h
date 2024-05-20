@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/20 12:18:04 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/20 14:40:23 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,8 +212,8 @@ typedef struct s_split_data
 char		*get_next_line(int fd);
 
 //readline functions
-//int			rl_clear_history(void);
-//void		rl_replace_line(char *str, int num);
+int			rl_clear_history(void);
+void		rl_replace_line(char *str, int num);
 
 //data_parser functions
 int			count_words(t_split_data *split_data);
@@ -334,10 +334,9 @@ int			initial_env_creation(char **env, t_shelldata *data);
 int			initial_setup(t_shelldata *data, int argc, char **argv, char **env);
 int			check_argc_argv(int argc, char **argv);
 void		child_handling(t_shelldata *data);
-
+void		loop_helper(t_shelldata *data);
 int			check_shell_level_value(char *env_var_value);
 
 //error messages
 void		num_fail(t_shelldata *data, char *input);
-
 #endif
