@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/20 12:28:23 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/20 12:30:01 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,26 +82,6 @@ int	set_up_data(t_shelldata *data)
 	split_cleaner(data);
 	set_up_child_data(data);
 	return (SUCCESS);
-}
-
-/**
- * @brief Helper function for the main loop.
- * @param data The data to be used.
- * @return void
-*/
-void	loop_helper(t_shelldata *data)
-{
-	handler_signals();
-	data->input = readline("bananashell-0.32: ");
-	if (!data->input)
-		end_of_file_reached(data);
-	if (create_exit_value_env(data) != SUCCESS)
-	{
-		free(data->input);
-		rl_clear_history();
-		ft_putendl_fd("error: memory allocation failed", STDERR_FILENO);
-		exit(1);
-	}
 }
 
 /**
