@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:10:45 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/20 19:51:40 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/21 11:58:00 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,11 @@ void	check_exit_value(t_child_data *child_data, int already_printed)
 		child_data->exit_value = 131;
 	}
 	else if ((WIFEXITED(child_data->exit_value)
-			&& child_data->exit_value == NO_EXECVE))
+			&& WEXITSTATUS(child_data->exit_value) == NO_EXECVE))
 	{
 		child_data->exit_value = 1;
-		ft_putstr_fd("minishell: exec failed: ", STDERR_FILENO);
+		ft_putstr_fd("minishell exec failed: ", STDERR_FILENO);
 		ft_putendl_fd(child_data->command, STDERR_FILENO);
-	}
-	else if (WIFEXITED(child_data->exit_value)
-		&& child_data->exit_value == NO_COMMAND)
-	{
-		child_data->exit_value = 1;
-		ft_putstr_fd("minishell: ", STDERR_FILENO);
-		ft_putstr_fd(child_data->command, STDERR_FILENO);
-		ft_putendl_fd(": command not found", STDERR_FILENO);
 	}
 	if (child_data->exit_value > 255)
 		child_data->exit_value = child_data->exit_value / 256;

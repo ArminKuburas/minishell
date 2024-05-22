@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/20 19:39:19 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:11:23 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,54 @@ int	check_argc_argv(int argc, char **argv)
 	return (SUCCESS);
 }
 
+int	check_command(t_shelldata *data)
+{
+	t_input_list	*temp;
+
+	temp = data->input_list;
+	while (temp != NULL)
+	{
+		if (temp->type == COMMAND)
+		{
+			if (ft_strcmp(temp->input, "") == 0)
+			{
+				ft_putendl_fd("minishell: command does not exist", STDERR_FILENO);
+				temp->type = EMPTY;
+				free (temp->input);
+				temp->input = NULL;
+			}
+		}
+		temp = temp->next;
+	}
+	return (SUCCESS);
+}
+
+int	check_split(t_shelldata *data)
+{
+	t_input_list	*temp;
+
+	temp = data->input_list;
+	while (temp != NULL)
+	{
+		if (ft_strchr("<>|", temp->input[0]) != NULL)
+		{
+			if (temp->next && ft_strchr("<>|", temp->next->input[0]) != NULL)
+			{
+				ft_putstr_fd("minishell: syntax error near unexpected token ", STDERR_FILENO);
+				ft_putendl_fd(temp->next->input, STDERR_FILENO);
+				clear_input(data->input_list, SUCCESS);
+				return (FAILURE);
+			}
+		}
+	}
+	return (SUCCESS);
+}
+
 /**
  * @brief Sets up the data for the minishell.
  * @param data The data to be set up.
  * @return Returns SUCCESS if everything went well, otherwise FAILURE.
 */
-
 int	set_up_data(t_shelldata *data)
 {
 	if (data->input == NULL)
@@ -58,10 +100,16 @@ int	set_up_data(t_shelldata *data)
 		return (SUCCESS);
 	if (new_mini_split(data) != SUCCESS)
 		return (FAILURE);
-	if (check_pipes(data) != SUCCESS)
+	if (check_split(data) != SUCCESS)
 		return (FAILURE);
 	input_type_assigner(data->input_list);
+	printf("after input_type_assigner\n");
+	if (check_pipes(data) != SUCCESS)
+		return (FAILURE);
+	printf("after check_pipes\n");
 	split_cleaner(data);
+	if (check_command(data) != SUCCESS)
+		return (FAILURE);
 	set_up_child_data(data);
 	return (SUCCESS);
 }

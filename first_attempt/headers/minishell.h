@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/20 19:51:23 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/21 14:14:43 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,8 @@ enum e_input_type
 	PIPE = 72,
 	POTENTIAL_SPLIT = 82,
 	WORD_SPLIT = 83,
-	BUILTIN = 92
+	BUILTIN = 92,
+	EMPTY = 93
 };
 
 enum e_export_input_type
@@ -212,8 +213,8 @@ typedef struct s_split_data
 char		*get_next_line(int fd);
 
 //readline functions
-int			rl_clear_history(void);
-void		rl_replace_line(char *str, int num);
+//int			rl_clear_history(void);
+//void		rl_replace_line(char *str, int num);
 
 //data_parser functions
 int			count_words(t_split_data *split_data);
