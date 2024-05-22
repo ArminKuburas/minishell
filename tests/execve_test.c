@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 07:06:31 by akuburas          #+#    #+#             */
-/*   Updated: 2024/04/30 08:14:41 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:24:14 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 int	main(void)
 {
 	const	char 	*program_path = "/bin/ls";
-	char *const		argv[] = { "/bin/ls", NULL };
+	char *const		argv[] = { "/bin/ls", "-l", NULL };
 	char *const argv2[] = {NULL};
 	char *const envp[] = {NULL};
 	char **example;

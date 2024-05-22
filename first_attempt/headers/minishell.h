@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/21 14:14:43 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:39:26 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ enum e_errors
 	NOT_FOUND = 12,
 	EXECUTION_FORBIDDEN = 13,
 	IS_DIRECTORY = 14,
-	FOUND = 15
+	FOUND = 15,
+	NO_PATH = 16
 };
 
 enum e_child_status
@@ -213,8 +214,8 @@ typedef struct s_split_data
 char		*get_next_line(int fd);
 
 //readline functions
-//int			rl_clear_history(void);
-//void		rl_replace_line(char *str, int num);
+int			rl_clear_history(void);
+void		rl_replace_line(char *str, int num);
 
 //data_parser functions
 int			count_words(t_split_data *split_data);
@@ -343,6 +344,7 @@ void		child_handling(t_shelldata *data);
 void		loop_helper(t_shelldata *data);
 int			check_shell_level_value(char *env_var_value);
 int			initial_check(t_shelldata *data);
+int			check_split(t_shelldata *data);
 
 //error messages
 void		num_fail(t_shelldata *data, char *input);

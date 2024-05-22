@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 19:30:01 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/20 17:39:02 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:27:06 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	is_export_var_name_valid(char *input)
 	i = 0;
 	if (input[i] != '_' && !ft_isalpha(input[i]))
 	{
-		ft_putstr_fd("bananashell: export: `", STDERR_FILENO);
+		ft_putstr_fd("minishell: export: `", STDERR_FILENO);
 		ft_putstr_fd(input, STDERR_FILENO);
 		ft_putstr_fd("': not a valid identifier\n", STDERR_FILENO);
 		return (FAILURE);
@@ -41,7 +41,7 @@ static int	is_export_var_name_valid(char *input)
 			i++;
 		else
 		{
-			ft_putstr_fd("bananashell: export: `", STDERR_FILENO);
+			ft_putstr_fd("minishell: export: `", STDERR_FILENO);
 			ft_putstr_fd(input, STDERR_FILENO);
 			ft_putstr_fd("': not a valid identifier\n", STDERR_FILENO);
 			return (FAILURE);

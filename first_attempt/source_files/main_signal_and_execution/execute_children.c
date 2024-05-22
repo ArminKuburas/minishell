@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 02:36:27 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/20 19:51:03 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:07:15 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,6 @@ void	child_handler(t_shelldata *data, t_child_data *child_data, int i)
 		clean_everything_up(data, FAILURE);
 	if (check_fds(child_data) != SUCCESS)
 		clean_everything_up(data, FAILURE);
-	if (ft_strcmp(child_data->command, "") == 0)
-	{
-		clean_everything_up(data, SUCCESS);
-		exit(NO_COMMAND);
-	}
 	close_my_fds(child_data);
 	clean_other_children(data, i);
 	if (ft_strchr("/.", child_data->command[0]) == NULL)

@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:18:43 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/20 19:18:33 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:37:36 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,21 @@
  * @brief Additional helper functions for the main file.
 */
 
+/**
+ * @brief Resets the signals to default.
+ * @return void
+*/
 void	signal_reset(void)
 {
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
 }
 
+/**
+ * @brief This is an initial check for the input.
+ * @param data The data to be checked.
+ * @return Returns SUCCESS if the input is valid, otherwise FAILURE.
+*/
 int	initial_check(t_shelldata *data)
 {
 	int	i;

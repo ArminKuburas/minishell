@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:04:17 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/15 15:58:24 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:58:54 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,13 @@ static void	print_helper(int error, t_input_list *temp, t_child_data *child)
 		ft_putstr_fd(": Permission denied\n", 2);
 		child->exit_value = 126;
 	}
+	else if (error == NO_PATH)
+	{
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(temp->input, 2);
+		ft_putstr_fd(": No such file or directory\n", 2);
+		child->exit_value = 127;
+	}
 }
 
 /**
@@ -88,7 +95,7 @@ void	command_error_message(int error, t_shelldata *data, int amount)
 		temp = temp->next;
 	if (error == NO_MEMORY)
 		ft_putstr_fd("memory allocation failed\n", 2);
-	else if (error == NOT_FOUND || error == EXECUTION_FORBIDDEN)
+	else if (error != SUCCESS)
 		print_helper(error, temp, &data->child_data[amount]);
 }
 

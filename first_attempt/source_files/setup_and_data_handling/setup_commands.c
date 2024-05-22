@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 09:35:02 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/21 14:23:13 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:24:56 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ int	setup_command(t_shelldata *data, int index)
 	{
 		if (temp->type == COMMAND)
 		{
-			printf("command: %s\n", temp->input);
 			error = is_it_builtin(temp->input, data, index);
 			if (error == NOT_FOUND)
 				error = is_it_command(temp->input, data, index);

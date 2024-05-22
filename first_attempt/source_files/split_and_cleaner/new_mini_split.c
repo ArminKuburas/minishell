@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:41:10 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/20 19:22:27 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:55:13 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,30 @@
  * @file new_mini_split.c
  * @brief Functions for splitting the input.
 */
+
+void	mini_syntax_error(char *input, t_shelldata *data)
+{
+	int		amount;
+	int		i;
+	char	syntax;
+
+	i = 0;
+	if (input[0] == '<')
+		amount = 3;
+	else
+		amount = 2;
+	syntax = input[2];
+	ft_putstr_fd("minishell: syntax error near", STDERR_FILENO);
+	ft_putstr_fd("unexpected token `", STDERR_FILENO);
+	while (amount > 0 && input[i] == syntax)
+	{
+		ft_putchar_fd(syntax, STDERR_FILENO);
+		amount--;
+		i++;
+	}
+	ft_putendl_fd("'", STDERR_FILENO);
+	data->exit_value = 258;
+}
 
 /**
  * @brief Duplicates the special characters.
@@ -30,8 +54,7 @@ static int	dup_special_character(char *input, t_shelldata *data, int *i)
 	{
 		if (input[2] != '\0' && ft_strchr("><|", input[2]) != NULL)
 		{
-			ft_putstr_fd("minishell: error near unexpected token\n", 2);
-			data->exit_value = 1;
+			mini_syntax_error(&input[2], data);
 			return (FAILURE);
 		}
 		if (create_input(input, 2, data->input_list) != SUCCESS)
@@ -41,8 +64,7 @@ static int	dup_special_character(char *input, t_shelldata *data, int *i)
 	{
 		if (ft_strchr("><|", input[1]) != NULL)
 		{
-			ft_putstr_fd("Error: error near unexpected token\n", STDERR_FILENO);
-			data->exit_value = 1;
+			mini_syntax_error(&input[1], data);
 			return (FAILURE);
 		}
 		if (create_input(input, 1, data->input_list) != SUCCESS)

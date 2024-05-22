@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:31:08 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/20 19:29:56 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:52:02 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static void	free_with_newline(char **temp, int fd)
 int	custom_n_check(char *str)
 {
 	int	i;
+
 	if (str[0] != '-')
 		return (NO);
 	i = 1;

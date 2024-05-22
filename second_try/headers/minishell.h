@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/20 14:40:23 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:58:07 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,6 @@ typedef struct s_new_string_data
 }	t_new_string_data;
 
 //A struct for the mini_split
-
 typedef struct s_split_data
 {
 	int				i;

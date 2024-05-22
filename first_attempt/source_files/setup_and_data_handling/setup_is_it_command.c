@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 09:54:36 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/14 16:00:03 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:17:28 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,8 @@ int	is_it_command(char *input, t_shelldata *data, int index)
 	if (create_variables(&path_variables, data->env_list) == NO_MEMORY)
 		return (NO_MEMORY);
 	if (path_variables == NULL)
+		return (NO_PATH);
+	if (ft_strlen(input) == 0)
 		return (NOT_FOUND);
 	error = find_path(path_variables, data, index, input);
 	ft_free_substrings(&path_variables);
