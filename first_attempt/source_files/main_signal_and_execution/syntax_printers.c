@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:28:03 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/22 17:46:29 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/23 00:29:31 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	print_syntax_error(t_input_list *input)
 	i = 0;
 	syntax = input->input[0];
 	ft_putstr_fd("minishell: syntax error", STDERR_FILENO);
-	ft_putstr_fd("near unexpected token ", STDERR_FILENO);
+	ft_putstr_fd(" near unexpected token ", STDERR_FILENO);
 	ft_putstr_fd("`", STDERR_FILENO);
 	if (syntax == '<')
 		amount = 3;
@@ -47,7 +47,7 @@ void	print_syntax_error(t_input_list *input)
 */
 void	next_is_null_error(t_shelldata *data)
 {
-	ft_putendl_fd("minishell: syntax error", STDERR_FILENO);
+	ft_putstr_fd("minishell: syntax error", STDERR_FILENO);
 	ft_putendl_fd(" near unexpected token `newline'", STDERR_FILENO);
 	clear_input(data->input_list, SUCCESS);
 	data->exit_value = 258;

@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 18:35:36 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/15 12:23:04 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/23 01:22:17 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,9 @@ void	copy_dollar(t_new_string_data *data)
 		data->j--;
 		return ;
 	}
-	else
+	else if (ft_strchr("'\"", data->temp->input[data->j + 1]) == NULL)
+	{
 		data->new_string[data->i] = data->temp->input[data->j];
-	data->i++;
+		data->i++;
+	}
 }

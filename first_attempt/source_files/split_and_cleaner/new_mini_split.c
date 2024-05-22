@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:41:10 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/22 15:55:13 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/23 00:33:14 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	mini_syntax_error(char *input, t_shelldata *data)
 		amount = 2;
 	syntax = input[2];
 	ft_putstr_fd("minishell: syntax error near", STDERR_FILENO);
-	ft_putstr_fd("unexpected token `", STDERR_FILENO);
+	ft_putstr_fd(" unexpected token `", STDERR_FILENO);
 	while (amount > 0 && input[i] == syntax)
 	{
 		ft_putchar_fd(syntax, STDERR_FILENO);
@@ -52,21 +52,11 @@ static int	dup_special_character(char *input, t_shelldata *data, int *i)
 {
 	if (ft_strchr("><", input[1]) != NULL && input[0] == input[1])
 	{
-		if (input[2] != '\0' && ft_strchr("><|", input[2]) != NULL)
-		{
-			mini_syntax_error(&input[2], data);
-			return (FAILURE);
-		}
 		if (create_input(input, 2, data->input_list) != SUCCESS)
 			split_memory_failed(data);
 	}
 	else
 	{
-		if (ft_strchr("><|", input[1]) != NULL)
-		{
-			mini_syntax_error(&input[1], data);
-			return (FAILURE);
-		}
 		if (create_input(input, 1, data->input_list) != SUCCESS)
 			split_memory_failed(data);
 	}

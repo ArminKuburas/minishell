@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 19:06:55 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/16 14:53:05 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/23 01:10:45 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	found_dollar(t_input_list *temp, int *i, char quote, t_env_list *env)
 		start = *i;
 		while (ft_strchr(" \t$'\"?", temp->input[(*i)]) == NULL)
 			(*i)++;
-		if (temp->input[*i] == '?' && start == *i)
+		if (ft_strchr("?'\"", temp->input[(*i)]) == NULL && start == *i)
 			(*i)++;
 		length += length_find_env(env, &temp->input[start], (*i) - start);
 		(*i)--;
