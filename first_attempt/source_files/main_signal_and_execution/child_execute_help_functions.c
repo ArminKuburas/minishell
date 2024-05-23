@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:10:45 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/21 11:58:00 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/23 10:56:44 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ void	check_exit_value(t_child_data *child_data, int already_printed)
 	else if ((WIFEXITED(child_data->exit_value)
 			&& WEXITSTATUS(child_data->exit_value) == NO_EXECVE))
 	{
-		child_data->exit_value = 1;
-		ft_putstr_fd("minishell exec failed: ", STDERR_FILENO);
-		ft_putendl_fd(child_data->command, STDERR_FILENO);
+		child_data->exit_value = 126;
+		ft_putstr_fd("minishell: ", STDERR_FILENO);
+		ft_putstr_fd(child_data->command, STDERR_FILENO);
+		ft_putstr_fd("cannot execute binary file", STDERR_FILENO);
 	}
 	if (child_data->exit_value > 255)
 		child_data->exit_value = child_data->exit_value / 256;

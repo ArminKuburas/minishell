@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 07:34:43 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/23 01:14:05 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/23 10:32:12 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,7 @@ t_env_list	*potential_find_env(t_new_string_data *data, bool *split_check)
 		start = data->j;
 		while (ft_strchr(" \t$'\"?", data->temp->input[data->j]) == NULL)
 			data->j++;
-		if (ft_strchr("'\"?", data->temp->input[data->j]) == NULL
-			&& start == data->j)
+		if (data->temp->input[data->j] == '?' && start == data->j)
 			data->j++;
 		temp_env = try_to_find_env(data->env, &data->temp->input[start],
 				data->j - start);

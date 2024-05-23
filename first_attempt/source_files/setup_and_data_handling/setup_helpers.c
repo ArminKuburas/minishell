@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:04:17 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/22 16:58:54 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/23 10:40:40 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	free_child_data(t_child_data *data)
 */
 static void	print_helper(int error, t_input_list *temp, t_child_data *child)
 {
+	if (error == NOT_FOUND && ft_strchr(temp->input, '/') != NULL)
+		error = NO_PATH;
 	if (error == NOT_FOUND)
 	{
 		ft_putstr_fd("minishell: ", 2);
