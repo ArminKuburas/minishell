@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:22:59 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/20 17:57:47 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/23 21:24:16 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,31 @@ static int	cd_home(t_shelldata *data, char *cmd)
 	return (SUCCESS);
 }
 
+int	change_dir(t_shelldata *data, char *path)
+{
+	char	*temp;
+
+	if (chdir(path) == 0)
+	{
+		refresh_old_pwd(data);
+		temp = data->pwd;
+		data->pwd = getcwd(NULL, 0);
+		if (data->pwd == NULL)
+		{
+			ft_putstr_fd("cd: error retrieving current directory: ", 2);
+			ft_putstr_fd("getcwd: cannot access", 2);
+			ft_putendl_fd("parent directories: No such file or directory", 2);
+			data->pwd = ft_strjoin(temp, path);
+			if (data->pwd == NULL)
+				ft_putendl_fd("Fail in strdup, inside pwd", 2);
+		}
+		update_env_pwd(data);
+		data->cd_used = 1;
+		return (SUCCESS);
+	}
+	return (FAILURE);
+}
+
 /**
  * @brief Checks if the given path is accessible and cd's there.
  * @param data The struct containing shell data.
@@ -59,9 +84,8 @@ int	path_parser(t_shelldata *data, char *path)
 		}
 		if (cd_check_if_directory(path) == NO)
 			return (FAILURE);
-		chdir(path);
-		refresh_pwd(data);
-		data->cd_used = 1;
+		if (change_dir(data, path) != SUCCESS)
+			return (FAILURE);
 		return (SUCCESS);
 	}
 	ft_putstr_fd("minishell: cd: ", STDERR_FILENO);
