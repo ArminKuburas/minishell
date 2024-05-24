@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:22:59 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/24 12:22:06 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/24 12:28:16 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int	change_dir(t_shelldata *data, char *path)
 int	path_parser(t_shelldata *data, char *path)
 {
 	int	error_value;
+
 	if (access(path, F_OK) == 0)
 	{
 		if (access(path, X_OK) != 0)
