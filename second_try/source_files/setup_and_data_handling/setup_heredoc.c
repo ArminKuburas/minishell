@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:04:01 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/16 17:14:19 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/19 20:12:17 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,28 @@
 */
 void	modification_loop(char *break_line, t_shelldata *data, int fd)
 {
-	char	*input_line;
+	char	*input;
 	char	*modified_input;
 
 	while (1)
 	{
-		input_line = readline("> ");
-		if (!input_line)
+		input = readline("> ");
+		if (!input)
 			break ;
-		if (ft_strcmp(input_line, break_line) == 0)
+		if (ft_strlen(input) > 1
+			&& ft_strncmp(input, break_line, ft_strlen(input) - 1) == 0)
 		{
-			free(input_line);
+			free(input);
 			break ;
 		}
-		modified_input = modify_input(input_line, data->env_list);
-		free(input_line);
+		modified_input = modify_input(input, data->env_list);
+		free(input);
 		if (modified_input == NULL)
 		{
 			close(fd);
 			child_failed(data, NO_MEMORY);
 		}
-		ft_putendl_fd(modified_input, fd);
+		ft_putstr_fd(modified_input, fd);
 		free(modified_input);
 	}
 }
@@ -148,13 +149,18 @@ static void	write_loop(int fd, t_input_list *input, t_shelldata *data)
 void	handle_heredoc(t_shelldata *data, int i, t_input_list *input)
 {
 	int		pipe_fd[2];
+	int		dup_fd;
 
 	if (data->child_data[i].exit_value != 0)
 		return ;
 	if (pipe(pipe_fd) == -1)
 		child_failed(data, NO_PIPE);
 	data->child_data[i].fd_in = pipe_fd[0];
+	dup_fd = dup(STDIN_FILENO);
+	heredoc_signals();
 	write_loop(pipe_fd[1], input, data);
 	close(pipe_fd[1]);
+	dup2(dup_fd, STDIN_FILENO);
 	handler_signals();
+	close(dup_fd);
 }

@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 02:36:27 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/14 15:24:16 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/20 09:53:18 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ void	close_other_fds(t_shelldata *data, int j, int i)
 */
 void	child_handler(t_shelldata *data, t_child_data *child_data, int i)
 {
+	int	return_value;
+
 	if (check_child_pipes(child_data) != SUCCESS)
 		clean_everything_up(data, FAILURE);
 	if (check_fds(child_data) != SUCCESS)
@@ -108,13 +110,10 @@ void	child_handler(t_shelldata *data, t_child_data *child_data, int i)
 	clean_other_children(data, i);
 	if (ft_strchr("/.", child_data->command[0]) == NULL)
 	{
-		if (use_builtin(child_data, STDOUT_FILENO, data) == SUCCESS)
-			exit(0);
-		else
-		{
-			execve_failed_cleanup(data, child_data);
-			exit(child_data->exit_value);
-		}
+		use_builtin(child_data, STDOUT_FILENO, data);
+		return_value = child_data->exit_value;
+		execve_failed_cleanup(data, child_data);
+		exit(return_value);
 	}
 	if (execve(child_data->command,
 			child_data->command_inputs, child_data->env) == -1)

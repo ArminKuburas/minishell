@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/16 16:37:31 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:58:07 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ enum e_exit_values
 {
 	SUCCESS = 0,
 	FAILURE = 1,
-	UNKNOWN = 2
+	UNKNOWN = 2,
+	HEREDOC_SIGNAL = 3
 };
 
 enum e_errors
@@ -196,7 +197,6 @@ typedef struct s_new_string_data
 }	t_new_string_data;
 
 //A struct for the mini_split
-
 typedef struct s_split_data
 {
 	int				i;
@@ -206,6 +206,9 @@ typedef struct s_split_data
 	char			*input;
 	t_input_list	*node_one;
 }	t_split_data;
+
+//get next line functions
+char		*get_next_line(int fd);
 
 //readline functions
 int			rl_clear_history(void);
@@ -330,16 +333,9 @@ int			initial_env_creation(char **env, t_shelldata *data);
 int			initial_setup(t_shelldata *data, int argc, char **argv, char **env);
 int			check_argc_argv(int argc, char **argv);
 void		child_handling(t_shelldata *data);
-
-//Testers
-void	*fake_ft_calloc(int amount, int size);
-int		fake_open(void);
-int		fake_fork(void);
-int		fake_dup2(void);
-
+void		loop_helper(t_shelldata *data);
 int			check_shell_level_value(char *env_var_value);
 
 //error messages
 void		num_fail(t_shelldata *data, char *input);
-
 #endif
