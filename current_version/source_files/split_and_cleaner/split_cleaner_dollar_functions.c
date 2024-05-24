@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 18:35:36 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/23 01:22:17 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/24 14:23:53 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,11 @@ void	copy_dollar(t_new_string_data *data)
 {
 	int		start;
 
-	if (ft_strchr(" \t$'\"", data->temp->input[data->j + 1]) == NULL)
+	if (ft_strchr(" \t$'\"%", data->temp->input[data->j + 1]) == NULL)
 	{
 		data->j++;
 		start = data->j;
-		while (ft_strchr(" \t$'\"?", data->temp->input[data->j]) == NULL)
+		while (ft_strchr(" \t$'\"?%", data->temp->input[data->j]) == NULL)
 			data->j++;
 		if (data->temp->input[data->j] == '?' && start == data->j)
 			data->j++;
@@ -87,7 +87,8 @@ void	copy_dollar(t_new_string_data *data)
 		data->j--;
 		return ;
 	}
-	else if (ft_strchr("'\"", data->temp->input[data->j + 1]) == NULL)
+	else if (ft_strchr("'\"%", data->temp->input[data->j + 1]) == NULL
+		|| data->quote != 'a')
 	{
 		data->new_string[data->i] = data->temp->input[data->j];
 		data->i++;
