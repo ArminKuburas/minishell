@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 07:34:43 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/23 10:32:12 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/24 14:23:08 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	check_string(t_new_string_data *data)
 	int	start;
 
 	start = data->j;
-	if (ft_strchr(" \t$'\"", data->temp->input[data->j + 1]) == NULL)
+	if (ft_strchr(" \t$'\"%", data->temp->input[data->j + 1]) == NULL)
 	{
 		while (ft_strchr(" \t$'\"?", data->temp->input[data->j]) == NULL)
 			data->j++;

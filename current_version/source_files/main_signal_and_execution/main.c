@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:09 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/22 17:28:42 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/24 16:21:13 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	set_up_data(t_shelldata *data)
 	if (check_pipes(data) != SUCCESS)
 		return (FAILURE);
 	split_cleaner(data);
+	assign_command_type(data);
 	set_up_child_data(data);
 	return (SUCCESS);
 }

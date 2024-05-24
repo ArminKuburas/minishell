@@ -6,7 +6,7 @@
 #    By: tvalimak <Tvalimak@student.42.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/05/24 14:37:22 by tvalimak         ###   ########.fr        #
+#    Updated: 2024/05/24 16:28:35 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,6 +71,7 @@ SRCS =	$(MAINDIR)/main.c \
 		$(SETUPDIR)/heredoc_modify_input.c \
 		$(MAINDIR)/additional_helpers.c \
 		$(MAINDIR)/syntax_printers.c \
+		$(MAINDIR)/assign_command_type.c \
 
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 

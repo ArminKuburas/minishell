@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/24 14:45:28 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/24 16:08:24 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,6 +229,8 @@ int			clear_input(t_input_list *input_list, int error);
 int			create_input(char *input, int len, t_input_list *input_list);
 void		input_type_assigner(t_input_list *input_list);
 int			strlen_last_input(t_input_list *input_list);
+void		assign_command_type(t_shelldata *data);
+
 
 //env_list functions
 int			duplicate_env(char **env, t_shelldata *data);
