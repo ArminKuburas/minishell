@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 23:52:53 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/15 11:01:32 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/24 12:25:43 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,10 @@ int	one_builtin(t_shelldata *data)
 			data->child_data[0].fd_out, data);
 	free_child_data(&data->child_data[0]);
 	free(data->child_data);
+	data->child_data = NULL;
+	if (data->exit_value == NO_MEMORY)
+		clean_everything_up();
+
 	return (data->exit_value);
 }
 

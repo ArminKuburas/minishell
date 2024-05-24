@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:22:59 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/23 21:24:16 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/24 12:22:06 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,26 @@ static int	cd_home(t_shelldata *data, char *cmd)
 	return (SUCCESS);
 }
 
+int	path_joiner(t_shelldata *data, char *temp, char *path)
+{
+	int	i;
+
+	i = 0;
+	while (temp[i + 1] != '\0')
+		i++;
+	if (temp[i] != '/')
+		temp = ft_strjoin(temp, "/");
+	if (temp == NULL)
+		return (FAILURE);
+	data->pwd = ft_strjoin(temp, path);
+	if (data->pwd == NULL)
+	{
+		return (FAILURE);
+		ft_putendl_fd("Fail in strdup, inside pwd", 2);
+	}
+	return (SUCCESS);
+}
+
 int	change_dir(t_shelldata *data, char *path)
 {
 	char	*temp;
@@ -54,9 +74,11 @@ int	change_dir(t_shelldata *data, char *path)
 			ft_putstr_fd("cd: error retrieving current directory: ", 2);
 			ft_putstr_fd("getcwd: cannot access", 2);
 			ft_putendl_fd("parent directories: No such file or directory", 2);
-			data->pwd = ft_strjoin(temp, path);
-			if (data->pwd == NULL)
-				ft_putendl_fd("Fail in strdup, inside pwd", 2);
+			if (path_joiner(data, temp, path) == FAILURE)
+				return (NO_MEMORY);
+			update_env_pwd(data);
+			data->cd_used = 1;
+			return (FAILURE);
 		}
 		update_env_pwd(data);
 		data->cd_used = 1;
@@ -73,6 +95,7 @@ int	change_dir(t_shelldata *data, char *path)
 */
 int	path_parser(t_shelldata *data, char *path)
 {
+	int	error_value;
 	if (access(path, F_OK) == 0)
 	{
 		if (access(path, X_OK) != 0)
@@ -84,9 +107,8 @@ int	path_parser(t_shelldata *data, char *path)
 		}
 		if (cd_check_if_directory(path) == NO)
 			return (FAILURE);
-		if (change_dir(data, path) != SUCCESS)
-			return (FAILURE);
-		return (SUCCESS);
+		error_value = change_dir(data, path);
+		return (error_value);
 	}
 	ft_putstr_fd("minishell: cd: ", STDERR_FILENO);
 	ft_putstr_fd(path, STDERR_FILENO);
@@ -113,9 +135,8 @@ int	cd_parent_directory(t_shelldata *data)
 			ft_putstr_fd("cd: error retrieving current directory: ", 2);
 			ft_putstr_fd("getcwd: cannot access", 2);
 			ft_putendl_fd("parent directories: No such file or directory", 2);
-			data->pwd = ft_strjoin(temp, "/..");
-			if (data->pwd == NULL)
-				ft_putendl_fd("Fail in strdup, inside pwd", 2);
+			if (path_joiner(data, temp, "..") == FAILURE)
+				return (FAILURE);
 		}
 		update_env_pwd(data);
 		data->cd_used = 1;
@@ -143,9 +164,8 @@ int	cd_current_directory(t_shelldata *data)
 			ft_putstr_fd("cd: error retrieving current directory: ", 2);
 			ft_putstr_fd("getcwd: cannot access", 2);
 			ft_putendl_fd("parent directories: No such file or directory", 2);
-			data->pwd = ft_strjoin(temp, "/.");
-			if (data->pwd == NULL)
-				ft_putendl_fd("Fail in strdup, inside pwd", 2);
+			if (path_joiner(data, temp, ".") == FAILURE)
+				return (FAILURE);
 		}
 		update_env_pwd(data);
 		data->cd_used = 1;
