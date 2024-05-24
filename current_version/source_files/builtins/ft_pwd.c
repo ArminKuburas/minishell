@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:08:59 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/20 17:32:24 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/24 14:47:48 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ret_env(t_shelldata *data, char *var)
  * @param data The struct containing shell data.
  * @return Returns void.
 */
-void	update_env_pwd(t_shelldata *data)
+int	update_env_pwd(t_shelldata *data)
 {
 	t_env_list	*temp;
 
@@ -46,17 +46,18 @@ void	update_env_pwd(t_shelldata *data)
 			free(temp->env_var_value);
 			temp->env_var_value = ft_strdup(data->pwd);
 			if (!temp->env_var_value)
-				ft_putendl_fd("Fail in strdup, inside pwd", 2);
+				return (NO_MEMORY);
 		}
 		if (ft_strcmp(temp->env_var_name, "OLDPWD") == 0)
 		{
 			free(temp->env_var_value);
 			temp->env_var_value = ft_strdup(data->old_pwd);
 			if (!temp->env_var_value)
-				ft_putendl_fd("Fail in strdup, inside pwd", 2);
+				return (NO_MEMORY);
 		}
 		temp = temp->next;
 	}
+	return (SUCCESS);
 }
 
 /**
@@ -100,7 +101,8 @@ int	refresh_pwd(t_shelldata *data)
 		ft_putendl_fd("Fail in getcwd, inside pwd", 2);
 		return (FAILURE);
 	}
-	update_env_pwd(data);
+	if (update_env_pwd(data) != SUCCESS)
+		return (NO_MEMORY);
 	return (SUCCESS);
 }
 

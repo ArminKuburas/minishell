@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_helpers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:34:10 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/15 15:03:59 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/24 14:31:41 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ static int	add_new_env_var_2(t_shelldata *data, t_env_list *new_env, int flag)
 	if (flag == 1)
 	{
 		new_env->env_var = ft_strdup(new_env->env_var_name);
+		if (new_env->env_var == NULL)
+			return (NO_MEMORY);
 		new_env->env_var_value = NULL;
 	}
 	new_env->next = NULL;
