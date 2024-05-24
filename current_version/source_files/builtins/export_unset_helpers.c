@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_unset_helpers.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:51:55 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/20 16:59:21 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/24 14:35:00 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,11 @@ int	pwd_check(t_shelldata *data, char *input)
 		if (check_if_export_env_exists(data, input) == NO && data->cd_used == 1)
 		{
 			path = ft_strjoin("=", data->pwd);
+			if (path == NULL)
+				return (NO_MEMORY);
 			input = ft_strjoin(input, path);
+			if (input == NULL)
+				return (NO_MEMORY);
 			if (path)
 				free (path);
 			add_new_env_var(data, input, 0, 1);
