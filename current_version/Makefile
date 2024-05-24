@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
+#    By: tvalimak <Tvalimak@student.42.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/05/22 17:28:33 by akuburas         ###   ########.fr        #
+#    Updated: 2024/05/24 14:37:22 by tvalimak         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS =	$(MAINDIR)/main.c \
 		$(MAINDIR)/signal.c \
 		$(MAINDIR)/signal_helpers.c \
 		$(BUILTINDIR)/ft_cd.c \
+		$(BUILTINDIR)/cd_helpers.c \
 		$(BUILTINDIR)/ft_env.c \
 		$(SETUPDIR)/set_up_child_data.c \
 		$(SETUPDIR)/setup_commands.c \

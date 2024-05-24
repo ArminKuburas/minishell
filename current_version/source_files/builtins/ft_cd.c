@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:22:59 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/24 12:28:16 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/24 14:48:11 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  * @brief Checks the exit value of the child process.
  * @param child_data The child data to be used.
  * @param already_printed If the exit value has already been printed.
- * @return void
+ * @return success or failure.
 */
 static int	cd_home(t_shelldata *data, char *cmd)
 {
@@ -40,58 +40,11 @@ static int	cd_home(t_shelldata *data, char *cmd)
 	return (SUCCESS);
 }
 
-int	path_joiner(t_shelldata *data, char *temp, char *path)
-{
-	int	i;
-
-	i = 0;
-	while (temp[i + 1] != '\0')
-		i++;
-	if (temp[i] != '/')
-		temp = ft_strjoin(temp, "/");
-	if (temp == NULL)
-		return (FAILURE);
-	data->pwd = ft_strjoin(temp, path);
-	if (data->pwd == NULL)
-	{
-		return (FAILURE);
-		ft_putendl_fd("Fail in strdup, inside pwd", 2);
-	}
-	return (SUCCESS);
-}
-
-int	change_dir(t_shelldata *data, char *path)
-{
-	char	*temp;
-
-	if (chdir(path) == 0)
-	{
-		refresh_old_pwd(data);
-		temp = data->pwd;
-		data->pwd = getcwd(NULL, 0);
-		if (data->pwd == NULL)
-		{
-			ft_putstr_fd("cd: error retrieving current directory: ", 2);
-			ft_putstr_fd("getcwd: cannot access", 2);
-			ft_putendl_fd("parent directories: No such file or directory", 2);
-			if (path_joiner(data, temp, path) == FAILURE)
-				return (NO_MEMORY);
-			update_env_pwd(data);
-			data->cd_used = 1;
-			return (FAILURE);
-		}
-		update_env_pwd(data);
-		data->cd_used = 1;
-		return (SUCCESS);
-	}
-	return (FAILURE);
-}
-
 /**
  * @brief Checks if the given path is accessible and cd's there.
  * @param data The struct containing shell data.
  * @param path The path string to be checked.
- * @return void
+ * @return success or failure.
 */
 int	path_parser(t_shelldata *data, char *path)
 {
@@ -139,7 +92,8 @@ int	cd_parent_directory(t_shelldata *data)
 			if (path_joiner(data, temp, "..") == FAILURE)
 				return (FAILURE);
 		}
-		update_env_pwd(data);
+		if (update_env_pwd(data) != SUCCESS)
+			return (NO_MEMORY);
 		data->cd_used = 1;
 		return (SUCCESS);
 	}
@@ -168,7 +122,8 @@ int	cd_current_directory(t_shelldata *data)
 			if (path_joiner(data, temp, ".") == FAILURE)
 				return (FAILURE);
 		}
-		update_env_pwd(data);
+		if (update_env_pwd(data) != SUCCESS)
+			return (NO_MEMORY);
 		data->cd_used = 1;
 		return (SUCCESS);
 	}

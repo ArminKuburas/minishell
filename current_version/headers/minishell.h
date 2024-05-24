@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/23 10:28:38 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/24 14:45:28 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,7 +275,7 @@ int			ft_echo(t_child_data *data, int fd);
 int			ft_pwd(char *pwd, int fd);
 int			child_pre_check(t_shelldata *data);
 char		*ret_env(t_shelldata *data, char *var);
-void		update_env_pwd(t_shelldata *data);
+int			update_env_pwd(t_shelldata *data);
 int			refresh_pwd(t_shelldata *data);
 void		refresh_old_pwd(t_shelldata *data);
 int			replace_env_var(t_shelldata *data, char *input, int i, int flag);
@@ -291,6 +291,8 @@ int			check_if_export_env_exists(t_shelldata *data, char *input);
 int			pwd_check(t_shelldata *data, char *input);
 int			pwd_unset_check(t_shelldata *data, char *input);
 int			cd_check_if_directory(char *path);
+int			change_dir(t_shelldata *data, char *path);
+int			path_joiner(t_shelldata *data, char *temp, char *path);
 
 //heredoc
 void		heredoc(t_shelldata data, t_input_list *temp);
