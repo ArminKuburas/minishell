@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.42.fi>          +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:08:59 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/24 14:47:48 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/25 20:54:01 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ int	update_env_pwd(t_shelldata *data)
 			free(temp->env_var_value);
 			temp->env_var_value = ft_strdup(data->pwd);
 			if (!temp->env_var_value)
+				return (NO_MEMORY);
+			temp->env_var = ft_strjoin("PWD=", temp->env_var_value);
+			if (!temp->env_var)
 				return (NO_MEMORY);
 		}
 		if (ft_strcmp(temp->env_var_name, "OLDPWD") == 0)
