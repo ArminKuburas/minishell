@@ -1,0 +1,173 @@
+\hypertarget{signal_8c}{}\doxysection{source\+\_\+files/main\+\_\+signal\+\_\+and\+\_\+execution/signal.c File Reference}
+\label{signal_8c}\index{source\_files/main\_signal\_and\_execution/signal.c@{source\_files/main\_signal\_and\_execution/signal.c}}
+
+
+Signal handling functions.  
+
+
+{\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
+Include dependency graph for signal.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{signal_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{signal_8c_a258e3b580e688a0cf46e4258525aeaf1}{sigint\+\_\+handler}} (int sig)
+\begin{DoxyCompactList}\small\item\em Handles the SIGINT signal. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{signal_8c_a5af637f6ff2fc9b696fd6b7a4f4a3844}{child\+\_\+sigint\+\_\+handler}} (int sig)
+\begin{DoxyCompactList}\small\item\em child signal handler for SIGINT \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{signal_8c_ab79d7c6340e0046d7d1904bdc7919a56}{parent\+\_\+sigint}} (int sig)
+\begin{DoxyCompactList}\small\item\em parent signal handler for SIGINT \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{signal_8c_ae555fea64f5075cdd135513e114ec1f6}{heredoc\+\_\+handler}} (int sig)
+\begin{DoxyCompactList}\small\item\em Handles the SIGQUIT signal. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{signal_8c_a25c60ef57ceac821862693ff01850376}{caret\+\_\+switch}} (int on)
+\begin{DoxyCompactList}\small\item\em Switches the caret on or off. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{signal_8c_a0f0494fbc38d317ffd259d484b791e3e}\label{signal_8c_a0f0494fbc38d317ffd259d484b791e3e}} 
+int {\bfseries g\+\_\+exit\+\_\+value} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Signal handling functions. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{signal_8c_a25c60ef57ceac821862693ff01850376}\label{signal_8c_a25c60ef57ceac821862693ff01850376}} 
+\index{signal.c@{signal.c}!caret\_switch@{caret\_switch}}
+\index{caret\_switch@{caret\_switch}!signal.c@{signal.c}}
+\doxysubsubsection{\texorpdfstring{caret\_switch()}{caret\_switch()}}
+{\footnotesize\ttfamily void caret\+\_\+switch (\begin{DoxyParamCaption}\item[{int}]{on }\end{DoxyParamCaption})}
+
+
+
+Switches the caret on or off. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em on} & 1 to turn on, 0 to turn off. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{signal_8c_a25c60ef57ceac821862693ff01850376_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{signal_8c_a5af637f6ff2fc9b696fd6b7a4f4a3844}\label{signal_8c_a5af637f6ff2fc9b696fd6b7a4f4a3844}} 
+\index{signal.c@{signal.c}!child\_sigint\_handler@{child\_sigint\_handler}}
+\index{child\_sigint\_handler@{child\_sigint\_handler}!signal.c@{signal.c}}
+\doxysubsubsection{\texorpdfstring{child\_sigint\_handler()}{child\_sigint\_handler()}}
+{\footnotesize\ttfamily void child\+\_\+sigint\+\_\+handler (\begin{DoxyParamCaption}\item[{int}]{sig }\end{DoxyParamCaption})}
+
+
+
+child signal handler for SIGINT 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & The signal number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{signal_8c_a5af637f6ff2fc9b696fd6b7a4f4a3844_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{signal_8c_ae555fea64f5075cdd135513e114ec1f6}\label{signal_8c_ae555fea64f5075cdd135513e114ec1f6}} 
+\index{signal.c@{signal.c}!heredoc\_handler@{heredoc\_handler}}
+\index{heredoc\_handler@{heredoc\_handler}!signal.c@{signal.c}}
+\doxysubsubsection{\texorpdfstring{heredoc\_handler()}{heredoc\_handler()}}
+{\footnotesize\ttfamily void heredoc\+\_\+handler (\begin{DoxyParamCaption}\item[{int}]{sig }\end{DoxyParamCaption})}
+
+
+
+Handles the SIGQUIT signal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & The signal number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{signal_8c_ae555fea64f5075cdd135513e114ec1f6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{signal_8c_ab79d7c6340e0046d7d1904bdc7919a56}\label{signal_8c_ab79d7c6340e0046d7d1904bdc7919a56}} 
+\index{signal.c@{signal.c}!parent\_sigint@{parent\_sigint}}
+\index{parent\_sigint@{parent\_sigint}!signal.c@{signal.c}}
+\doxysubsubsection{\texorpdfstring{parent\_sigint()}{parent\_sigint()}}
+{\footnotesize\ttfamily void parent\+\_\+sigint (\begin{DoxyParamCaption}\item[{int}]{sig }\end{DoxyParamCaption})}
+
+
+
+parent signal handler for SIGINT 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & The signal number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{signal_8c_ab79d7c6340e0046d7d1904bdc7919a56_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{signal_8c_a258e3b580e688a0cf46e4258525aeaf1}\label{signal_8c_a258e3b580e688a0cf46e4258525aeaf1}} 
+\index{signal.c@{signal.c}!sigint\_handler@{sigint\_handler}}
+\index{sigint\_handler@{sigint\_handler}!signal.c@{signal.c}}
+\doxysubsubsection{\texorpdfstring{sigint\_handler()}{sigint\_handler()}}
+{\footnotesize\ttfamily void sigint\+\_\+handler (\begin{DoxyParamCaption}\item[{int}]{sig }\end{DoxyParamCaption})}
+
+
+
+Handles the SIGINT signal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sig} & The signal number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{signal_8c_a258e3b580e688a0cf46e4258525aeaf1_icgraph}
+\end{center}
+\end{figure}

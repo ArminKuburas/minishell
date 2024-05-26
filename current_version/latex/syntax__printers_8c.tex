@@ -1,0 +1,102 @@
+\hypertarget{syntax__printers_8c}{}\doxysection{source\+\_\+files/main\+\_\+signal\+\_\+and\+\_\+execution/syntax\+\_\+printers.c File Reference}
+\label{syntax__printers_8c}\index{source\_files/main\_signal\_and\_execution/syntax\_printers.c@{source\_files/main\_signal\_and\_execution/syntax\_printers.c}}
+
+
+Functions for printing syntax errors.  
+
+
+{\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
+Include dependency graph for syntax\+\_\+printers.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{syntax__printers_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{syntax__printers_8c_a50333754d8b0c009a6749798c29b4293}{print\+\_\+syntax\+\_\+error}} (\mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$input)
+\begin{DoxyCompactList}\small\item\em Prints a syntax error message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{syntax__printers_8c_a42b617b9358878e8d8a951f34e10f074}\label{syntax__printers_8c_a42b617b9358878e8d8a951f34e10f074}} 
+void {\bfseries next\+\_\+is\+\_\+null\+\_\+error} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
+\item 
+int \mbox{\hyperlink{syntax__printers_8c_ae5278921dc0eca2c26a346aee50c09e6}{check\+\_\+split}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em checks the split data for syntax errors \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Functions for printing syntax errors. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{syntax__printers_8c_ae5278921dc0eca2c26a346aee50c09e6}\label{syntax__printers_8c_ae5278921dc0eca2c26a346aee50c09e6}} 
+\index{syntax\_printers.c@{syntax\_printers.c}!check\_split@{check\_split}}
+\index{check\_split@{check\_split}!syntax\_printers.c@{syntax\_printers.c}}
+\doxysubsubsection{\texorpdfstring{check\_split()}{check\_split()}}
+{\footnotesize\ttfamily int check\+\_\+split (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+checks the split data for syntax errors 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to be checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns SUCCESS if everything went well, otherwise FAILURE. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{syntax__printers_8c_ae5278921dc0eca2c26a346aee50c09e6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{syntax__printers_8c_ae5278921dc0eca2c26a346aee50c09e6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{syntax__printers_8c_a50333754d8b0c009a6749798c29b4293}\label{syntax__printers_8c_a50333754d8b0c009a6749798c29b4293}} 
+\index{syntax\_printers.c@{syntax\_printers.c}!print\_syntax\_error@{print\_syntax\_error}}
+\index{print\_syntax\_error@{print\_syntax\_error}!syntax\_printers.c@{syntax\_printers.c}}
+\doxysubsubsection{\texorpdfstring{print\_syntax\_error()}{print\_syntax\_error()}}
+{\footnotesize\ttfamily void print\+\_\+syntax\+\_\+error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__input__list}{t\+\_\+input\+\_\+list}} $\ast$}]{input }\end{DoxyParamCaption})}
+
+
+
+Prints a syntax error message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & The input to be used. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{syntax__printers_8c_a50333754d8b0c009a6749798c29b4293_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{syntax__printers_8c_a50333754d8b0c009a6749798c29b4293_icgraph}
+\end{center}
+\end{figure}

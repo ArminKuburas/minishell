@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.42.fi>          +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/24 16:08:24 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/26 14:38:57 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,7 +231,6 @@ void		input_type_assigner(t_input_list *input_list);
 int			strlen_last_input(t_input_list *input_list);
 void		assign_command_type(t_shelldata *data);
 
-
 //env_list functions
 int			duplicate_env(char **env, t_shelldata *data);
 int			clear_env_list(t_env_list *env_list, int error);
@@ -297,7 +296,7 @@ int			change_dir(t_shelldata *data, char *path);
 int			path_joiner(t_shelldata *data, char *temp, char *path);
 
 //heredoc
-void		heredoc(t_shelldata data, t_input_list *temp);
+void		cleaner_helper(char *input, char *cleaned_input);
 
 //child processing functions
 int			set_up_child_data(t_shelldata *data);

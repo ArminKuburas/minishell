@@ -1,0 +1,151 @@
+\hypertarget{export__unset__helpers_8c}{}\doxysection{source\+\_\+files/builtins/export\+\_\+unset\+\_\+helpers.c File Reference}
+\label{export__unset__helpers_8c}\index{source\_files/builtins/export\_unset\_helpers.c@{source\_files/builtins/export\_unset\_helpers.c}}
+
+
+Helper functions for the export and unset builtin.  
+
+
+{\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
+Include dependency graph for export\+\_\+unset\+\_\+helpers.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{export__unset__helpers_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{export__unset__helpers_8c_a0c54dde92c95e669e5f7c46eb604431c}{pwd\+\_\+unset\+\_\+check}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, char $\ast$input)
+\begin{DoxyCompactList}\small\item\em If unset PWD is done, this checks that . \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{export__unset__helpers_8c_a078d1599520e741cdcb1b2d29b47c349}{pwd\+\_\+check}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, char $\ast$input)
+\begin{DoxyCompactList}\small\item\em Checks that is cd used when exporting PWD to set the correct path as its value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{export__unset__helpers_8c_a72d6b5b83b77bf82ed53d1501a073cbb}{export\+\_\+no\+\_\+commands}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, int fd)
+\begin{DoxyCompactList}\small\item\em Prints the env list as export format. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{export__unset__helpers_8c_a475e54d56604475fc6f4ca471e4522c9}{is\+\_\+unset\+\_\+var\+\_\+name\+\_\+valid}} (char $\ast$input)
+\begin{DoxyCompactList}\small\item\em Checks that the input given to unset is a valid variable name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Helper functions for the export and unset builtin. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{export__unset__helpers_8c_a72d6b5b83b77bf82ed53d1501a073cbb}\label{export__unset__helpers_8c_a72d6b5b83b77bf82ed53d1501a073cbb}} 
+\index{export\_unset\_helpers.c@{export\_unset\_helpers.c}!export\_no\_commands@{export\_no\_commands}}
+\index{export\_no\_commands@{export\_no\_commands}!export\_unset\_helpers.c@{export\_unset\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{export\_no\_commands()}{export\_no\_commands()}}
+{\footnotesize\ttfamily void export\+\_\+no\+\_\+commands (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{int}]{fd }\end{DoxyParamCaption})}
+
+
+
+Prints the env list as export format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The struct containing shell data. \\
+\hline
+{\em fd} & The file descriptor to be used. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{export__unset__helpers_8c_a72d6b5b83b77bf82ed53d1501a073cbb_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{export__unset__helpers_8c_a72d6b5b83b77bf82ed53d1501a073cbb_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{export__unset__helpers_8c_a475e54d56604475fc6f4ca471e4522c9}\label{export__unset__helpers_8c_a475e54d56604475fc6f4ca471e4522c9}} 
+\index{export\_unset\_helpers.c@{export\_unset\_helpers.c}!is\_unset\_var\_name\_valid@{is\_unset\_var\_name\_valid}}
+\index{is\_unset\_var\_name\_valid@{is\_unset\_var\_name\_valid}!export\_unset\_helpers.c@{export\_unset\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{is\_unset\_var\_name\_valid()}{is\_unset\_var\_name\_valid()}}
+{\footnotesize\ttfamily int is\+\_\+unset\+\_\+var\+\_\+name\+\_\+valid (\begin{DoxyParamCaption}\item[{char $\ast$}]{input }\end{DoxyParamCaption})}
+
+
+
+Checks that the input given to unset is a valid variable name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The struct containing shell data. \\
+\hline
+{\em fd} & The file descriptor to be used. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{export__unset__helpers_8c_a475e54d56604475fc6f4ca471e4522c9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{export__unset__helpers_8c_a475e54d56604475fc6f4ca471e4522c9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{export__unset__helpers_8c_a078d1599520e741cdcb1b2d29b47c349}\label{export__unset__helpers_8c_a078d1599520e741cdcb1b2d29b47c349}} 
+\index{export\_unset\_helpers.c@{export\_unset\_helpers.c}!pwd\_check@{pwd\_check}}
+\index{pwd\_check@{pwd\_check}!export\_unset\_helpers.c@{export\_unset\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{pwd\_check()}{pwd\_check()}}
+{\footnotesize\ttfamily int pwd\+\_\+check (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{char $\ast$}]{input }\end{DoxyParamCaption})}
+
+
+
+Checks that is cd used when exporting PWD to set the correct path as its value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The struct containing shell data. \\
+\hline
+{\em input} & The input to be checked if its \char`\"{}\+PWD\char`\"{}. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{export__unset__helpers_8c_a078d1599520e741cdcb1b2d29b47c349_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{export__unset__helpers_8c_a0c54dde92c95e669e5f7c46eb604431c}\label{export__unset__helpers_8c_a0c54dde92c95e669e5f7c46eb604431c}} 
+\index{export\_unset\_helpers.c@{export\_unset\_helpers.c}!pwd\_unset\_check@{pwd\_unset\_check}}
+\index{pwd\_unset\_check@{pwd\_unset\_check}!export\_unset\_helpers.c@{export\_unset\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{pwd\_unset\_check()}{pwd\_unset\_check()}}
+{\footnotesize\ttfamily int pwd\+\_\+unset\+\_\+check (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{char $\ast$}]{input }\end{DoxyParamCaption})}
+
+
+
+If unset PWD is done, this checks that . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The struct containing shell data. \\
+\hline
+{\em input} & The input to be replaced. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{export__unset__helpers_8c_a0c54dde92c95e669e5f7c46eb604431c_cgraph}
+\end{center}
+\end{figure}

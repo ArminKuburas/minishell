@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 23:52:53 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/24 13:13:35 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/26 02:49:04 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	fork_failed(t_shelldata *data, int amount)
 	clear_env_list(data->env_list, FAILURE);
 	free(data->env_variables);
 	free(data->input);
+	free(data->pwd);
+	free(data->old_pwd);
 	rl_clear_history();
 	i = 0;
 	while (i < amount)

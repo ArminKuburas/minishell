@@ -1,0 +1,141 @@
+\hypertarget{child__cleaning__functions_8c}{}\doxysection{source\+\_\+files/main\+\_\+signal\+\_\+and\+\_\+execution/child\+\_\+cleaning\+\_\+functions.c File Reference}
+\label{child__cleaning__functions_8c}\index{source\_files/main\_signal\_and\_execution/child\_cleaning\_functions.c@{source\_files/main\_signal\_and\_execution/child\_cleaning\_functions.c}}
+
+
+Functions for cleaning up child processes.  
+
+
+{\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
+Include dependency graph for child\+\_\+cleaning\+\_\+functions.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{child__cleaning__functions_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{child__cleaning__functions_8c_a2e89a48c8c825ee3c9bd3d48ba240989}{clean\+\_\+other\+\_\+children}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, int i)
+\begin{DoxyCompactList}\small\item\em frees command and command inputs and closes other file descriptors. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{child__cleaning__functions_8c_a593c59c46858b8054a1eebb2239633d4}{execve\+\_\+failed\+\_\+cleanup}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, \mbox{\hyperlink{structs__child__data}{t\+\_\+child\+\_\+data}} $\ast$child\+\_\+data)
+\begin{DoxyCompactList}\small\item\em frees whatever remains if execve fails \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{child__cleaning__functions_8c_a088f7020dd0519cc3e3a8b51bb0087c7}{clean\+\_\+everything\+\_\+up}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, int exit\+\_\+value)
+\begin{DoxyCompactList}\small\item\em frees everything \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Functions for cleaning up child processes. 
+
+This file contains functions for cleaning up child processes. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{child__cleaning__functions_8c_a088f7020dd0519cc3e3a8b51bb0087c7}\label{child__cleaning__functions_8c_a088f7020dd0519cc3e3a8b51bb0087c7}} 
+\index{child\_cleaning\_functions.c@{child\_cleaning\_functions.c}!clean\_everything\_up@{clean\_everything\_up}}
+\index{clean\_everything\_up@{clean\_everything\_up}!child\_cleaning\_functions.c@{child\_cleaning\_functions.c}}
+\doxysubsubsection{\texorpdfstring{clean\_everything\_up()}{clean\_everything\_up()}}
+{\footnotesize\ttfamily void clean\+\_\+everything\+\_\+up (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{int}]{exit\+\_\+value }\end{DoxyParamCaption})}
+
+
+
+frees everything 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to be used. \\
+\hline
+{\em exit\+\_\+value} & The exit value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{child__cleaning__functions_8c_a088f7020dd0519cc3e3a8b51bb0087c7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{child__cleaning__functions_8c_a088f7020dd0519cc3e3a8b51bb0087c7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{child__cleaning__functions_8c_a2e89a48c8c825ee3c9bd3d48ba240989}\label{child__cleaning__functions_8c_a2e89a48c8c825ee3c9bd3d48ba240989}} 
+\index{child\_cleaning\_functions.c@{child\_cleaning\_functions.c}!clean\_other\_children@{clean\_other\_children}}
+\index{clean\_other\_children@{clean\_other\_children}!child\_cleaning\_functions.c@{child\_cleaning\_functions.c}}
+\doxysubsubsection{\texorpdfstring{clean\_other\_children()}{clean\_other\_children()}}
+{\footnotesize\ttfamily void clean\+\_\+other\+\_\+children (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+frees command and command inputs and closes other file descriptors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to be used. \\
+\hline
+{\em i} & The index of the current child data that should not be cleaned. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{child__cleaning__functions_8c_a2e89a48c8c825ee3c9bd3d48ba240989_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{child__cleaning__functions_8c_a2e89a48c8c825ee3c9bd3d48ba240989_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{child__cleaning__functions_8c_a593c59c46858b8054a1eebb2239633d4}\label{child__cleaning__functions_8c_a593c59c46858b8054a1eebb2239633d4}} 
+\index{child\_cleaning\_functions.c@{child\_cleaning\_functions.c}!execve\_failed\_cleanup@{execve\_failed\_cleanup}}
+\index{execve\_failed\_cleanup@{execve\_failed\_cleanup}!child\_cleaning\_functions.c@{child\_cleaning\_functions.c}}
+\doxysubsubsection{\texorpdfstring{execve\_failed\_cleanup()}{execve\_failed\_cleanup()}}
+{\footnotesize\ttfamily void execve\+\_\+failed\+\_\+cleanup (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{\mbox{\hyperlink{structs__child__data}{t\+\_\+child\+\_\+data}} $\ast$}]{child\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+frees whatever remains if execve fails 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to be used. \\
+\hline
+{\em child\+\_\+data} & The child data to be used. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{child__cleaning__functions_8c_a593c59c46858b8054a1eebb2239633d4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{child__cleaning__functions_8c_a593c59c46858b8054a1eebb2239633d4_icgraph}
+\end{center}
+\end{figure}

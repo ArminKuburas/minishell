@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 02:36:27 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/22 17:07:15 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/26 03:05:51 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,12 @@ void	child_handler(t_shelldata *data, t_child_data *child_data, int i)
 {
 	int	return_value;
 
-	if (check_child_pipes(child_data) != SUCCESS)
+	if (check_child_pipes(child_data) != SUCCESS
+		|| check_fds(child_data) != SUCCESS)
+	{
+		ft_putendl_fd("minishell: dup2 failed", STDERR_FILENO);
 		clean_everything_up(data, FAILURE);
-	if (check_fds(child_data) != SUCCESS)
-		clean_everything_up(data, FAILURE);
+	}
 	close_my_fds(child_data);
 	clean_other_children(data, i);
 	if (ft_strchr("/.", child_data->command[0]) == NULL)
@@ -134,7 +136,10 @@ int	execute_child(t_shelldata *data, t_child_data *child_data, int i)
 {
 	child_data->pid = fork();
 	if (child_data->pid == -1)
+	{
+		ft_putendl_fd("minishell: fork failed", STDERR_FILENO);
 		fork_failed(data, i);
+	}
 	if (child_data->pid == 0)
 	{
 		child_handler(data, child_data, i);

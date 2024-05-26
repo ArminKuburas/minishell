@@ -1,0 +1,63 @@
+\hypertarget{check__for__errors_8c}{}\doxysection{source\+\_\+files/setup\+\_\+and\+\_\+data\+\_\+handling/check\+\_\+for\+\_\+errors.c File Reference}
+\label{check__for__errors_8c}\index{source\_files/setup\_and\_data\_handling/check\_for\_errors.c@{source\_files/setup\_and\_data\_handling/check\_for\_errors.c}}
+
+
+Functions for checking for errors.  
+
+
+{\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
+Include dependency graph for check\+\_\+for\+\_\+errors.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{check__for__errors_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{check__for__errors_8c_a6c7ecea0e2f7178c036c8cbab0b955ea}{check\+\_\+pipes}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Checks for syntax errors in the pipe input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Functions for checking for errors. 
+
+This file contains functions for checking for errors. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{check__for__errors_8c_a6c7ecea0e2f7178c036c8cbab0b955ea}\label{check__for__errors_8c_a6c7ecea0e2f7178c036c8cbab0b955ea}} 
+\index{check\_for\_errors.c@{check\_for\_errors.c}!check\_pipes@{check\_pipes}}
+\index{check\_pipes@{check\_pipes}!check\_for\_errors.c@{check\_for\_errors.c}}
+\doxysubsubsection{\texorpdfstring{check\_pipes()}{check\_pipes()}}
+{\footnotesize\ttfamily int check\+\_\+pipes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Checks for syntax errors in the pipe input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to be used. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns SUCCESS if everything went well, otherwise FAILURE. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{check__for__errors_8c_a6c7ecea0e2f7178c036c8cbab0b955ea_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{check__for__errors_8c_a6c7ecea0e2f7178c036c8cbab0b955ea_icgraph}
+\end{center}
+\end{figure}

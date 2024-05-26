@@ -1,0 +1,169 @@
+\hypertarget{main_8c}{}\doxysection{source\+\_\+files/main\+\_\+signal\+\_\+and\+\_\+execution/main.c File Reference}
+\label{main_8c}\index{source\_files/main\_signal\_and\_execution/main.c@{source\_files/main\_signal\_and\_execution/main.c}}
+
+
+Main file for the minishell program.  
+
+
+{\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
+Include dependency graph for main.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8c_ae571382d485d4e036ac59472cac69d11}{check\+\_\+argc\+\_\+argv}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Quickly checks the argc and argv. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8c_a66190e959e6b76c1b752f88bc37b5b7b}{set\+\_\+up\+\_\+data}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Sets up the data for the minishell. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_aab600a6b2f1c4762d527e599326605d0}{main\+\_\+loop}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em The main loop for the minishell program. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8c_a7b26396c9888d66d997b0007e8ff1e60}{main}} (int argc, char $\ast$$\ast$argv, char $\ast$$\ast$env)
+\begin{DoxyCompactList}\small\item\em The main function for the minishell program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main file for the minishell program. 
+
+This file contains the main function and the main loop. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8c_ae571382d485d4e036ac59472cac69d11}\label{main_8c_ae571382d485d4e036ac59472cac69d11}} 
+\index{main.c@{main.c}!check\_argc\_argv@{check\_argc\_argv}}
+\index{check\_argc\_argv@{check\_argc\_argv}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{check\_argc\_argv()}{check\_argc\_argv()}}
+{\footnotesize\ttfamily int check\+\_\+argc\+\_\+argv (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Quickly checks the argc and argv. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The argument count. \\
+\hline
+{\em argv} & The argument vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns SUCCESS if everything went well, otherwise FAILURE. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c_ae571382d485d4e036ac59472cac69d11_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c_ae571382d485d4e036ac59472cac69d11_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{main_8c_a7b26396c9888d66d997b0007e8ff1e60}\label{main_8c_a7b26396c9888d66d997b0007e8ff1e60}} 
+\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv,  }\item[{char $\ast$$\ast$}]{env }\end{DoxyParamCaption})}
+
+
+
+The main function for the minishell program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The argument count. \\
+\hline
+{\em argv} & The argument vector. \\
+\hline
+{\em env} & The environment variables. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns 0 if everything went well, otherwise 1. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c_a7b26396c9888d66d997b0007e8ff1e60_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{main_8c_aab600a6b2f1c4762d527e599326605d0}\label{main_8c_aab600a6b2f1c4762d527e599326605d0}} 
+\index{main.c@{main.c}!main\_loop@{main\_loop}}
+\index{main\_loop@{main\_loop}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main\_loop()}{main\_loop()}}
+{\footnotesize\ttfamily void main\+\_\+loop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+The main loop for the minishell program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data for the minishell. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c_aab600a6b2f1c4762d527e599326605d0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=225pt]{main_8c_aab600a6b2f1c4762d527e599326605d0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{main_8c_a66190e959e6b76c1b752f88bc37b5b7b}\label{main_8c_a66190e959e6b76c1b752f88bc37b5b7b}} 
+\index{main.c@{main.c}!set\_up\_data@{set\_up\_data}}
+\index{set\_up\_data@{set\_up\_data}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{set\_up\_data()}{set\_up\_data()}}
+{\footnotesize\ttfamily int set\+\_\+up\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Sets up the data for the minishell. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to be set up. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns SUCCESS if everything went well, otherwise FAILURE. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c_a66190e959e6b76c1b752f88bc37b5b7b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{main_8c_a66190e959e6b76c1b752f88bc37b5b7b_icgraph}
+\end{center}
+\end{figure}
