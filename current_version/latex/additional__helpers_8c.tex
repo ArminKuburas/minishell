@@ -1,0 +1,114 @@
+\hypertarget{additional__helpers_8c}{}\doxysection{source\+\_\+files/main\+\_\+signal\+\_\+and\+\_\+execution/additional\+\_\+helpers.c File Reference}
+\label{additional__helpers_8c}\index{source\_files/main\_signal\_and\_execution/additional\_helpers.c@{source\_files/main\_signal\_and\_execution/additional\_helpers.c}}
+
+
+Additional helper functions for the main file.  
+
+
+{\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
+Include dependency graph for additional\+\_\+helpers.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{additional__helpers_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{additional__helpers_8c_acf59c109b14caddffadc2f1f69d298ea}{signal\+\_\+reset}} (void)
+\begin{DoxyCompactList}\small\item\em Resets the signals to default. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{additional__helpers_8c_a4ad83ac3b10185b7155158b756ae3ad2}{initial\+\_\+check}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em This is an initial check for the input. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{additional__helpers_8c_ad1845670baf23c281fe706ce7f0c60c6}{loop\+\_\+helper}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Helper function for the main loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Additional helper functions for the main file. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{additional__helpers_8c_a4ad83ac3b10185b7155158b756ae3ad2}\label{additional__helpers_8c_a4ad83ac3b10185b7155158b756ae3ad2}} 
+\index{additional\_helpers.c@{additional\_helpers.c}!initial\_check@{initial\_check}}
+\index{initial\_check@{initial\_check}!additional\_helpers.c@{additional\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{initial\_check()}{initial\_check()}}
+{\footnotesize\ttfamily int initial\+\_\+check (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+This is an initial check for the input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to be checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns SUCCESS if the input is valid, otherwise FAILURE. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{additional__helpers_8c_a4ad83ac3b10185b7155158b756ae3ad2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=339pt]{additional__helpers_8c_a4ad83ac3b10185b7155158b756ae3ad2_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{additional__helpers_8c_ad1845670baf23c281fe706ce7f0c60c6}\label{additional__helpers_8c_ad1845670baf23c281fe706ce7f0c60c6}} 
+\index{additional\_helpers.c@{additional\_helpers.c}!loop\_helper@{loop\_helper}}
+\index{loop\_helper@{loop\_helper}!additional\_helpers.c@{additional\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{loop\_helper()}{loop\_helper()}}
+{\footnotesize\ttfamily void loop\+\_\+helper (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Helper function for the main loop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to be used. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{additional__helpers_8c_ad1845670baf23c281fe706ce7f0c60c6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=335pt]{additional__helpers_8c_ad1845670baf23c281fe706ce7f0c60c6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{additional__helpers_8c_acf59c109b14caddffadc2f1f69d298ea}\label{additional__helpers_8c_acf59c109b14caddffadc2f1f69d298ea}} 
+\index{additional\_helpers.c@{additional\_helpers.c}!signal\_reset@{signal\_reset}}
+\index{signal\_reset@{signal\_reset}!additional\_helpers.c@{additional\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{signal\_reset()}{signal\_reset()}}
+{\footnotesize\ttfamily void signal\+\_\+reset (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Resets the signals to default. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}

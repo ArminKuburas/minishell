@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:28:03 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/23 00:29:31 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/26 02:34:09 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	check_split(t_shelldata *data)
 				data->exit_value = 258;
 				return (FAILURE);
 			}
-			else if (temp->next == NULL)
+			else if (temp->next == NULL && temp->input[0] != '|')
 			{
 				next_is_null_error(data);
 				return (FAILURE);
