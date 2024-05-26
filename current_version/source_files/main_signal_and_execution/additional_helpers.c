@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:18:43 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/26 03:00:28 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/26 13:25:14 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	end_of_file_reached(t_shelldata *data)
 */
 void	loop_helper(t_shelldata *data)
 {
-	//handler_signals();
+	handler_signals();
 	data->input = readline("minishell: ");
 	if (!data->input)
 		end_of_file_reached(data);

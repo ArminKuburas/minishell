@@ -6,12 +6,11 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 16:24:40 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/24 16:28:07 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/26 13:25:21 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
-
 
 /**
  * @file assign_command_type.c
