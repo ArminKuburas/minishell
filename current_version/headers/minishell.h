@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/26 13:25:05 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/26 14:38:57 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,8 +214,8 @@ typedef struct s_split_data
 char		*get_next_line(int fd);
 
 //readline functions
-//int			rl_clear_history(void);
-//void		rl_replace_line(char *str, int num);
+int			rl_clear_history(void);
+void		rl_replace_line(char *str, int num);
 
 //data_parser functions
 int			count_words(t_split_data *split_data);
@@ -296,7 +296,7 @@ int			change_dir(t_shelldata *data, char *path);
 int			path_joiner(t_shelldata *data, char *temp, char *path);
 
 //heredoc
-void		heredoc(t_shelldata data, t_input_list *temp);
+void		cleaner_helper(char *input, char *cleaned_input);
 
 //child processing functions
 int			set_up_child_data(t_shelldata *data);

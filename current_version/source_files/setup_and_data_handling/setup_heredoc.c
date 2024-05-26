@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:04:01 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/20 19:32:57 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/26 14:44:57 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,7 @@ char	*heredoc_cleaner(char *input)
 	cleaned_input = ft_calloc(j + 1, sizeof(char));
 	if (cleaned_input == NULL)
 		return (NULL);
-	i = 0;
-	while (i < j || input[i] != '\0')
-	{
-		if (ft_strchr("'\"", input[i]) == NULL)
-			cleaned_input[i] = input[i];
-		i++;
-	}
+	cleaner_helper(input, cleaned_input);
 	return (cleaned_input);
 }
 

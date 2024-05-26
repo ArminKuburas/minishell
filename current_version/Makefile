@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tvalimak <Tvalimak@student.42.fi>          +#+  +:+       +#+         #
+#    By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/27 11:16:12 by akuburas          #+#    #+#              #
-#    Updated: 2024/05/24 16:28:35 by akuburas         ###   ########.fr        #
+#    Updated: 2024/05/26 14:40:10 by akuburas         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,7 @@ SRCS =	$(MAINDIR)/main.c \
 		$(MAINDIR)/additional_helpers.c \
 		$(MAINDIR)/syntax_printers.c \
 		$(MAINDIR)/assign_command_type.c \
+		$(SETUPDIR)/heredoc_helpers.c \
 
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
