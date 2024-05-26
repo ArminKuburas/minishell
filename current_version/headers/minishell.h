@@ -274,6 +274,7 @@ int			ft_exit(t_shelldata *data, char **inputs);
 int			ft_unset(t_shelldata *data, char **inputs);
 int			ft_echo(t_child_data *data, int fd);
 int			ft_pwd(char *pwd, int fd);
+int			env_var_update(t_env_list *temp_env, t_shelldata *data, int flag);
 int			child_pre_check(t_shelldata *data);
 char		*ret_env(t_shelldata *data, char *var);
 int			update_env_pwd(t_shelldata *data);

@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:08:59 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/24 14:47:48 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/26 14:42:27 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ret_env(t_shelldata *data, char *var)
 /**
  * @brief Updates the PWD variable in the env lis.
  * @param data The struct containing shell data.
- * @return Returns void.
+ * @return success or failure.
 */
 int	update_env_pwd(t_shelldata *data)
 {
@@ -43,16 +43,12 @@ int	update_env_pwd(t_shelldata *data)
 	{
 		if (ft_strcmp(temp->env_var_name, "PWD") == 0)
 		{
-			free(temp->env_var_value);
-			temp->env_var_value = ft_strdup(data->pwd);
-			if (!temp->env_var_value)
+			if (env_var_update(temp, data, 0) != SUCCESS)
 				return (NO_MEMORY);
 		}
 		if (ft_strcmp(temp->env_var_name, "OLDPWD") == 0)
 		{
-			free(temp->env_var_value);
-			temp->env_var_value = ft_strdup(data->old_pwd);
-			if (!temp->env_var_value)
+			if (env_var_update(temp, data, 1) != SUCCESS)
 				return (NO_MEMORY);
 		}
 		temp = temp->next;

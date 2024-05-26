@@ -6,7 +6,7 @@
 /*   By: tvalimak <Tvalimak@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:22:59 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/24 14:48:11 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/26 13:38:14 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static int	cd_home(t_shelldata *data, char *cmd)
 		ft_putendl_fd("minishell: cd: HOME not set", 2);
 	if (chdir(home_path) == -1)
 		return (FAILURE);
-	refresh_pwd(data);
 	data->cd_used = 1;
 	return (SUCCESS);
 }
