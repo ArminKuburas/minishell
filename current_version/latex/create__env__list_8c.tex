@@ -1,0 +1,213 @@
+\hypertarget{create__env__list_8c}{}\doxysection{source\+\_\+files/setup\+\_\+and\+\_\+data\+\_\+handling/create\+\_\+env\+\_\+list.c File Reference}
+\label{create__env__list_8c}\index{source\_files/setup\_and\_data\_handling/create\_env\_list.c@{source\_files/setup\_and\_data\_handling/create\_env\_list.c}}
+
+
+Functions for creating and handling the environment list.  
+
+
+{\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
+Include dependency graph for create\+\_\+env\+\_\+list.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{create__env__list_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{create__env__list_8c_a32d7006486d88497bac2c78563dd061b}{create\+\_\+2d\+\_\+env}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Creates a 2D array of the environment variables. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{create__env__list_8c_a3cf4d0ebc83800c09acbc0e365f1ad4d}{clear\+\_\+env\+\_\+list}} (\mbox{\hyperlink{structs__env__list}{t\+\_\+env\+\_\+list}} $\ast$env\+\_\+list, int error)
+\begin{DoxyCompactList}\small\item\em Clears the environment list. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{create__env__list_8c_a52f2b3895ca6d12552bc854f03b1a923}{simplify\+\_\+env\+\_\+data}} (\mbox{\hyperlink{structs__env__list}{t\+\_\+env\+\_\+list}} $\ast$env\+\_\+list)
+\begin{DoxyCompactList}\small\item\em Simplifies the environment data. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{create__env__list_8c_a323bf56964ecc3c265c1bb4262e5d751}{create\+\_\+env}} (char $\ast$env, \mbox{\hyperlink{structs__env__list}{t\+\_\+env\+\_\+list}} $\ast$env\+\_\+list)
+\begin{DoxyCompactList}\small\item\em Creates a new environment variable. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{create__env__list_8c_abe023773605ec7daa33316945538953a}{duplicate\+\_\+env}} (char $\ast$$\ast$env, \mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Duplicates the environment variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Functions for creating and handling the environment list. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{create__env__list_8c_a3cf4d0ebc83800c09acbc0e365f1ad4d}\label{create__env__list_8c_a3cf4d0ebc83800c09acbc0e365f1ad4d}} 
+\index{create\_env\_list.c@{create\_env\_list.c}!clear\_env\_list@{clear\_env\_list}}
+\index{clear\_env\_list@{clear\_env\_list}!create\_env\_list.c@{create\_env\_list.c}}
+\doxysubsubsection{\texorpdfstring{clear\_env\_list()}{clear\_env\_list()}}
+{\footnotesize\ttfamily int clear\+\_\+env\+\_\+list (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__env__list}{t\+\_\+env\+\_\+list}} $\ast$}]{env\+\_\+list,  }\item[{int}]{error }\end{DoxyParamCaption})}
+
+
+
+Clears the environment list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em env\+\_\+list} & The environment list to be cleared. \\
+\hline
+{\em error} & The error code. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the error code. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{create__env__list_8c_a3cf4d0ebc83800c09acbc0e365f1ad4d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{create__env__list_8c_a3cf4d0ebc83800c09acbc0e365f1ad4d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{create__env__list_8c_a32d7006486d88497bac2c78563dd061b}\label{create__env__list_8c_a32d7006486d88497bac2c78563dd061b}} 
+\index{create\_env\_list.c@{create\_env\_list.c}!create\_2d\_env@{create\_2d\_env}}
+\index{create\_2d\_env@{create\_2d\_env}!create\_env\_list.c@{create\_env\_list.c}}
+\doxysubsubsection{\texorpdfstring{create\_2d\_env()}{create\_2d\_env()}}
+{\footnotesize\ttfamily int create\+\_\+2d\+\_\+env (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Creates a 2D array of the environment variables. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to be used. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns SUCCESS if everything went well, otherwise NO\+\_\+\+MEMORY. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{create__env__list_8c_a32d7006486d88497bac2c78563dd061b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{create__env__list_8c_a32d7006486d88497bac2c78563dd061b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{create__env__list_8c_a323bf56964ecc3c265c1bb4262e5d751}\label{create__env__list_8c_a323bf56964ecc3c265c1bb4262e5d751}} 
+\index{create\_env\_list.c@{create\_env\_list.c}!create\_env@{create\_env}}
+\index{create\_env@{create\_env}!create\_env\_list.c@{create\_env\_list.c}}
+\doxysubsubsection{\texorpdfstring{create\_env()}{create\_env()}}
+{\footnotesize\ttfamily int create\+\_\+env (\begin{DoxyParamCaption}\item[{char $\ast$}]{env,  }\item[{\mbox{\hyperlink{structs__env__list}{t\+\_\+env\+\_\+list}} $\ast$}]{env\+\_\+list }\end{DoxyParamCaption})}
+
+
+
+Creates a new environment variable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em env} & The environment variable to be created. \\
+\hline
+{\em env\+\_\+list} & The environment list to be used. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns SUCCESS if everything went well, otherwise NO\+\_\+\+MEMORY. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{create__env__list_8c_a323bf56964ecc3c265c1bb4262e5d751_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{create__env__list_8c_a323bf56964ecc3c265c1bb4262e5d751_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{create__env__list_8c_abe023773605ec7daa33316945538953a}\label{create__env__list_8c_abe023773605ec7daa33316945538953a}} 
+\index{create\_env\_list.c@{create\_env\_list.c}!duplicate\_env@{duplicate\_env}}
+\index{duplicate\_env@{duplicate\_env}!create\_env\_list.c@{create\_env\_list.c}}
+\doxysubsubsection{\texorpdfstring{duplicate\_env()}{duplicate\_env()}}
+{\footnotesize\ttfamily int duplicate\+\_\+env (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{env,  }\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Duplicates the environment variables. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em env} & The environment variables to be duplicated. \\
+\hline
+{\em data} & The data to be used. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns SUCCESS if everything went well, otherwise NO\+\_\+\+MEMORY. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{create__env__list_8c_abe023773605ec7daa33316945538953a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{create__env__list_8c_abe023773605ec7daa33316945538953a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{create__env__list_8c_a52f2b3895ca6d12552bc854f03b1a923}\label{create__env__list_8c_a52f2b3895ca6d12552bc854f03b1a923}} 
+\index{create\_env\_list.c@{create\_env\_list.c}!simplify\_env\_data@{simplify\_env\_data}}
+\index{simplify\_env\_data@{simplify\_env\_data}!create\_env\_list.c@{create\_env\_list.c}}
+\doxysubsubsection{\texorpdfstring{simplify\_env\_data()}{simplify\_env\_data()}}
+{\footnotesize\ttfamily int simplify\+\_\+env\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__env__list}{t\+\_\+env\+\_\+list}} $\ast$}]{env\+\_\+list }\end{DoxyParamCaption})}
+
+
+
+Simplifies the environment data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em env\+\_\+list} & The environment list to be simplified. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns SUCCESS if everything went well, otherwise NO\+\_\+\+MEMORY. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{create__env__list_8c_a52f2b3895ca6d12552bc854f03b1a923_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{create__env__list_8c_a52f2b3895ca6d12552bc854f03b1a923_icgraph}
+\end{center}
+\end{figure}

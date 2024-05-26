@@ -1,0 +1,163 @@
+\hypertarget{export__helpers_8c}{}\doxysection{source\+\_\+files/builtins/export\+\_\+helpers.c File Reference}
+\label{export__helpers_8c}\index{source\_files/builtins/export\_helpers.c@{source\_files/builtins/export\_helpers.c}}
+
+
+Helper functions for the export builtin.  
+
+
+{\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
+Include dependency graph for export\+\_\+helpers.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{export__helpers_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{export__helpers_8c_aebddc655ea912e68254bf0132cff2543}{swap\+\_\+env\+\_\+vars}} (\mbox{\hyperlink{structs__env__list}{t\+\_\+env\+\_\+list}} $\ast$temp, \mbox{\hyperlink{structs__env__list}{t\+\_\+env\+\_\+list}} $\ast$temp2)
+\begin{DoxyCompactList}\small\item\em Swaps the values of two env variables. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{export__helpers_8c_a8414a9da9c1d04b5b52ea588eb6bf350}{export\+\_\+sorted\+\_\+list}} (\mbox{\hyperlink{structs__env__list}{t\+\_\+env\+\_\+list}} $\ast$env\+\_\+list)
+\begin{DoxyCompactList}\small\item\em Sorts the env list alphabetically. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{export__helpers_8c_a01730602946225b33a098eac07f25476}{replace\+\_\+env\+\_\+var}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, char $\ast$input, int i, int flag)
+\begin{DoxyCompactList}\small\item\em Replaces the value of an existing env variable. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{export__helpers_8c_a2781f327f529097c6a81f0c39a7b10f1}{add\+\_\+new\+\_\+env\+\_\+var}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, char $\ast$input, int i, int flag)
+\begin{DoxyCompactList}\small\item\em Adds a new env variable to the env list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Helper functions for the export builtin. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{export__helpers_8c_a2781f327f529097c6a81f0c39a7b10f1}\label{export__helpers_8c_a2781f327f529097c6a81f0c39a7b10f1}} 
+\index{export\_helpers.c@{export\_helpers.c}!add\_new\_env\_var@{add\_new\_env\_var}}
+\index{add\_new\_env\_var@{add\_new\_env\_var}!export\_helpers.c@{export\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{add\_new\_env\_var()}{add\_new\_env\_var()}}
+{\footnotesize\ttfamily int add\+\_\+new\+\_\+env\+\_\+var (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{char $\ast$}]{input,  }\item[{int}]{i,  }\item[{int}]{flag }\end{DoxyParamCaption})}
+
+
+
+Adds a new env variable to the env list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The struct containing shell data. \\
+\hline
+{\em input} & The input to be added. \\
+\hline
+{\em i} & The index of the input. \\
+\hline
+{\em flag} & The flag to determine if the value should be added. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 if successful, 1 if no memory. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{export__helpers_8c_a2781f327f529097c6a81f0c39a7b10f1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=291pt]{export__helpers_8c_a2781f327f529097c6a81f0c39a7b10f1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{export__helpers_8c_a8414a9da9c1d04b5b52ea588eb6bf350}\label{export__helpers_8c_a8414a9da9c1d04b5b52ea588eb6bf350}} 
+\index{export\_helpers.c@{export\_helpers.c}!export\_sorted\_list@{export\_sorted\_list}}
+\index{export\_sorted\_list@{export\_sorted\_list}!export\_helpers.c@{export\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{export\_sorted\_list()}{export\_sorted\_list()}}
+{\footnotesize\ttfamily void export\+\_\+sorted\+\_\+list (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__env__list}{t\+\_\+env\+\_\+list}} $\ast$}]{env\+\_\+list }\end{DoxyParamCaption})}
+
+
+
+Sorts the env list alphabetically. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em env\+\_\+list} & The list to be sorted. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{export__helpers_8c_a8414a9da9c1d04b5b52ea588eb6bf350_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{export__helpers_8c_a8414a9da9c1d04b5b52ea588eb6bf350_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{export__helpers_8c_a01730602946225b33a098eac07f25476}\label{export__helpers_8c_a01730602946225b33a098eac07f25476}} 
+\index{export\_helpers.c@{export\_helpers.c}!replace\_env\_var@{replace\_env\_var}}
+\index{replace\_env\_var@{replace\_env\_var}!export\_helpers.c@{export\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{replace\_env\_var()}{replace\_env\_var()}}
+{\footnotesize\ttfamily int replace\+\_\+env\+\_\+var (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{char $\ast$}]{input,  }\item[{int}]{i,  }\item[{int}]{flag }\end{DoxyParamCaption})}
+
+
+
+Replaces the value of an existing env variable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The struct containing shell data. \\
+\hline
+{\em input} & The input to be replaced. \\
+\hline
+{\em i} & The index of the input. \\
+\hline
+{\em flag} & The flag to determine if the value should be replaced. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 if successful, 1 if no memory. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{export__helpers_8c_a01730602946225b33a098eac07f25476_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{export__helpers_8c_aebddc655ea912e68254bf0132cff2543}\label{export__helpers_8c_aebddc655ea912e68254bf0132cff2543}} 
+\index{export\_helpers.c@{export\_helpers.c}!swap\_env\_vars@{swap\_env\_vars}}
+\index{swap\_env\_vars@{swap\_env\_vars}!export\_helpers.c@{export\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{swap\_env\_vars()}{swap\_env\_vars()}}
+{\footnotesize\ttfamily void swap\+\_\+env\+\_\+vars (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__env__list}{t\+\_\+env\+\_\+list}} $\ast$}]{temp,  }\item[{\mbox{\hyperlink{structs__env__list}{t\+\_\+env\+\_\+list}} $\ast$}]{temp2 }\end{DoxyParamCaption})}
+
+
+
+Swaps the values of two env variables. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em temp} & The first env variable. \\
+\hline
+{\em temp2} & The second env variable. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{export__helpers_8c_aebddc655ea912e68254bf0132cff2543_icgraph}
+\end{center}
+\end{figure}

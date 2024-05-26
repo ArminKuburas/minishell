@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:59:04 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/14 15:29:27 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/26 03:24:28 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	clean_everything_up(t_shelldata *data, int exit_value)
 	while (i < data->command_amount)
 	{
 		free_child_data(&data->child_data[i]);
+		i++; 
 	}
 	free(data->child_data);
 	clear_input(data->input_list, SUCCESS);

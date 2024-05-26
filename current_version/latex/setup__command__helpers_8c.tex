@@ -1,0 +1,92 @@
+\hypertarget{setup__command__helpers_8c}{}\doxysection{source\+\_\+files/setup\+\_\+and\+\_\+data\+\_\+handling/setup\+\_\+command\+\_\+helpers.c File Reference}
+\label{setup__command__helpers_8c}\index{source\_files/setup\_and\_data\_handling/setup\_command\_helpers.c@{source\_files/setup\_and\_data\_handling/setup\_command\_helpers.c}}
+
+
+Helper functions for setting up commands.  
+
+
+{\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
+Include dependency graph for setup\+\_\+command\+\_\+helpers.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{setup__command__helpers_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{setup__command__helpers_8c_a09993cefc37d0d467d84ceac015ff0da}{create\+\_\+variables}} (char $\ast$$\ast$$\ast$path\+\_\+variables, \mbox{\hyperlink{structs__env__list}{t\+\_\+env\+\_\+list}} $\ast$env\+\_\+list)
+\begin{DoxyCompactList}\small\item\em Creates variables for the path. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{setup__command__helpers_8c_af4f80e02e0e1b7cc3d4a25addaf25ddd}{try\+\_\+access}} (char $\ast$path, int $\ast$error)
+\begin{DoxyCompactList}\small\item\em Tries to access the path. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Helper functions for setting up commands. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{setup__command__helpers_8c_a09993cefc37d0d467d84ceac015ff0da}\label{setup__command__helpers_8c_a09993cefc37d0d467d84ceac015ff0da}} 
+\index{setup\_command\_helpers.c@{setup\_command\_helpers.c}!create\_variables@{create\_variables}}
+\index{create\_variables@{create\_variables}!setup\_command\_helpers.c@{setup\_command\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{create\_variables()}{create\_variables()}}
+{\footnotesize\ttfamily int create\+\_\+variables (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$$\ast$}]{path\+\_\+variables,  }\item[{\mbox{\hyperlink{structs__env__list}{t\+\_\+env\+\_\+list}} $\ast$}]{env\+\_\+list }\end{DoxyParamCaption})}
+
+
+
+Creates variables for the path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+variables} & The path variables. \\
+\hline
+{\em env\+\_\+list} & The environment list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the error code. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=276pt]{setup__command__helpers_8c_a09993cefc37d0d467d84ceac015ff0da_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=305pt]{setup__command__helpers_8c_a09993cefc37d0d467d84ceac015ff0da_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{setup__command__helpers_8c_af4f80e02e0e1b7cc3d4a25addaf25ddd}\label{setup__command__helpers_8c_af4f80e02e0e1b7cc3d4a25addaf25ddd}} 
+\index{setup\_command\_helpers.c@{setup\_command\_helpers.c}!try\_access@{try\_access}}
+\index{try\_access@{try\_access}!setup\_command\_helpers.c@{setup\_command\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{try\_access()}{try\_access()}}
+{\footnotesize\ttfamily void try\+\_\+access (\begin{DoxyParamCaption}\item[{char $\ast$}]{path,  }\item[{int $\ast$}]{error }\end{DoxyParamCaption})}
+
+
+
+Tries to access the path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to be accessed. \\
+\hline
+{\em error} & The error code. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{setup__command__helpers_8c_af4f80e02e0e1b7cc3d4a25addaf25ddd_icgraph}
+\end{center}
+\end{figure}

@@ -1,0 +1,105 @@
+\hypertarget{cd__helpers_8c}{}\doxysection{source\+\_\+files/builtins/cd\+\_\+helpers.c File Reference}
+\label{cd__helpers_8c}\index{source\_files/builtins/cd\_helpers.c@{source\_files/builtins/cd\_helpers.c}}
+
+
+Helper functions for ft\+\_\+cd.  
+
+
+{\ttfamily \#include \char`\"{}../../headers/minishell.\+h\char`\"{}}\newline
+Include dependency graph for cd\+\_\+helpers.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cd__helpers_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{cd__helpers_8c_a2b87149d19967a2c43cbfd925a7850c1}{path\+\_\+joiner}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, char $\ast$temp, char $\ast$path)
+\begin{DoxyCompactList}\small\item\em Changes the pwd string. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{cd__helpers_8c_a185457b9d4a9285749e4568cc2ebdad9}{change\+\_\+dir}} (\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$data, char $\ast$path)
+\begin{DoxyCompactList}\small\item\em Changes working directory to one in given path. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Helper functions for ft\+\_\+cd. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{cd__helpers_8c_a185457b9d4a9285749e4568cc2ebdad9}\label{cd__helpers_8c_a185457b9d4a9285749e4568cc2ebdad9}} 
+\index{cd\_helpers.c@{cd\_helpers.c}!change\_dir@{change\_dir}}
+\index{change\_dir@{change\_dir}!cd\_helpers.c@{cd\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{change\_dir()}{change\_dir()}}
+{\footnotesize\ttfamily int change\+\_\+dir (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{char $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+Changes working directory to one in given path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The struct containing shell data. \\
+\hline
+{\em path} & The path string to be checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success or failure. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cd__helpers_8c_a185457b9d4a9285749e4568cc2ebdad9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=260pt]{cd__helpers_8c_a185457b9d4a9285749e4568cc2ebdad9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{cd__helpers_8c_a2b87149d19967a2c43cbfd925a7850c1}\label{cd__helpers_8c_a2b87149d19967a2c43cbfd925a7850c1}} 
+\index{cd\_helpers.c@{cd\_helpers.c}!path\_joiner@{path\_joiner}}
+\index{path\_joiner@{path\_joiner}!cd\_helpers.c@{cd\_helpers.c}}
+\doxysubsubsection{\texorpdfstring{path\_joiner()}{path\_joiner()}}
+{\footnotesize\ttfamily int path\+\_\+joiner (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structs__shelldata}{t\+\_\+shelldata}} $\ast$}]{data,  }\item[{char $\ast$}]{temp,  }\item[{char $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+Changes the pwd string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The struct containing shell data. \\
+\hline
+{\em temp} & The temp string used to modify path string. \\
+\hline
+{\em path} & The path string to be checked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success or failure. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cd__helpers_8c_a2b87149d19967a2c43cbfd925a7850c1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cd__helpers_8c_a2b87149d19967a2c43cbfd925a7850c1_icgraph}
+\end{center}
+\end{figure}
