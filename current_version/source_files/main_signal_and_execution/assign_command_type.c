@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   assign_command_type.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <Tvalimak@student.42.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 16:24:40 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/24 16:28:07 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/24 16:39:31 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
-
 
 /**
  * @file assign_command_type.c
