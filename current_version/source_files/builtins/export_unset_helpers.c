@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_unset_helpers.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.42.fi>          +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:51:55 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/24 14:35:00 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/28 11:24:09 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,20 @@
  * @file export_unset_helpers.c
  * @brief Helper functions for the export and unset builtin.
 */
+
+/**
+ * @brief Helper function for replace_env_var.
+ * @param temp_env env_list in which we want to replace a var.
+ * @param input The input to be replaced.
+ * @return int 0 if successful, 1 if no memory.
+*/
+int	env_var_helper(t_env_list *temp_env, char *input)
+{
+	temp_env->env_var = ft_strdup(input);
+	if (temp_env->env_var == NULL)
+		return (NO_MEMORY);
+	return (SUCCESS);
+}
 
 /**
  * @brief If unset PWD is done, this checks that .

@@ -6,7 +6,7 @@
 /*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:34:10 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/26 18:41:07 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/28 11:21:14 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,14 @@ void	export_sorted_list(t_env_list *env_list)
 	}
 }
 
+int	env_var_helper(t_env_list *temp_env, char *input)
+{
+	temp_env->env_var = ft_strdup(input);
+	if (temp_env->env_var == NULL)
+		return (NO_MEMORY);
+	return (SUCCESS);
+}
+
 /**
  * @brief Replaces the value of an existing env variable.
  * @param data The struct containing shell data.
@@ -86,10 +94,8 @@ int	replace_env_var(t_shelldata *data, char *input, int i, int flag)
 				ft_strlen(input) - i - 1);
 				if (temp_env->env_var_value == NULL)
 					return (NO_MEMORY);
-				temp_env->env_var = ft_strdup(input);
-				if (temp_env->env_var == NULL)
+				if (env_var_helper(temp_env, input) == NO_MEMORY)
 					return (NO_MEMORY);
-				return (SUCCESS);
 			}
 			else
 				temp_env->env_var_value = "";
