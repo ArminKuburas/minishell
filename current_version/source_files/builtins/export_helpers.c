@@ -6,7 +6,7 @@
 /*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:34:10 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/28 11:21:14 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/28 11:26:11 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,6 @@ void	export_sorted_list(t_env_list *env_list)
 		}
 		temp = temp->next;
 	}
-}
-
-int	env_var_helper(t_env_list *temp_env, char *input)
-{
-	temp_env->env_var = ft_strdup(input);
-	if (temp_env->env_var == NULL)
-		return (NO_MEMORY);
-	return (SUCCESS);
 }
 
 /**
