@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
 /*   Updated: 2024/05/27 19:21:29 by akuburas         ###   ########.fr       */
@@ -268,6 +268,7 @@ void		parent_sigquit(int sig);
 int			ft_cd(t_shelldata *data, char **inputs);
 int			ft_env(t_shelldata *data, int fd);
 int			ft_export(t_shelldata *data, char **inputs, int fd);
+int			env_var_helper(t_env_list *temp_env, char *input);
 int			ft_exit(t_shelldata *data, char **inputs);
 int			ft_unset(t_shelldata *data, char **inputs);
 int			ft_echo(t_child_data *data, int fd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_helpers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvalimak <Tvalimak@student.42.fi>          +#+  +:+       +#+        */
+/*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:34:10 by tvalimak          #+#    #+#             */
-/*   Updated: 2024/05/24 14:31:41 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/28 11:26:11 by tvalimak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ int	replace_env_var(t_shelldata *data, char *input, int i, int flag)
 				ft_strlen(input) - i - 1);
 				if (temp_env->env_var_value == NULL)
 					return (NO_MEMORY);
-				return (SUCCESS);
+				if (env_var_helper(temp_env, input) == NO_MEMORY)
+					return (NO_MEMORY);
 			}
 			else
 				temp_env->env_var_value = "";
