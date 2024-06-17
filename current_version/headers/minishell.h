@@ -6,7 +6,7 @@
 /*   By: tvalimak <tvalimak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:16:05 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/28 11:27:19 by tvalimak         ###   ########.fr       */
+/*   Updated: 2024/05/27 19:21:29 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,8 +219,6 @@ char		*get_next_line(int fd);
 
 //data_parser functions
 int			count_words(t_split_data *split_data);
-int			mini_split(char *input, t_shelldata *data);
-int			parse_split_input(t_shelldata *data);
 int			parser_quote_found(t_split_data *data);
 
 //input_list functions

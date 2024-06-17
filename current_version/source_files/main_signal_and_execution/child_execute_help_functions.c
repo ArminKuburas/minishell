@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:10:45 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/26 03:27:46 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/29 18:59:49 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@
  * @param already_printed If the exit value has already been printed.
  * @return void
 */
-void	check_exit_value(t_child_data *child_data, int already_printed)
+void	check_exit_value(t_child_data *child_data, int *already_printed)
 {
-	if (child_data->exit_value == 2 && already_printed == NO)
+	if (child_data->exit_value == 2 && *already_printed == NO)
 	{
 		ft_putendl_fd("", STDOUT_FILENO);
-		already_printed = YES;
+		*already_printed = YES;
 		child_data->exit_value = 130;
 	}
-	else if (child_data->exit_value == 3 && already_printed == NO)
+	else if (child_data->exit_value == 3 && *already_printed == NO)
 	{
 		ft_putendl_fd("Quit: 3", STDOUT_FILENO);
-		already_printed = YES;
+		*already_printed = YES;
 		child_data->exit_value = 131;
 	}
 	else if ((WIFEXITED(child_data->exit_value)
@@ -67,7 +67,7 @@ void	wait_for_children(t_shelldata *data)
 			&& data->child_data[i].exit_value == 0)
 			waitpid(data->child_data[i].pid,
 				&data->child_data[i].exit_value, 0);
-		check_exit_value(&data->child_data[i], already_printed);
+		check_exit_value(&data->child_data[i], &already_printed);
 		free_child_data(&data->child_data[i]);
 		data->exit_value = data->child_data[i].exit_value;
 		i++;
